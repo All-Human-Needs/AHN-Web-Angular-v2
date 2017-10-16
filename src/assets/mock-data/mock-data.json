@@ -1,0 +1,26 @@
+[{
+    "_id": "001",
+    "name": "Groote Schuur Hospital",
+    "lat": "-33.9217137",
+    "lng": "18.46171849",
+    "capacity": "1300",
+    "isActive": true,
+    "stats": [{
+        "id": "001",
+        "date": "2017-09-17T07:00:00.000Z",
+        "pax": 310
+    }]
+
+}, {
+    "_id": "002",
+    "name": "Netcare UCT Private Academic Hospital",
+    "lat": "-33.9423756",
+    "lng": "18.4632473",
+    "capacity": "2520",
+    "isActive": true,
+    "stats": [{
+        "id": "001",
+        "date": "2017-09-17T07:00:00.000Z",
+        "pax": 400
+    }]
+}]
