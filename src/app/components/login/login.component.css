@@ -1,0 +1,107 @@
+.login-form-background {
+    width: 430px;
+    height: 665px;
+    background: rgba(177, 177, 177, 0.9);
+    border-radius: 20px;
+    margin: 50px
+}
+
+@media screen and (max-width: 992px) {
+    .login-form-background {
+        margin: auto;
+    }
+}
+
+.title {
+    width: 330px;
+    font-size: 50px;
+    margin: auto;
+    margin-bottom: 260px;
+    color: #000000;
+}
+
+
+/* .logo{
+    position: absolute;
+    width: 166px;
+    height: 103px;
+    left: 723px;
+    top: 312px;
+    background: #56CCf2;
+} */
+
+.input-field {
+    width: 350px;
+    height: 50px;
+    font-size: 18px;
+    background: #FEFEFE;
+    border: 2px solid #56CCf2;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin: 20px auto;
+}
+
+.check-label {
+    width: 96px;
+    height: 25px;
+    left: 676px;
+    top: 667px;
+    font-style: normal;
+    font-weight: normal;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 16px;
+    color: #000000;
+}
+
+.login-button {
+    border: 1px solid #1BE370;
+    color: #1BE370;
+    margin-left: 74px;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.btn {
+    width: 125px;
+    height: 40px;
+    font-size: 18px;
+    text-align: center;
+    background: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.google-button {
+    color: #FF0000;
+    border: 1px solid #FF0000;
+    float: right;
+    margin-right: 74px;
+}
+
+.remember {
+    margin-left: 74px;
+    height: 15px;
+    width: 15px;
+}
+
+.forgot {
+    float: right;
+    margin-right: 74px;
+}
+
+.create-account {
+    margin-left: 74px;
+}
+
+.button {
+    margin-bottom: 5px
+}
+
+a {
+    color: #ffffff;
+}

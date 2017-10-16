@@ -1,0 +1,34 @@
+import { BannerModule } from '../banner/banner.module';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from '../../app-routing.module';
+import { AgmCoreModule } from '@agm/core';
+import { SearchBarComponent } from './client-maps/search-bar/search-bar.component';
+import { MapComponent } from './client-maps/map/map.component';
+import { ClientMapsComponent } from './client-maps/client-maps.component';
+import { ClientHomeComponent } from './client-home/client-home.component';
+import { NgModule } from '@angular/core';
+
+
+@NgModule({
+  imports: [BrowserModule,
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
+
+    }),
+ AppRoutingModule,BannerModule
+  ],
+  declarations: [
+    ClientHomeComponent,
+    ClientMapsComponent,
+    MapComponent,
+    SearchBarComponent, 
+  ],
+  exports: [
+    ClientHomeComponent,
+    ClientMapsComponent,
+ 
+  ]
+})
+export class ClientModule { }
