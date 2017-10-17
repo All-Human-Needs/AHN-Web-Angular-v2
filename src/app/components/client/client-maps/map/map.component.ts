@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
+  
+
   locations:location[]=[];
   userLocation:location;
   userLat:number;
