@@ -1,184 +1,187 @@
-[{
-        "_id": "001",
-        "name": "Groote Schuur Hospital",
-        "lat": "-33.9217137",
-        "lng": "18.46171849",
-        "capacity": "1300",
-        "isActive": true,
-        "stats": [{
-            // "id": "001",
-            "date": "2017-09-17T07:00:00.000Z",
-            "pax": 310
-        }, {
-            // "id": "002",
-            "date": "2017-09-17T12:00:00.000Z",
-            "pax": 500
-        }, {
-            // "id": "003",
-            "date": "2017-09-17T16:00:00.000Z",
-            "pax": 497
-        }]
+{
+    "businesses": [{
+            "_id": "001",
+            "name": "Groote Schuur Hospital",
+            "lat": "-33.9217137",
+            "lng": "18.46171849",
+            "capacity": "1300",
+            "isActive": true,
+            "stats": [{
 
-    }, {
-        "_id": "002",
-        "name": "Netcare UCT Private Academic Hospital",
-        "lat": "-33.9423756",
-        "lng": "18.4632473",
-        "capacity": "2520",
-        "isActive": true,
-        "stats": [{
-            // "id": "001",
-            "date": "2017-09-17T07:00:00.000Z",
-            "pax": 400
+                "date": "2017-09-17T07:00:00.000Z",
+                "pax": 310
+            }, {
+
+                "date": "2017-09-17T12:00:00.000Z",
+                "pax": 500
+            }, {
+
+                "date": "2017-09-17T16:00:00.000Z",
+                "pax": 497
+            }]
+
         }, {
-            // "id": "002",
-            "date": "2017-09-17T12:00:00.000Z",
-            "pax": 1005
+            "_id": "002",
+            "name": "Netcare UCT Private Academic Hospital",
+            "lat": "-33.9423756",
+            "lng": "18.4632473",
+            "capacity": "2520",
+            "isActive": true,
+            "stats": [{
+
+                "date": "2017-09-17T07:00:00.000Z",
+                "pax": 400
+            }, {
+
+                "date": "2017-09-17T12:00:00.000Z",
+                "pax": 1005
+            }, {
+
+                "date": "2017-09-17T16:00:00.000Z",
+                "pax": 1007
+            }]
+        },
+        {
+            "_id": "003",
+            "name": "Life Vincent Pallotti Hospital",
+            "lat": "-33.9443605",
+            "lng": "18.4900986",
+            "capacity": "600",
+            "isActive": true,
+            "stats": [{
+
+                "date": "2017-09-17T07:00:00.000Z",
+                "pax": 115
+            }, {
+
+                "date": "2017-09-17T12:00:00.000Z",
+                "pax": 125
+            }, {
+
+                "date": "2017-09-17T16:00:00.000Z",
+                "pax": 107
+            }]
         }, {
-            // "id": "003",
-            "date": "2017-09-17T16:00:00.000Z",
-            "pax": 1007
-        }]
-    },
-    {
-        "_id": "003",
-        "name": "Life Vincent Pallotti Hospital",
-        "lat": "-33.9443605",
-        "lng": "18.4900986",
-        "capacity": "600",
-        "isActive": true,
-        "stats": [{
-            // "id": "001",
-            "date": "2017-09-17T07:00:00.000Z",
-            "pax": 115
+            "_id": "004",
+            "name": "Nedbank Salt River Cape",
+            "lat": "-33.931401",
+            "lng": "18.4550689",
+            "capacity": "221",
+            "isActive": true,
+            "stats": [{
+
+                "date": "2017-09-17T07:00:00.000Z",
+                "pax": 10
+            }, {
+
+                "date": "2017-09-17T12:00:00.000Z",
+                "pax": 100
+            }, {
+
+                "date": "2017-09-17T16:00:00.000Z",
+                "pax": 150
+            }]
         }, {
-            // "id": "002",
-            "date": "2017-09-17T12:00:00.000Z",
-            "pax": 125
+            "_id": "005",
+            "name": "Nedbank Grand Central",
+            "lat": "-33.923951",
+            "lng": "18.422884",
+            "capacity": "185",
+            "isActive": true,
+            "stats": [{
+
+                "date": "2017-09-17T07:00:00.000Z",
+                "pax": 5
+            }, {
+
+                "date": "2017-09-17T12:00:00.000Z",
+                "pax": 40
+            }, {
+
+                "date": "2017-09-17T16:00:00.000Z",
+                "pax": 23
+            }]
         }, {
-            // "id": "003",
-            "date": "2017-09-17T16:00:00.000Z",
-            "pax": 107
-        }]
-    }, {
-        "_id": "004",
-        "name": "Nedbank Salt River Cape",
-        "lat": "-33.931401",
-        "lng": "18.4550689",
-        "capacity": "221",
-        "isActive": true,
-        "stats": [{
-            // "id": "001",
-            "date": "2017-09-17T07:00:00.000Z",
-            "pax": 10
+            "_id": "006",
+            "name": "Nedbank Foreshore",
+            "lat": "-33.91724",
+            "lng": "18.4272859",
+            "capacity": "148",
+            "isActive": true,
+            "stats": [{
+
+                "date": "2017-09-17T07:00:00.000Z",
+                "pax": 50
+            }, {
+
+                "date": "2017-09-17T12:00:00.000Z",
+                "pax": 42
+            }, {
+
+                "date": "2017-09-17T16:00:00.000Z",
+                "pax": 13
+            }]
         }, {
-            // "id": "002",
-            "date": "2017-09-17T12:00:00.000Z",
-            "pax": 100
+            "_id": "007",
+            "name": "Department of Home Affairs Cape Town",
+            "lat": "-33.92765",
+            "lng": "18.4221",
+            "capacity": "89",
+            "isActive": true,
+            "stats": [{
+
+                "date": "2017-09-17T07:00:00.000Z",
+                "pax": 89
+            }, {
+
+                "date": "2017-09-17T12:00:00.000Z",
+                "pax": 100
+            }, {
+
+                "date": "2017-09-17T16:00:00.000Z",
+                "pax": 57
+            }]
         }, {
-            // "id": "003",
-            "date": "2017-09-17T16:00:00.000Z",
-            "pax": 150
-        }]
-    }, {
-        "_id": "005",
-        "name": "Nedbank Grand Central",
-        "lat": "-33.923951",
-        "lng": "18.422884",
-        "capacity": "185",
-        "isActive": true,
-        "stats": [{
-            // "id": "001",
-            "date": "2017-09-17T07:00:00.000Z",
-            "pax": 5
+            "_id": "008",
+            "name": "Department of Home Affairs Office",
+            "lat": "-33.9012178",
+            "lng": "18.63154910000003",
+            "capacity": "130",
+            "isActive": true,
+            "stats": [{
+
+                "date": "2017-09-17T07:00:00.000Z",
+                "pax": 50
+            }, {
+
+                "date": "2017-09-17T12:00:00.000Z",
+                "pax": 125
+            }, {
+
+                "date": "2017-09-17T16:00:00.000Z",
+                "pax": 89
+            }]
         }, {
-            // "id": "002",
-            "date": "2017-09-17T12:00:00.000Z",
-            "pax": 40
-        }, {
-            // "id": "003",
-            "date": "2017-09-17T16:00:00.000Z",
-            "pax": 23
-        }]
-    }, {
-        "_id": "006",
-        "name": "Nedbank Foreshore",
-        "lat": "-33.91724",
-        "lng": "18.4272859",
-        "capacity": "148",
-        "isActive": true,
-        "stats": [{
-            // "id": "001",
-            "date": "2017-09-17T07:00:00.000Z",
-            "pax": 50
-        }, {
-            // "id": "002",
-            "date": "2017-09-17T12:00:00.000Z",
-            "pax": 42
-        }, {
-            // "id": "003",
-            "date": "2017-09-17T16:00:00.000Z",
-            "pax": 13
-        }]
-    }, {
-        "_id": "007",
-        "name": "Department of Home Affairs Cape Town",
-        "lat": "-33.92765",
-        "lng": "18.4221",
-        "capacity": "89",
-        "isActive": true,
-        "stats": [{
-            // "id": "001",
-            "date": "2017-09-17T07:00:00.000Z",
-            "pax": 89
-        }, {
-            // "id": "002",
-            "date": "2017-09-17T12:00:00.000Z",
-            "pax": 100
-        }, {
-            // "id": "003",
-            "date": "2017-09-17T16:00:00.000Z",
-            "pax": 57
-        }]
-    }, {
-        "_id": "008",
-        "name": "Department of Home Affairs Office",
-        "lat": "-33.9012178",
-        "lng": "18.63154910000003",
-        "capacity": "130",
-        "isActive": true,
-        "stats": [{
-            // "id": "001",
-            "date": "2017-09-17T07:00:00.000Z",
-            "pax": 50
-        }, {
-            // "id": "002",
-            "date": "2017-09-17T12:00:00.000Z",
-            "pax": 125
-        }, {
-            // "id": "003",
-            "date": "2017-09-17T16:00:00.000Z",
-            "pax": 89
-        }]
-    }, {
-        "_id": "009",
-        "name": "Home Affairs Wynberg District",
-        "lat": "-34.0032484",
-        "lng": "18.4700239",
-        "capacity": "60",
-        "isActive": true,
-        "stats": [{
-            // "id": "001",
-            "date": "2017-09-17T07:00:00.000Z",
-            "pax": 60
-        }, {
-            // "id": "002",
-            "date": "2017-09-17T12:00:00.000Z",
-            "pax": 68
-        }, {
-            // "id": "003",
-            "date": "2017-09-17T16:00:00.000Z",
-            "pax": 59
-        }]
-    }
-]
+            "_id": "009",
+            "name": "Home Affairs Wynberg District",
+            "lat": "-34.0032484",
+            "lng": "18.4700239",
+            "capacity": "60",
+            "isActive": true,
+            "stats": [{
+
+                "date": "2017-09-17T07:00:00.000Z",
+                "pax": 60
+            }, {
+
+                "date": "2017-09-17T12:00:00.000Z",
+                "pax": 68
+            }, {
+
+                "date": "2017-09-17T16:00:00.000Z",
+                "pax": 59
+            }]
+        }
+    ]
+
+}
