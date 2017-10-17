@@ -1,4 +1,7 @@
+import { BusinessService } from './../../../../services/business.service';
+
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'ahn-map',
@@ -6,14 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-
+  constructor(private businessService:BusinessService) { 
+ 
+  }
   
+    ngOnInit() {
+      this.setCurrentPosition();
+    }
+  
+    
 
   locations:location[]=[];
   userLocation:location;
   userLat:number;
   userLng:number;
   zoom;
+
   private setCurrentPosition() {
     var newMarker:location;
     if ("geolocation" in navigator) {
@@ -30,6 +41,9 @@ export class MapComponent implements OnInit {
     }
   }
 
+getLocations(){
+this.locations=this.businessService.getBusinesses()}
+
 // custom styles for removing all the markers that aren't ours
 customStyle = [
   {
@@ -43,12 +57,6 @@ customStyle = [
     stylers: [{visibility:"off" }]
   }
 ];
-
-  constructor() { }
-
-  ngOnInit() {
-    this.setCurrentPosition();
-  }
 
 }
 

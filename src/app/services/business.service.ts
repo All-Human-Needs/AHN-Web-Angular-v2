@@ -5,22 +5,21 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
 @Injectable()
 export class BusinessService {
-  businessRef: AngularFireList<Business>;
-  businesses: Observable<Business[]>;
+  businessRef: AngularFireList<any>;
+  businesses: Observable<any[]>;
 
   constructor(private db: AngularFireDatabase) {
-    this.businessRef = db.list("businesses");
+
+  }
+
+  getBusinesses():any {
+    this.businessRef = this.db.list("businesses");
     this.businesses = this.businessRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
-  }
-
-  getBusinesses() {
-    this.businesses.forEach(element => {
-      for(let i=0;i<element.length;i++){
-        console.log(element[i].lat);
-      }
-    });
+  //   this.businesses.forEach(element => {
+  //       console.log(element);
+  //   });
   }
 
   deleteBusiness(key?: string) {
