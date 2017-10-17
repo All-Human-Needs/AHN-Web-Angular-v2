@@ -2,6 +2,7 @@
     /* To put the stuff the stuff on top of the map */
     position: absolute;
     z-index: 5;
+    width: 100%;
 }
 
 .menu-button {

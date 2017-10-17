@@ -1,23 +1,20 @@
+.search-container {
+    padding: 10px;
+    background-color: #ffffff;
+    margin: 10px;
+}
+
 .search-bar {
     /* margin-left: 10px;
     margin-right: 10px; */
-    width: 90vw;
     border-style: hidden;
     font-size: 175%;
-    padding: 8px;
     background-color: #ffffff;
     border-left: solid 1px black;
 }
 
-.search-container {
-    padding: 10px;
-    background-color: #ffffff;
-    width: 97vw;
-    margin: 10px;
-}
-
 .search-icon {
     font-size: 175%;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
