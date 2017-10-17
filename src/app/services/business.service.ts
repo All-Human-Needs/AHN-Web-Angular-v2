@@ -5,8 +5,8 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
 @Injectable()
 export class BusinessService {
-  businessRef: AngularFireList<any>;
-  businesses: Observable<any>;
+  businessRef: AngularFireList<Business>;
+  businesses: Observable<Business[]>;
 
   constructor(private db: AngularFireDatabase) {
     this.businessRef = db.list("businesses");
@@ -17,7 +17,9 @@ export class BusinessService {
 
   getBusinesses() {
     this.businesses.forEach(element => {
-      console.log(element);
+      for(let i=0;i<element.length;i++){
+        console.log(element[i].lat);
+      }
     });
   }
 
@@ -25,11 +27,11 @@ export class BusinessService {
     this.businessRef.remove(key);
   }
 
-  addBusiness() {
-    this.businessRef.push({ name: "ALKJSfdlkjf" });
+  addBusiness(business:Business) {
+    this.businessRef.push(business);
   }
 
-  updateBusiness(key?: string) {
-    this.businessRef.update(key, { name: "FNB" });
+  updateBusiness(key: string, business:Business) {
+    this.businessRef.update(key, business);
   }
 }
