@@ -1,5 +1,5 @@
 export class Stats{
-    id:string;
-    date:Date;
+    // id:string;
+    date:string;
     pax:number;
 }

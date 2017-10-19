@@ -1,3 +1,5 @@
+import { Stats } from './../../../../../models/business/stats.class';
+import { BusinessService } from './../../../../../services/business.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
-
+  statistics: Stats[];
   barChartData:any[]=[{data:[],label:''}]; 
   barChartLabels:any[]=[]; 
   barChartOptions:any = {scaleShowVerticalLines: false,responsive: true,};
@@ -17,9 +19,13 @@ export class BarChartComponent implements OnInit {
      backgroundColor:'#000',
    },];
 
-  constructor() { }
+  
+
+  constructor(private _businessService: BusinessService) { }
 
   ngOnInit() {
+   
   }
+
 
 }
