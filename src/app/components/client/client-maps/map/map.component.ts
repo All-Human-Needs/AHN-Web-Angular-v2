@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class MapComponent implements OnInit {
 
-  locations: Business[]; //= this.businessService.getBusinesses();
+  locations: location[] = []; //= this.businessService.getBusinesses();
   userLocation: location = this.setCurrentPosition();
   userLat: number;
   userLng: number;
@@ -29,18 +29,25 @@ export class MapComponent implements OnInit {
 
     // this.getMapMarkers();
     this.businessService.getBusinesses().subscribe(
-      response=>{
-        this.locations = response
-        console.table(response);
+      response => {
+        for (var i = 0; i < response.length; i++) {
+          var marker: Business = {
+            // lat: parseFloat(response[i].lat),
+            // lng: parseFloat(response[i].lng),
+            // name: response[i].name,
+            // capacity: 12,
+            id: response[i].id,
+            name: response[i].name,
+            lat: parseFloat(response[i].lat),
+            lng: parseFloat(response[i].lng),
+            capacity: response[i].capacity,
+            isActive: response[i].isActive,
+            stats: response[i].stats,
+          }
+          this.locations.push(marker);
+        }
       }
     )
-    console.log(this.locations[1].capacity);
-  }
-
-  private getMapMarkers() {
-    // this.locations = this.businessService.getBusinesses();
-
-    // console.log(this.locations[1].capacity);
   }
 
   private setCurrentPosition() {
@@ -52,16 +59,8 @@ export class MapComponent implements OnInit {
           lng: position.coords.longitude,
           name: "You Are Here",
         }
-
-        // this.userLocation = {
-        //   lat: position.coords.latitude,
-        //   lng: position.coords.longitude,
-        //   name: "You Are Here",
-        // }
-
         this.userLat = newMarker.lat;
         this.userLng = newMarker.lng;
-        // this.locations.push(this.userLocation);
       });
     }
 

@@ -21,8 +21,6 @@ export class BusinessService {
 
   getBusinesses():Observable<Business[]> {
     return this.businesses;
-  //  console.log(data);
-  //   return data;
   }
 
   deleteBusiness(key?: string) {
