@@ -15,12 +15,8 @@ export class BusinessService {
     });
   }
 
-  getBusinesses() {
-    this.businesses.forEach(element => {
-      for(let i=0;i<element.length;i++){
-        console.log(element[i].lat);
-      }
-    });
+  getBusinesses():Observable<Business[]> {
+     return this.businesses;
   }
 
   deleteBusiness(key?: string) {

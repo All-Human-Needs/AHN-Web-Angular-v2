@@ -12,7 +12,6 @@ export class LoginComponent implements OnInit {
   password:string;
   constructor(private businessService:BusinessService, private router:Router) {
     businessService.getBusinesses(); 
-
 }
 
   ngOnInit() {
