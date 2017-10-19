@@ -1,3 +1,5 @@
+import { SideNavModule } from './../side-nav/side-nav.module';
+import { FilterModule } from './../filter/filter.module';
 import { BannerModule } from '../banner/banner.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +15,8 @@ import { NgModule } from '@angular/core';
 @NgModule({
   imports: [BrowserModule,
     FormsModule,
+    FilterModule,
+    SideNavModule,
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
 

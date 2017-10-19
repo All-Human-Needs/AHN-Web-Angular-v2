@@ -1,0 +1,27 @@
+[
+    {
+        age: 5,
+        name: "Shelby",
+        surname: "McCaw"
+    },
+        age: 26,
+        name: "Vlad",
+        surname: "Mavukuza"
+    }
+]
+
+var people = thisStuff();
+
+people[0].age == 5 // returns true
+
+//---------------------------------------------
+
+{
+    lat: 2134.123412,
+    lon: 312.1242315
+}
+
+var coordinates = thatOtherStuff();
+
+var latitude = coordinates.lat; // equals 2134.123412 
+

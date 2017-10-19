@@ -1,3 +1,4 @@
+import { SideNavModule } from './components/side-nav/side-nav.module';
 //import modules
 import { BusinessService } from './services/business.service';
 
@@ -18,6 +19,8 @@ import { AppComponent } from "./app.component";
 // import { BannerComponent } from './components/banner/banner.component';
 import { LoginComponent } from "./components/login/login.component";
 
+
+
 export const firebaseConfig = {
   apiKey: "AIzaSyCmLj-8NEWba6GUprGUkaM4e40hfLymQK4",
   authDomain: "all-human-needs.firebaseapp.com",
@@ -31,7 +34,9 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     // BannerComponent,
-    LoginComponent
+    LoginComponent,
+
+    
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,7 @@ export const firebaseConfig = {
     ClientModule,
     BusinessModule,
     BannerModule,
+    SideNavModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule
