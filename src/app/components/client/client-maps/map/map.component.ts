@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class MapComponent implements OnInit {
 
-  locations: location[] = []; //= this.businessService.getBusinesses();
+  locations: Business[] = []; //= this.businessService.getBusinesses();
   userLocation: location = this.setCurrentPosition();
   userLat: number;
   userLng: number;
@@ -35,11 +35,10 @@ export class MapComponent implements OnInit {
             // lat: parseFloat(response[i].lat),
             // lng: parseFloat(response[i].lng),
             // name: response[i].name,
-            // capacity: 12,
             id: response[i].id,
             name: response[i].name,
-            lat: parseFloat(response[i].lat),
-            lng: parseFloat(response[i].lng),
+            lat: response[i].lat,
+            lng: response[i].lng,
             capacity: response[i].capacity,
             isActive: response[i].isActive,
             stats: response[i].stats,
