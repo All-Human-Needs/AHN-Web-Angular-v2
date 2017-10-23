@@ -1,5 +1,7 @@
 
+
 import { Observer } from "rxjs/Rx";
+
 import { Business } from "../models/business/business.class";
 
 import { Observable } from "rxjs/Observable";
@@ -16,6 +18,7 @@ export class BusinessService {
   
    alt: Business[];
   constructor(private db: AngularFireDatabase) {
+
     this.businessRef = db.list("businesses");
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
@@ -35,6 +38,7 @@ export class BusinessService {
     // });
 
   }
+
 
   deleteBusiness(key?: string) {
     this.businessRef.remove(key);
