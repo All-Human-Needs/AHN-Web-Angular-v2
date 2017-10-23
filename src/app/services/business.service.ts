@@ -1,5 +1,7 @@
 
+
 import { Observer } from "rxjs/Rx";
+
 import { Business } from "../models/business/business.class";
 
 import { Observable } from "rxjs/Observable";
@@ -14,15 +16,18 @@ export class BusinessService {
   
    alt: Business[];
   constructor(private db: AngularFireDatabase) {
+
     this.businessRef = db.list("businesses");
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
+
     });
 
     
   }
 
   getBusinesses(): Observable<Business[]> {
+
     return this.businesses=this.businessRef.snapshotChanges().map(changes => {
        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
      });
@@ -30,6 +35,7 @@ export class BusinessService {
     //   observer.next(this.alt);
     // });
   }
+
 
   deleteBusiness(key?: string) {
     this.businessRef.remove(key);

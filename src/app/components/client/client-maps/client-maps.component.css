@@ -1,11 +1,12 @@
 .map-overlay {
     /* To put the stuff the stuff on top of the map */
-    position: absolute;
+    position: fixed;
     z-index: 5;
     width: 100%;
 }
 
-.menu-button {
+
+/* .menu-button {
     z-index: 2;
     position: fixed;
     border-radius: 50%;
@@ -19,9 +20,9 @@
     position: absolute;
     cursor: pointer;
     background-color: #858585
-}
+} */
 
-.filter {
+/* .filter {
     border-radius: 100%;
     z-index: 2;
     left: 90%;
@@ -29,4 +30,4 @@
     margin-top: 50px;
     cursor: pointer;
     background-color: #858585
-}
+} */
