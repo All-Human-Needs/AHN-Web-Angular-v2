@@ -1,6 +1,6 @@
-import { Business } from './../models/business/business.class';
 
-import { element } from 'protractor';
+import { Observer } from "rxjs/Rx";
+import { Business } from "../models/business/business.class";
 
 import { Observable } from "rxjs/Observable";
 import { Injectable } from "@angular/core";
@@ -8,19 +8,25 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
 @Injectable()
 export class BusinessService {
-  businessRef: AngularFireList<any>;
-  businesses: Observable<Business[]>;
+
+  businessRef: AngularFireList<Business>;
+  businesses: Business[];
 
   constructor(private db: AngularFireDatabase) {
-    var data: Business[];
-    this.businessRef = this.db.list("businesses");
-    this.businesses = this.businessRef.snapshotChanges().map(changes => {
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-   });
+    this.businessRef = db.list("businesses");
+    this.businessRef.valueChanges().subscribe((changes: Business[]) => {
+      this.businesses = changes;
+    });
+
+    //.snapshotChanges().map(changes => {
+    //   return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    // });
   }
 
-  getBusinesses():Observable<Business[]> {
-    return this.businesses;
+  getBusinesses(): Observable<Business[]> {
+    return Observable.create((observer: Observer<Business[]>) => {
+      observer.next(this.businesses);
+    });
   }
 
   deleteBusiness(key?: string) {
@@ -35,12 +41,15 @@ export class BusinessService {
     this.businessRef.update(key, business);
   }
 
-  // getLocations() {
-  //   this.businesses.forEach(element => {
-  //     for (let i = 0; i < element.length; i++) {
-  //       console.log('Lat'+element[i].lat);
-  //       console.log('Lng'+element[i].lng);
-  //     }
-  //   });
-  // }
+
+  search(term: string): Observable<Business[]> {
+    const list = this.businesses.filter((b: Business) => {
+      return b.name.search(RegExp(term, "i")) > -1;
+    });
+
+    // .map(response => response as Business[]);;
+    return Observable.create((observer: Observer<Business[]>) => {
+      observer.next(list);
+    });
+  }
 }
