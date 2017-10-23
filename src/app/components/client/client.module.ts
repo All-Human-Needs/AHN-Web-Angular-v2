@@ -1,5 +1,9 @@
+
 import { SideNavModule } from './../side-nav/side-nav.module';
 import { FilterModule } from './../filter/filter.module';
+
+import { NgModule } from '@angular/core';
+
 import { BannerModule } from '../banner/banner.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +13,8 @@ import { SearchBarComponent } from './client-maps/search-bar/search-bar.componen
 import { MapComponent } from './client-maps/map/map.component';
 import { ClientMapsComponent } from './client-maps/client-maps.component';
 import { ClientHomeComponent } from './client-home/client-home.component';
-import { NgModule } from '@angular/core';
+
+// import { BestAlternativeListComponent } from './client-maps/best-alternative-list/best-alternative-list.component';
 
 
 @NgModule({
@@ -28,6 +33,7 @@ import { NgModule } from '@angular/core';
     ClientMapsComponent,
     MapComponent,
     SearchBarComponent, 
+    // BestAlternativeListComponent
   ],
   exports: [
     ClientHomeComponent,

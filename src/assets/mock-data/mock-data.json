@@ -1,6 +1,6 @@
 {
     "businesses": [{
-            "_id": "001",
+
             "name": "Groote Schuur Hospital",
             "lat": "-33.9217137",
             "lng": "18.46171849",
@@ -21,7 +21,7 @@
             }]
 
         }, {
-            "_id": "002",
+
             "name": "Netcare UCT Private Academic Hospital",
             "lat": "-33.9423756",
             "lng": "18.4632473",
@@ -42,7 +42,7 @@
             }]
         },
         {
-            "_id": "003",
+
             "name": "Life Vincent Pallotti Hospital",
             "lat": "-33.9443605",
             "lng": "18.4900986",
@@ -62,7 +62,7 @@
                 "pax": 107
             }]
         }, {
-            "_id": "004",
+
             "name": "Nedbank Salt River Cape",
             "lat": "-33.931401",
             "lng": "18.4550689",
@@ -82,7 +82,7 @@
                 "pax": 150
             }]
         }, {
-            "_id": "005",
+
             "name": "Nedbank Grand Central",
             "lat": "-33.923951",
             "lng": "18.422884",
@@ -102,7 +102,7 @@
                 "pax": 23
             }]
         }, {
-            "_id": "006",
+
             "name": "Nedbank Foreshore",
             "lat": "-33.91724",
             "lng": "18.4272859",
@@ -122,7 +122,7 @@
                 "pax": 13
             }]
         }, {
-            "_id": "007",
+
             "name": "Department of Home Affairs Cape Town",
             "lat": "-33.92765",
             "lng": "18.4221",
@@ -142,7 +142,7 @@
                 "pax": 57
             }]
         }, {
-            "_id": "008",
+
             "name": "Department of Home Affairs Office",
             "lat": "-33.9012178",
             "lng": "18.63154910000003",
@@ -162,7 +162,7 @@
                 "pax": 89
             }]
         }, {
-            "_id": "009",
+
             "name": "Home Affairs Wynberg District",
             "lat": "-34.0032484",
             "lng": "18.4700239",
