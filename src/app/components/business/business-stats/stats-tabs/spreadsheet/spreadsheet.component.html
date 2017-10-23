@@ -1,16 +1,41 @@
+<h2 class="text-center text-capitalize">{{chartType}} Statistics</h2>
 <table class="table table-striped">
     <thead>
-        <tr>
+        <tr *ngIf='chartType ==="hourly"'>
             <th>Date</th>
             <th>Time</th>
             <th>Number of people</th>
 
         </tr>
+        <tr *ngIf='chartType ==="monthly"'>
+            <!-- <th>Year</th> -->
+            <th>Month</th>
+            <th>Number of people</th>
+        </tr>
+        <tr *ngIf='chartType ==="daily"'>
+            <!-- <th>Year</th> -->
+            <th>Day</th>
+            <th>Date</th>
+            <th>Number of people</th>
+        </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf='chartType ==="hourly"'>
         <tr *ngFor='let stats of statistics'>
             <td>{{stats.date | date:'dd/MM/yyyy'}}</td>
             <td>{{stats.date | date:'hh:mm'}}</td>
+            <td>{{stats.pax}}</td>
+        </tr>
+    </tbody>
+    <tbody *ngIf='chartType ==="monthly"'>
+        <tr *ngFor='let stats of statistics'>
+            <td>{{stats.date |date:'MMMM'}}</td>
+            <td>{{stats.pax}}</td>
+        </tr>
+    </tbody>
+    <tbody *ngIf='chartType ==="daily"'>
+        <tr *ngFor='let stats of statistics'>
+            <td>{{stats.date |date:'dd/MM/yyyy'}}</td>
+            <td>{{stats.date |date:'EEEE'}}</td>
             <td>{{stats.pax}}</td>
         </tr>
     </tbody>
