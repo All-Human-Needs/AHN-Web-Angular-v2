@@ -29,21 +29,6 @@ businesses:Observable<Business[]>;
 
   ngOnInit():void {
 
-  //   this.businessService
-  //   .getBusinesses()
-  //   .subscribe((response=>{
-    
-  //     this.businesses=response;
-  //     console.log(this.businesses);
-
-  //   }).bind(this));
-    
-  //   setTimeout(function() {
-  //     console.log(this.businesses);   
-  //   }.bind(this), 5000);
-
-  // console.log(this.businesses);
-
   this.businesses=this.searchTerms
   .delay(300)
   .distinctUntilChanged()

@@ -10,23 +10,25 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 export class BusinessService {
 
   businessRef: AngularFireList<Business>;
-  businesses: Business[];
-
+  businesses: Observable<Business[]>;
+  
+   alt: Business[];
   constructor(private db: AngularFireDatabase) {
     this.businessRef = db.list("businesses");
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
-      this.businesses = changes;
+      this.alt = changes;
     });
 
-    //.snapshotChanges().map(changes => {
-    //   return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    // });
+    
   }
 
   getBusinesses(): Observable<Business[]> {
-    return Observable.create((observer: Observer<Business[]>) => {
-      observer.next(this.businesses);
-    });
+    return this.businesses=this.businessRef.snapshotChanges().map(changes => {
+       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+     });
+    // Observable.create((observer: Observer<Business[]>) => {
+    //   observer.next(this.alt);
+    // });
   }
 
   deleteBusiness(key?: string) {
@@ -43,13 +45,29 @@ export class BusinessService {
 
 
   search(term: string): Observable<Business[]> {
-    const list = this.businesses.filter((b: Business) => {
+    const list = this.alt.filter((b: Business) => {
       return b.name.search(RegExp(term, "i")) > -1;
     });
 
-    // .map(response => response as Business[]);;
     return Observable.create((observer: Observer<Business[]>) => {
       observer.next(list);
+    });
+  }
+
+  bestAlternatives(): Observable<Business[]> {
+    console.log(
+      this.businessRef.valueChanges().forEach(element => {
+        for (var i = 0; i < element.length; i++) {
+          console.log(element[i]);
+        }
+      })
+    );
+    const altList = this.alt.filter((b: Business) => {
+      return b.stats[b.stats.length - 1];
+    });
+
+    return Observable.create((observer: Observer<Business[]>) => {
+      observer.next(altList);
     });
   }
 }

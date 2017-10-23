@@ -156,7 +156,7 @@ export class SpreadsheetComponent implements OnInit {
   }
 
 }
-interface statisics{
+export interface statisics{
   date:Date;
   pax:number;
 }
