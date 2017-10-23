@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { BannerModule } from '../banner/banner.module';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from '../../app-routing.module';
@@ -15,14 +16,15 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     AppRoutingModule,
     ChartsModule,
-    BannerModule
+    BannerModule, FormsModule
   ], declarations: [
     BusinessHomeComponent,
     BusinessStatsComponent,
     StatsTabsComponent,
     LineChartComponent,
     BarChartComponent,
-    SpreadsheetComponent
+    SpreadsheetComponent,
+   
   ]
   ,exports:[
     BusinessHomeComponent,

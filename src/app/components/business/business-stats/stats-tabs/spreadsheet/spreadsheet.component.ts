@@ -9,12 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./spreadsheet.component.css']
 })
 export class SpreadsheetComponent implements OnInit {
+ chartType:string;
   statistics: statisics[]=[];
   selectedDate:Date = new Date("2017-9-17");
   // chartType:string = "hourly";
   // chartType:string = "monthly";
   //chartType:string = "weekly";
-  chartType:string = "daily";
+  //chartType:string = "daily";
   constructor(private _businessService: BusinessService) { }
 
   getHourlyStats(i:number) {
@@ -137,7 +138,7 @@ export class SpreadsheetComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.chartType = this._businessService.getChartType();
     switch (this.chartType) {
       case "hourly":this.getHourlyStats(0);
         break;

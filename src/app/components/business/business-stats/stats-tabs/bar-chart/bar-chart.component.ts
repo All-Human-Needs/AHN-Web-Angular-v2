@@ -237,7 +237,7 @@ export class BarChartComponent implements OnInit {
   return dayStr;
  }
   ngOnInit() {
-
+    this.chartType = this._businessService.getChartType();
     switch (this.chartType) {
       case "hourly":this.getHourlyStats(0);
         break;
@@ -253,11 +253,13 @@ export class BarChartComponent implements OnInit {
     }
 
     
-   
-
+   if(this.chartType!=null||this.chartType!=undefined){
     this.barChartLabels =this.dates;
     this.barChartData=[{data:this.pax,label:this.chartType.toUpperCase()}];
 
+   }
+
+    
     // console.log( this.barChartLabels)
     // console.log(this.barChartData)
   }

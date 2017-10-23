@@ -11,6 +11,7 @@ export class BusinessService {
 
   businessRef: AngularFireList<Business>;
   businesses: Observable<Business[]>;
+  chartType:string;
 
   
    alt: Business[];
@@ -75,5 +76,13 @@ export class BusinessService {
     return Observable.create((observer: Observer<Business[]>) => {
       observer.next(altList);
     });
+  }
+
+  setChartType(type:string){
+    this.chartType=type;
+  }
+
+  getChartType():string{
+    return this.chartType;
   }
 }

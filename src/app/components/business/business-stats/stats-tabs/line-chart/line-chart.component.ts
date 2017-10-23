@@ -240,7 +240,7 @@ switch (dayNum) {
 return dayStr;
 }
 ngOnInit() {
-
+  this.chartType = this._businessService.getChartType();
   switch (this.chartType) {
     case "hourly":this.getHourlyStats(0);
       break;
@@ -256,11 +256,13 @@ ngOnInit() {
   }
 
   
- 
-
+ if(this.chartType!=null||this.chartType!=undefined){
   this.lineChartLabels =this.dates;
   this.lineChartData=[{data:this.pax,label:this.chartType.toUpperCase()}];
 
+ }
+
+  
   // console.log( this.lineChartLabels)
   // console.log(this.lineChartData)
 }
