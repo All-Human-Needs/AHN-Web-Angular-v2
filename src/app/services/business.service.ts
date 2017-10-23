@@ -1,11 +1,14 @@
+
 import { Observer } from "rxjs/Rx";
 import { Business } from "../models/business/business.class";
+
 import { Observable } from "rxjs/Observable";
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
 @Injectable()
 export class BusinessService {
+
   businessRef: AngularFireList<Business>;
   businesses: Business[];
 
@@ -37,6 +40,7 @@ export class BusinessService {
   updateBusiness(key: string, business: Business) {
     this.businessRef.update(key, business);
   }
+
 
   search(term: string): Observable<Business[]> {
     const list = this.businesses.filter((b: Business) => {
