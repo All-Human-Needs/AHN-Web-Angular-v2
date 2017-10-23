@@ -31,7 +31,8 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     // BannerComponent,
-    LoginComponent
+    LoginComponent,
+    
   ],
   imports: [
     BrowserModule,
