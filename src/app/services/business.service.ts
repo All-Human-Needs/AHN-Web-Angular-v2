@@ -10,12 +10,12 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 export class BusinessService {
 
   businessRef: AngularFireList<Business>;
-  businesses: Business[];
+  businesses: Observable<Business[]>;
 
   constructor(private db: AngularFireDatabase) {
     this.businessRef = db.list("businesses");
-    this.businessRef.valueChanges().subscribe((changes: Business[]) => {
-      this.businesses = changes;
+    this.businesses = this.businessRef.snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
 
     //.snapshotChanges().map(changes => {
@@ -24,9 +24,7 @@ export class BusinessService {
   }
 
   getBusinesses(): Observable<Business[]> {
-    return Observable.create((observer: Observer<Business[]>) => {
-      observer.next(this.businesses);
-    });
+      return this.businesses;
   }
 
   deleteBusiness(key?: string) {
@@ -43,13 +41,13 @@ export class BusinessService {
 
 
   search(term: string): Observable<Business[]> {
-    const list = this.businesses.filter((b: Business) => {
+   let list = this.businesses.filter((b: Business[]) => {
       return b.name.search(RegExp(term, "i")) > -1;
     });
-
+    
+    console.log(list)
     // .map(response => response as Business[]);;
-    return Observable.create((observer: Observer<Business[]>) => {
-      observer.next(list);
-    });
+    return list
+   // return
   }
 }

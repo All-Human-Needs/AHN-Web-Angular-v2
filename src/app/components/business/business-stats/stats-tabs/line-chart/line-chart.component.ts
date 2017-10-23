@@ -261,8 +261,8 @@ ngOnInit() {
   this.lineChartLabels =this.dates;
   this.lineChartData=[{data:this.pax,label:this.chartType.toUpperCase()}];
 
-  console.log( this.lineChartLabels)
-  console.log(this.lineChartData)
+  // console.log( this.lineChartLabels)
+  // console.log(this.lineChartData)
 }
 
 }

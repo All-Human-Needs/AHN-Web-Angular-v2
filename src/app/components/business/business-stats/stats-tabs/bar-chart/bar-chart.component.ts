@@ -258,8 +258,8 @@ export class BarChartComponent implements OnInit {
     this.barChartLabels =this.dates;
     this.barChartData=[{data:this.pax,label:this.chartType.toUpperCase()}];
 
-    console.log( this.barChartLabels)
-    console.log(this.barChartData)
+    // console.log( this.barChartLabels)
+    // console.log(this.barChartData)
   }
 }
 
