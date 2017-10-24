@@ -11,8 +11,26 @@
         <h4 class="modal-title" id="myModalLabel2">Right Sidebar</h4>
       </div>
 
-      <div class="modal-body">
+      <!-- <div class="modal-body">
         <p>Filter</p>
+     <div> <select name="Stores">
+        <option value="Away" (click)="diplayFiltered('Away')">Away</option>
+        <option value="Close" (click)="diplayFiltered('Close')">Close</option>
+        <option value="Full" (click)="diplayFiltered('Full')">Full</option>
+        <option value="Empty" (click)="diplayFiltered('Empty')">Empty</option>
+      </select></div>
+      </div> -->
+      <div class="Filter">
+            <form action="Buildings" method="get">
+              <!--<p> Filters </p>-->
+              
+        <input type="checkbox" name="Buildings" value="Emergency Buldings"> Emergency Buidings 
+        <input type="checkbox" name="Buildings" value="Restaurants"> Restaurants 
+        <input type="checkbox" name="Buildings" value="Government Buildings"> Government Buidings 
+        <input type="checkbox" name="Buildings" value="Shops"> Shops 
+        <input type="checkbox" name="Buildings" value="Library"> Library
+        
+      </form>
       </div>
 
     </div><!-- modal-content -->
