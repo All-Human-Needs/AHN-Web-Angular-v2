@@ -1,10 +1,16 @@
 <!-- actual map start -->
 <agm-map [latitude]="userLat" [longitude]="userLng" [zoom]="15" [styles]="customStyle" class="map" [streetViewControl]="false">
 
+    <agm-marker [latitude]="userLat" [longitude]="userLng" [draggable]="true">
+        <agm-info-window  >
+            {{userName}}
+        </agm-info-window>
+    </agm-marker>
+
     <agm-marker *ngFor="let l of locations; let i = index" [latitude]="l.lat" [longitude]="l.lng">
         <agm-info-window>
             {{l.name}}
-
+            {{l.capacity}}
         </agm-info-window>
 
     </agm-marker>
@@ -13,4 +19,5 @@
             
 
 </agm-map>
+
 <!-- actual map end -->

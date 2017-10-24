@@ -35,9 +35,7 @@ export const firebaseConfig = {
     AppComponent,
     // BannerComponent,
     LoginComponent,
-
-    
-  ],
+    ],
   imports: [
     BrowserModule,
     FormsModule,

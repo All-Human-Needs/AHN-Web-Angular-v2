@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BusinessService } from '../../../services/business.service';
 
 @Component({
   selector: 'app-client-maps',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientMapsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private businessService:BusinessService) { }
 
   ngOnInit() {
+   console.log( this.businessService.getBusinesses());
   }
 
 }
