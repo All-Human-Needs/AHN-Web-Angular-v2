@@ -32,9 +32,6 @@ export class MapComponent implements OnInit {
       response => {
         for (var i = 0; i < response.length; i++) {
           var marker: Business = {
-            // lat: parseFloat(response[i].lat),
-            // lng: parseFloat(response[i].lng),
-            // name: response[i].name,
             id: response[i].id,
             name: response[i].name,
             lat: response[i].lat,

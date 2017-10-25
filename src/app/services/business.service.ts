@@ -1,5 +1,6 @@
-import { statisics } from '../components/business/business-stats/stats-tabs/spreadsheet/spreadsheet.component';
+
 import { Observer } from "rxjs/Rx";
+
 import { Business } from "../models/business/business.class";
 
 import { Observable } from "rxjs/Observable";
@@ -13,22 +14,26 @@ export class BusinessService {
 stats:statisics;
   alt: Business[];
   constructor(private db: AngularFireDatabase) {
-    this.businessRef = db.list("businesses", ref => ref.orderByChild('/stats/pax'));
+
+    this.businessRef = db.list("businesses");
+
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
+
     });
   }
 
   getBusinesses(): Observable<Business[]> {
-    return (this.businesses = this.businessRef
-      .snapshotChanges()
-      .map(changes => {
-        return changes.map(c => ({ key: c.payload.key,  ...c.payload.val() }));
-      }));
+
+    return this.businesses=this.businessRef.snapshotChanges().map(changes => {
+       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+     });
+
     // Observable.create((observer: Observer<Business[]>) => {
     //   observer.next(this.alt);
     // });
   }
+
 
   deleteBusiness(key?: string) {
     this.businessRef.remove(key);
