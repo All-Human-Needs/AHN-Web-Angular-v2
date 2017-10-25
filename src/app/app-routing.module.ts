@@ -6,19 +6,19 @@ import { LoginComponent } from './components/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-const routes: Routes=[
+const routes: Routes = [
   {
-    path:'',
-    redirectTo:'/login',
-    pathMatch:'full'
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
   },
   {
     path: 'login',
-    component:LoginComponent
+    component: LoginComponent
   },
   {
-    path:'client-home',
-    component:ClientHomeComponent
+    path: 'client-home',
+    component: ClientHomeComponent
   },
   {
     path: 'business-home',
@@ -29,16 +29,13 @@ const routes: Routes=[
     component: BusinessStatsComponent
   },
   {
-    path:'client-maps',
-    component:ClientMapsComponent
+    path: 'client-maps',
+    component: ClientMapsComponent
   }
-
-
-]
-
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports:[RouterModule],
+  exports: [RouterModule],
   declarations: []
 })
 export class AppRoutingModule { }

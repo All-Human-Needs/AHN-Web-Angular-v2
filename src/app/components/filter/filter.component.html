@@ -1,0 +1,38 @@
+<button class="btn btn-primary btn-lg modal-btn m-3 " data-toggle = "modal" data-target = "#filter">
+  <i class="fa fa-filter" aria-hidden="true"></i>
+</button>
+
+<div class="modal right fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2">Right Sidebar</h4>
+      </div>
+
+      <!-- <div class="modal-body">
+        <p>Filter</p>
+     <div> <select name="Stores">
+        <option value="Away" (click)="diplayFiltered('Away')">Away</option>
+        <option value="Close" (click)="diplayFiltered('Close')">Close</option>
+        <option value="Full" (click)="diplayFiltered('Full')">Full</option>
+        <option value="Empty" (click)="diplayFiltered('Empty')">Empty</option>
+      </select></div>
+      </div> -->
+      <div class="Filter">
+            <form action="Buildings" method="get">
+              <!--<p> Filters </p>-->
+              
+        <input type="checkbox" name="Buildings" value="Emergency Buldings"> Emergency Buidings 
+        <input type="checkbox" name="Buildings" value="Restaurants"> Restaurants 
+        <input type="checkbox" name="Buildings" value="Government Buildings"> Government Buidings 
+        <input type="checkbox" name="Buildings" value="Shops"> Shops 
+        <input type="checkbox" name="Buildings" value="Library"> Library
+        
+      </form>
+      </div>
+
+    </div><!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
