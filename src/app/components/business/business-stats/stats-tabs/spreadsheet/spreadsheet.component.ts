@@ -2,6 +2,7 @@ import { Stats } from '../../../../../models/business/stats.class';
 import { Business } from '../../../../../models/business/business.class';
 import { BusinessService } from '../../../../../services/business.service';
 import { Component, OnInit } from '@angular/core';
+import { StatsTabsComponent } from '../stats-tabs.component';
 
 @Component({
   selector: 'ahn-spreadsheet',
@@ -9,18 +10,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./spreadsheet.component.css']
 })
 export class SpreadsheetComponent implements OnInit {
-  statistics: statisics[]=[];
-  selectedDate:Date = new Date("2017-9-17");
-  // chartType:string = "hourly";
-  // chartType:string = "monthly";
-  //chartType:string = "weekly";
-  chartType:string = "daily";
-  constructor(private _businessService: BusinessService) { }
+  constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent) { 
+    this.chartType=_businessService.getChartType();
+  }
 
-  getHourlyStats(i:number) {
-    //get all businesses from the sesrvice
-    this._businessService.getBusinesses().subscribe(
-      response => {
+  chartType:string;
+  statistics: statisics[]=[];
+  selectedDate:Date;
+
+  getHourlyStats(i:number,response:Business[],date:Date) {
+    
+      this.statistics.splice(0);
+      this.selectedDate=new Date(date);
         //get stats of selected business
         let allStats = response[i].stats;
         //get selected date or get current date if there is no selected date
@@ -48,12 +49,14 @@ export class SpreadsheetComponent implements OnInit {
           this.statistics.push(newStat);
           }
         }
-      })
+
   }
 
-  getDailyStats(i:number){
-    this._businessService.getBusinesses().subscribe(
-          response=>{
+  getDailyStats(i:number,response:Business[],date:Date) {
+    
+      this.statistics.splice(0);
+  
+      this.selectedDate=new Date(date);
             let allStats = response[i].stats;
             if(this.selectedDate===null || this.selectedDate===undefined){
               this.selectedDate = new Date();
@@ -83,8 +86,7 @@ export class SpreadsheetComponent implements OnInit {
                 }
                }
             }
-            
-          })
+        
   }
 
 
@@ -109,9 +111,11 @@ export class SpreadsheetComponent implements OnInit {
   //     })
   // }
 
-  getMonthlyStats(i:number){
-    this._businessService.getBusinesses().subscribe(
-      response=>{
+  getMonthlyStats(i:number,response:Business[],date:Date) {
+    
+      this.statistics.splice(0);
+      
+      this.selectedDate=new Date(date);
         if(this.selectedDate===null || this.selectedDate===undefined){
           this.selectedDate = new Date();
         }
@@ -132,27 +136,30 @@ export class SpreadsheetComponent implements OnInit {
             }
           }
         } 
-      })
+     
   }
 
 
   ngOnInit() {
 
-    switch (this.chartType) {
-      case "hourly":this.getHourlyStats(0);
-        break;
-        case "daily":this.getDailyStats(0);
-        break;
-        // case "weekly":this.getWeeklyStats(0);
-        // break;
-        case "monthly":this.getMonthlyStats(0);
-        break;
-    
-      default:
-        break;
-    }
+    this.statTabs.form.valueChanges.subscribe(data=>{
+      this._businessService.getBusinesses().subscribe(response=>{
+        switch (this.chartType) {
+          case "hourly":this.getHourlyStats(0,response,data.selectedDate);
+            break;
+            case "daily":this.getDailyStats(0,response,data.selectedDate);
+            break;
+            // case "weekly":this.getWeeklyStats(0);
+            // break;
+            case "monthly":this.getMonthlyStats(0,response,data.selectedDate);
+            break;
+        
+          default:
+            break;
+        }
+      })
+    })
 
-    
   }
 
 }
