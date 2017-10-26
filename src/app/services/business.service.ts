@@ -1,12 +1,9 @@
-
-
 import { Observer } from "rxjs/Rx";
-
-import { Business } from "../models/business/business.class";
-
 import { Observable } from "rxjs/Observable";
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
+
+import { Business } from "../models/business/business.class";
 
 @Injectable()
 export class BusinessService {
@@ -14,6 +11,7 @@ export class BusinessService {
   businessRef: AngularFireList<Business>;
   businesses: Observable<Business[]>;
   chartType:string;
+  
 
   
    alt: Business[];
@@ -24,7 +22,7 @@ export class BusinessService {
       this.alt = changes;
 
     });
-
+    
     
   }
 
@@ -33,9 +31,7 @@ export class BusinessService {
     return this.businesses=this.businessRef.snapshotChanges().map(changes => {
        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
      });
-    // Observable.create((observer: Observer<Business[]>) => {
-    //   observer.next(this.alt);
-    // });
+   
 
   }
 
@@ -89,4 +85,6 @@ export class BusinessService {
   getChartType():string{
     return this.chartType;
   }
+
+
 }

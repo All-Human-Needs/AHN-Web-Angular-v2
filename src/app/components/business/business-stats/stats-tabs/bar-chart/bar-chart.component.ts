@@ -1,6 +1,9 @@
+import { StatsTabsComponent } from '../stats-tabs.component';
+
+import { Business } from '../../../../../models/business/business.class';
 import { Stats } from './../../../../../models/business/stats.class';
 import { BusinessService } from './../../../../../services/business.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 
 @Component({
   selector: 'ahn-bar-chart',
@@ -8,7 +11,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit {
-  
+
+  constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent) { 
+    this.chartType=_businessService.getChartType();
+   }
+ 
+  //initializing barchart
   barChartData:any[]=[{data:[],label:''}]; 
   barChartLabels:any[]=[]; 
   barChartOptions:any = {scaleShowVerticalLines: false,responsive: true,};
@@ -20,25 +28,23 @@ export class BarChartComponent implements OnInit {
    },];
 
    
-    pax:number[] = [];
-    dates:any[]=[];
-
-   statistics: statisics[]=[];
-   selectedDate:Date = new Date("2017-9-17");
-  //  chartType:string = "hourly";
-  //  chartType:string = "monthly";
-   //chartType:string = "weekly";
-   chartType:string = "daily";
-   constructor(private _businessService: BusinessService) { }
- 
-   getHourlyStats(i:number) {
-     //get all businesses from the sesrvice
-     this._businessService.getBusinesses().subscribe(
-       response => {
+  pax:number[] = [];
+  dates:any[]=[];
+  statistics: statisics[]=[];
+  selectedDate:Date; 
+  chartType:string;
+  
+  
+  getHourlyStats(i:number,response:Business[],date:Date) {
+    
+      this.statistics.splice(0);
+      this.dates.splice(0);
+      this.pax.splice(0);
+      this.selectedDate=new Date(date);
          //get stats of selected business
          let allStats = response[i].stats;
          //get selected date or get current date if there is no selected date
-         if(this.selectedDate===null || this.selectedDate===undefined){
+         if(this.selectedDate==null || this.selectedDate==undefined){
            this.selectedDate = new Date();
          }
          let selectedDay = this.selectedDate.getDate();
@@ -72,14 +78,22 @@ export class BarChartComponent implements OnInit {
           if(hours<10)hours='0'+hours;
           let dateString:string = hours+":"+min;
           this.dates.push(dateString)
+         }       
+         
+         if(this.chartType!=null||this.chartType!=undefined){
+          this.barChartLabels =this.dates;
+          this.barChartData=[{data:this.pax,label:this.chartType.toUpperCase()}];
+          
          }
-        
-       })
+      
    }
  
-   getDailyStats(i:number){
-     this._businessService.getBusinesses().subscribe(
-           response=>{
+   getDailyStats(i:number,response:Business[],date:Date) {
+    
+      this.statistics.splice(0);
+      this.dates.splice(0);
+      this.pax.splice(0);
+      this.selectedDate=new Date(date);
              let allStats = response[i].stats;
              if(this.selectedDate===null || this.selectedDate===undefined){
                this.selectedDate = new Date();
@@ -118,7 +132,14 @@ export class BarChartComponent implements OnInit {
               this.dates.push(dateString)
              }
 
-           })
+               
+             if(this.chartType!=null||this.chartType!=undefined){
+              this.barChartLabels =this.dates;
+              this.barChartData=[{data:this.pax,label:this.chartType.toUpperCase()}];
+              
+             }
+
+           
    }
  
  
@@ -143,9 +164,12 @@ export class BarChartComponent implements OnInit {
    //     })
    // }
  
-   getMonthlyStats(i:number){
-     this._businessService.getBusinesses().subscribe(
-       response=>{
+   getMonthlyStats(i:number,response:Business[],date:Date) {
+    
+      this.statistics.splice(0);
+      this.dates.splice(0);
+      this.pax.splice(0);
+      this.selectedDate=new Date(date);
          if(this.selectedDate===null || this.selectedDate===undefined){
            this.selectedDate = new Date();
          }
@@ -173,10 +197,14 @@ export class BarChartComponent implements OnInit {
          
           let dateString:string =  this.monthSelector(monthNum);//hours+":"+min;
           this.dates.push(dateString)
+         }  
+
+         if(this.chartType!=null||this.chartType!=undefined){
+          this.barChartLabels =this.dates;
+          this.barChartData=[{data:this.pax,label:this.chartType.toUpperCase()}];
+          
          }
-        
-      
-       })
+
    }
 
  monthSelector(monthNum:number):string{
@@ -216,53 +244,58 @@ export class BarChartComponent implements OnInit {
  daySelector(dayNum:number):string{
   var dayStr;
   switch (dayNum) {
-    case 0:dayStr="Mon"
+    case 0:dayStr="Sun"
+    break;
+    case 1:dayStr="Mon"
       break;
-      case 1:dayStr="Tue"
+      case 2:dayStr="Tue"
       break;
-      case 2:dayStr="Wed"
+      case 3:dayStr="Wed"
       break;
-      case 3:dayStr="Thu"
+      case 4:dayStr="Thu"
       break;
-      case 4:dayStr="Fri"
+      case 5:dayStr="Fri"
       break;
-      case 5:dayStr="Sat"
+      case 6:dayStr="Sat"
       break;
-      case 6:dayStr="Sun"
-      break;
+      
      
     default:
       break;
   }
   return dayStr;
  }
+
   ngOnInit() {
-    this.chartType = this._businessService.getChartType();
-    switch (this.chartType) {
-      case "hourly":this.getHourlyStats(0);
-        break;
-        case "daily":this.getDailyStats(0);
-        break;
-        // case "weekly":this.getWeeklyStats(0);
-        // break;
-        case "monthly":this.getMonthlyStats(0);
-        break;
-    
-      default:
-        break;
-    }
-
-    
-   if(this.chartType!=null||this.chartType!=undefined){
-    this.barChartLabels =this.dates;
-    this.barChartData=[{data:this.pax,label:this.chartType.toUpperCase()}];
-
-   }
-
-    
-    // console.log( this.barChartLabels)
-    // console.log(this.barChartData)
+   
+    this.statTabs.form.valueChanges.subscribe(data=>{
+      
+      this._businessService.getBusinesses().subscribe(response=>{
+        
+         switch (this.chartType) {
+           case "hourly":this.getHourlyStats(0,response,data.selectedDate);
+             break;
+             case "daily":this.getDailyStats(0,response,data.selectedDate);
+             break;
+             // case "weekly":this.getWeeklyStats(0);
+             // break;
+             case "monthly":this.getMonthlyStats(0,response,data.selectedDate);
+             break;
+         
+           default:
+             break;
+         }
+   
+       })
+    })
+    if(this.chartType!=null||this.chartType!=undefined){
+      this.barChartLabels =this.dates;
+      this.barChartData=[{data:this.pax,label:this.chartType.toUpperCase()}];
+  
+     }
+  
   }
+
 }
 
 interface statisics{

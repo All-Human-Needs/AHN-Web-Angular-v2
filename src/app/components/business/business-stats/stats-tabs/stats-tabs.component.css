@@ -1,5 +1,7 @@
 .tab-header {
     color: #000000;
+    height: 100%;
+    padding-top: 15%;
 }
 
 .tab-header:hover {

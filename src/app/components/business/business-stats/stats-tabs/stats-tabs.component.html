@@ -1,15 +1,19 @@
 <ul class="nav nav-tabs" id="statsTab" role="tablist">
-    <li class="nav-item">
+    <li class="nav-item ">
         <a class="nav-link active tab-header" id="spreadsheet-tab" data-toggle="tab" href="#spreadsheet" role="tab" aria-controls="spreadsheet">Spreadsheet</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link tab-header" id="bargraph-tab" data-toggle="tab" href="#bargraph" role="tab" aria-controls="bargraph" aria-expanded="true">Bargraph</a>
+        <a class="nav-link tab-header  " id="bargraph-tab" data-toggle="tab" href="#bargraph" role="tab" aria-controls="bargraph" aria-expanded="true">Bargraph</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link tab-header" id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart">Line Chart</a>
+        <a class="nav-link tab-header " id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart">Line Chart</a>
     </li>
-    <li class=" float-md-right">
-        <input type="date" class="m-1" [(ngModel)]="selDate">
+    <li class="float-md-right">
+        <form [formGroup]="form" class="mt-1">
+            <div class="form-group">
+                <input formControlName="selectedDate" type="date" class="m-1 form-control">
+            </div>
+        </form>
     </li>
 </ul>
 <div class="tab-content" id="statsTabContent">
