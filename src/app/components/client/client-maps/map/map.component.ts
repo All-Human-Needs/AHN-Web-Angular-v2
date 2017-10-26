@@ -36,6 +36,7 @@ export class MapComponent implements OnInit {
             name: response[i].name,
             lat: response[i].lat,
             lng: response[i].lng,
+            category:response[i].category,
             capacity: response[i].capacity,
             isActive: response[i].isActive,
             stats: response[i].stats,

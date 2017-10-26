@@ -11,7 +11,7 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 export class BusinessService {
   businessRef: AngularFireList<Business>;
   businesses: Observable<Business[]>;
-stats:statisics;
+
   alt: Business[];
   constructor(private db: AngularFireDatabase) {
 
@@ -19,6 +19,7 @@ stats:statisics;
 
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
+      console.log(changes);
 
     });
   }
@@ -49,17 +50,11 @@ stats:statisics;
 
   search(term: string): Observable<Business[]> {
     const list = this.alt.filter((b: Business) => {
-      return b.name.search(RegExp(term, "i")) > -1;
+      return b.category.search(RegExp(term, "i")) > -1;
     });
 
     return Observable.create((observer: Observer<Business[]>) => {
       observer.next(list);
     });
-  }
-
-  bestAlternatives():any {
-    const list=this.businesses
-
-
   }
 }
