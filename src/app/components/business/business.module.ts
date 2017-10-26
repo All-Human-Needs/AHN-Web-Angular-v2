@@ -1,3 +1,5 @@
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BannerModule } from '../banner/banner.module';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from '../../app-routing.module';
@@ -10,24 +12,30 @@ import { BusinessHomeComponent } from './business-home/business-home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
     ChartsModule,
-    BannerModule
-  ], declarations: [
+    BannerModule,
+     FormsModule,
+     ReactiveFormsModule
+  ], 
+  declarations: [
     BusinessHomeComponent,
     BusinessStatsComponent,
     StatsTabsComponent,
     LineChartComponent,
     BarChartComponent,
-    SpreadsheetComponent
+    SpreadsheetComponent,
+   
   ]
   ,exports:[
     BusinessHomeComponent,
     BusinessStatsComponent,
-  ],
+  ],providers:[]
  
 })
 export class BusinessModule { }
