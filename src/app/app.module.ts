@@ -1,5 +1,8 @@
 import { SideNavModule } from './components/side-nav/side-nav.module';
-// import modules
+
+//import modules
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 import { BusinessService } from './services/business.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -48,7 +51,8 @@ export const firebaseConfig = {
     SideNavModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    
   ],
   exports: [],
   providers: [BusinessService],
