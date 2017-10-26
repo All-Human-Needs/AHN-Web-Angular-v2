@@ -14,7 +14,7 @@ import { MapComponent } from './client-maps/map/map.component';
 import { ClientMapsComponent } from './client-maps/client-maps.component';
 import { ClientHomeComponent } from './client-home/client-home.component';
 
-// import { BestAlternativeListComponent } from './client-maps/best-alternative-list/best-alternative-list.component';
+import { BestAlternativeListComponent } from './client-maps/best-alternative-list/best-alternative-list.component';
 
 
 @NgModule({
@@ -23,22 +23,24 @@ import { ClientHomeComponent } from './client-home/client-home.component';
     FilterModule,
     SideNavModule,
     AgmCoreModule.forRoot({
-      apiKey:'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
+      apiKey: 'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
 
     }),
- AppRoutingModule,BannerModule
+ AppRoutingModule, BannerModule
   ],
   declarations: [
     ClientHomeComponent,
     ClientMapsComponent,
     MapComponent,
+
     SearchBarComponent, 
-    // BestAlternativeListComponent
+    BestAlternativeListComponent
+
   ],
   exports: [
     ClientHomeComponent,
     ClientMapsComponent,
- 
+
   ]
 })
 export class ClientModule { }
