@@ -26,7 +26,6 @@ export class BusinessService {
       console.log(changes);
 
     });
-
   }
 
   getBusinesses(): Observable<Business[]> {
@@ -56,7 +55,21 @@ export class BusinessService {
   search(term: string): Observable<Business[]> {
     const list = this.alt.filter((b: Business) => {
 
+
       return b.name.search(RegExp(term, 'i')) > -1;
+
+    });
+
+    return Observable.create((observer: Observer<Business[]>) => {
+      observer.next(list);
+    });
+  }
+
+  filterByCategory(term: string): Observable<Business[]> {
+    const list = this.alt.filter((b: Business) => {
+
+
+      return b.category.search(RegExp(term, 'i')) > -1;
 
     });
 
