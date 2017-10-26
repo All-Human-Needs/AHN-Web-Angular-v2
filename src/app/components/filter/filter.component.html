@@ -23,15 +23,19 @@
       <div class="Filter">
             <form action="Buildings" method="get">
               <!--<p> Filters </p>-->
-              
-        <input type="checkbox" name="Buildings" value="Emergency Buldings"> Emergency Buidings 
-        <input type="checkbox" name="Buildings" value="Restaurants"> Restaurants 
-        <input type="checkbox" name="Buildings" value="Government Buildings"> Government Buidings 
-        <input type="checkbox" name="Buildings" value="Shops"> Shops 
-        <input type="checkbox" name="Buildings" value="Library"> Library
-        
+      <ul class="list-group">    
+        <li class="list-group-item"><input type="checkbox" name="Buildings" value="Emergency Buldings"> Emergency Buidings </li>
+        <li class="list-group-item"><input type="checkbox" name="Buildings" value="Restaurants"> Restaurants </li>
+        <li class="list-group-item"><input type="checkbox" name="Buildings" value="Government Buildings"> Government Buidings </li>
+        <li class="list-group-item"><input type="checkbox" name="Buildings" value="Shops"> Shops </li>
+        <li class="list-group-item"><input type="checkbox" name="Buildings" value="Libraries"> Libraries</li>
+      </ul>
       </form>
+     <!-- <ul data-ng-class="results">
+        <li *ngFor="let results of _results | filter:{ emergencyBuildings: filterEmergencyBuildings, restuarants: filterRestuarants, governmentBuildings: filterBuildings, shops: filterShops, Libraries: filterLibraries } : false">{{ building.emergencyBuildings }} - {{ building.rastuarants }} - {{ building.govermentBuildings }} - {{ building.shops}} - {{ building.libraries }}</li>
+      </ul> -->
       </div>
+
 
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->

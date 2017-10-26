@@ -23,22 +23,24 @@ import { BestAlternativeListComponent } from './client-maps/best-alternative-lis
     FilterModule,
     SideNavModule,
     AgmCoreModule.forRoot({
-      apiKey:'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
+      apiKey: 'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
 
     }),
- AppRoutingModule,BannerModule
+ AppRoutingModule, BannerModule
   ],
   declarations: [
     ClientHomeComponent,
     ClientMapsComponent,
     MapComponent,
+
     SearchBarComponent, 
     BestAlternativeListComponent
+
   ],
   exports: [
     ClientHomeComponent,
     ClientMapsComponent,
- 
+
   ]
 })
 export class ClientModule { }
