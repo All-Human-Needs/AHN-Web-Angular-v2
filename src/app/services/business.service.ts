@@ -19,6 +19,7 @@ export class BusinessService {
 
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
+      console.log(changes);
 
     });
   }
@@ -49,17 +50,11 @@ export class BusinessService {
 
   search(term: string): Observable<Business[]> {
     const list = this.alt.filter((b: Business) => {
-      return b.name.search(RegExp(term, "i")) > -1;
+      return b.category.search(RegExp(term, "i")) > -1;
     });
 
     return Observable.create((observer: Observer<Business[]>) => {
       observer.next(list);
     });
-  }
-
-  bestAlternatives():any {
-    const list=this.businesses
-
-
   }
 }
