@@ -64,4 +64,18 @@ export class BusinessService {
       observer.next(list);
     });
   }
+
+  filterByCategory(term: string): Observable<Business[]> {
+    const list = this.alt.filter((b: Business) => {
+
+
+      return b.category.search(RegExp(term, 'i')) > -1;
+
+    });
+
+    return Observable.create((observer: Observer<Business[]>) => {
+      observer.next(list);
+    });
+  }
+
 }

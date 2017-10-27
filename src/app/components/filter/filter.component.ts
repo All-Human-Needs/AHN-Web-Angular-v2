@@ -1,3 +1,6 @@
+
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { Business } from './../../models/business/business.class';
 import { BusinessService } from './../../services/business.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,17 +11,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  filterargs = {displayFiltered: 'location'};
-  emergencyBuildings = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
-  restaurants = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
-  governmentBuildings = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
-  shops = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
-  library = [{ title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
+  filterargs = new Subject<string>();
+  businesses : Observable<Business[]>;
+  // = {displayFiltered: 'location'};
+  // emergencyBuildings = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
+  // restaurants = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
+  // governmentBuildings = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
+  // shops = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
+  // library = [{ title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
 
   constructor(private businessService: BusinessService ) { }
 
   ngOnInit() {
+    
+    this.businesses= this.filterargs
+    .delay(300)
+    .distinctUntilChanged()
+    .switchMap(term=>term
+       ? this.businessService.filterByCategory(term):Observable.of<Business[]>([]))
+   .catch(error=>{
+      console.log(error);
+      return Observable.of<Business[]>([]);
+    });
 
+
+  }
+
+  search(filter:string): void {
+    this.filterargs.next(filter);
 
   }
 }
