@@ -5,6 +5,7 @@ export class Business{
     name:string;
     lat:number;
     lng:number;
+    category:string;
     capacity:number;
     isActive:boolean;
     stats: Stats[];
