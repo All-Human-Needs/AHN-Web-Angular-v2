@@ -33,7 +33,7 @@ import { BestAlternativeListComponent } from './client-maps/best-alternative-lis
     ClientMapsComponent,
     MapComponent,
 
-    SearchBarComponent,
+    SearchBarComponent, 
     BestAlternativeListComponent
 
   ],
