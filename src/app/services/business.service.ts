@@ -54,21 +54,14 @@ export class BusinessService {
 
   search(term: string): Observable<Business[]> {
     const list = this.alt.filter((b: Business) => {
-<<<<<<< HEAD
-      return b.name.search(RegExp(term, 'i')) > -1;
-=======
+
 
       return b.name.search(RegExp(term, 'i')) > -1;
 
->>>>>>> 594eef69df8dcc3f166edf0242004589bf651e19
     });
 
     return Observable.create((observer: Observer<Business[]>) => {
       observer.next(list);
     });
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> 594eef69df8dcc3f166edf0242004589bf651e19
 }
