@@ -1,34 +1,33 @@
 
 
-import { Observer } from "rxjs/Rx";
+import { Observer } from 'rxjs/Rx';
 
-import { Business } from "../models/business/business.class";
+import { Business } from '../models/business/business.class';
 
-import { Observable } from "rxjs/Observable";
-import { Injectable } from "@angular/core";
-import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
+import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 @Injectable()
 export class BusinessService {
 
   businessRef: AngularFireList<Business>;
   businesses: Observable<Business[]>;
-  
+
    alt: Business[];
   constructor(private db: AngularFireDatabase) {
 
-    this.businessRef = db.list("businesses");
+    this.businessRef = db.list('businesses');
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
 
     });
 
-    
   }
 
   getBusinesses(): Observable<Business[]> {
 
-    return this.businesses=this.businessRef.snapshotChanges().map(changes => {
+    return this.businesses = this.businessRef.snapshotChanges().map(changes => {
        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
      });
     // Observable.create((observer: Observer<Business[]>) => {
@@ -52,7 +51,7 @@ export class BusinessService {
 
   search(term: string): Observable<Business[]> {
     const list = this.alt.filter((b: Business) => {
-      return b.name.search(RegExp(term, "i")) > -1;
+      return b.name.search(RegExp(term, 'i')) > -1;
     });
 
     return Observable.create((observer: Observer<Business[]>) => {
@@ -63,7 +62,7 @@ export class BusinessService {
   bestAlternatives(): Observable<Business[]> {
     console.log(
       this.businessRef.valueChanges().forEach(element => {
-        for (var i = 0; i < element.length; i++) {
+        for (let i = 0; i < element.length; i++) {
           console.log(element[i]);
         }
       })

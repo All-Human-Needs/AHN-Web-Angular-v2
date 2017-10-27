@@ -23,22 +23,22 @@ import { ClientHomeComponent } from './client-home/client-home.component';
     FilterModule,
     SideNavModule,
     AgmCoreModule.forRoot({
-      apiKey:'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
+      apiKey: 'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
 
     }),
- AppRoutingModule,BannerModule
+ AppRoutingModule, BannerModule
   ],
   declarations: [
     ClientHomeComponent,
     ClientMapsComponent,
     MapComponent,
-    SearchBarComponent, 
+    SearchBarComponent,
     // BestAlternativeListComponent
   ],
   exports: [
     ClientHomeComponent,
     ClientMapsComponent,
- 
+
   ]
 })
 export class ClientModule { }
