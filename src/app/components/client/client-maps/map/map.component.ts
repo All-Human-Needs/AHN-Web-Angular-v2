@@ -19,6 +19,15 @@ export class MapComponent implements OnInit {
   userName: String = "You are here";
   zoom: number;
 
+  labelOptions = {
+    color: '#CC0000',
+    backgroundColor:"#000000",
+    fontFamily: '',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    text: 'A',
+  }
+
   constructor(private businessService: BusinessService) {
   }
 
@@ -36,7 +45,7 @@ export class MapComponent implements OnInit {
             name: response[i].name,
             lat: response[i].lat,
             lng: response[i].lng,
-            category:response[i].category,
+            category: response[i].category,
             capacity: response[i].capacity,
             isActive: response[i].isActive,
             stats: response[i].stats,
@@ -55,6 +64,7 @@ export class MapComponent implements OnInit {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
           name: "You Are Here",
+          label:'<i class="fa fa-hospital-o" aria-hidden="true"></i>'
         }
         this.userLat = newMarker.lat;
         this.userLng = newMarker.lng;
@@ -85,4 +95,5 @@ interface location {
   lat: number;
   lng: number;
   name: string;
+  label:string;
 }
