@@ -11,6 +11,7 @@ import { Business } from "../models/business/business.class";
 export class BusinessService {
   businessRef: AngularFireList<Business>;
   businesses: Observable<Business[]>;
+  key;
 
   chartType:string;
    alt: Business[];
@@ -22,8 +23,6 @@ export class BusinessService {
 
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
-      console.log(changes);
-
     });
 
   }
@@ -31,6 +30,9 @@ export class BusinessService {
   getBusinesses(): Observable<Business[]> {
 
     return this.businesses = this.businessRef.snapshotChanges().map(changes => {
+      // console.table(changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
+      
+      // console.log(this.key[0]);
        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
      });
 
@@ -85,5 +87,6 @@ export class BusinessService {
   getChartType():string{
     return this.chartType;
   }
+
 
 }

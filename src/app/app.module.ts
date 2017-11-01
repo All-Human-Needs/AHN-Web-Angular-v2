@@ -19,8 +19,10 @@ import { BusinessModule } from './components/business/business.module';
 import { ClientModule } from './components/client/client.module';
 // components
 import { AppComponent } from './app.component';
-// import { BannerComponent } from './components/banner/banner.component';
+import { InputSystemComponent } from './components/input-system/input-system.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+
 
 
 
@@ -38,6 +40,8 @@ export const firebaseConfig = {
     AppComponent,
     // BannerComponent,
     LoginComponent,
+    InputSystemComponent,
+    RegistrationComponent,
 
   ],
 
