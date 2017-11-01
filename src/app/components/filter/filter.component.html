@@ -1,17 +1,17 @@
-<button class="btn btn-primary btn-lg modal-btn m-3 " data-toggle = "modal" data-target = "#filter">
+<button class="btn btn-primary btn-lg modal-btn m-3 " data-toggle="modal" data-target="#filter">
   <i class="fa fa-filter" aria-hidden="true"></i>
 </button>
 
 <div class="modal right fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
 
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel2">Filters</h4>
-      </div>
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel2">Filters</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
 
-      <!-- <div class="modal-body">
+            <!-- <div class="modal-body">
         <p>Filter</p>
      <div> <select name="Stores">
         <option value="Away" (click)="diplayFiltered('Away')">Away</option>
@@ -20,28 +20,31 @@
         <option value="Empty" (click)="diplayFiltered('Empty')">Empty</option>
       </select></div>
       </div> -->
-      <div class="Filter">
-            <form action="Buildings" method="get">
-              <!--<p> Filters </p>-->
-      <ul class="list-group">    
-        <li class="list-group-item"><input type="radio" name="Buildings"  (change)="search('bank')" > Banks </li>
-        <li class="list-group-item"><input type="radio" name="Buildings" (change)="search('home-affairs')"> Home Affairs </li>
-        <li class="list-group-item"><input type="radio"  name="Buildings" (change)="search('hospital')"> Hospitals</li>
-        
-        
-        <!-- <li class="list-group-item"><input type="radio" name="Buildings" value="Shops"> Shops </li>
+            <div class="Filter">
+                <form action="Buildings" method="get">
+                    <!--<p> Filters </p>-->
+                    <ul class="list-group">
+                        <li class="list-group-item"><input type="radio" name="Buildings" (change)="search('bank')"> Banks </li>
+                        <li class="list-group-item"><input type="radio" name="Buildings" (change)="search('home-affairs')"> Home Affairs </li>
+                        <li class="list-group-item"><input type="radio" name="Buildings" (change)="search('hospital')"> Hospitals</li>
+
+
+                        <!-- <li class="list-group-item"><input type="radio" name="Buildings" value="Shops"> Shops </li>
         <li class="list-group-item"><input type="radio" name="Buildings" value="Libraries"> Libraries</li> -->
-      </ul>
-      </form>
-      <!-- <div *ngFor="let business of businesses | async">
+                    </ul>
+                </form>
+                <!-- <div *ngFor="let business of businesses | async">
         {{business.name}}
     </div> -->
-     <!-- <ul data-ng-class="results">
+                <!-- <ul data-ng-class="results">
         <li *ngFor="let results of _results | filter:{ emergencyBuildings: filterEmergencyBuildings, restuarants: filterRestuarants, governmentBuildings: filterBuildings, shops: filterShops, Libraries: filterLibraries } : false">{{ building.emergencyBuildings }} - {{ building.rastuarants }} - {{ building.govermentBuildings }} - {{ building.shops}} - {{ building.libraries }}</li>
       </ul> -->
-      </div>
+            </div>
 
 
-    </div><!-- modal-content -->
-  </div><!-- modal-dialog -->
-</div><!-- modal -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- modal -->
