@@ -1,0 +1,14 @@
+<div class="row">
+    <span class="col-md-4"></span>
+    <div class="col-md-4 bg">
+        <select [(ngModel)]="selectedBusiness" (ngModelChange)="setSelectedBusiness($event)">
+    <option *ngFor="let business of businesses" #selectedBusiness [ngValue]="business"  >{{business.name}}</option>
+        </select>
+        <form>
+            <p><input class="number" type="number" [(ngModel)]="currentNumPeople" name="currentNumPeople" min="0" [max]="maxCapacity" /></p>
+            <p><button type="button" class="btn btn-primary" (click)="submit(selectedBusiness.key)">Submit</button></p>
+        </form>
+
+    </div>
+    <span class="col-md-4"></span>
+</div>
