@@ -1,3 +1,5 @@
+import { RegistrationComponent } from './components/registration/registration.component';
+import { InputSystemComponent } from './components/input-system/input-system.component';
 import { ClientMapsComponent } from './components/client/client-maps/client-maps.component';
 import { BusinessStatsComponent } from './components/business/business-stats/business-stats.component';
 import { BusinessHomeComponent } from './components/business/business-home/business-home.component';
@@ -31,6 +33,14 @@ const routes: Routes = [
   {
     path: 'client-maps',
     component: ClientMapsComponent
+  },
+  {
+    path: 'input-system',
+    component: InputSystemComponent
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent
   }
 ];
 @NgModule({
