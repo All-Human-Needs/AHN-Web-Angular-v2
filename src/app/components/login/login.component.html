@@ -4,15 +4,24 @@
         <h2 class="h1 title ta-center padding-top-25 ">All Human Needs</h2>
 
         <div class="form-group">
-            <input formControlName="username" required type="text" #email class="form-control input-field" id="username" placeholder="Username" [(ngModel)]='this.username' />
-            <div *ngIf="email.error.required" class="alert alert-danger">
-                {{errorMessage}}
+            <input formControlName="email" type="text" class="form-control input-field" id="email" placeholder="Email Address" [(ngModel)]='this.username' />
+            <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+                <div *ngIf="email.errors.email">
+                    Email address is invalid
+                </div>
             </div>
         </div>
 
         <div class="form-group">
-            <input formControlName="password" required type="Password" class="form-control input-field" id="password" placeholder="Password" [(ngModel)]='this.password' />
-
+            <input formControlName="password" type="Password" class="form-control input-field" id="password" placeholder="Password" [(ngModel)]='this.psw' />
+            <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+                <div *ngIf="password.errors.required">
+                    Password is required
+                </div>
+                <div *ngIf="password.errors.minlength">
+                    Password should be minimum of {{password.errors.minlength.requiredLength}} characters
+                </div>
+            </div>
         </div>
         <div>
             <input class="remember" name="rememberMe" type="checkbox" (click)="rememberMe()" />
@@ -22,12 +31,12 @@
 
 
         <div class="button">
-            <button type="button" class="btn login-button" (click)="login()"> Login </button>
+            <button type="button" class="btn login-button" [disabled]="!form.valid" (click)="login()"> Login </button>
             <button type="button" class="btn google-button" (click)="googleLogin()"> Google Login </button>
         </div>
 
-    <a class="create-account" routerLink="/registration" routerLinkActive="active">Don't have an existing account?</a>
-</div>
+        <a class="create-account" routerLink="/registration" routerLinkActive="active">Don't have an existing account?</a>
+    </div>
 </form>
 <!-- <div *ngIf="ahnAuth.authState | async; let user; else showLogin">
     <h1>Hello {{ user.displayName }}!</h1>
@@ -37,4 +46,3 @@
     <p>Please login.</p>
     <button (click)="googleLogin()">Login with Google</button>
 </ng-template> -->
-

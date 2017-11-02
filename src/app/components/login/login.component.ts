@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ahn-login',
@@ -15,14 +15,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   username:string;
-  password:string;
+  psw:string;
 
-  errorCode;
-  errorMessage='';
-  
   form = new FormGroup({
-      username: new FormControl(),
-      password: new FormControl()
+      email: new FormControl('',[Validators.required, Validators.email]),
+      password: new FormControl('',[Validators.required, Validators.minLength(8)])
    
   });
   constructor(private businessService:BusinessService, private router:Router, private authService:AuthenticationService ) {
@@ -32,10 +29,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
  //   console.log(this.auth.test());
   }
-
+  
 
   login(){
-this.authService.login(this.username,this.password)
+this.authService.login(this.username,this.psw)
 .catch((error:Error) => {
 
   var errorCode = error.name;
@@ -63,5 +60,12 @@ this.authService.logout();
   }
   rememberMe():void{
 
+  }
+
+  get email(){
+    return this.form.get("email")
+  }
+  get password(){
+    return this.form.get("password")
   }
 }
