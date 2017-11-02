@@ -1,4 +1,4 @@
-.modal-btn{
+.modal-btn {
     z-index: 100;
     position: fixed;
     left: 90%;
@@ -13,37 +13,40 @@
     width: 320px;
     height: 100%;
     -webkit-transform: translate3d(0%, 0, 0);
-        -ms-transform: translate3d(0%, 0, 0);
-         -o-transform: translate3d(0%, 0, 0);
-            transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
 }
 
- .modal-content,
+.modal-content,
 .modal.right .modal-content {
     height: 100%;
     overflow-y: auto;
 }
 
- .modal-body,
+.modal-body,
 .modal.right .modal-body {
     padding: 15px 15px 80px;
 }
 
 
 /*Right*/
+
 .modal.right.fade .modal-dialog {
     right: -320px;
     -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
-       -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
-         -o-transition: opacity 0.3s linear, right 0.3s ease-out;
-            transition: opacity 0.3s linear, right 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+    transition: opacity 0.3s linear, right 0.3s ease-out;
 }
 
 .modal.right.fade.show .modal-dialog {
     right: 0;
 }
 
+
 /* ----- MODAL STYLE ----- */
+
 .modal-content {
     border-radius: 0;
     border: none;
@@ -54,3 +57,25 @@
     background-color: #FAFAFA;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    /* border-bottom: 1px solid #ccc; */
+    width: 100%;
+    /* font-size: 1.3em; */
+    /* height: 30px; */
+}
+
+a {
+    color: inherit;
+    cursor: pointer;
+}
+
+.uber {
+    padding-bottom: 20px;
+    font-weight: bold;
+}

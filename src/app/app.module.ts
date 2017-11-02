@@ -1,3 +1,4 @@
+import { AuthenticationService } from './services/authentication.service';
 import { SideNavModule } from './components/side-nav/side-nav.module';
 
 //import modules
@@ -6,7 +7,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { BusinessService } from './services/business.service';
 
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // custom modules
@@ -43,6 +44,7 @@ export const firebaseConfig = {
     InputSystemComponent,
     RegistrationComponent,
 
+
   ],
 
   imports: [
@@ -56,10 +58,11 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    ReactiveFormsModule
     
   ],
   exports: [],
-  providers: [BusinessService],
+  providers: [BusinessService,AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
