@@ -1,3 +1,53 @@
-<p>
-  registration works!
-</p>
+<form [formGroup]="form" class="background">
+    <div class="form-group" formGroupName="userForm">
+        <label for="email">E-mail:</label>
+        <input type="email" formControlName="email" id="email" class="form-control">
+        <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+            <!-- <div *ngIf="email.errors.required">E-mail is a required field.</div> -->
+            <div *ngIf="email.errors.email">E-mail is invalid.</div>
+        </div>
+        <label for="password">Password:</label>
+        <input type="password" formControlName="password" id="password" class="form-control">
+        <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+            <div *ngIf="password.errors.required">Password is a required field.</div>
+            <div *ngIf="password.errors.minlength">Password should be a minimum of {{password.errors.minlength.requiredLength}}.</div>
+        </div>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" formControlName="confirmPwrd" id="confirmPassword" class="form-control">
+        <div *ngIf="confirmPwrd.touched && confirmPwrd.invalid" class="alert alert-danger">
+            <div *ngIf="confirmPwrd.errors.required">Confirm password is a required field.</div>
+            <div *ngIf="confirmPwrd.errors.pattern">Confirm password does not match password.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="isBusiness"><input type="checkbox" id="isBusiness" [(ngModel)]="isBusiness" [ngModelOptions]="{standalone: true}" (click)="toggleUser()"/> Are you registering as a Business?</label>
+    </div>
+
+
+
+    <div *ngIf="isBusiness">
+        <div class="form-group" formGroupName="businessForm">
+            <label for="category">Category</label>
+            <select name="category" id="category" class="form-control">
+              <option value="hospital">Hospital</option>
+              <option value="bank">Bank</option>
+              <option value="home-affairs">Home-affairs</option>
+            </select>
+            <label for="capacity">Capacity</label>
+            <input type="number" id="capacity" value="10" min=0 class="form-control">
+            <label for="lat">Latitude</label>
+            <input type="text" formControlName="lat" id="lat" class="form-control">
+            <div *ngIf="lat.touched && lat.invalid" class="alert alert-danger">
+                <div *ngIf="lat.errors.required">Latitude is a required field.</div>
+            </div>
+            <label for="lng">Longitude</label>
+            <input type="text" formControlName="lng" id="lng" class="form-control">
+            <div *ngIf="lng.touched && lng.invalid" class="alert alert-danger">
+                <div *ngIf="lng.errors.required">Longitude is a required field.</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="button" [disabled]=" validForm()" (click)="register()">Register</button>
+</form>

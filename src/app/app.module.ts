@@ -59,10 +59,11 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ReactiveFormsModule
-    
+   
   ],
   exports: [],
   providers: [BusinessService,AuthenticationService],
   bootstrap: [AppComponent]
+
 })
 export class AppModule {}
