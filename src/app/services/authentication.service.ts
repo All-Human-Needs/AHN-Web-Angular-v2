@@ -37,7 +37,7 @@ export class AuthenticationService {
       .signInWithEmailAndPassword(email, password)
       .then(user => {
         this.router.navigateByUrl("/client-home");
-      })
+      });
 
   }
 
