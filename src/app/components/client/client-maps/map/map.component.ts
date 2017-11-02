@@ -19,24 +19,11 @@ export class MapComponent implements OnInit {
   userName: String = "You are here";
   zoom: number;
 
-  labelOptions = {
-    color: '#CC0000',
-    backgroundColor:"#000000",
-    fontFamily: '',
-    fontSize: '14px',
-    fontWeight: 'bold',
-    text: 'A',
-  }
-
   constructor(private businessService: BusinessService) {
   }
 
   ngOnInit() {
-    // this.setCurrentPosition();
-    // this.getBusinessMarkers();
-    // this.businessService.getLocations();
-
-    // this.getMapMarkers();
+    // Populate array of bussinesses to work with -- START
     this.businessService.getBusinesses().subscribe(
       response => {
         for (var i = 0; i < response.length; i++) {
@@ -54,6 +41,7 @@ export class MapComponent implements OnInit {
         }
       }
     )
+    // Populate array of bussinesses to work with -- END
   }
 
   private setCurrentPosition() {
@@ -64,7 +52,6 @@ export class MapComponent implements OnInit {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
           name: "You Are Here",
-          label:'<i class="fa fa-hospital-o" aria-hidden="true"></i>'
         }
         this.userLat = newMarker.lat;
         this.userLng = newMarker.lng;
@@ -89,11 +76,26 @@ export class MapComponent implements OnInit {
     }
   ];
 
+  // Method for displaying the correct colour for the markers START
+  private getColorIcon(business: Business): String {
+    let imageLocation: String = "";
+
+    if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.8) {
+      imageLocation = "assets/img/red.jpg";
+    }
+    if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.5 && ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.8)) {
+      imageLocation = "assets/img/orange.jpg";
+    }
+    if ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.5) {
+      imageLocation = "assets/img/green.jpg";
+    }
+    return imageLocation;
+  }
+  // Method for displaying the correct colour for the markers END
 }
 
 interface location {
   lat: number;
   lng: number;
   name: string;
-  label:string;
 }
