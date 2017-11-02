@@ -1,3 +1,4 @@
+import { AuthenticationService } from './services/authentication.service';
 import { SideNavModule } from './components/side-nav/side-nav.module';
 
 //import modules
@@ -43,6 +44,7 @@ export const firebaseConfig = {
     InputSystemComponent,
     RegistrationComponent,
 
+
   ],
 
   imports: [
@@ -57,10 +59,11 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ReactiveFormsModule
+   
   ],
   exports: [],
-  providers: [BusinessService],
-  bootstrap: [AppComponent],
-  
+  providers: [BusinessService,AuthenticationService],
+  bootstrap: [AppComponent]
+
 })
 export class AppModule {}

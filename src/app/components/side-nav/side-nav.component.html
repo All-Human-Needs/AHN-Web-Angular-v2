@@ -7,12 +7,40 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel2">Menu</h4>
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel2">Menu</h4>
             </div>
 
             <div class="modal-body">
-                <p>Placeholder</p>
+
+                <app-zippy *ngIf="currRoute === '/client-maps'" title="Transport">
+
+                    <ul>
+                        <li class="uber"><a href="https://www.uber.com/en-ZA/" target="_blank">Uber</a> </li>
+                    </ul>
+
+                    <app-zippy title="Busses">
+                        <ul>
+                            <li><a href="https://www.gabs.co.za/" target="_blank"> Golden Arrow</a></li>
+                            <li><a href="https://myciti.org.za/" target="_blank">MyCiti</a> </li>
+                        </ul>
+                    </app-zippy>
+                    <app-zippy title="Trains">
+                        <ul>
+                            <li>
+                                <a href="http://www.metrorail.co.za/" target="_blank">MetroRail</a>
+                            </li>
+
+                        </ul>
+                    </app-zippy>
+                </app-zippy>
+
+
+
+
+
+
             </div>
 
         </div>

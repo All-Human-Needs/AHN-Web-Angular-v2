@@ -1,6 +1,12 @@
+import { ifError } from 'assert';
+import { Error } from 'tslint/lib/error';
+import { AuthenticationService } from '../../services/authentication.service';
 import { BusinessService } from '../../services/business.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'ahn-login',
@@ -10,26 +16,37 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   username:string;
   password:string;
-  constructor(private businessService:BusinessService, private router:Router) {
+
+  errorCode;
+  errorMessage='';
+  
+  form = new FormGroup({
+      username: new FormControl(),
+      password: new FormControl()
+   
+  });
+  constructor(private businessService:BusinessService, private router:Router, private authService:AuthenticationService ) {
     businessService.getBusinesses(); 
 }
 
   ngOnInit() {
+ //   console.log(this.auth.test());
   }
 
 
-  login():void{
-    
-    //validate login
-    if(this.username==='adminB' && this.password==='admin'){
-      //go to next page
-      this.router.navigateByUrl('/business-home');
-    }else if(this.username==='adminC' && this.password==='admin'){
-      //go to next page
-      this.router.navigateByUrl('/client-home');
-    }else{
-      console.log(this.username+'\n'+this.password)
-    }
+  login(){
+this.authService.login(this.username,this.password)
+.catch((error:Error) => {
+
+  var errorCode = error.name;
+  var errorMessage = error.message;
+  if (errorCode === 'auth/wrong-password') {
+    alert('Wrong password.');
+  } else {
+    alert(errorMessage);
+  }
+  console.log(error);
+});
     
   }
 
@@ -37,11 +54,13 @@ export class LoginComponent implements OnInit {
 
   googleLogin():void{
     //validate login
+    this.authService.googleLogin();
 
-    //go to next page
-    this.router.navigateByUrl('/client-home');
   }
 
+  logout() {
+this.authService.logout();
+  }
   rememberMe():void{
 
   }
