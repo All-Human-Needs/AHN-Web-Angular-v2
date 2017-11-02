@@ -1,29 +1,40 @@
-<div class="login-form-background float-sm-none float-lg-right">
-    <h2 class="h1 title ta-center padding-top-25 ">All Human Needs</h2>
+<form [formGroup]="form" (ngSubmit)="login()">
 
-    <div class="form-group">
-        <input name="Username" type="text" class="form-control input-field" id="username" placeholder="Username*" [(ngModel)]='this.username' />
-    </div>
+    <div class="login-form-background float-sm-none float-lg-right">
+        <h2 class="h1 title ta-center padding-top-25 ">All Human Needs</h2>
 
-    <div class="form-group">
-        <input name="Password" type="Password" class="form-control input-field" id="password" placeholder="Password*" [(ngModel)]='this.password' />
+        <div class="form-group">
+            <input formControlName="username" required type="text" #email class="form-control input-field" id="username" placeholder="Username" [(ngModel)]='this.username' />
+            <div *ngIf="email.error.required" class="alert alert-danger">
+                {{errorMessage}}
+            </div>
+        </div>
 
-    </div>
-    <div>
-        <input class="remember" name="rememberMe" type="checkbox" (click)="rememberMe()" />
-        <label for="rememberMe">Remember me?</label>
-        <a class="forgot" routerLink="/" routerLinkActive="active">Forgot Password?</a>
-    </div>
+        <div class="form-group">
+            <input formControlName="password" required type="Password" class="form-control input-field" id="password" placeholder="Password" [(ngModel)]='this.password' />
 
-
-    <div class="button">
-        <button type="button" class="btn login-button" (click)="login()"> Login </button>
-        <button type="button" class="btn google-button" (click)="googleLogin()"> Google Login </button>
-    </div>
-
+        </div>
+        <div>
+            <input class="remember" name="rememberMe" type="checkbox" (click)="rememberMe()" />
+            <label for="rememberMe">Remember me?</label>
+            <a class="forgot" routerLink="/" routerLinkActive="active">Forgot Password?</a>
+        </div>
 
 
-
+        <div class="button">
+            <button type="button" class="btn login-button" (click)="login()"> Login </button>
+            <button type="button" class="btn google-button" (click)="googleLogin()"> Google Login </button>
+        </div>
 
     <a class="create-account" routerLink="/registration" routerLinkActive="active">Don't have an existing account?</a>
 </div>
+</form>
+<!-- <div *ngIf="ahnAuth.authState | async; let user; else showLogin">
+    <h1>Hello {{ user.displayName }}!</h1>
+    <button (click)="logout()">Logout</button>
+</div>
+<ng-template #showLogin>
+    <p>Please login.</p>
+    <button (click)="googleLogin()">Login with Google</button>
+</ng-template> -->
+

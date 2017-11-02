@@ -23,11 +23,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.setCurrentPosition();
-    // this.getBusinessMarkers();
-    // this.businessService.getLocations();
-
-    // this.getMapMarkers();
+    // Populate array of bussinesses to work with -- START
     this.businessService.getBusinesses().subscribe(
       response => {
         for (var i = 0; i < response.length; i++) {
@@ -36,7 +32,7 @@ export class MapComponent implements OnInit {
             name: response[i].name,
             lat: response[i].lat,
             lng: response[i].lng,
-            category:response[i].category,
+            category: response[i].category,
             capacity: response[i].capacity,
             isActive: response[i].isActive,
             stats: response[i].stats,
@@ -45,6 +41,7 @@ export class MapComponent implements OnInit {
         }
       }
     )
+    // Populate array of bussinesses to work with -- END
   }
 
   private setCurrentPosition() {
@@ -79,6 +76,22 @@ export class MapComponent implements OnInit {
     }
   ];
 
+  // Method for displaying the correct colour for the markers START
+  private getColorIcon(business: Business): String {
+    let imageLocation: String = "";
+
+    if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.8) {
+      imageLocation = "assets/img/red.jpg";
+    }
+    if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.5 && ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.8)) {
+      imageLocation = "assets/img/orange.jpg";
+    }
+    if ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.5) {
+      imageLocation = "assets/img/green.jpg";
+    }
+    return imageLocation;
+  }
+  // Method for displaying the correct colour for the markers END
 }
 
 interface location {
