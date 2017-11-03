@@ -10,7 +10,7 @@
         <input type="password" formControlName="password" id="password" class="form-control">
         <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
             <div *ngIf="password.errors.required">Password is a required field.</div>
-            <div *ngIf="password.errors.minlength">Password should be a minimum of {{password.errors.minlength.requiredLength}}.</div>
+            <div *ngIf="password.errors.minlength">Password should be a minimum of {{password.errors.minlength.requiredLength}} characters.</div>
         </div>
         <label for="confirmPassword">Confirm Password:</label>
         <input type="password" formControlName="confirmPwrd" id="confirmPassword" class="form-control">
@@ -28,24 +28,38 @@
 
     <div *ngIf="isBusiness">
         <div class="form-group" formGroupName="businessForm">
-            <label for="category">Category</label>
-            <select name="category" id="category" class="form-control">
-              <option value="hospital">Hospital</option>
+
+            <label for="name">Business name:</label>
+            <input type="text" formControlName="name" [(ngModel)]="businessName" id="name" class="form-control">
+            <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                <div *ngIf="name.errors.required">Business name is a required field.</div>
+                <div *ngIf="name.errors.minlength">Business name should be a minimum of {{name.errors.minlength.requiredLength}} characters.</div>
+            </div>
+
+            <label for="category">Category:</label>
+            <select name="category" id="category" formControlName="category" [(ngModel)]="category" class="form-control">
               <option value="bank">Bank</option>
+              <option value="hospital">Hospital</option>
               <option value="home-affairs">Home-affairs</option>
             </select>
-            <label for="capacity">Capacity</label>
-            <input type="number" id="capacity" value="10" min=0 class="form-control">
-            <label for="lat">Latitude</label>
-            <input type="text" formControlName="lat" id="lat" class="form-control">
+
+            <label for="capacity">Capacity:</label>
+            <input type="number" id="capacity" value="10" formControlName="capacity" [(ngModel)]="capacity" min=0 class="form-control">
+
+            <label for="lat">Latitude:</label>
+            <input type="text" formControlName="lat" [(ngModel)]="lati" id="lat" class="form-control">
             <div *ngIf="lat.touched && lat.invalid" class="alert alert-danger">
                 <div *ngIf="lat.errors.required">Latitude is a required field.</div>
+                <div *ngIf="lat.errors.pattern">Latitude should only contain numbers.</div>
             </div>
-            <label for="lng">Longitude</label>
-            <input type="text" formControlName="lng" id="lng" class="form-control">
+
+            <label for="lng">Longitude:</label>
+            <input type="text" formControlName="lng" [(ngModel)]="long" id="lng" class="form-control">
             <div *ngIf="lng.touched && lng.invalid" class="alert alert-danger">
                 <div *ngIf="lng.errors.required">Longitude is a required field.</div>
+                <div *ngIf="lng.errors.pattern">Longitude should only contain numbers.</div>
             </div>
+
         </div>
     </div>
 
