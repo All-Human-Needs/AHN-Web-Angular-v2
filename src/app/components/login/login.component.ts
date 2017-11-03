@@ -51,6 +51,7 @@ this.authService.login(this.username,this.psw)
 
   googleLogin():void{
     //validate login
+    alert('Please Note That If You Are Signing In As A Business You Should Instead Create An Account Using The Register Page ')
     this.authService.googleLogin();
 
   }
