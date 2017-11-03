@@ -55,4 +55,17 @@ export class AuthenticationService {
     this.ahnAuth.auth.signOut();
     this.router.navigate(["/"]);
   }
+
+  verifyEmail(){
+    this.ahnAuth.auth.currentUser.sendEmailVerification()
+    .then(msg=>alert('Password Successfully Reset'))
+    .catch(msg=>alert('Password Successfully Reset'));
+  }
+  
+resetPassword(email:string){
+  this.ahnAuth.auth.sendPasswordResetEmail(email)
+  .then(msg=>alert('Password Successfully Reset'))
+  .catch(msg=>alert('Password Successfully Reset'));
+}
+
 }

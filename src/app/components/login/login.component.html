@@ -5,7 +5,7 @@
 
         <div class="form-group">
             <input formControlName="email" type="text" class="form-control input-field" id="email" placeholder="Email Address" [(ngModel)]='this.username' />
-            <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+            <div *ngIf="email.touched && email.invalid" class="alert alert-danger error">
                 <div *ngIf="email.errors.email">
                     Email address is invalid
                 </div>
@@ -14,7 +14,7 @@
 
         <div class="form-group">
             <input formControlName="password" type="Password" class="form-control input-field" id="password" placeholder="Password" [(ngModel)]='this.psw' />
-            <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+            <div *ngIf="password.touched && password.invalid" class="alert alert-danger error">
                 <div *ngIf="password.errors.required">
                     Password is required
                 </div>

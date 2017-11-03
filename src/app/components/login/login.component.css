@@ -105,3 +105,9 @@
 a {
     color: #ffffff;
 }
+
+.error {
+    width: 350px;
+    height: 50px;
+    margin: 20px auto;
+}
