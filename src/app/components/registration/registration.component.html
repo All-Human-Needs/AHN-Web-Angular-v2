@@ -1,23 +1,30 @@
 <form [formGroup]="form" class="background">
     <div class="form-group" formGroupName="userForm">
         <label for="email">E-mail:</label>
-        <input type="email" formControlName="email" id="email" class="form-control">
+        <input type="email" formControlName="email" [(ngModel)]="emailAddress" id="email" class="form-control">
         <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
             <!-- <div *ngIf="email.errors.required">E-mail is a required field.</div> -->
             <div *ngIf="email.errors.email">E-mail is invalid.</div>
         </div>
-        <label for="password">Password:</label>
-        <input type="password" formControlName="password" id="password" class="form-control">
-        <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
-            <div *ngIf="password.errors.required">Password is a required field.</div>
-            <div *ngIf="password.errors.minlength">Password should be a minimum of {{password.errors.minlength.requiredLength}} characters.</div>
+        <div class="form-group" formGroupName="passwordForm">
+            <label for="password">Password:</label>
+            <input type="password" formControlName="password" id="password" [(ngModel)]="pwd" class="form-control">
+            <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+                <div *ngIf="password.errors.required">Password is a required field.</div>
+                <div *ngIf="password.errors.minlength">Password should be a minimum of {{password.errors.minlength.requiredLength}} characters.</div>
+            </div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" formControlName="confirmPwrd" id="confirmPassword" class="form-control">
+            <div *ngIf="confirmPwrd.touched && confirmPwrd.invalid" class="alert alert-danger">
+                <div *ngIf="confirmPwrd.errors.required">Confirm password is a required field.</div>
+
+            </div>
+            <div *ngIf="confirmPwrd.valid && passwordForm.invalid && passwordForm.errors.passwordMatches" class="alert alert-danger">Confirm password does not match password.</div>
         </div>
-        <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" formControlName="confirmPwrd" id="confirmPassword" class="form-control">
-        <div *ngIf="confirmPwrd.touched && confirmPwrd.invalid" class="alert alert-danger">
-            <div *ngIf="confirmPwrd.errors.required">Confirm password is a required field.</div>
-            <div *ngIf="confirmPwrd.errors.pattern">Confirm password does not match password.</div>
-        </div>
+        <!-- <div *ngIf="confirmPwrd.touched && userForm.invalid && userForm.errors.passwordMatches" class="alert alert-danger">
+            Passwords do not match.
+        </div> -->
+        <!-- <div *ngIf="form.touched && form.errors.passwordMatches"></div> -->
     </div>
 
     <div class="form-group">
