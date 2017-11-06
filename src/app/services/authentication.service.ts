@@ -1,14 +1,18 @@
+import { UserService } from './user.service';
+import { BusinessService } from './business.service';
+import { Business } from './../models/business/business.class';
+import { User } from './../models/user';
 import { AngularFireDatabase } from "angularfire2/database-deprecated";
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Router } from "@angular/router";
-import * as firebase from "firebase/app";
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthenticationService {
   authState: any = null;
 
-  constructor(private ahnAuth: AngularFireAuth, private router: Router) {
+  constructor(private ahnAuth: AngularFireAuth, private router: Router,private _businessService:BusinessService,private _userService:UserService) {
     this.ahnAuth.authState.subscribe(auth => {
       this.authState = auth;
     });
@@ -54,6 +58,39 @@ export class AuthenticationService {
   logout() {
     this.ahnAuth.auth.signOut();
     this.router.navigate(["/"]);
+  }
+
+  createUser(email:string,password:string,isBusinesses:boolean,business?:Business){
+    let isError:boolean=false;
+    this.ahnAuth.auth.createUserWithEmailAndPassword(email,password).then(
+      success=>{
+        let user:User={
+          id:success.uid,
+          isBusiness:isBusinesses
+        };
+        this._userService.addItem(user);
+        if(isBusinesses){
+          business.id = success.uid;
+          this._businessService.addBusiness(business);
+          this.router.navigateByUrl("/business-home");
+        }else{
+          this.router.navigateByUrl("/client-home");
+        }
+       
+       
+      }
+    ).catch(
+      (err)=>{
+        isError = true;
+        if (err.message === 'The email address is already in use by another account.') {
+          alert(err.message);
+      } else {
+          console.log(err.message);
+      }
+      }
+    );
+  
+ 
   }
 
   verifyEmail(){

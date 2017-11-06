@@ -8,7 +8,9 @@ export class UserService {
   usersRef: AngularFireList<any>;
   users: Observable<any[]>;
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase) {
+    this.getUsers();
+  }
 
   getUsers() {
     this.usersRef = this.db.list("users");

@@ -1,3 +1,4 @@
+import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { SideNavModule } from './components/side-nav/side-nav.module';
 
@@ -62,7 +63,7 @@ export const firebaseConfig = {
    
   ],
   exports: [],
-  providers: [BusinessService,AuthenticationService],
+  providers: [BusinessService,AuthenticationService,UserService],
   bootstrap: [AppComponent]
 
 })
