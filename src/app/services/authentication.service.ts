@@ -89,8 +89,12 @@ export class AuthenticationService {
       }
       }
     );
-  
- 
+  }
+
+  getCurrentBusiness(){
+    //console.log(this.ahnAuth.auth.currentUser.uid);
+    // return this.ahnAuth.auth.currentUser.uid;
+    return "vKMucvqM9NWyoQqhe3BQd1N29VG2"
   }
 
   verifyEmail(){
