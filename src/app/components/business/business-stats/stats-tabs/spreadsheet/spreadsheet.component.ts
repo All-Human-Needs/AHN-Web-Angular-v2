@@ -12,6 +12,7 @@ import { StatsTabsComponent } from '../stats-tabs.component';
 export class SpreadsheetComponent implements OnInit {
   constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent) { 
     this.chartType=_businessService.getChartType();
+    this.selectedDate=new Date();
   }
 
   chartType:string;
@@ -21,7 +22,7 @@ export class SpreadsheetComponent implements OnInit {
   getHourlyStats(i:number,response:Business[],date:Date) {
     
       this.statistics.splice(0);
-      this.selectedDate=new Date(date);
+      //this.selectedDate=new Date(date);
         //get stats of selected business
         let allStats = response[i].stats;
         //get selected date or get current date if there is no selected date
@@ -56,17 +57,17 @@ export class SpreadsheetComponent implements OnInit {
     
       this.statistics.splice(0);
   
-      this.selectedDate=new Date(date);
+      //this.selectedDate=new Date(date);
             let allStats = response[i].stats;
             if(this.selectedDate===null || this.selectedDate===undefined){
               this.selectedDate = new Date();
             }
             //get next 7 days starting at selected day
             let days:Date[] = this.getNextDays(this.selectedDate,6);
+            
             //sets next 7 days to global statistic
             for (var x = 0; x < days.length; x++) {
                this.statistics.push({date:days[x],pax:0})
-              
             }
 
             for (var x = 0; x < allStats.length; x++) {
@@ -93,7 +94,7 @@ export class SpreadsheetComponent implements OnInit {
    getNextDays(startDate, daysToAdd) {
     var aryDates = [];
     for (var i = 0; i <= daysToAdd; i++) {
-        var currentDate = new Date();
+        var currentDate = new Date(startDate);
         currentDate.setDate(startDate.getDate() + i);
         aryDates.push(currentDate);
     }
@@ -115,7 +116,7 @@ export class SpreadsheetComponent implements OnInit {
     
       this.statistics.splice(0);
       
-      this.selectedDate=new Date(date);
+      //this.selectedDate=new Date(date);
         if(this.selectedDate===null || this.selectedDate===undefined){
           this.selectedDate = new Date();
         }
@@ -141,23 +142,43 @@ export class SpreadsheetComponent implements OnInit {
 
 
   ngOnInit() {
-
-    this.statTabs.form.valueChanges.subscribe(data=>{
-      this._businessService.getBusinesses().subscribe(response=>{
+    let valueChanged:boolean=false;
+    this._businessService.getBusinesses().subscribe(response=>{
+     
+      this.statTabs.form.valueChanges.subscribe(data=>{
+        this.selectedDate =new Date(data.selectedDate);
+      
+        valueChanged=true;
         switch (this.chartType) {
-          case "hourly":this.getHourlyStats(0,response,data.selectedDate);
+          case "hourly":this.getHourlyStats(0,response,this.selectedDate);
             break;
-            case "daily":this.getDailyStats(0,response,data.selectedDate);
+            case "daily":this.getDailyStats(0,response,this.selectedDate);
             break;
             // case "weekly":this.getWeeklyStats(0);
             // break;
-            case "monthly":this.getMonthlyStats(0,response,data.selectedDate);
+            case "monthly":this.getMonthlyStats(0,response,this.selectedDate);
             break;
         
           default:
             break;
         }
       })
+      if(!valueChanged){
+       
+        switch (this.chartType) {
+          case "hourly":this.getHourlyStats(0,response,this.selectedDate);
+            break;
+            case "daily":this.getDailyStats(0,response,this.selectedDate);
+            break;
+            // case "weekly":this.getWeeklyStats(0);
+            // break;
+            case "monthly":this.getMonthlyStats(0,response,this.selectedDate);
+            break;
+        
+          default:
+            break;
+        }
+      }
     })
 
   }
