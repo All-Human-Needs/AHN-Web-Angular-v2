@@ -18,15 +18,11 @@ export class RegistrationComponent implements OnInit {
   emailAddress:string;
   pwd:string;
   isBusiness:boolean = false;
-  //id:string;
-  //key:string;
   businessName:string;
   lati:string;
   long:string;
   category:string ="bank";
   capacity:number =10;
-  //isActive:true;
-  //stats: Stats[];
 
 form:FormGroup
 
@@ -51,27 +47,6 @@ form:FormGroup
       })
     })
    }
-
- 
-
-
-  // form = new FormGroup({
-  //   userForm: new FormGroup({ 
-  //     email: new FormControl('',[Validators.required,Validators.email]),
-  //     password: new FormControl('',[Validators.required,Validators.minLength(8)]),
-  //     confirmPwrd:new FormControl('',[Validators.required,Validators.pattern('1234')]),
-  //   },{
-  //     validator: PasswordValidators.passwordMatches
-  //   }),
-  //   businessForm: new FormGroup({
-  //     name: new FormControl('',[Validators.required,Validators.minLength(3)]),
-  //     lat: new FormControl('',[Validators.required,Validators.pattern("^[0-9]+$")]),
-  //     lng: new FormControl('',[Validators.required,Validators.pattern("^[0-9]+$")]),
-  //     capacity:new FormControl(),
-  //     category: new FormControl()
-  //   }),
-    
-  // });
 
   get email(){
     return this.form.get('userForm.email');

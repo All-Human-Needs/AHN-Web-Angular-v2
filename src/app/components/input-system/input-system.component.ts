@@ -15,7 +15,9 @@ export class InputSystemComponent implements OnInit {
   form;
   selectedBusiness:Business;
 
-  constructor(private _businessService:BusinessService) { }
+  constructor(private _businessService:BusinessService) {
+    
+   }
 
   ngOnInit() {
    this._businessService.getBusinesses().subscribe(
@@ -29,7 +31,7 @@ export class InputSystemComponent implements OnInit {
        }else{
         this.currentNumPeople = 0;
        }
-       console.log(this.selectedBusiness)
+       
     }
    )
   }
@@ -46,7 +48,7 @@ export class InputSystemComponent implements OnInit {
    
   }
 
-  submit(key){
+  send(key){
     this.currentDate=new Date();
     // if(this.currentDate.getMinutes()==0||this.currentDate.getMinutes()==30){
     //   var newStat = {date:this.currentDate.toString(),pax:this.currentNumPeople};
@@ -56,6 +58,8 @@ export class InputSystemComponent implements OnInit {
     //   alert("Its not time to post data yet")
     // }
     var newStat = {date:this.currentDate.toString(),pax:this.currentNumPeople};
+    console.log("Key : "+key);
+    console.table(this.selectedBusiness)
     this.selectedBusiness.stats.push(newStat);
     this._businessService.updateBusiness(key,this.selectedBusiness);
     

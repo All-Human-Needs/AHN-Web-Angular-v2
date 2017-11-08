@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BusinessService } from '../../../../../services/business.service';
 import { Business } from '../../../../../models/business/business.class';
 import { StatsTabsComponent } from '../stats-tabs.component';
+import { AuthenticationService } from '../../../../../services/authentication.service';
 
 @Component({
   selector: 'ahn-line-chart',
@@ -10,7 +11,7 @@ import { StatsTabsComponent } from '../stats-tabs.component';
 })
 export class LineChartComponent implements OnInit {
 
-  constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent) { 
+  constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent,private _authService : AuthenticationService) { 
     this.chartType=_businessService.getChartType();
    }
 
@@ -38,14 +39,14 @@ export class LineChartComponent implements OnInit {
   chartType:string;
 
 
- getHourlyStats(i:number,response:Business[],date:Date) {
+ getHourlyStats(response:Business,date:Date) {
   
     this.statistics.splice(0);
     this.dates.splice(0);
     this.pax.splice(0);
-    this.selectedDate=new Date(date);
+   
        //get stats of selected business
-       let allStats = response[i].stats;
+       let allStats = response.stats;
        //get selected date or get current date if there is no selected date
        if(this.selectedDate===null || this.selectedDate===undefined){
          this.selectedDate = new Date();
@@ -91,13 +92,13 @@ export class LineChartComponent implements OnInit {
     
  }
 
- getDailyStats(i:number,response:Business[],date:Date) {
+ getDailyStats(response:Business,date:Date) {
   
     this.statistics.splice(0);
     this.dates.splice(0);
     this.pax.splice(0);
-    this.selectedDate=new Date(date);
-           let allStats = response[i].stats;
+   
+           let allStats = response.stats;
            if(this.selectedDate===null || this.selectedDate===undefined){
              this.selectedDate = new Date();
            }
@@ -146,14 +147,14 @@ export class LineChartComponent implements OnInit {
 
 
   getNextDays(startDate, daysToAdd) {
-   var aryDates = [];
-   for (var i = 0; i <= daysToAdd; i++) {
-       var currentDate = new Date();
-       currentDate.setDate(startDate.getDate() + i);
-       aryDates.push(currentDate);
-   }
+    var aryDates = [];
+    for (var i = 0; i <= daysToAdd; i++) {
+        var currentDate = new Date(startDate);
+        currentDate.setDate(startDate.getDate() + i);
+        aryDates.push(currentDate);
+    }
 
-   return aryDates;
+    return aryDates;
 }
 
  // getWeeklyStats(i:number){
@@ -166,17 +167,17 @@ export class LineChartComponent implements OnInit {
  //     })
  // }
 
- getMonthlyStats(i:number,response:Business[],date:Date) {
+ getMonthlyStats(response:Business,date:Date) {
   
     this.statistics.splice(0);
     this.dates.splice(0);
     this.pax.splice(0);
-    this.selectedDate=new Date(date);
+  
        if(this.selectedDate===null || this.selectedDate===undefined){
          this.selectedDate = new Date();
        }
        //get stats of selected business
-       let allStats = response[i].stats;
+       let allStats = response.stats;
        let selectedYear = this.selectedDate.getFullYear();
        
        for (var j = 0; j <  12;j++) {
@@ -268,25 +269,55 @@ switch (dayNum) {
 return dayStr;
 }
 ngOnInit() {
-  this.statTabs.form.valueChanges.subscribe(data=>{
-    
-    this._businessService.getBusinesses().subscribe(response=>{
+  let valueChanged:boolean=false;
+  let business = this.statTabs.currentBusiness;
+  let uid = this._authService.getCurrentBusiness();
+  let currentBusiness;
+  this._businessService.getBusinesses().subscribe(response=>{
+
+    for (var i = 0; i < response.length; i++) {
+      if(response[i].id === uid){
       
-       switch (this.chartType) {
-         case "hourly":this.getHourlyStats(0,response,data.selectedDate);
-           break;
-           case "daily":this.getDailyStats(0,response,data.selectedDate);
-           break;
-           // case "weekly":this.getWeeklyStats(0);
-           // break;
-           case "monthly":this.getMonthlyStats(0,response,data.selectedDate);
-           break;
-       
-         default:
-           break;
-       }
- 
-     })
+        currentBusiness =  response[i];
+        
+      }
+      
+    };
+
+    this.statTabs.form.valueChanges.subscribe(data=>{
+      this.selectedDate =new Date(data.selectedDate);
+      
+      valueChanged=true;
+      switch (this.chartType) {
+        case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
+          break;
+          case "daily":this.getDailyStats(currentBusiness,this.selectedDate);
+          break;
+          // case "weekly":this.getWeeklyStats(0);
+          // break;
+          case "monthly":this.getMonthlyStats(currentBusiness,this.selectedDate);
+          break;
+      
+        default:
+          break;
+      }
+    })
+    if(!valueChanged){
+     
+      switch (this.chartType) {
+        case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
+          break;
+          case "daily":this.getDailyStats(currentBusiness,this.selectedDate);
+          break;
+          // case "weekly":this.getWeeklyStats(0);
+          // break;
+          case "monthly":this.getMonthlyStats(currentBusiness,this.selectedDate);
+          break;
+      
+        default:
+          break;
+      }
+    }
   })
  if(this.chartType!=null||this.chartType!=undefined){
   this.lineChartLabels =this.dates;

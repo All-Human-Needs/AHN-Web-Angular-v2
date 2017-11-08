@@ -3,6 +3,7 @@ import { Business } from '../../../../../models/business/business.class';
 import { BusinessService } from '../../../../../services/business.service';
 import { Component, OnInit } from '@angular/core';
 import { StatsTabsComponent } from '../stats-tabs.component';
+import { AuthenticationService } from '../../../../../services/authentication.service';
 
 @Component({
   selector: 'ahn-spreadsheet',
@@ -10,20 +11,21 @@ import { StatsTabsComponent } from '../stats-tabs.component';
   styleUrls: ['./spreadsheet.component.css']
 })
 export class SpreadsheetComponent implements OnInit {
-  constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent) { 
+  constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent,private _authService : AuthenticationService) { 
     this.chartType=_businessService.getChartType();
+    this.selectedDate=new Date();
   }
 
   chartType:string;
   statistics: statisics[]=[];
   selectedDate:Date;
 
-  getHourlyStats(i:number,response:Business[],date:Date) {
+  getHourlyStats(response:Business,date:Date) {
     
       this.statistics.splice(0);
-      this.selectedDate=new Date(date);
+      //this.selectedDate=new Date(date);
         //get stats of selected business
-        let allStats = response[i].stats;
+        let allStats = response.stats;
         //get selected date or get current date if there is no selected date
         if(this.selectedDate===null || this.selectedDate===undefined){
           this.selectedDate = new Date();
@@ -52,21 +54,21 @@ export class SpreadsheetComponent implements OnInit {
 
   }
 
-  getDailyStats(i:number,response:Business[],date:Date) {
+  getDailyStats(response:Business,date:Date) {
     
       this.statistics.splice(0);
   
-      this.selectedDate=new Date(date);
-            let allStats = response[i].stats;
+      //this.selectedDate=new Date(date);
+            let allStats = response.stats;
             if(this.selectedDate===null || this.selectedDate===undefined){
               this.selectedDate = new Date();
             }
             //get next 7 days starting at selected day
             let days:Date[] = this.getNextDays(this.selectedDate,6);
+            
             //sets next 7 days to global statistic
             for (var x = 0; x < days.length; x++) {
                this.statistics.push({date:days[x],pax:0})
-              
             }
 
             for (var x = 0; x < allStats.length; x++) {
@@ -93,7 +95,7 @@ export class SpreadsheetComponent implements OnInit {
    getNextDays(startDate, daysToAdd) {
     var aryDates = [];
     for (var i = 0; i <= daysToAdd; i++) {
-        var currentDate = new Date();
+        var currentDate = new Date(startDate);
         currentDate.setDate(startDate.getDate() + i);
         aryDates.push(currentDate);
     }
@@ -111,16 +113,16 @@ export class SpreadsheetComponent implements OnInit {
   //     })
   // }
 
-  getMonthlyStats(i:number,response:Business[],date:Date) {
+  getMonthlyStats(response:Business,date:Date) {
     
       this.statistics.splice(0);
       
-      this.selectedDate=new Date(date);
+      //this.selectedDate=new Date(date);
         if(this.selectedDate===null || this.selectedDate===undefined){
           this.selectedDate = new Date();
         }
         //get stats of selected business
-        let allStats = response[i].stats;
+        let allStats = response.stats;
         let selectedYear = this.selectedDate.getFullYear();
         
         for (var j = 0; j <  12;j++) {
@@ -142,22 +144,55 @@ export class SpreadsheetComponent implements OnInit {
 
   ngOnInit() {
 
-    this.statTabs.form.valueChanges.subscribe(data=>{
-      this._businessService.getBusinesses().subscribe(response=>{
+    let valueChanged:boolean=false;
+    let business = this.statTabs.currentBusiness;
+    let uid = this._authService.getCurrentBusiness();
+    let currentBusiness;
+    this._businessService.getBusinesses().subscribe(response=>{
+
+      for (var i = 0; i < response.length; i++) {
+        if(response[i].id === uid){
+        
+          currentBusiness =  response[i];
+          
+        }
+        
+      };
+
+      this.statTabs.form.valueChanges.subscribe(data=>{
+        this.selectedDate =new Date(data.selectedDate);
+        
+        valueChanged=true;
         switch (this.chartType) {
-          case "hourly":this.getHourlyStats(0,response,data.selectedDate);
+          case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
             break;
-            case "daily":this.getDailyStats(0,response,data.selectedDate);
+            case "daily":this.getDailyStats(currentBusiness,this.selectedDate);
             break;
             // case "weekly":this.getWeeklyStats(0);
             // break;
-            case "monthly":this.getMonthlyStats(0,response,data.selectedDate);
+            case "monthly":this.getMonthlyStats(currentBusiness,this.selectedDate);
             break;
         
           default:
             break;
         }
       })
+      if(!valueChanged){
+       
+        switch (this.chartType) {
+          case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
+            break;
+            case "daily":this.getDailyStats(currentBusiness,this.selectedDate);
+            break;
+            // case "weekly":this.getWeeklyStats(0);
+            // break;
+            case "monthly":this.getMonthlyStats(currentBusiness,this.selectedDate);
+            break;
+        
+          default:
+            break;
+        }
+      }
     })
 
   }

@@ -2,7 +2,6 @@ import { Stats } from './stats.class';
 
 export class Business{
     id:string;
-    //key:string;
     name:string;
     lat:number;
     lng:number;
