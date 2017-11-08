@@ -1,18 +1,23 @@
-import { UserService } from './user.service';
-import { BusinessService } from './business.service';
-import { Business } from './../models/business/business.class';
-import { User } from './../models/user';
+import { UserService } from "./user.service";
+import { BusinessService } from "./business.service";
+import { Business } from "./../models/business/business.class";
+import { User } from "./../models/user";
 import { AngularFireDatabase } from "angularfire2/database-deprecated";
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Router } from "@angular/router";
-import * as firebase from 'firebase/app';
+import * as firebase from "firebase/app";
 
 @Injectable()
 export class AuthenticationService {
   authState: any = null;
 
-  constructor(private ahnAuth: AngularFireAuth, private router: Router,private _businessService:BusinessService,private _userService:UserService) {
+  constructor(
+    private ahnAuth: AngularFireAuth,
+    private router: Router,
+    private _businessService: BusinessService,
+    private _userService: UserService
+  ) {
     this.ahnAuth.authState.subscribe(auth => {
       this.authState = auth;
     });
@@ -40,9 +45,8 @@ export class AuthenticationService {
     return this.ahnAuth.auth
       .signInWithEmailAndPassword(email, password)
       .then(user => {
-        this.router.navigateByUrl("/client-home");
+       this.isBusiness(user);
       });
-
   }
 
   googleLogin(): void {
@@ -60,49 +64,73 @@ export class AuthenticationService {
     this.router.navigate(["/"]);
   }
 
-  createUser(email:string,password:string,isBusinesses:boolean,business?:Business){
-    let isError:boolean=false;
-    this.ahnAuth.auth.createUserWithEmailAndPassword(email,password).then(
-      success=>{
-        let user:User={
-          id:success.uid,
-          isBusiness:isBusinesses
+  createUser(
+    email: string,
+    password: string,
+    isBusinesses: boolean,
+    business?: Business
+  ) {
+    let isError: boolean = false;
+    this.ahnAuth.auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(success => {
+        let user: User = {
+          id: success.uid,
+          isBusiness: isBusinesses
         };
         this._userService.addItem(user);
-        if(isBusinesses){
+        if (isBusinesses) {
           business.id = success.uid;
           this._businessService.addBusiness(business);
           this.router.navigateByUrl("/business-home");
-        }else{
+        } else {
           this.router.navigateByUrl("/client-home");
         }
-       
-       
-      }
-    ).catch(
-      (err)=>{
+      })
+      .catch(err => {
         isError = true;
-        if (err.message === 'The email address is already in use by another account.') {
+        if (
+          err.message ===
+          "The email address is already in use by another account."
+        ) {
           alert(err.message);
-      } else {
+        } else {
           console.log(err.message);
+        }
+      });
+  }
+
+  verifyEmail() {
+    this.ahnAuth.auth.currentUser
+      .sendEmailVerification()
+      .then(msg => alert("Password Successfully Reset"))
+      .catch(msg => alert("Password Successfully Reset"));
+  }
+
+  resetPassword(email: string) {
+    this.ahnAuth.auth
+      .sendPasswordResetEmail(email)
+      .then(msg => alert("Password Successfully Reset"))
+      .catch(msg => alert("Password Successfully Reset"));
+  }
+
+  isBusiness(currentUser) {
+    this._userService.users.subscribe(
+      (response:User[]) => {
+        for (var i = 0; i < response.length; i++) {
+          if (response[i].id === currentUser.uid) {
+            if (response[i].isBusiness) {
+              this.router.navigateByUrl("/business-home");
+            } else {
+              this.router.navigateByUrl("/client-home");
+            }
+          }
+        }
       }
-      }
+      //   .map(u => {
+      //   console.log(u);return this.checkUsers=u;
+
+      // })
     );
-  
- 
   }
-
-  verifyEmail(){
-    this.ahnAuth.auth.currentUser.sendEmailVerification()
-    .then(msg=>alert('Password Successfully Reset'))
-    .catch(msg=>alert('Password Successfully Reset'));
-  }
-  
-resetPassword(email:string){
-  this.ahnAuth.auth.sendPasswordResetEmail(email)
-  .then(msg=>alert('Password Successfully Reset'))
-  .catch(msg=>alert('Password Successfully Reset'));
-}
-
 }
