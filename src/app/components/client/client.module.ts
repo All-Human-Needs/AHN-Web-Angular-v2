@@ -15,6 +15,7 @@ import { ClientMapsComponent } from './client-maps/client-maps.component';
 import { ClientHomeComponent } from './client-home/client-home.component';
 
 import { BestAlternativeListComponent } from './client-maps/best-alternative-list/best-alternative-list.component';
+import { MapDirectionsDirective } from './client-maps/map-directions.directive';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { BestAlternativeListComponent } from './client-maps/best-alternative-lis
     ClientHomeComponent,
     ClientMapsComponent,
     MapComponent,
-
+    MapDirectionsDirective,
     SearchBarComponent, 
     BestAlternativeListComponent
 
