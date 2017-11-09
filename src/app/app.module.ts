@@ -28,6 +28,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 
 
 
+
 export const firebaseConfig = {
   apiKey: 'AIzaSyCmLj-8NEWba6GUprGUkaM4e40hfLymQK4',
   authDomain: 'all-human-needs.firebaseapp.com',
@@ -44,8 +45,6 @@ export const firebaseConfig = {
     LoginComponent,
     InputSystemComponent,
     RegistrationComponent,
-
-
   ],
 
   imports: [
