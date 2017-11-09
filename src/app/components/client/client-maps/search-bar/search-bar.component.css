@@ -18,3 +18,13 @@
     margin-top: auto;
     margin-bottom: auto;
 }
+
+li,
+ul {
+    width: 100%;
+}
+
+.list-group-item:hover {
+    background-color: blue;
+    cursor: pointer;
+}
