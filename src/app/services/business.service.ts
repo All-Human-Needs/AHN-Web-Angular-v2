@@ -14,7 +14,8 @@ export class BusinessService {
   key;
 
   chartType:string;
-   alt: Business[];
+
+   alt: Business[]=[];
 
   constructor(private db: AngularFireDatabase) {
 
