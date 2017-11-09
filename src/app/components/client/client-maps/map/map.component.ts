@@ -11,6 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class MapComponent implements OnInit {
+  origin = { longitude: 18.46171849, latitude: -33.9217137 };  // its a example aleatory position
+  destination = { longitude: 18.4632473, latitude: -33.9423756 };  // its a example aleatory position
+
 
   locations: Business[] = []; //= this.businessService.getBusinesses();
   userLocation: location = this.setCurrentPosition();
