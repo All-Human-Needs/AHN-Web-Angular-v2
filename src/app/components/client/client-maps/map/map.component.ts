@@ -1,4 +1,5 @@
-import { Business } from '../../../../models/business/business.class';
+import { google } from '@agm/core/services/google-maps-types';
+import { Business } from './../../../../models/business/business.class';
 import { BusinessService } from './../../../../services/business.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -46,6 +47,17 @@ export class MapComponent implements OnInit {
     )
     // Populate array of bussinesses to work with -- END
   }
+
+  // Method for calculating distance -- START
+  private calculateDistance(origin:Business, destination:Business){
+    const start = new google.maps.LatLng(origin.lat, origin.lng);
+    const end = new google.maps.LatLng(destination.lat, destination.lng);
+    
+    const distance = new google.maps.geometry.spherical.compeuteDistanceBetween(start, end);
+
+    console.log(distance);
+  }
+  // Method for calculating distance -- END
 
   private setCurrentPosition() {
     var newMarker: location;
