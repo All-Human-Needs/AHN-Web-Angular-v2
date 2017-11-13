@@ -1,8 +1,9 @@
+import { Location } from 'tslint/lib/rules/strictBooleanExpressionsRule';
 import { google } from '@agm/core/services/google-maps-types';
 import { Business } from './../../../../models/business/business.class';
 import { BusinessService } from './../../../../services/business.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
@@ -12,8 +13,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class MapComponent implements OnInit {
-  origin = { longitude: 18.46171849, latitude: -33.9217137 };  // its a example aleatory position
-  destination = { longitude: 18.4632473, latitude: -33.9423756 };  // its a example aleatory position
+  // origin = { longitude: 18.46171849, latitude: -33.9217137 };  // its a example aleatory position
+  // destination = { longitude: 18.4632473, latitude: -33.9423756 };  // its a example aleatory position
 
 
   locations: Business[] = []; //= this.businessService.getBusinesses();
@@ -48,8 +49,10 @@ export class MapComponent implements OnInit {
     // Populate array of bussinesses to work with -- END
   }
 
+  @Input('userLocation') origin:Location;
+  @Input('destination') destination: Business;
   // Method for calculating distance -- START
-  private calculateDistance(origin:Business, destination:Business){
+  private calculateDistance(origin:location, destination:Business){
     const start = new google.maps.LatLng(origin.lat, origin.lng);
     const end = new google.maps.LatLng(destination.lat, destination.lng);
     
@@ -59,6 +62,15 @@ export class MapComponent implements OnInit {
   }
   // Method for calculating distance -- END
 
+  // Method for displaying route -- START
+  private displayRoute(origin: Location, destination:Business){
+    this.origin = origin;
+    this.destination = destination;
+
+  }
+  // Method for displaying route -- END
+
+  // Method for setting CURRENT POSITION -- START
   private setCurrentPosition() {
     var newMarker: location;
     if ("geolocation" in navigator) {
@@ -72,12 +84,11 @@ export class MapComponent implements OnInit {
         this.userLng = newMarker.lng;
       });
     }
-
     return this.userLocation;
-
   }
+  // Method for setting CURRENT POSITION -- END
 
-  // custom styles for removing all the markers that aren't ours
+  // custom styles for removing all the markers that aren't ours -- START
   customStyle = [
     {
       featureType: "poi",
@@ -90,6 +101,7 @@ export class MapComponent implements OnInit {
       stylers: [{ visibility: "off" }]
     }
   ];
+  // custom styles for removing all the markers that aren't ours -- END
 
   // Method for displaying the correct colour for the markers START
   private getColorIcon(business: Business): String {
