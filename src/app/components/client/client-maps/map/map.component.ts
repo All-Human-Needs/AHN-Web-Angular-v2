@@ -49,13 +49,12 @@ export class MapComponent implements OnInit {
     // Populate array of bussinesses to work with -- END
   }
 
-  @Input('userLocation') origin:Location;
-  @Input('destination') destination: Business;
+
   // Method for calculating distance -- START
-  private calculateDistance(origin:location, destination:Business){
+  private calculateDistance(origin: location, destination: Business) {
     const start = new google.maps.LatLng(origin.lat, origin.lng);
     const end = new google.maps.LatLng(destination.lat, destination.lng);
-    
+
     const distance = new google.maps.geometry.spherical.compeuteDistanceBetween(start, end);
 
     console.log(distance);
@@ -63,9 +62,11 @@ export class MapComponent implements OnInit {
   // Method for calculating distance -- END
 
   // Method for displaying route -- START
-  private displayRoute(origin: Location, destination:Business){
-    this.origin = origin;
-    this.destination = destination;
+  @Input('userLocation') origin: Location;
+  @Input('destination') destination: number[];
+  
+  private setDestination(destination: Business) {
+    this.destination = [destination.lng, destination.lat];
 
   }
   // Method for displaying route -- END

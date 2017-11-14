@@ -1,7 +1,7 @@
+import { Business } from './../../../../models/business/business.class';
 import { Observable } from 'rxjs/Rx';
-import { Business } from '../../../../models/business/business.class';
 import { BusinessService } from '../../../../services/business.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
@@ -12,16 +12,20 @@ import { Subject } from 'rxjs/Subject';
 })
 
 export class SearchBarComponent implements OnInit {
+@Output() clicked = new EventEmitter;
+
   private searchTerms = new Subject<string>();
   businesses: Observable<Business[]>;
 
   query = ''
     
   // Method for selecting item in search bar -- START
-  select(item) {
-    this.query = item
+  select(item: Business) {
+    this.query = item.name;
     // console.log(this.query)
     this.initSuggestions();
+
+    this.clicked.emit(item);
   }
   // Method for selecting item in search bar -- END
 
