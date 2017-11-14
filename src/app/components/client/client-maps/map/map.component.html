@@ -12,7 +12,8 @@
             {{l.name}} {{l.capacity}}
         </agm-info-window>
     </agm-marker>
-    <appMapDirections [origin]="origin" [destination]="destination" (clicked)="setDestination($event)"></appMapDirections>
+    <!-- <appMapDirections [origin]="origin" [destination]="destination" (clicked)="setDestination($event)"></appMapDirections> -->
+    <appMapDirections [origin]="origin" [destination]="destination" ></appMapDirections>
 </agm-map>
 
 <!-- actual map end -->

@@ -12,7 +12,7 @@ import { Subject } from 'rxjs/Subject';
 })
 
 export class SearchBarComponent implements OnInit {
-@Output() clicked = new EventEmitter;
+// @Output() clicked = new EventEmitter;
 
   private searchTerms = new Subject<string>();
   businesses: Observable<Business[]>;
@@ -25,7 +25,7 @@ export class SearchBarComponent implements OnInit {
     // console.log(this.query)
     this.initSuggestions();
 
-    this.clicked.emit(item);
+    // this.clicked.emit(item);
   }
   // Method for selecting item in search bar -- END
 

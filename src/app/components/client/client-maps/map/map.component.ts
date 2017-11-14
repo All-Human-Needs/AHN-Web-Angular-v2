@@ -64,10 +64,11 @@ export class MapComponent implements OnInit {
   // Method for displaying route -- START
   @Input('userLocation') origin: Location;
   @Input('destination') destination: number[];
-  
-  private setDestination(destination: Business) {
-    this.destination = [destination.lng, destination.lat];
 
+  private setDestination(destination: Business) {
+
+    this.destination = [destination.lng, destination.lat];
+    
   }
   // Method for displaying route -- END
 
