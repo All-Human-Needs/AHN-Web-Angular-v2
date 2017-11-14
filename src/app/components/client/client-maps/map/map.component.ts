@@ -14,6 +14,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 
 export class MapComponent implements OnInit {
+  // @Input('userLocation') origin: Location;
+  // @Input('destination') destination: number[] = [2];
+  origin: number[] = [];
+  destination: number[] = [];
   // origin = { longitude: 18.46171849, latitude: -33.9217137 };  // its a example aleatory position
   // destination = { longitude: 18.4632473, latitude: -33.9423756 };  // its a example aleatory position
   locations: Business[] = []; //= this.businessService.getBusinesses();
@@ -22,7 +26,7 @@ export class MapComponent implements OnInit {
   userLng: number;
   userName: String = "You are here";
   zoom: number;
-  dest: Business
+  dest: Business;
 
   constructor(private BusinessService: BusinessService, private SearchService: SearchService) {
 
@@ -49,14 +53,22 @@ export class MapComponent implements OnInit {
     )
     // Populate array of bussinesses to work with -- END
 
+    this.setDestination();
+  }
+
+  setDestination(){
+    var dest: number[] = [];
     this.SearchService.destinationBusiness.subscribe(
       response => {
-        this.dest = response
-        console.log(response);
+        dest[0] = response.lat;
+        dest[1] = response.lng;
+        this.destination[0] = response.lat;
+        this.destination[1] - response.lng;
+        console.log(this.destination);
       }
-      
     )
-
+    this.destination = dest;
+    console.log(this.destination);
   }
 
   // Method for calculating distance -- START
@@ -70,12 +82,7 @@ export class MapComponent implements OnInit {
   }
   // Method for calculating distance -- END
 
-  // Method for displaying route -- START
-  @Input('userLocation') origin: Location;
-  @Input('destination') destination: number[];
-
-
-  // Method for displaying route -- END
+ 
 
   // Method for setting CURRENT POSITION -- START
   private setCurrentPosition() {
@@ -89,6 +96,8 @@ export class MapComponent implements OnInit {
         }
         this.userLat = newMarker.lat;
         this.userLng = newMarker.lng;
+        this.origin[0] = newMarker.lat;
+        this.origin[1] = newMarker.lng;
       });
     }
     return this.userLocation;

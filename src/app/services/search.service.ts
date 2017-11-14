@@ -8,11 +8,6 @@ import { Subject } from 'rxjs/Subject';
 export class SearchService {
   destinationBusiness = new Subject<Business>();
 
-
-
-
-
-
   public business: Observable<Business>
   constructor() { }
 
