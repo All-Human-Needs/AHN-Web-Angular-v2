@@ -59,9 +59,4 @@ export class SearchBarComponent implements OnInit {
   search(term: string): void {
     this.searchTerms.next(term);
   }
-
-  fillInput(searchBar: HTMLInputElement) {
-
-  }
-
 }

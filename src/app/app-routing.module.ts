@@ -1,3 +1,4 @@
+import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { InputSystemComponent } from './components/input-system/input-system.component';
 import { ClientMapsComponent } from './components/client/client-maps/client-maps.component';
@@ -41,6 +42,9 @@ const routes: Routes = [
   {
     path: 'registration',
     component: RegistrationComponent
+  },{
+    path:'forgot-password',
+    component:ForgotPasswordComponent
   }
 ];
 @NgModule({
