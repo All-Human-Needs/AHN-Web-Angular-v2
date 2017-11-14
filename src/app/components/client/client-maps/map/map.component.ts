@@ -1,3 +1,4 @@
+import { SearchService } from './../../../../services/search.service';
 import { Location } from 'tslint/lib/rules/strictBooleanExpressionsRule';
 import { google } from '@agm/core/services/google-maps-types';
 import { Business } from './../../../../models/business/business.class';
@@ -15,21 +16,21 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MapComponent implements OnInit {
   // origin = { longitude: 18.46171849, latitude: -33.9217137 };  // its a example aleatory position
   // destination = { longitude: 18.4632473, latitude: -33.9423756 };  // its a example aleatory position
-
-
   locations: Business[] = []; //= this.businessService.getBusinesses();
   userLocation: location = this.setCurrentPosition();
   userLat: number;
   userLng: number;
   userName: String = "You are here";
   zoom: number;
+  dest: Business
 
-  constructor(private businessService: BusinessService) {
+  constructor(private BusinessService: BusinessService, private SearchService: SearchService) {
+
   }
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
-    this.businessService.getBusinesses().subscribe(
+    this.BusinessService.getBusinesses().subscribe(
       response => {
         for (var i = 0; i < response.length; i++) {
           var marker: Business = {
@@ -47,8 +48,14 @@ export class MapComponent implements OnInit {
       }
     )
     // Populate array of bussinesses to work with -- END
-  }
 
+    this.SearchService.getBusiness().subscribe(
+      response => {
+        this.dest = response
+      }
+    )
+
+  }
 
   // Method for calculating distance -- START
   private calculateDistance(origin: location, destination: Business) {
@@ -65,11 +72,7 @@ export class MapComponent implements OnInit {
   @Input('userLocation') origin: Location;
   @Input('destination') destination: number[];
 
-  private setDestination(destination: Business) {
 
-    this.destination = [destination.lng, destination.lat];
-    
-  }
   // Method for displaying route -- END
 
   // Method for setting CURRENT POSITION -- START
