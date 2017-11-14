@@ -49,10 +49,12 @@ export class MapComponent implements OnInit {
     )
     // Populate array of bussinesses to work with -- END
 
-    this.SearchService.getBusiness().subscribe(
+    this.SearchService.destinationBusiness.subscribe(
       response => {
         this.dest = response
+        console.log(response);
       }
+      
     )
 
   }

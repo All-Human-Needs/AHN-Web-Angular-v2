@@ -26,7 +26,7 @@ export class SearchBarComponent implements OnInit {
     // console.log(this.query)
     this.initSuggestions();
 
-    this.SearchService.setBusiness(item);
+    this.SearchService.destinationBusiness.next(item);
     // this.clicked.emit(item);
   }
   // Method for selecting item in search bar -- END
