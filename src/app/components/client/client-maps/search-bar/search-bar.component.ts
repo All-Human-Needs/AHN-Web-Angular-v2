@@ -22,8 +22,6 @@ select(item){
   // console.log(this.query)
   this.initSuggestions();
   
-
-
 }
 
 
@@ -62,9 +60,6 @@ select(item){
     this.searchTerms.next(term);
   }
 
-  fillInput(searchBar:HTMLInputElement){
 
-  
-  }
   
 }
