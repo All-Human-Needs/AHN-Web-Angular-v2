@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 import { InputSystemComponent } from './components/input-system/input-system.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 
 
 
@@ -45,6 +46,7 @@ export const firebaseConfig = {
     LoginComponent,
     InputSystemComponent,
     RegistrationComponent,
+    ForgotPasswordComponent,
   ],
 
   imports: [
