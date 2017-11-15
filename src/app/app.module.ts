@@ -25,6 +25,7 @@ import { InputSystemComponent } from './components/input-system/input-system.com
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
+import { SearchService } from './services/search.service';
 
 
 
@@ -64,7 +65,7 @@ export const firebaseConfig = {
    
   ],
   exports: [],
-  providers: [BusinessService,AuthenticationService,UserService],
+  providers: [BusinessService,AuthenticationService,UserService,SearchService],
   bootstrap: [AppComponent]
 
 })
