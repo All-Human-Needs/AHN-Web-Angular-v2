@@ -13,8 +13,8 @@ export class BusinessService {
   key;
 
   chartType: string;
-
   alt: Business[] = [];
+
 
   constructor(private db: AngularFireDatabase) {
 
@@ -68,6 +68,28 @@ export class BusinessService {
 
     return Observable.create((observer: Observer<Business[]>) => {
       observer.next(list);
+    });
+  }
+
+  postStatisics(business: Business) {
+    const businesses: Observable<any> = this.db.list('/businesses')
+      .snapshotChanges().map(changes => {
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      })
+
+    let flag = true;
+    businesses.forEach(element => {
+      if (flag) {
+        for (var i = 0; i < element.length; i++) {
+          if (element[i].id === business.id) {
+            // console.log("Key:" + element[i].key + "\nID: " + business.id + "\n Name: " + business.name);
+            this.updateBusiness(element[i].key, business);
+            flag = false;
+            break;
+          }
+
+        }
+      }
     });
   }
 
