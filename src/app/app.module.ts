@@ -31,7 +31,6 @@ import { SearchService } from './services/search.service';
 
 
 
-
 export const firebaseConfig = {
   apiKey: 'AIzaSyCmLj-8NEWba6GUprGUkaM4e40hfLymQK4',
   authDomain: 'all-human-needs.firebaseapp.com',
