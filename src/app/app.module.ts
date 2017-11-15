@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 import { InputSystemComponent } from './components/input-system/input-system.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -58,7 +59,11 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
+    //   libraries:["places"]
+    // }),
    
   ],
   exports: [],

@@ -1,3 +1,4 @@
+import { MapsAPILoader } from '@agm/core';
 import { PasswordValidators } from '../../models/password.validators';
 import { UserService } from '../../services/user.service';
 import { preparseElement } from '@angular/compiler/src/template_parser/template_preparser';
@@ -5,9 +6,12 @@ import { Stats } from '../../models/business/stats.class';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Business } from '../../models/business/business.class';
 import { BusinessService } from '../../services/business.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../models/user';
+import {} from '@types/googlemaps'; 
+
+
 
 @Component({
   selector: 'app-registration',
@@ -15,18 +19,23 @@ import { User } from '../../models/user';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  @ViewChild("searchControl") 
+  public searchElementRef:ElementRef;
+
+  // searchControl: any;
+
   emailAddress:string;
   pwd:string;
-  isBusiness:boolean = false;
+  isBusiness:boolean = true;
   businessName:string;
-  lati:string;
-  long:string;
+  lat:number;
+  lng:number;
   category:string ="bank";
   capacity:number =10;
 
 form:FormGroup
 
-  constructor(private _businessService:BusinessService,private _authenticationService:AuthenticationService,private _userService:UserService,fb:FormBuilder) {
+  constructor(private _businessService:BusinessService,private _authenticationService:AuthenticationService,private _userService:UserService,fb:FormBuilder,private mapsAPILoader:MapsAPILoader,private ngZone:NgZone) {
     this.form = fb.group({
       userForm : fb.group({
         email:['',[Validators.required,Validators.email]],
@@ -40,10 +49,11 @@ form:FormGroup
      ),
       businessForm: fb.group({
         name:['',[Validators.required,Validators.minLength(3)]],
-        lat:['',[Validators.required,Validators.pattern("^[0-9]+$")]],
-        lng:['',[Validators.required,Validators.pattern("^[0-9]+$")]],
         capacity:[],
-        category:[]
+        category:[],
+        searchControl:[]
+        // lat:['',[Validators.required,Validators.pattern("^[0-9]+$")]],
+        // lng:['',[Validators.required,Validators.pattern("^[0-9]+$")]],
       })
     })
    }
@@ -64,20 +74,43 @@ form:FormGroup
     return this.form.get('userForm.passwordForm.confirmPwrd');
   }
 
-  get lat(){
-    return this.form.get('businessForm.lat');
-  }
-
-  get lng(){
-    return this.form.get('businessForm.lng');
-  }
   get name(){
     return this.form.get('businessForm.name');
   }
+  
 
   ngOnInit() {
 
-  }
+      
+           //load Places Autocomplete
+         this.mapsAPILoader.load().then(() => {
+            
+                   let autocomplete = new google.maps.places.Autocomplete(
+                    this.searchElementRef.nativeElement,
+                     {
+                       types: ["address"]
+                     }
+                   );
+                   autocomplete.addListener("place_changed", () => {
+                     this.ngZone.run(() => {
+                       // get the place result
+                       let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+             
+                       //verify result
+                       if (place.geometry === undefined || place.geometry === null) {
+                         return;
+                       }
+             
+                       //set latitude, longitude and zoom
+                       this.lat = place.geometry.location.lat();
+                       this.lng = place.geometry.location.lng();
+                     
+                     });
+                   });
+                  })
+   
+
+}
 
   toggleUser(){
     this.isBusiness= !this.isBusiness;
@@ -91,8 +124,8 @@ form:FormGroup
       let business:Business = {
         id:"",
         name: this.businessName,
-        lat: parseFloat(this.lati) ,
-        lng: parseFloat(this.long) ,
+        lat:this.lat ,
+        lng: this.lng ,
         category: this.category,
         capacity: this.capacity,
         isActive: true,
@@ -104,11 +137,14 @@ form:FormGroup
       isBusiness =false;
       this._authenticationService.createUser(this.emailAddress,this.pwd,isBusiness);
     }
- 
 
     
-    
   }
+
+log(){
+  console.log("lat : "+this.lat+" lng : "+this.lng)
+}
+
 
   validForm(){
     if(this.isBusiness){

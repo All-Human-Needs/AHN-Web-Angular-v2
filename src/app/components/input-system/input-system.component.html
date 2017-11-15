@@ -6,7 +6,7 @@
         </select>
         <form>
             <p><input class="number" type="number" [(ngModel)]="currentNumPeople" name="currentNumPeople" min="0" [max]="maxCapacity" /></p>
-            <p><button type="button" class="btn btn-primary" (click)="send(selectedBusiness.key)">Submit</button></p>
+            <p><button type="button" class="btn btn-primary" (click)="send()">Submit</button></p>
         </form>
 
     </div>
