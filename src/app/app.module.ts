@@ -24,7 +24,9 @@ import { AppComponent } from './app.component';
 import { InputSystemComponent } from './components/input-system/input-system.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { AgmCoreModule } from '@agm/core';
+import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
+import { SearchService } from './services/search.service';
+
 
 
 
@@ -46,6 +48,7 @@ export const firebaseConfig = {
     LoginComponent,
     InputSystemComponent,
     RegistrationComponent,
+    ForgotPasswordComponent,
   ],
 
   imports: [
@@ -67,7 +70,7 @@ export const firebaseConfig = {
    
   ],
   exports: [],
-  providers: [BusinessService,AuthenticationService,UserService],
+  providers: [BusinessService,AuthenticationService,UserService,SearchService],
   bootstrap: [AppComponent]
 
 })
