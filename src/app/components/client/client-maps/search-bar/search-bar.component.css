@@ -5,12 +5,11 @@
 }
 
 .search-bar {
-    /* margin-left: 10px;
-    margin-right: 10px; */
-    border-style: hidden;
-    font-size: 175%;
-    background-color: #ffffff;
-    border-left: solid 1px black;
+    height: 58px;	
+    width: 340px;	
+    border-radius: 5px;	
+    background-color: #FFFFFF;	
+    box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
 }
 
 .search-icon {
