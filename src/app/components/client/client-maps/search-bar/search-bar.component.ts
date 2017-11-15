@@ -20,6 +20,10 @@ export class SearchBarComponent implements OnInit {
 
   query = ''
 
+   ////////////////
+   //////////////// as well as here
+   ////////////////
+
   // Method for selecting item in search bar -- START
   select(item: Business) {
     this.query = item.name;

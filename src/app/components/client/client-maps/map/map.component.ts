@@ -56,6 +56,11 @@ export class MapComponent implements OnInit {
     this.setDestination();
   }
 
+
+
+  /////////
+  ///////// Look here
+  /////////
   setDestination(){
     var dest: number[] = [];
     this.SearchService.destinationBusiness.subscribe(
