@@ -70,7 +70,9 @@ export class MapComponent implements OnInit {
         this.destination[0] = response.lat;
         this.destination[1] - response.lng;
         console.log(this.destination);
+        console.log(this.dest);
       }
+
     )
     this.destination = dest;
     console.log(this.destination);
