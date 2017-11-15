@@ -4,7 +4,6 @@ import { Observable } from "rxjs/Observable";
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
-
 import { Business } from "../models/business/business.class";
 
 @Injectable()
@@ -14,12 +13,12 @@ export class BusinessService {
   key;
 
   chartType: string;
-  alt: Business[];
+
+  alt: Business[] = [];
 
   constructor(private db: AngularFireDatabase) {
 
     this.businessRef = db.list("businesses");
-
 
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
@@ -38,7 +37,6 @@ export class BusinessService {
 
   }
 
-
   deleteBusiness(key?: string) {
     this.businessRef.remove(key);
   }
@@ -54,10 +52,7 @@ export class BusinessService {
   search(term: string): Observable<Business[]> {
 
     const list = this.alt.filter((b: Business) => {
-
-
       return b.name.search(RegExp(term, 'i')) > -1;
-
     });
 
     return Observable.create((observer: Observer<Business[]>) => {
@@ -68,10 +63,7 @@ export class BusinessService {
 
   filterByCategory(term: string): Observable<Business[]> {
     const list = this.alt.filter((b: Business) => {
-
-
       return b.category.search(RegExp(term, 'i')) > -1;
-
     });
 
     return Observable.create((observer: Observer<Business[]>) => {
@@ -109,6 +101,5 @@ export class BusinessService {
   getChartType(): string {
     return this.chartType;
   }
-
 
 }
