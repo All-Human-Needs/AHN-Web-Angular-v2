@@ -26,12 +26,9 @@ export class RegistrationComponent implements OnInit {
 
   emailAddress:string;
   pwd:string;
-<<<<<<< HEAD
-  confirmPsw:string;
-  isBusiness:boolean = false;
-=======
+
   isBusiness:boolean = true;
->>>>>>> master
+
   businessName:string;
   lat:number;
   lng:number;

@@ -35,8 +35,6 @@ import { ForgotPasswordComponent } from './components/login/forgot-password/forg
 import { SearchService } from './services/search.service';
 
 
-
-
 export const firebaseConfig = {
   apiKey: 'AIzaSyCmLj-8NEWba6GUprGUkaM4e40hfLymQK4',
   authDomain: 'all-human-needs.firebaseapp.com',
@@ -69,16 +67,15 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
+
     MaterialsModule
   
-=======
+
     // AgmCoreModule.forRoot({
     //   apiKey: 'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
     //   libraries:["places"]
     // }),
->>>>>>> master
-   
+
   ],
   exports: [],
   providers: [BusinessService,AuthenticationService,UserService,SearchService],
