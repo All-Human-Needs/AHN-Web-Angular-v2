@@ -1,5 +1,5 @@
 
-import { SideNavModule } from './../side-nav/side-nav.module';
+import { SideNavModule } from './client-maps/side-nav/side-nav.module';
 import { FilterModule } from './../filter/filter.module';
 
 import { NgModule } from '@angular/core';

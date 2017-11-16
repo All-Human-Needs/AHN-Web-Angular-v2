@@ -1,6 +1,6 @@
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
-import { SideNavModule } from './components/side-nav/side-nav.module';
+import { SideNavModule } from './components/client/client-maps/side-nav/side-nav.module';
 
 //import modules
 import { AngularFirestoreModule } from 'angularfire2/firestore';

@@ -4,7 +4,7 @@
     right: 30px;
     top:29px;
     float: right;
-    z-index: 100;
+    
     padding: auto;
 
     height: 58px;	
@@ -13,7 +13,7 @@
     background-color: #14CFBE;	
     box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
     border-style: none;
-
+    z-index: -2;
 }
 
 .modal-dialog,

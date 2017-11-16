@@ -1,5 +1,7 @@
 .modal-btn {
-    position: absolute;
+    
+    
+    position: fixed;
     margin-top: 20px;
     margin-right: 30px;
     right: 30px;
@@ -21,7 +23,7 @@
 .modal.right .modal-dialog {
     position: fixed;
     margin: auto;
-    z-index: 1000;
+    z-index: 60;
     width: 320px;
     height: 100%;
     -webkit-transform: translate3d(0%, 0, 0);
@@ -90,4 +92,8 @@ a {
 .uber {
     padding-bottom: 20px;
     font-weight: bold;
+}
+
+.modal-backdrop {
+    z-index:99!important;
 }
