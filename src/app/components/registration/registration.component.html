@@ -1,6 +1,7 @@
 <form [formGroup]="form" class="background">
     <md-tab-group>
         <md-tab label="Individual">
+            <h2 class="text-center">Sign Up</h2>
             <div class="form-group" formGroupName="userForm">
 
                 <md-form-field class="example-full-width">
@@ -40,55 +41,57 @@
                             </md-error>
                         </md-error>
                     </md-form-field>
-                    <button class="btn btn-primary">Google Sign Up</button> <button class="btn btn-primary" type="button" [disabled]=" validForm()" (click)="register()">Register</button>
+                    <button class="btn googleBtn">Google Sign Up</button> <button class="btn button" style="background-color: #27CEBE;" type="button" [disabled]=" validForm()" (click)="register()">Register</button>
                     <p class="text-center">Already have an account?</p>
-                    <button md-button>LOGIN</button>
+                    <button md-button class="m-auto">LOGIN</button>
 
 
 
                 </div>
             </div>
         </md-tab>
-        <md-tab label="Business"></md-tab>
-    </md-tab-group>
-    <h2 class="text-center">Sign Up</h2>
+        <md-tab label="Business">
+            <h2 class="text-center">Sign Up</h2>
 
 
-
-    <div class="form-group">
-        <label for="isBusiness"><input type="checkbox" id="isBusiness" [(ngModel)]="isBusiness" [ngModelOptions]="{standalone: true}" (click)="toggleUser()"/> Are you registering as a Business?</label>
-    </div>
-
-
-
-    <div *ngIf="isBusiness">
-        <div class="form-group" formGroupName="businessForm">
-
-            <label for="name">Business name:</label>
-            <input type="text" formControlName="name" [(ngModel)]="businessName" id="name" class="form-control">
-            <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
-                <div *ngIf="name.errors.required">Business name is a required field.</div>
-                <div *ngIf="name.errors.minlength">Business name should be a minimum of {{name.errors.minlength.requiredLength}} characters.</div>
-            </div>
-
-            <label for="category">Category:</label>
-            <select name="category" id="category" formControlName="category" [(ngModel)]="category" class="form-control">
-              <option value="bank">Bank</option>
-              <option value="hospital">Hospital</option>
-              <option value="home-affairs">Home-affairs</option>
-            </select>
-
-            <label for="capacity">Capacity:</label>
-            <input type="number" id="capacity" value="10" formControlName="capacity" [(ngModel)]="capacity" min=0 class="form-control">
 
             <div class="form-group">
-                <!-- <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl"> -->
-                <input id="address" placeholder="Your business physical address and city" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #searchControl formControlName="searchControl" (keyup.enter)="log()">
+                <label for="isBusiness"><input type="checkbox" id="isBusiness" [(ngModel)]="isBusiness" [ngModelOptions]="{standalone: true}" (click)="toggleUser()"/> Are you registering as a Business?</label>
             </div>
 
-        </div>
-    </div>
 
-    <button class="btn btn-primary" type="button" [disabled]=" validForm()" (click)="register()">Register</button>
-    <button class="btn btn-primary" type="button" [routerLink]="['/login']">Login</button>
+
+            <div *ngIf="isBusiness">
+                <div class="form-group" formGroupName="businessForm">
+
+                    <label for="name">Business name:</label>
+                    <input type="text" formControlName="name" [(ngModel)]="businessName" id="name" class="form-control">
+                    <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                        <div *ngIf="name.errors.required">Business name is a required field.</div>
+                        <div *ngIf="name.errors.minlength">Business name should be a minimum of {{name.errors.minlength.requiredLength}} characters.</div>
+                    </div>
+
+                    <label for="category">Category:</label>
+                    <select name="category" id="category" formControlName="category" [(ngModel)]="category" class="form-control">
+                          <option value="bank">Bank</option>
+                          <option value="hospital">Hospital</option>
+                          <option value="home-affairs">Home-affairs</option>
+                        </select>
+
+                    <label for="capacity">Capacity:</label>
+                    <input type="number" id="capacity" value="10" formControlName="capacity" [(ngModel)]="capacity" min=0 class="form-control">
+
+                    <div class="form-group">
+                        <!-- <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl"> -->
+                        <input id="address" placeholder="Your business physical address and city" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #searchControl formControlName="searchControl" (keyup.enter)="log()">
+                    </div>
+
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="button" [disabled]=" validForm()" (click)="register()">Register</button>
+            <button class="btn btn-primary" type="button" [routerLink]="['/login']">Login</button>
+
+        </md-tab>
+    </md-tab-group>
 </form>
