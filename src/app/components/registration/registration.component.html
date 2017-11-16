@@ -1,8 +1,11 @@
 <form [formGroup]="form" class="background">
+
     <md-tab-group>
+
         <md-tab label="Individual">
-            <h2 class="text-center">Sign Up</h2>
-            <div class="form-group" formGroupName="userForm">
+
+            <h2 class="text-center mt-5">Sign Up</h2>
+            <div class="form-group paddingSide50" formGroupName="userForm">
 
                 <md-form-field class="example-full-width">
                     <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
@@ -10,9 +13,9 @@
                         <md-error *ngIf="email.errors.email">
                             Please enter a valid email address
                         </md-error>
-                        <md-error *ngIf="email.errors.required">
+                        <!-- <md-error *ngIf="email.errors.required">
                             Email is <strong>required</strong>
-                        </md-error>
+                        </md-error> -->
                     </md-error>
                 </md-form-field>
 
@@ -41,15 +44,25 @@
                             </md-error>
                         </md-error>
                     </md-form-field>
-                    <button class="btn googleBtn">Google Sign Up</button> <button class="btn button" style="background-color: #27CEBE;" type="button" [disabled]=" validForm()" (click)="register()">Register</button>
-                    <p class="text-center">Already have an account?</p>
-                    <button md-button class="m-auto">LOGIN</button>
+                    <div class="text-center">
+                        <button class="btn googleBtn mt-4">Google Sign Up</button> <button class="btn registerBtn mt-4" style="background-color: #27CEBE;" type="button" [disabled]=" validForm()" (click)="register()">Register</button>
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <p>Already have an account?</p>
+                        <button md-button>LOGIN</button>
+                    </div>
+
+
 
 
 
                 </div>
             </div>
         </md-tab>
+
+
+
         <md-tab label="Business">
             <h2 class="text-center">Sign Up</h2>
 
