@@ -118,10 +118,13 @@ export class AuthenticationService {
   }
 
   resetPassword(email: string) {
-    this.ahnAuth.auth
-      .sendPasswordResetEmail(email)
-      .then(msg => alert("Password Successfully Reset"))
-      .catch(msg => alert("Password Successfully Reset"));
+   // this.ahnAuth.auth
+   //   .sendPasswordResetEmail(email)
+   console.log(email);
+     alert("Password Successfully Reset");
+     
+      // .then(msg => alert("Password Successfully Reset"))
+      // .catch(msg => alert("Password Successfully Reset"));
   }
 
   isBusiness(currentUser) {

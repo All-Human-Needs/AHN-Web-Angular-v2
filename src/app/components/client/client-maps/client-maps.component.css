@@ -1,33 +1,35 @@
-.map-overlay {
+.ahn-map-overlay {
     /* To put the stuff the stuff on top of the map */
     position: fixed;
     z-index: 5;
     width: 100%;
 }
 
+.ahn-back-button{
+    background-color: #14CFBE;
 
-/* .menu-button {
-    z-index: 2;
-    position: fixed;
-    border-radius: 50%;
-    border: width border-style color;
+    height: 58px;	
+    width: 58px;	
+    border-radius: 5px;	
+    background-color: #14CFBE;	
+    color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
+    border-style: none;
+    margin-top: 29px;
+    margin-left: 30px;
+    float: left;
+
+    padding: auto;
 }
 
-.menu {
-    border-radius: 100%;
-    z-index: 2;
-    left: 90%;
-    position: absolute;
-    cursor: pointer;
-    background-color: #858585
-} */
+.ahn-menu-button{
+    height: 58px;	
+    width: 58px;
+    border-radius: 5px;	
+    background-color: #14CFBE;	
+    box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
+    border-style: none;
+    margin-top: 29px;
 
-/* .filter {
-    border-radius: 100%;
-    z-index: 2;
-    left: 90%;
-    position: absolute;
-    margin-top: 50px;
-    cursor: pointer;
-    background-color: #858585
-} */
+    padding: auto;
+}

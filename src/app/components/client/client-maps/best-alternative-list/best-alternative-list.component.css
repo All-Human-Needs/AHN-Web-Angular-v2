@@ -1,5 +1,9 @@
 .btn {
+    height: 60px;
     width: 100%;
+    background-color: #27CEBE;
+    border-radius: 0px;
+    border-style: none;
 }
 
 .bottom {
