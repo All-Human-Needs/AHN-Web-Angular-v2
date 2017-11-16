@@ -24,17 +24,18 @@ import { MapDirectionsDirective } from './client-maps/map-directions.directive';
     FilterModule,
     SideNavModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
-
+      apiKey: 'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',  
+      libraries:["places"]
     }),
- AppRoutingModule, BannerModule
+    AppRoutingModule,
+    BannerModule
   ],
   declarations: [
     ClientHomeComponent,
     ClientMapsComponent,
     MapComponent,
     MapDirectionsDirective,
-    SearchBarComponent, 
+    SearchBarComponent,
     BestAlternativeListComponent
 
   ],

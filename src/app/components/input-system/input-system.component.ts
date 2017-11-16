@@ -1,3 +1,4 @@
+// import { setInterval } from 'timers';
 import { Business } from '../../models/business/business.class';
 import { BusinessService } from '../../services/business.service';
 import { Component, OnInit } from '@angular/core';
@@ -34,6 +35,10 @@ export class InputSystemComponent implements OnInit {
        
     }
    )
+  //  setInterval(()=>{
+  //    this.send()
+  //  },30000)
+  //  setInterval(()=>{console.log("hello")},1800000);
   }
 
   setSelectedBusiness(selected){
@@ -48,21 +53,15 @@ export class InputSystemComponent implements OnInit {
    
   }
 
-  send(key){
-    this.currentDate=new Date();
-    // if(this.currentDate.getMinutes()==0||this.currentDate.getMinutes()==30){
-    //   var newStat = {date:this.currentDate.toString(),pax:this.currentNumPeople};
-    //   this.selectedBusiness.stats.push(newStat);
-    //   this._businessService.updateBusiness(key,this.selectedBusiness);
-    // }else{
-    //   alert("Its not time to post data yet")
-    // }
-    var newStat = {date:this.currentDate.toString(),pax:this.currentNumPeople};
-    console.log("Key : "+key);
-    console.table(this.selectedBusiness)
-    this.selectedBusiness.stats.push(newStat);
-    this._businessService.updateBusiness(key,this.selectedBusiness);
+  send(){
+     this.currentDate=new Date();
+     var newStat = {date:this.currentDate.toString(),pax:this.currentNumPeople};
+     this.selectedBusiness.stats.push(newStat);
+    this._businessService.postStatisics(this.selectedBusiness);
     
   }
+
+
+
 
 }

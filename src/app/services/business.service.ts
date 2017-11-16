@@ -4,7 +4,6 @@ import { Observable } from "rxjs/Observable";
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
-
 import { Business } from "../models/business/business.class";
 
 @Injectable()
@@ -13,14 +12,13 @@ export class BusinessService {
   businesses: Observable<Business[]>;
   key;
 
-  chartType:string;
+  chartType: string;
+  alt: Business[] = [];
 
-   alt: Business[]=[];
 
   constructor(private db: AngularFireDatabase) {
 
     this.businessRef = db.list("businesses");
-
 
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
@@ -32,13 +30,12 @@ export class BusinessService {
 
     return this.businesses = this.businessRef.snapshotChanges().map(changes => {
       // console.table(changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
-      
+
       // console.log(this.key[0]);
-       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-     });
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
 
   }
-
 
   deleteBusiness(key?: string) {
     this.businessRef.remove(key);
@@ -55,10 +52,7 @@ export class BusinessService {
   search(term: string): Observable<Business[]> {
 
     const list = this.alt.filter((b: Business) => {
-
-
       return b.name.search(RegExp(term, 'i')) > -1;
-
     });
 
     return Observable.create((observer: Observer<Business[]>) => {
@@ -69,10 +63,7 @@ export class BusinessService {
 
   filterByCategory(term: string): Observable<Business[]> {
     const list = this.alt.filter((b: Business) => {
-
-
       return b.category.search(RegExp(term, 'i')) > -1;
-
     });
 
     return Observable.create((observer: Observer<Business[]>) => {
@@ -80,14 +71,35 @@ export class BusinessService {
     });
   }
 
+  postStatisics(business: Business) {
+    const businesses: Observable<any> = this.db.list('/businesses')
+      .snapshotChanges().map(changes => {
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      })
 
-  setChartType(type:string){
-    this.chartType=type;
+    let flag = true;
+    businesses.forEach(element => {
+      if (flag) {
+        for (var i = 0; i < element.length; i++) {
+          if (element[i].id === business.id) {
+            // console.log("Key:" + element[i].key + "\nID: " + business.id + "\n Name: " + business.name);
+            this.updateBusiness(element[i].key, business);
+            flag = false;
+            break;
+          }
+
+        }
+      }
+    });
   }
 
-  getChartType():string{
+
+  setChartType(type: string) {
+    this.chartType = type;
+  }
+
+  getChartType(): string {
     return this.chartType;
   }
-
 
 }

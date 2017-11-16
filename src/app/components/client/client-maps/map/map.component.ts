@@ -1,33 +1,51 @@
-import { Business } from '../../../../models/business/business.class';
+import { SearchService } from './../../../../services/search.service';
+import { Location } from 'tslint/lib/rules/strictBooleanExpressionsRule';
+import { google } from '@agm/core/services/google-maps-types';
+import { Business } from './../../../../models/business/business.class';
 import { BusinessService } from './../../../../services/business.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { GoogleMapsAPIWrapper } from '@agm/core';
 
 
 @Component({
   selector: 'ahn-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
+  // providers:[GoogleMapsAPIWrapper]
 })
 
 export class MapComponent implements OnInit {
-  origin = { longitude: 18.46171849, latitude: -33.9217137 };  // its a example aleatory position
-  destination = { longitude: 18.4632473, latitude: -33.9423756 };  // its a example aleatory position
-
-
+  // @Input('userLocation') origin: Location;
+  // @Input('destination') destination: number[] = [2];
+  origin= {
+    latitude:0,
+    longitude:0
+  };
+  destination= {
+    latitude:0,
+    longitude:0
+  };
+  // origin = { longitude: 18.46171849, latitude: -33.9217137 };  // its a example aleatory position
+  // destination = { longitude: 18.4632473, latitude: -33.9423756 };  // its a example aleatory position
   locations: Business[] = []; //= this.businessService.getBusinesses();
   userLocation: location = this.setCurrentPosition();
   userLat: number;
   userLng: number;
   userName: String = "You are here";
   zoom: number;
+  // dest: Business;
+  directionsDisplay;
+  // constructor(private BusinessService: BusinessService, private SearchService: SearchService,private gmapsApi: GoogleMapsAPIWrapper) {
 
-  constructor(private businessService: BusinessService) {
-  }
+  // }
+  constructor(private BusinessService: BusinessService, private SearchService: SearchService,) {
+    
+      }
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
-    this.businessService.getBusinesses().subscribe(
+    this.BusinessService.getBusinesses().subscribe(
       response => {
         for (var i = 0; i < response.length; i++) {
           var marker: Business = {
@@ -45,8 +63,55 @@ export class MapComponent implements OnInit {
       }
     )
     // Populate array of bussinesses to work with -- END
+    // if(this.directionsDisplay === undefined){
+    //   this.gmapsApi.getNativeMap().then(map => {               
+    //       this.directionsDisplay = new google.maps.DirectionsRenderer({
+    //           draggable: false,
+    //           map: map,
+    //       });
+    //   });
+    // }
+    this.setDestination();
+
+  
   }
 
+
+
+  /////////
+  ///////// Look here
+  /////////
+  setDestination(){
+    // var dest: number[] = [];
+    this.SearchService.destinationBusiness.subscribe(
+      response => {
+        // dest[0] = response.lat;
+        // dest[1] = response.lng;
+        this.destination = new Destination(response.lat,response.lng)
+        // this.destination.latitude = response.lat;
+        // this.destination.longitude = response.lng;
+        console.log("Destination: "+this.destination.latitude+","+this.destination.longitude);
+        // console.log(this.dest);
+      }
+
+    )
+    // console.log(this.destination);
+  }
+
+  // Method for calculating distance -- START
+  // private calculateDistance(origin: location, destination: Business) {
+  //   const start = new google.maps.LatLng(origin.lat, origin.lng);
+  //   const end = new google.maps.LatLng(destination.lat, destination.lng);
+
+  //   const distance = new google.maps.geometry.spherical.compeuteDistanceBetween(start, end);
+
+  //   console.log(distance);
+  // }
+  // Method for calculating distance -- END
+
+ 
+
+  // Method for setting CURRENT POSITION -- START
   private setCurrentPosition() {
     var newMarker: location;
     if ("geolocation" in navigator) {
@@ -58,14 +123,16 @@ export class MapComponent implements OnInit {
         }
         this.userLat = newMarker.lat;
         this.userLng = newMarker.lng;
+        this.origin.latitude = newMarker.lat;
+        this.origin.longitude = newMarker.lng;
+        console.log("Origin: "+this.origin.latitude+","+this.origin.longitude)
       });
     }
-
     return this.userLocation;
-
   }
+  // Method for setting CURRENT POSITION -- END
 
-  // custom styles for removing all the markers that aren't ours
+  // custom styles for removing all the markers that aren't ours -- START
   customStyle = [
     {
       featureType: "poi",
@@ -78,6 +145,7 @@ export class MapComponent implements OnInit {
       stylers: [{ visibility: "off" }]
     }
   ];
+  // custom styles for removing all the markers that aren't ours -- END
 
   // Method for displaying the correct colour for the markers START
   private getColorIcon(business: Business): String {
@@ -101,4 +169,16 @@ interface location {
   lat: number;
   lng: number;
   name: string;
+}
+
+class Destination{
+  latitude:number;
+  longitude:number;
+
+  constructor( latitude:number,
+    longitude:number){
+      this.latitude = latitude;
+      this.longitude = longitude;
+    }
+  
 }

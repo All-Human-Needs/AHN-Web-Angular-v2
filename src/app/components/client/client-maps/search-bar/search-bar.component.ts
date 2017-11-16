@@ -1,65 +1,68 @@
+import { SearchService } from '../../../../services/search.service';
+import { Business } from './../../../../models/business/business.class';
 import { Observable } from 'rxjs/Rx';
-import { Business } from '../../../../models/business/business.class';
 import { BusinessService } from '../../../../services/business.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'ahn-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css'],
-  
+
 })
+
 export class SearchBarComponent implements OnInit {
- private searchTerms=new Subject<string>();
-businesses:Observable<Business[]>;
+  // @Output() clicked = new EventEmitter;
 
+  private searchTerms = new Subject<string>();
+  businesses: Observable<Business[]>;
 
-query=''
+  query = ''
 
-select(item){
-  this.query=item
-  // console.log(this.query)
-  this.initSuggestions();
-  
-}
+   ////////////////
+   //////////////// as well as here
+   ////////////////
 
+  // Method for selecting item in search bar -- START
+  select(item: Business) {
+    this.query = item.name;
+    // console.log(this.query)
+    this.initSuggestions();
 
-  constructor(private businessService:BusinessService) { 
+    this.SearchService.destinationBusiness.next(item);
+    // this.clicked.emit(item);
+  }
+  // Method for selecting item in search bar -- END
 
-
-   // .businesses.forEach(element=> {
+  constructor(private businessService: BusinessService, private SearchService: SearchService) {
+    // .businesses.forEach(element=> {
     // for(var i = 0; i<element.length;i++){
-      //  this.businesses=element; 
-      
+    //  this.businesses=element; 
+
     //   }
     //  });
-     
-     
-
   }
 
+  // initializes search list -- START
   initSuggestions() {
-    this.businesses=this.searchTerms
-    .delay(300)
-    .distinctUntilChanged()
-    .switchMap(term=>term
-    ? this.businessService.search(term):Observable.of<Business[]>([]))
-    .catch(error=>{
-      console.log(error);
-      return Observable.of<Business[]>([]);
-    });
+    this.businesses = this.searchTerms
+      .delay(300)
+      .distinctUntilChanged()
+      .switchMap(term => term
+        ? this.businessService.search(term) : Observable.of<Business[]>([]))
+      .catch(error => {
+        console.log(error);
+        return Observable.of<Business[]>([]);
+      });
   }
+  // initializes search list -- END
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.initSuggestions();
   }
 
-
-  search(term:string):void{
+  search(term: string): void {
     this.searchTerms.next(term);
   }
-
-
-  
 }

@@ -81,22 +81,14 @@
             <label for="capacity">Capacity:</label>
             <input type="number" id="capacity" value="10" formControlName="capacity" [(ngModel)]="capacity" min=0 class="form-control">
 
-            <label for="lat">Latitude:</label>
-            <input type="text" formControlName="lat" [(ngModel)]="lati" id="lat" class="form-control">
-            <div *ngIf="lat.touched && lat.invalid" class="alert alert-danger">
-                <div *ngIf="lat.errors.required">Latitude is a required field.</div>
-                <div *ngIf="lat.errors.pattern">Latitude should only contain numbers.</div>
-            </div>
-
-            <label for="lng">Longitude:</label>
-            <input type="text" formControlName="lng" [(ngModel)]="long" id="lng" class="form-control">
-            <div *ngIf="lng.touched && lng.invalid" class="alert alert-danger">
-                <div *ngIf="lng.errors.required">Longitude is a required field.</div>
-                <div *ngIf="lng.errors.pattern">Longitude should only contain numbers.</div>
+            <div class="form-group">
+                <!-- <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl"> -->
+                <input id="address" placeholder="Your business physical address and city" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #searchControl formControlName="searchControl" (keyup.enter)="log()">
             </div>
 
         </div>
     </div>
 
     <button class="btn btn-primary" type="button" [disabled]=" validForm()" (click)="register()">Register</button>
+    <button class="btn btn-primary" type="button" [routerLink]="['/login']">Login</button>
 </form>

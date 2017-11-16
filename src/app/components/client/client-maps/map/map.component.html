@@ -7,12 +7,20 @@
         </agm-info-window>
     </agm-marker>
 
-    <agm-marker *ngFor="let l of locations; let i = index" [iconUrl]="getColorIcon(l)" [latitude]="l.lat" [longitude]="l.lng">
+    <agm-marker *ngFor="let l of locations" [iconUrl]="getColorIcon(l)" [latitude]="l.lat" [longitude]="l.lng">
         <agm-info-window>
             {{l.name}} {{l.capacity}}
         </agm-info-window>
     </agm-marker>
-    <appMapDirections [origin]="origin" [destination]="destination"></appMapDirections>
+    <!-- <appMapDirections [origin]="origin" [destination]="destination" (clicked)="setDestination($event)"></appMapDirections> -->
+    <!-- <div *ngIf="destination.latitude!=0 && destination.longitude!=0">
+        <appMapDirections [directionsDisplay]="directionsDisplay" [origin]="origin" [destination]="destination"></appMapDirections>
+    </div> -->
+
+    <div *ngIf="destination.latitude!=0 && destination.longitude!=0">
+        <appMapDirections [origin]="origin" [destination]="destination"></appMapDirections>
+    </div>
+
 </agm-map>
 
 <!-- actual map end -->
