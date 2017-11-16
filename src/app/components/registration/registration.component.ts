@@ -17,6 +17,7 @@ import { User } from '../../models/user';
 export class RegistrationComponent implements OnInit {
   emailAddress:string;
   pwd:string;
+  confirmPsw:string;
   isBusiness:boolean = false;
   businessName:string;
   lati:string;
@@ -47,6 +48,8 @@ form:FormGroup
       })
     })
    }
+
+   
 
   get email(){
     return this.form.get('userForm.email');

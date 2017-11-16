@@ -1,4 +1,10 @@
-import { UserService } from './services/user.service';
+
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { NgModule } from '@angular/core';import { UserService } from './services/user.service';
+
 import { AuthenticationService } from './services/authentication.service';
 import { SideNavModule } from './components/side-nav/side-nav.module';
 
@@ -9,8 +15,7 @@ import { BusinessService } from './services/business.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+
 // custom modules
 
 import { AngularFireModule } from 'angularfire2';
@@ -19,13 +24,14 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { BannerModule } from './components/banner/banner.module';
 import { BusinessModule } from './components/business/business.module';
 import { ClientModule } from './components/client/client.module';
+
+import { MaterialsModule } from './materials/materials.module';
 // components
 import { AppComponent } from './app.component';
 import { InputSystemComponent } from './components/input-system/input-system.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
-
 
 
 
@@ -51,6 +57,7 @@ export const firebaseConfig = {
 
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     ClientModule,
@@ -60,7 +67,9 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialsModule
+  
    
   ],
   exports: [],
