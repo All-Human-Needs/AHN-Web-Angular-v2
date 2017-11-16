@@ -33,6 +33,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { SearchService } from './services/search.service';
+import { PaginationDirective } from './directives/pagination.directive';
 
 
 export const firebaseConfig = {
@@ -52,6 +53,7 @@ export const firebaseConfig = {
     InputSystemComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
+    PaginationDirective,
   ],
 
   imports: [
