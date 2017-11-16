@@ -1,3 +1,6 @@
+import { Business } from '../../../models/business/business.class';
+import { BusinessService } from '../../../services/business.service';
+import { AuthenticationService } from '../../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +9,65 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./business-stats.component.css']
 })
 export class BusinessStatsComponent implements OnInit {
-  title = "Statistics";
-  constructor() { }
+  currentBusiness: Business;
+  footTraffic:number = 0;
+  peakTime:Date;
+  constructor(private _authService: AuthenticationService, private _businessService: BusinessService) {
+
+  }
 
   ngOnInit() {
+   this.getcurrentBusiness();
+  }
+
+  getcurrentBusiness() {
+    let uid = this._authService.getCurrentBusiness();
+    this.currentBusiness;
+    this._businessService.getBusinesses().subscribe(response => {
+
+      for (var i = 0; i < response.length; i++) {
+        if (response[i].id === uid) {
+          this.currentBusiness = response[i];
+          this.getDisplay();
+          break;
+        }
+
+      };
+    });
+
+  }
+
+
+  getDisplay(){
+    let currDate = new Date()
+    let stats =this.currentBusiness.stats
+    let currStats:any[] =[];
+    this.footTraffic = 0;
+    for (var i = 0; i < stats.length; i++) {
+      let date = new Date(stats[i].date);
+      let flag:boolean = currDate.getFullYear() == date.getFullYear() && currDate.getDate()== date.getDate() && currDate.getMonth()==date.getMonth();
+      if(flag){
+        currStats.push(stats[i]);
+        this.footTraffic+=stats[i].pax;
+      
+      }
+    }
+   
+    if(currStats.length>1){
+let peakPax:number = currStats[0].pax;
+    for (var i = 0; i < currStats.length-1; i++) {
+      if(peakPax<currStats[i+1].pax){
+        peakPax = currStats[i+1].pax;
+        this.peakTime = new Date(currStats[i+1].date);
+      }
+    }
+
+    }else{
+      this.peakTime = new Date(currStats[0].date);
+    }
+    
+    
+   
   }
 
 }
