@@ -1,8 +1,19 @@
 .modal-btn {
+    position: relative;
+    margin-right: 30px;
+    right: 30px;
+    top:29px;
+    float: right;
     z-index: 100;
-    position: fixed;
-    left: 90%;
-    top: 25%;
+    padding: auto;
+
+    height: 58px;	
+    width: 58px;
+    border-radius: 5px;	
+    background-color: #14CFBE;	
+    box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
+    border-style: none;
+
 }
 
 .modal-dialog,
