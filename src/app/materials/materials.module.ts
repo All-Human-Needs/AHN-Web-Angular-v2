@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
-import {MdFormFieldModule,MdInputModule,MdButtonModule,MdTabsModule} from '@angular/material';
+import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectModule} from '@angular/material';
 
 @NgModule({
   imports: [
     MdFormFieldModule,
     MdInputModule,
     MdButtonModule,
-    MdTabsModule
+    MdTabsModule,
+    MdSelectModule,
+    
   ],
   exports: [
     MdFormFieldModule,
     MdInputModule,
     MdButtonModule,
-    MdTabsModule 
+    MdTabsModule ,
+    MdSelectModule,
+    
   ],
   declarations: []
 })

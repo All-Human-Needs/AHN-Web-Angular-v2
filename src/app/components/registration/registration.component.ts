@@ -51,9 +51,10 @@ form:FormGroup
       },
      ),
       businessForm: fb.group({
+        
         name:['',[Validators.required,Validators.minLength(3)]],
         capacity:[],
-        category:[],
+        category:['',[Validators.required]],
         searchControl:[]
         // lat:['',[Validators.required,Validators.pattern("^[0-9]+$")]],
         // lng:['',[Validators.required,Validators.pattern("^[0-9]+$")]],
@@ -121,10 +122,10 @@ form:FormGroup
     this.isBusiness= !this.isBusiness;
   }
 
-  register(){
-    let isBusiness;
+  register(isBusiness:boolean){
+    // let isBusiness;
     if(this.isBusiness){ 
-       isBusiness=true;
+      //  isBusiness=true;
       let newDate = new Date().toString();
       let business:Business = {
         id:"",
@@ -139,7 +140,7 @@ form:FormGroup
       this._authenticationService.createUser(this.emailAddress,this.pwd,isBusiness,business);
 
     }else{
-      isBusiness =false;
+      // isBusiness =false;
       this._authenticationService.createUser(this.emailAddress,this.pwd,isBusiness);
     }
 
@@ -159,4 +160,10 @@ log(){
     }
   }
 
+  googleLogin():void{
+    //validate login
+    alert('Please Note That If You Are Signing In As A Business You Should Instead Create An Account Using The Register Page ')
+    this._authenticationService.googleLogin();
+
+  }
 }
