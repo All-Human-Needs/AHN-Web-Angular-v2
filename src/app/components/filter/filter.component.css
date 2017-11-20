@@ -21,7 +21,7 @@
     position: fixed;
     margin: auto;
     z-index: 100;
-    width: 320px;
+    width: 360px;
     height: 100%;
     -webkit-transform: translate3d(0%, 0, 0);
     -ms-transform: translate3d(0%, 0, 0);
@@ -71,4 +71,43 @@
 .modal-header {
     border-bottom-color: #EEEEEE;
     background-color: #FAFAFA;
+}
+
+/* ----- CUSTOM STYLES ----- */
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin:5px;
+    padding-left:15px;
+}
+
+a {
+    color: inherit;
+    cursor: pointer;
+}
+
+.uber {
+    padding-bottom: 20px;
+    font-weight: bold;
+}
+
+.modal-backdrop {
+    z-index:4!important;
+}
+
+.sub-heading{
+    margin-top:30px;
+}
+
+.float-right{
+    float: right;
+}
+
+.right-26{
+    right: 26px !important;
 }
