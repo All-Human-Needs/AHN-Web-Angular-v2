@@ -82,7 +82,7 @@ export class AuthenticationService {
         if (isBusinesses) {
           business.id = success.uid;
           this._businessService.addBusiness(business);
-          this.router.navigateByUrl("/business-home");
+          this.router.navigateByUrl("/business-statistics");
         } else {
           this.router.navigateByUrl("/client-home");
         }
