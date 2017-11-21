@@ -49,11 +49,13 @@
 }
 
 .box-large {
-    height: 504px;
+    min-height: 510px;
+    height: auto;
     width: 100%;
     border-radius: 5px;
     background-color: #FFFFFF;
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    padding-bottom: 20px
 }
 
 .box-large-header {

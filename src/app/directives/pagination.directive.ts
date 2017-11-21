@@ -1,12 +1,12 @@
 import { Directive, Input, ViewContainerRef, TemplateRef, SimpleChanges } from '@angular/core';
 
 @Directive({
-  selector: '[pagination]'
+  selector: '[paginateOf]'
 })
 export class PaginationDirective {
 
   constructor(private container:ViewContainerRef,private template:TemplateRef<Object>) { }
-  @Input("pagination")  paginate:number;
+  @Input("paginateOf")  paginate:number;
 
   ngOnChanges(changes:SimpleChanges){
     this.container.clear();

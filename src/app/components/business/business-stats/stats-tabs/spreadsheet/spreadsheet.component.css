@@ -1,3 +1,23 @@
 .table-head {
-    background-color: #F2F2F2;
+    background-color: #ECF0F3;
+}
+
+.btn-outline {
+    border: 1px solid #27CEBE;
+    background-color: #FFFFFF;
+}
+
+.btn-outline .active {
+    border: 1px solid #27CEBE;
+    background-color: #27CEBE;
+}
+
+.btn-outline:hover {
+    border: 1px solid #27CEBE;
+    background-color: #27CEBE;
+    color: #FFFFFF
+}
+
+.dropdown:focus {
+    border: 1px solid #27CEBE;
 }
