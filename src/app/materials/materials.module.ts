@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
-import {MdFormFieldModule,MdInputModule,MdButtonModule,MdTabsModule} from '@angular/material';
+import {MdFormFieldModule,MdInputModule,MdButtonModule,MdTabsModule,MdTableModule ,MdPaginatorModule, } from '@angular/material';
 
 @NgModule({
   imports: [
+    MdTableModule,
+    MdPaginatorModule,
     MdFormFieldModule,
     MdInputModule,
     MdButtonModule,
-    MdTabsModule
+    MdTabsModule,
+ 
   ],
   exports: [
+    MdTableModule,
+    MdPaginatorModule,
     MdFormFieldModule,
     MdInputModule,
     MdButtonModule,
-    MdTabsModule 
+    MdTabsModule,
+    
   ],
   declarations: []
 })

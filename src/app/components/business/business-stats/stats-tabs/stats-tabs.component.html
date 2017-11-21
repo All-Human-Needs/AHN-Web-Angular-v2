@@ -1,50 +1,32 @@
-<!-- <ul class="nav nav-tabs" id="statsTab" role="tablist">
-    <li class="nav-item ">
-        <a class="nav-link active tab-header" id="spreadsheet-tab" data-toggle="tab" href="#spreadsheet" role="tab" aria-controls="spreadsheet">Spreadsheet</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link tab-header  " id="bargraph-tab" data-toggle="tab" href="#bargraph" role="tab" aria-controls="bargraph" aria-expanded="true">Bargraph</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link tab-header " id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart">Line Chart</a>
-    </li>
-    <li class="float-md-right">
-        <form [formGroup]="form" class="mt-1">
-            <div class="form-group">
-                <input formControlName="selectedDate" type="date" class="m-1 form-control">
-            </div>
-        </form>
-    </li>
-</ul> -->
 <div class="container-fluid">
     <div class="row pb-4 box-header">
         <ul class="nav mt-5 ml-5 nav-pills">
-            <li class="nav-item ">
+            <li class="nav-item " (click)="selectPane('bargraph')">
                 <a class="nav-link active" id="bargraph-tab" data-toggle="tab" href="#bargraph" role="tab" aria-controls="bargraph" aria-expanded="true">
                     <i class="fa fa-bar-chart" aria-hidden="true"></i> Bargraph
                 </a>
             </li>
-            <li class="nav-item ml-3">
+            <li class="nav-item ml-3" (click)="selectPane('linechart')">
                 <a class="nav-link" id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart">
                     <i class="fa fa-line-chart" aria-hidden="true"></i> Line Chart
                 </a>
             </li>
-            <li class="nav-item ml-3">
+            <li class="nav-item ml-3" (click)="selectPane('spreadsheet')">
                 <a class="nav-link" id="spreadsheet-tab" data-toggle="tab" href="#spreadsheet" role="tab" aria-controls="spreadsheet">
                     <i class="fa fa-list" aria-hidden="true"></i> Spreadsheet
                 </a>
             </li>
         </ul>
-        <div class="col align-self-md-end  align-self-sm-start mr-5">
-            <form [formGroup]="form" class="float-sm-right ml-3 mt-3">
+        <div class="col align-self-md-end align-self-sm-start mr-5">
+            <form [formGroup]="datepicker" class="float-md-right ml-3 mt-3" style="max-width:170px">
                 <label for="selectedDate" class="text-small">Date</label>
                 <input id="selectedDate" class="datepicker text-md form-control" formControlName="selectedDate" type="date">
             </form>
-            <form class="float-sm-right ml-3 mt-3">
+            <form class="float-md-right ml-3 mt-3">
                 <label for="time-period" class="text-small">Time period</label>
                 <div id="time-period" class="dropdown show">
                     <a class="btn time-dropdown dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          {{chartType|titlecase}}
+                                          {{timePeriod|titlecase}}
                                         </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -60,17 +42,26 @@
 
     </div>
 
-    <div class="row mt-4 ml-4 date">November 2017</div>
+    <div class="row mt-4 ml-4 date">{{selDate|date:"MMMM y"}}</div>
 
     <div class="tab-content mt-5 pl-4 pr-4" id="statsTabContent">
         <div class="tab-pane fade show active" id="bargraph" role="tabpanel" aria-labelledby="bargraph-tab">
-            <ahn-bar-chart></ahn-bar-chart>
+            <div *ngIf="selectedPane ==='bargraph'">
+                <ahn-bar-chart></ahn-bar-chart>
+            </div>
+
         </div>
         <div class="tab-pane fade" id="spreadsheet" role="tabpanel" aria-labelledby="spreadsheet-tab">
-            <ahn-spreadsheet></ahn-spreadsheet>
+            <div *ngIf="selectedPane ==='spreadsheet'">
+                <ahn-spreadsheet></ahn-spreadsheet>
+            </div>
+
         </div>
         <div class="tab-pane fade" id="line-chart" role="tabpanel" aria-labelledby="line-chart-tab">
-            <ahn-line-chart></ahn-line-chart>
+            <div *ngIf="selectedPane ==='linechart'">
+                <ahn-line-chart></ahn-line-chart>
+            </div>
+
         </div>
     </div>
 </div>

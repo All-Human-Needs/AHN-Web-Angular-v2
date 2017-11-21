@@ -12,7 +12,8 @@ import { AuthenticationService } from '../../../../../services/authentication.se
 export class LineChartComponent implements OnInit {
 
   constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent,private _authService : AuthenticationService) { 
-    this.chartType=_businessService.getChartType();
+    this.chartType="hourly";
+    this.selectedDate=new Date(statTabs.datepicker.get('selectedDate').value);
    }
 
    //initializing linechart
@@ -284,7 +285,7 @@ ngOnInit() {
       
     };
 
-    this.statTabs.form.valueChanges.subscribe(data=>{
+    this.statTabs.datepicker.valueChanges.subscribe(data=>{
       this.selectedDate =new Date(data.selectedDate);
       
       valueChanged=true;
@@ -318,6 +319,22 @@ ngOnInit() {
           break;
       }
     }
+    this.statTabs.chartType.subscribe(timePeriod=>{
+      this.chartType=timePeriod;
+      switch (this.chartType) {
+        case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
+          break;
+          case "daily":this.getDailyStats(currentBusiness,this.selectedDate);
+          break;
+          // case "weekly":this.getWeeklyStats(0);
+          // break;
+          case "monthly":this.getMonthlyStats(currentBusiness,this.selectedDate);
+          break;
+      
+        default:
+          break;
+      }
+    })
   })
  if(this.chartType!=null||this.chartType!=undefined){
   this.lineChartLabels =this.dates;

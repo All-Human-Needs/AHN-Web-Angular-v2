@@ -1,9 +1,11 @@
+import { Observable } from 'rxjs';
 import { Stats } from '../../../../../models/business/stats.class';
 import { Business } from '../../../../../models/business/business.class';
 import { BusinessService } from '../../../../../services/business.service';
 import { Component, OnInit } from '@angular/core';
 import { StatsTabsComponent } from '../stats-tabs.component';
 import { AuthenticationService } from '../../../../../services/authentication.service';
+import 'rxjs/add/observable/combineLatest';
 
 @Component({
   selector: 'ahn-spreadsheet',
@@ -12,13 +14,32 @@ import { AuthenticationService } from '../../../../../services/authentication.se
 })
 export class SpreadsheetComponent implements OnInit {
   constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent,private _authService : AuthenticationService) { 
-    this.chartType=_businessService.getChartType();
-    this.selectedDate=new Date();
+    this.chartType="hourly";
+    this.selectedDate=new Date(statTabs.datepicker.get('selectedDate').value);
   }
-
   chartType:string;
   statistics: statisics[]=[];
   selectedDate:Date;
+
+  //pagination start
+itemsPerpage = 3;
+selectedPage = 1;
+
+get items():statisics[]{
+  let pageIndex = (this.selectedPage-1)*this.itemsPerpage;
+  return this.statistics.slice(pageIndex,pageIndex+this.itemsPerpage);
+}
+changePage(newPage:number){
+  this.selectedPage = newPage;
+}
+changePageSize(newSize:number){
+  this.itemsPerpage = Number(newSize);
+  this.changePage(1);
+}
+get pageCount():number{
+  return Math.ceil(this.statistics.length/this.itemsPerpage)
+}
+  //pagination end
 
   getHourlyStats(response:Business,date:Date) {
     
@@ -51,7 +72,7 @@ export class SpreadsheetComponent implements OnInit {
           this.statistics.push(newStat);
           }
         }
-
+        
   }
 
   getDailyStats(response:Business,date:Date) {
@@ -143,13 +164,24 @@ export class SpreadsheetComponent implements OnInit {
 
 
   ngOnInit() {
+   
 
     let valueChanged:boolean=false;
     // let business = this.statTabs.currentBusiness;
     let uid = this._authService.getCurrentBusiness();
     let currentBusiness;
-    this._businessService.getBusinesses().subscribe(response=>{
 
+    // this.statTabs.chartType.subscribe()
+
+    // .subscribe(combined=>{
+    //   let response=combined[0];
+    //   this.chartType = combined[1]
+
+     
+    // })
+
+
+    this._businessService.getBusinesses().subscribe(response=>{
       for (var i = 0; i < response.length; i++) {
         if(response[i].id === uid){
         
@@ -159,10 +191,47 @@ export class SpreadsheetComponent implements OnInit {
         
       };
 
-      this.statTabs.form.valueChanges.subscribe(data=>{
+    
+
+      this.statTabs.datepicker.valueChanges.subscribe(data=>{
         this.selectedDate =new Date(data.selectedDate);
         
         valueChanged=true;
+        
+          switch (this.chartType) {
+            case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
+              break;
+              case "daily":this.getDailyStats(currentBusiness,this.selectedDate);
+              break;
+              // case "weekly":this.getWeeklyStats(0);
+              // break;
+              case "monthly":this.getMonthlyStats(currentBusiness,this.selectedDate);
+              break;
+          
+            default:
+              break;
+          }
+       
+        
+      })
+      if(!valueChanged){
+          switch (this.chartType) {
+            case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
+              break;
+              case "daily":this.getDailyStats(currentBusiness,this.selectedDate);
+              break;
+              // case "weekly":this.getWeeklyStats(0);
+              // break;
+              case "monthly":this.getMonthlyStats(currentBusiness,this.selectedDate);
+              break;
+          
+            default:
+              break;
+          }
+      }
+
+      this.statTabs.chartType.subscribe(timePeriod=>{
+        this.chartType=timePeriod;
         switch (this.chartType) {
           case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
             break;
@@ -177,23 +246,14 @@ export class SpreadsheetComponent implements OnInit {
             break;
         }
       })
-      if(!valueChanged){
-       
-        switch (this.chartType) {
-          case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
-            break;
-            case "daily":this.getDailyStats(currentBusiness,this.selectedDate);
-            break;
-            // case "weekly":this.getWeeklyStats(0);
-            // break;
-            case "monthly":this.getMonthlyStats(currentBusiness,this.selectedDate);
-            break;
-        
-          default:
-            break;
-        }
-      }
+      
+     
     })
+
+    // Observable.combineLatest([
+    //   this._businessService.getBusinesses(),
+    //   this.statTabs.chartType
+    // ])
 
   }
 
@@ -202,3 +262,5 @@ export interface statisics{
   date:Date;
   pax:number;
 }
+
+

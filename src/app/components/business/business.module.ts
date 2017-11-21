@@ -1,4 +1,6 @@
+import { PaginationDirective } from '../../directives/pagination.directive';
 
+import { MaterialsModule } from '../../materials/materials.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BannerModule } from '../banner/banner.module';
 import { ChartsModule } from 'ng2-charts';
@@ -20,8 +22,9 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     ChartsModule,
     BannerModule,
-     FormsModule,
-     ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialsModule
   ], 
   declarations: [
     BusinessHomeComponent,
@@ -30,7 +33,7 @@ import { CommonModule } from '@angular/common';
     LineChartComponent,
     BarChartComponent,
     SpreadsheetComponent,
-   
+    PaginationDirective
   ]
   ,exports:[
     BusinessHomeComponent,
