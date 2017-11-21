@@ -4,7 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { NgModule } from '@angular/core';import { UserService } from './services/user.service';
+import { NgModule } from '@angular/core'; import { UserService } from './services/user.service';
 
 import { AuthenticationService } from './services/authentication.service';
 import { SideNavModule } from './components/side-nav/side-nav.module';
@@ -37,6 +37,7 @@ import { SearchService } from './services/search.service';
 import { MainComponent } from './components/main/main.component';
 
 
+
 export const firebaseConfig = {
   apiKey: 'AIzaSyCmLj-8NEWba6GUprGUkaM4e40hfLymQK4',
   authDomain: 'all-human-needs.firebaseapp.com',
@@ -55,6 +56,7 @@ export const firebaseConfig = {
     RegistrationComponent,
     ForgotPasswordComponent,
     MainComponent,
+
   ],
 
   imports: [
@@ -70,9 +72,8 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
-
     MaterialsModule
-  
+
 
     // AgmCoreModule.forRoot({
     //   apiKey: 'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
@@ -81,8 +82,10 @@ export const firebaseConfig = {
 
   ],
   exports: [],
+
   providers: [BusinessService,AuthenticationService,UserService,SearchService, AuthGuard],
+
   bootstrap: [AppComponent]
 
 })
-export class AppModule {}
+export class AppModule { }

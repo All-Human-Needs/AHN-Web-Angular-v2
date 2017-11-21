@@ -37,6 +37,7 @@ export class BusinessService {
 
   }
 
+ 
   deleteBusiness(key?: string) {
     this.businessRef.remove(key);
   }
@@ -98,7 +99,7 @@ export class BusinessService {
     this.chartType = type;
   }
 
-  getChartType(): string {
+  getChartType() {
     return this.chartType;
   }
 

@@ -1,3 +1,4 @@
+
 import { StatsTabsComponent } from '../stats-tabs.component';
 
 import { Business } from '../../../../../models/business/business.class';
@@ -14,7 +15,8 @@ import { AuthenticationService } from '../../../../../services/authentication.se
 export class BarChartComponent implements OnInit {
 
   constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent,private _authService : AuthenticationService) { 
-    this.chartType=_businessService.getChartType();
+    this.chartType="hourly";
+    this.selectedDate=new Date(statTabs.datepicker.get('selectedDate').value);
    }
  
   //initializing barchart
@@ -22,12 +24,11 @@ export class BarChartComponent implements OnInit {
   barChartLabels:any[]=[]; 
   barChartOptions:any = {scaleShowVerticalLines: false,responsive: true,};
   barChartType:string = 'bar';
-  barChartLegend:boolean = true;
+  barChartLegend:boolean = false;
   barChartColors:Array<any> = [{ 
-     hoverBackgroundColor:'#fff',
-     backgroundColor:'#000',
+     hoverBackgroundColor:'#27CEBE',
+     backgroundColor:'rgba(39, 206, 189, 0.459)',
    },];
-
    
   pax:number[] = [];
   dates:any[]=[];
@@ -270,10 +271,11 @@ export class BarChartComponent implements OnInit {
   ngOnInit() {
    
     let valueChanged:boolean=false;
-    let business = this.statTabs.currentBusiness;
+    // let business = this.statTabs.currentBusiness;
     let uid = this._authService.getCurrentBusiness();
-    let currentBusiness;
-    this._businessService.getBusinesses().subscribe(response=>{
+     let currentBusiness 
+     this._businessService.getBusinesses().subscribe(response=>{
+      
 
       for (var i = 0; i < response.length; i++) {
         if(response[i].id === uid){
@@ -284,7 +286,7 @@ export class BarChartComponent implements OnInit {
         
       };
 
-      this.statTabs.form.valueChanges.subscribe(data=>{
+      this.statTabs.datepicker.valueChanges.subscribe(data=>{
         this.selectedDate =new Date(data.selectedDate);
         
         valueChanged=true;
@@ -318,6 +320,24 @@ export class BarChartComponent implements OnInit {
             break;
         }
       }
+      this.statTabs.chartType.subscribe(timePeriod=>{
+        this.chartType=timePeriod;
+        switch (this.chartType) {
+          case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
+            break;
+            case "daily":this.getDailyStats(currentBusiness,this.selectedDate);
+            break;
+            // case "weekly":this.getWeeklyStats(0);
+            // break;
+            case "monthly":this.getMonthlyStats(currentBusiness,this.selectedDate);
+            break;
+        
+          default:
+            break;
+        }
+      })
+
+      
     })
 
     if(this.chartType!=null||this.chartType!=undefined){

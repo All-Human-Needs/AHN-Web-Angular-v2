@@ -108,8 +108,8 @@ export class AuthenticationService {
   getCurrentBusiness(){
     //console.log(this.ahnAuth.auth.currentUser.uid);
 
-    return this.ahnAuth.auth.currentUser.uid;
-    //return "vKMucvqM9NWyoQqhe3BQd1N29VG2"
+    // return this.ahnAuth.auth.currentUser.uid;
+    return "vKMucvqM9NWyoQqhe3BQd1N29VG2"
 
 
   }
@@ -137,7 +137,9 @@ export class AuthenticationService {
         for (var i = 0; i < response.length; i++) {
           if (response[i].id === currentUser.uid) {
             if (response[i].isBusiness) {
-              this.router.navigate(["/main/business-home"]);
+
+              this.router.navigate(["/main/business-statistics"]);
+
             } else {
               this.router.navigate(["/main/client-home"]);
             }
