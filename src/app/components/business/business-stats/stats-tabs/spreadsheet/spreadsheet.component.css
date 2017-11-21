@@ -1,7 +1,3 @@
-* {
-    color: black
-}
-
-table {
-    margin-top: 1px;
+.table-head {
+    background-color: #F2F2F2;
 }

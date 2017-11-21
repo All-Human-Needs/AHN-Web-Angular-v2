@@ -145,7 +145,7 @@ export class SpreadsheetComponent implements OnInit {
   ngOnInit() {
 
     let valueChanged:boolean=false;
-    let business = this.statTabs.currentBusiness;
+    // let business = this.statTabs.currentBusiness;
     let uid = this._authService.getCurrentBusiness();
     let currentBusiness;
     this._businessService.getBusinesses().subscribe(response=>{
