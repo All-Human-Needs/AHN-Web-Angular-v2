@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectModule} from '@angular/material';
+import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectModule, MdProgressSpinnerModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -8,7 +8,7 @@ import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectMod
     MdButtonModule,
     MdTabsModule,
     MdSelectModule,
-    
+    MdProgressSpinnerModule
   ],
   exports: [
     MdFormFieldModule,
@@ -16,7 +16,7 @@ import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectMod
     MdButtonModule,
     MdTabsModule ,
     MdSelectModule,
-    
+    MdProgressSpinnerModule
   ],
   declarations: []
 })

@@ -147,9 +147,8 @@
 
                 <div class="mb-3" style="float:left;padding-top:4.54px;">
                     <md-select style="float:left" placeholder="Category" name="category" id="category" formControlName="category" [(ngModel)]="category">
-                        <md-option value="bank">Bank</md-option>
-                        <md-option value="hospital">Hospital</md-option>
-                        <md-option value="home-affairs">Home-Affairs</md-option>
+                        <md-option *ngFor="let cat of catOptions" value="{{cat}}">{{cat | titlecase}}</md-option>
+
                     </md-select>
                 </div>
                 <md-form-field class="mb-3" style="float:right;width:70%">

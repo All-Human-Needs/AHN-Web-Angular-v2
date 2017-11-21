@@ -1,4 +1,8 @@
+import { Router } from '@angular/router';
+import { UserService } from '../../../services/user.service';
+import { AuthenticationService } from '../../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-client-home',
@@ -7,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    
+  }
 
   ngOnInit() {
   }

@@ -36,6 +36,9 @@ export class RegistrationComponent implements OnInit {
   category:string ="bank";
   capacity:number =10;
 
+
+  catOptions=['home affairs','bank','hospital','nutrition and fitness','insurance','city to city transport','motor vehicle service','retail']
+
 form:FormGroup
 
   constructor(private _businessService:BusinessService,private _authenticationService:AuthenticationService,private _userService:UserService,fb:FormBuilder,private mapsAPILoader:MapsAPILoader,private ngZone:NgZone) {

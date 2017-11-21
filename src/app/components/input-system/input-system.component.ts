@@ -28,9 +28,13 @@ export class InputSystemComponent implements OnInit {
        let tempDate = new Date();
        let lastEntry = new Date(this.selectedBusiness.stats[this.selectedBusiness.stats.length-1].date);
        if(tempDate.getFullYear()==lastEntry.getFullYear()&&tempDate.getMonth()==lastEntry.getMonth()&&tempDate.getDate()==lastEntry.getDate()){
-        this.currentNumPeople = this.selectedBusiness.stats[this.selectedBusiness.stats.length-1].pax
-       }else{
+        this.currentNumPeople = this.selectedBusiness.stats[this.selectedBusiness.stats.length-1].pax;
+        this.maxCapacity = this.selectedBusiness.capacity;
+        // console.log(this.currentNumPeople, this.maxCapacity);
+      }else{
         this.currentNumPeople = 0;
+        this.maxCapacity = this.selectedBusiness.capacity;
+        // console.log(this.currentNumPeople, this.maxCapacity);
        }
        
     }

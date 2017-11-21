@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +34,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { SearchService } from './services/search.service';
+import { MainComponent } from './components/main/main.component';
 
 
 export const firebaseConfig = {
@@ -52,6 +54,7 @@ export const firebaseConfig = {
     InputSystemComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
+    MainComponent,
   ],
 
   imports: [
@@ -78,7 +81,7 @@ export const firebaseConfig = {
 
   ],
   exports: [],
-  providers: [BusinessService,AuthenticationService,UserService,SearchService],
+  providers: [BusinessService,AuthenticationService,UserService,SearchService, AuthGuard],
   bootstrap: [AppComponent]
 
 })
