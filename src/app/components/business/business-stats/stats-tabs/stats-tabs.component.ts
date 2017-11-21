@@ -15,17 +15,23 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class StatsTabsComponent implements OnInit {
  form;
-
- currentBusiness:Business;
+ chartType:string;
+  // currentBusiness:Business;
   selDate:Date;
   constructor(private _businessService:BusinessService,private formBuilder:FormBuilder,private _authService : AuthenticationService) { 
     this.form = formBuilder.group({
       selectedDate:new Date()
     })
-    
+    _businessService.setChartType("hourly");
+    this.chartType = _businessService.chartType;
   }
 
   ngOnInit() { 
+  }
+  
+  setTimePeriod(timePeriod:string){
+    this.chartType = timePeriod;
+    this._businessService.setChartType(timePeriod);
   }
 
 }

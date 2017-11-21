@@ -1,3 +1,4 @@
+
 import { StatsTabsComponent } from '../stats-tabs.component';
 
 import { Business } from '../../../../../models/business/business.class';
@@ -22,12 +23,11 @@ export class BarChartComponent implements OnInit {
   barChartLabels:any[]=[]; 
   barChartOptions:any = {scaleShowVerticalLines: false,responsive: true,};
   barChartType:string = 'bar';
-  barChartLegend:boolean = true;
+  barChartLegend:boolean = false;
   barChartColors:Array<any> = [{ 
-     hoverBackgroundColor:'#fff',
-     backgroundColor:'#000',
+     hoverBackgroundColor:'#27CEBE',
+     backgroundColor:'rgba(39, 206, 189, 0.459)',
    },];
-
    
   pax:number[] = [];
   dates:any[]=[];
@@ -270,10 +270,10 @@ export class BarChartComponent implements OnInit {
   ngOnInit() {
    
     let valueChanged:boolean=false;
-    let business = this.statTabs.currentBusiness;
+    // let business = this.statTabs.currentBusiness;
     let uid = this._authService.getCurrentBusiness();
-    let currentBusiness;
-    this._businessService.getBusinesses().subscribe(response=>{
+     let currentBusiness 
+     this._businessService.getBusinesses().subscribe(response=>{
 
       for (var i = 0; i < response.length; i++) {
         if(response[i].id === uid){

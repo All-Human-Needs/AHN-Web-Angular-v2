@@ -1,7 +1,48 @@
-<ahn-banner></ahn-banner>
-<div class="back-panel">
-    <h2 class="ta-center text">{{title}}</h2>
-    <div class="tab-back-panel">
-        <ahn-stats-tabs></ahn-stats-tabs>
+<!-- <ahn-banner></ahn-banner> -->
+<div *ngIf="currentBusiness==undefined" class="container-fluid base pl-5 pt-3">
+    <div class="heading row mt-3">
+        Welcome to your Dashboard
+    </div>
+    <div class="sub-heading row mt-2">
+        Soon your dashboard will be populated with statistics about your business
+    </div>
+    <div class="loading">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div *ngIf="currentBusiness!=undefined" class="container-fluid base pl-5 pt-3">
+    <div class="heading row mt-3">
+        Stats for {{currentBusiness.name}}
+    </div>
+    <div class="sub-heading row mt-2">
+        Quick overview of your stats
+    </div>
+    <div class="row mt-3">
+        <div class="mr-sm-4">
+            <div class="box-small mt-3">
+                <div class="box-small-content pl-5 pt-4">
+                    {{footTraffic}}
+                </div>
+                <div class="box-small-footer pl-5 pt-3">
+                    <i class="fa fa-users icon " aria-hidden="true"></i> Foot traffic for today
+                </div>
+            </div>
+        </div>
+        <div class=" ml-sm-4">
+            <div class="box-small mt-3">
+                <div class="box-small-content pl-5 pt-4">
+                    {{peakTime|date:'hh:mm'}}
+                </div>
+                <div class="box-small-footer pl-5 pt-3">
+                    <i class="fa fa-clock-o icon" aria-hidden="true"></i> Peak Time for Today
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5 mr-3">
+        <div class="box-large">
+            <ahn-stats-tabs></ahn-stats-tabs>
+        </div>
     </div>
 </div>
