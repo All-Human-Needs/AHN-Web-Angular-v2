@@ -1,36 +1,25 @@
 .modal-btn {
-    position: relative;
-    margin-right: 30px;
-    right: 30px;
-    top:29px;
-    float: right;
+    z-index: 3 !important;
     
-    padding: auto;
-
     height: 58px;	
     width: 58px;
     border-radius: 5px;	
     background-color: #14CFBE;	
     box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
     border-style: none;
-    z-index: -2;
 }
 
 .modal-dialog,
 .modal.right .modal-dialog {
     position: fixed;
     margin: auto;
-    z-index: 100;
+    z-index: 10;
     width: 360px;
     height: 100%;
     -webkit-transform: translate3d(0%, 0, 0);
     -ms-transform: translate3d(0%, 0, 0);
     -o-transform: translate3d(0%, 0, 0);
     transform: translate3d(0%, 0, 0);
-}
-
-.modal-backdrop.show {
-    z-index: -1!important;
 }
 
 .modal-content,
@@ -41,8 +30,8 @@
 
 .modal-body,
 .modal.right .modal-body {
-    margin-left: 48px;
     padding: 15px 15px 80px;
+    margin-left: 48px;
 }
 
 
@@ -57,7 +46,6 @@
 }
 
 .modal.right.fade.show .modal-dialog {
-    /* z-index: -1000; */
     right: 0;
 }
 
@@ -67,12 +55,12 @@
 .modal-content {
     border-radius: 0;
     border: none;
-    margin-left: 48px;
 }
 
 .modal-header {
-    border-bottom-color: #EEEEEE;
-    background-color: #FAFAFA;
+    /* border-bottom-color: #EEEEEE; */
+    background-color: #ffffff;
+    border-style: none;
 }
 
 /* ----- CUSTOM STYLES ----- */
@@ -100,7 +88,7 @@ a {
 }
 
 .modal-backdrop {
-    z-index:4!important;
+    z-index:-1!important;
 }
 
 .sub-heading{
