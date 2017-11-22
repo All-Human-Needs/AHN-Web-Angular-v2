@@ -99,7 +99,7 @@ export class BusinessService {
     this.chartType = type;
   }
 
-  getChartType(): string {
+  getChartType() {
     return this.chartType;
   }
 

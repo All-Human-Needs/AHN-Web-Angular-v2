@@ -7,35 +7,54 @@
 
         </tr>
         <tr *ngIf='chartType ==="monthly"'>
-            <!-- <th>Year</th> -->
+
             <th>Month</th>
             <th>Number of people</th>
         </tr>
         <tr *ngIf='chartType ==="daily"'>
-            <!-- <th>Year</th> -->
+
             <th>Day</th>
             <th>Date</th>
             <th>Number of people</th>
         </tr>
     </thead>
     <tbody *ngIf='chartType ==="hourly"'>
-        <tr *ngFor='let stats of statistics'>
+        <tr *ngFor='let stats of items'>
             <td>{{stats.date | date:'dd/MM/yyyy'}}</td>
             <td>{{stats.date | date:'hh:mm'}}</td>
             <td>{{stats.pax}}</td>
         </tr>
     </tbody>
     <tbody *ngIf='chartType ==="monthly"'>
-        <tr *ngFor='let stats of statistics'>
+        <tr *ngFor='let stats of items'>
             <td>{{stats.date |date:'MMMM'}}</td>
             <td>{{stats.pax}}</td>
         </tr>
     </tbody>
     <tbody *ngIf='chartType ==="daily"'>
-        <tr *ngFor='let stats of statistics'>
+        <tr *ngFor='let stats of items'>
             <td>{{stats.date |date:'dd/MM/yyyy'}}</td>
             <td>{{stats.date |date:'EEEE'}}</td>
             <td>{{stats.pax}}</td>
         </tr>
     </tbody>
 </table>
+<div *ngIf="statistics.length!=0">
+    <div class="form-inline float-sm-left">
+
+        <select class="form-control dropdown" [value]="itemsPerpage" (change)="changePageSize($event.target.value)">
+                          <option value="3">3</option>
+                          <option value="5">5</option>
+                          <option value="10">10</option>
+                          <option value="25">25</option>
+                    </select>
+        <div class="ml-2">per page</div>
+    </div>
+    <div class="btn-group float-sm-right">
+        <button *paginate="let page of pageCount" (click)="changePage(page)" class="btn btn-outline" [class.active]="page == selectedPage">{{page}}</button>
+        <!-- <button *counter="let page of pageCount" (click)="changePage(page)" class="btn btn-outline-primary" [class.active]="page == selectedPage">{{page}}</button> -->
+    </div>
+</div>
+
+
+<!-- [value]="productsPerPage" (change)="changePageSize($event.target.value)" -->
