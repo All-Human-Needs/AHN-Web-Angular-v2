@@ -5,7 +5,6 @@ import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectMod
 
 @NgModule({
   imports: [
-  
     MdFormFieldModule,
     MdInputModule,
     MdButtonModule,
@@ -16,7 +15,6 @@ import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectMod
 
   ],
   exports: [
-   
     MdFormFieldModule,
     MdInputModule,
     MdButtonModule,
