@@ -5,8 +5,7 @@ import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectMod
 
 @NgModule({
   imports: [
-    MdTableModule,
-    MdPaginatorModule,
+    
     MdFormFieldModule,
     MdInputModule,
     MdButtonModule,
@@ -17,8 +16,7 @@ import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectMod
 
   ],
   exports: [
-    MdTableModule,
-    MdPaginatorModule,
+
     MdFormFieldModule,
     MdInputModule,
     MdButtonModule,
