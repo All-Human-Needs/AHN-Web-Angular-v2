@@ -58,6 +58,8 @@ export class AuthenticationService {
     this.ahnAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(user => {
+        this.isClient();
+        this.setIsBusiness();
         this.router.navigate(["/main/dashboard"]);
       });
     //go to next page
@@ -155,6 +157,26 @@ export class AuthenticationService {
 
       // })
     );
+  }
+
+  isClient(){
+    this._userService.users.subscribe((response:User[])=>{
+      let found = false;
+      for (var i = 0; i < response.length; i++) {
+        if (response[i].id === this.ahnAuth.auth.currentUser.uid) {
+         found=true;
+         break;
+        }
+      }
+      if(!found){
+        let user: User = {
+          id: this.ahnAuth.auth.currentUser.uid,
+          isBusiness: false
+        };
+        this._userService.addItem(user);
+      }
+      }
+    )
   }
   
   setIsBusiness() {
