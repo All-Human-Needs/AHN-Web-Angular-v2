@@ -2,8 +2,10 @@
     height: 901px;
     /* width: 1439px; */
     /* height: 100%;*/
-    width: 100%;
+    width: auto;
     background-color: #F7F8FA;
+    /* position: relative; */
+    margin-left: 100px;
 }
 
 .heading {

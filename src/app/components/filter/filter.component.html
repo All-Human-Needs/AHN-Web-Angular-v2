@@ -1,46 +1,139 @@
-<button class="btn btn-primary btn-lg modal-btn m-3 " data-toggle="modal" data-target="#filter">
-  <i class="fa fa-filter" aria-hidden="true"></i>
+<button class="btn btn-primary btn-lg modal-btn mb-3" data-toggle="modal" data-target="#filter">
+    <i class="fa fa-filter" aria-hidden="true"></i>
 </button>
 
 <div class="modal right fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            <div class="modal-header">
+            <div class="modal-body">
+
+                <div class="right-26">
+                    <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
                 <h4 class="modal-title" id="myModalLabel2">Filters</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                <div class="Filter">
+                    <form action="Buildings" method="get">
+                        <!--<p> Filters </p>-->
+                        <h5 class="sub-heading">Emergency Buildings</h5>
+                        <ul>
+                            <li>
+                                <label class="container">Police Department
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="container">Fire Department
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="container">Hospitals
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                        </ul>
+                        <h5 class="sub-heading">Government Buildings</h5>
+                        <ul>
+                            <li>
+                                <label class="container">Parliament
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="container">Home Affairs
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                        </ul>
+                        <h5 class="sub-heading">Health and Nutrition</h5>
+                        <ul>
+                            <li>
+                                <label class="container">Supplement Stores
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="container">Gyms
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="container">Fitness Centres
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="container">Martial Arts Dojo
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                        </ul>
+                        <h5 class="sub-heading">Motor Vehicle Service</h5>
+                        <ul>
+                            <li>
+                                <label class="container">Car Dealerships
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="container">Garages
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                        </ul>
+                        <h5 class="sub-heading">Retail Business</h5>
+                        <ul>
+                            <li>
+                                <label class="container">Super Markets
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="container">Clothing Stores
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                        </ul>
+                        <h5 class="sub-heading">City to City Transport</h5>
+                        <h5 class="sub-heading">Restaurants</h5>
+                        <h5 class="sub-heading">Insurance</h5>
+
+
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <label class="container">Banks
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li class="list-group-item">
+                                <label class="container">Home Affairs
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
             </div>
-
-            <!-- <div class="modal-body">
-        <p>Filter</p>
-     <div> <select name="Stores">
-        <option value="Away" (click)="diplayFiltered('Away')">Away</option>
-        <option value="Close" (click)="diplayFiltered('Close')">Close</option>
-        <option value="Full" (click)="diplayFiltered('Full')">Full</option>
-        <option value="Empty" (click)="diplayFiltered('Empty')">Empty</option>
-      </select></div>
-      </div> -->
-            <div class="Filter">
-                <form action="Buildings" method="get">
-                    <!--<p> Filters </p>-->
-                    <ul class="list-group">
-                        <li class="list-group-item"><input type="radio" name="Buildings" (change)="search('bank')"> Banks </li>
-                        <li class="list-group-item"><input type="radio" name="Buildings" (change)="search('home-affairs')"> Home Affairs </li>
-                        <li class="list-group-item"><input type="radio" name="Buildings" (change)="search('hospital')"> Hospitals</li>
-
-
-                        <!-- <li class="list-group-item"><input type="radio" name="Buildings" value="Shops"> Shops </li>
-        <li class="list-group-item"><input type="radio" name="Buildings" value="Libraries"> Libraries</li> -->
-                    </ul>
-                </form>
-                <!-- <div *ngFor="let business of businesses | async">
-        {{business.name}}
-    </div> -->
-                <!-- <ul data-ng-class="results">
-        <li *ngFor="let results of _results | filter:{ emergencyBuildings: filterEmergencyBuildings, restuarants: filterRestuarants, governmentBuildings: filterBuildings, shops: filterShops, Libraries: filterLibraries } : false">{{ building.emergencyBuildings }} - {{ building.rastuarants }} - {{ building.govermentBuildings }} - {{ building.shops}} - {{ building.libraries }}</li>
-      </ul> -->
-            </div>
-
 
         </div>
         <!-- modal-content -->

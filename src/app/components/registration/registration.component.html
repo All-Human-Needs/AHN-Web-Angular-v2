@@ -10,17 +10,17 @@
                         <h2 class="text-center mt-5">Sign Up</h2>
                         <div class="form-group paddingSide50" formGroupName="userForm">
 
-                            <md-form-field class="mb-3">
-                                <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
-                                <md-error *ngIf="email.touched && email.invalid">
-                                    <md-error *ngIf="email.errors.email">
-                                        Please enter a valid email address
-                                    </md-error>
-                                    <!-- <md-error *ngIf="email.errors.required">
-                            Email is <strong>required</strong>
-                        </md-error> -->
-                                </md-error>
-                            </md-form-field>
+
+                <md-form-field class="mb-3">
+                    <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
+                    <md-error *ngIf="email.touched && email.invalid">
+                        <md-error *ngIf="email.errors.email">
+                            Please enter a valid email address
+                        </md-error>
+
+                    </md-error>
+                </md-form-field>
+
 
                             <div class="form-group" formGroupName="passwordForm">
 
