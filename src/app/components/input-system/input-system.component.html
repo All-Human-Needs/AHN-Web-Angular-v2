@@ -1,7 +1,9 @@
-<div class="row">
-    <span class="col-md-4"></span>
-    <div class="col-md-4 bg">
-        <div>
+<div class="bg mx-auto">
+    <h2 class="mb-5">Manual Input System</h2>
+    <span class="h5">Number Of People: </span>
+    <p class="h1 mb-5">{{currentNumPeople}}</p>
+    <div class="mis">
+        <div class="mb-5">
             <md-select [(ngModel)]="selectedBusiness" (ngModelChange)="setSelectedBusiness($event)">
                 <md-option *ngFor="let business of businesses" #selectedBusiness [value]="business">{{business.name}}</md-option>
             </md-select>
@@ -11,7 +13,7 @@
         <!-- <select [(ngModel)]="selectedBusiness" (ngModelChange)="setSelectedBusiness($event)">
     <option *ngFor="let business of businesses" #selectedBusiness [ngValue]="business"  >{{business.name}}</option>
         </select> -->
-        <md-form-field>
+        <md-form-field class="mb-5" style="width:75%;">
             <input mdInput type="number" [(ngModel)]="currentNumPeople " name="currentNumPeople" [value]='currentNumPeople' [min]="0 " [max]="maxCapacity" />
         </md-form-field>
 
@@ -23,7 +25,5 @@
             <p><input class="number " type="number " [(ngModel)]="currentNumPeople " name="currentNumPeople " min="0 " [max]="maxCapacity " /></p>
             <p><button type="button " class="btn btn-primary " (click)="send() ">Submit</button></p>
         </form> -->
-
     </div>
-    <span class="col-md-4 "></span>
 </div>

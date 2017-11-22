@@ -29,10 +29,12 @@ export class InputSystemComponent implements OnInit {
        let lastEntry = new Date(this.selectedBusiness.stats[this.selectedBusiness.stats.length-1].date);
        if(tempDate.getFullYear()==lastEntry.getFullYear()&&tempDate.getMonth()==lastEntry.getMonth()&&tempDate.getDate()==lastEntry.getDate()){
         this.currentNumPeople = this.selectedBusiness.stats[this.selectedBusiness.stats.length-1].pax;
+
         this.maxCapacity = this.selectedBusiness.capacity;
         // console.log(this.currentNumPeople, this.maxCapacity);
       }else{
         this.currentNumPeople = 0;
+
         this.maxCapacity = this.selectedBusiness.capacity;
         // console.log(this.currentNumPeople, this.maxCapacity);
        }
@@ -51,8 +53,14 @@ export class InputSystemComponent implements OnInit {
     if(tempDate.getFullYear()==lastEntry.getFullYear()&&tempDate.getMonth()==lastEntry.getMonth()&&tempDate.getDate()==lastEntry.getDate()){
       var temp = selected.stats.length-1;
       this.currentNumPeople = selected.stats[temp].pax;
+
+      this.maxCapacity = this.selectedBusiness.capacity;
+      // console.log(this.currentNumPeople, this.maxCapacity);
     }else{
      this.currentNumPeople = 0;
+
+     this.maxCapacity = this.selectedBusiness.capacity;
+    //  console.log(this.currentNumPeople, this.maxCapacity);
     }
    
   }

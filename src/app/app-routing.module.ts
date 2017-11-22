@@ -57,7 +57,7 @@ const routes: Routes = [
       {
         path: "registration",
         component: RegistrationComponent,
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
       },
       {
         path: "forgot-password",
