@@ -1,13 +1,13 @@
 .ahn-search-container {
+    position: fixed;
     height: 58px;
     border-radius: 5px;
     background-color: #FFFFFF;
     box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
+    box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
+
     margin-left: 20px;
     margin-top: 29px;
-    position: relative;
-    float: left;
-    box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
 }
 
 .ahn-search-bar {

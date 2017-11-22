@@ -1,26 +1,28 @@
 <!-- actual map start -->
-<agm-map [latitude]="userLat" [longitude]="userLng" [zoom]="15" [styles]="customStyle" class="map" [streetViewControl]="false">
+<div class="map">
+    <agm-map [latitude]="userLat" [longitude]="userLng" [zoom]="15" [styles]="customStyle" class="map" [streetViewControl]="false">
 
-    <agm-marker [latitude]="userLat" [longitude]="userLng" [draggable]="true">
-        <agm-info-window>
-            {{userName}}
-        </agm-info-window>
-    </agm-marker>
+        <agm-marker [latitude]="userLat" [longitude]="userLng" [draggable]="true">
+            <agm-info-window>
+                {{userName}}
+            </agm-info-window>
+        </agm-marker>
 
-    <agm-marker *ngFor="let l of locations" [iconUrl]="getColorIcon(l)" [latitude]="l.lat" [longitude]="l.lng">
-        <agm-info-window>
-            {{l.name}} {{l.capacity}}
-        </agm-info-window>
-    </agm-marker>
-    <!-- <appMapDirections [origin]="origin" [destination]="destination" (clicked)="setDestination($event)"></appMapDirections> -->
-    <!-- <div *ngIf="destination.latitude!=0 && destination.longitude!=0">
+        <agm-marker *ngFor="let l of locations" [iconUrl]="getColorIcon(l)" [latitude]="l.lat" [longitude]="l.lng">
+            <agm-info-window>
+                {{l.name}} {{l.capacity}}
+            </agm-info-window>
+        </agm-marker>
+        <!-- <appMapDirections [origin]="origin" [destination]="destination" (clicked)="setDestination($event)"></appMapDirections> -->
+        <!-- <div *ngIf="destination.latitude!=0 && destination.longitude!=0">
         <appMapDirections [directionsDisplay]="directionsDisplay" [origin]="origin" [destination]="destination"></appMapDirections>
     </div> -->
 
-    <div *ngIf="destination.latitude!=0 && destination.longitude!=0">
-        <appMapDirections [origin]="origin" [destination]="destination"></appMapDirections>
-    </div>
+        <div *ngIf="destination.latitude!=0 && destination.longitude!=0">
+            <appMapDirections [origin]="origin" [destination]="destination"></appMapDirections>
+        </div>
 
-</agm-map>
+    </agm-map>
+</div>
 
 <!-- actual map end -->

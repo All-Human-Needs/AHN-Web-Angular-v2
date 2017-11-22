@@ -1,28 +1,20 @@
 .modal-btn {
-    position: absolute;
-    margin-top: 20px;
-    margin-right: 30px;
-    right: 30px;
-    top: 107px;
-    float: right;
-    z-index: 100;
-    padding: auto;
-
+    z-index: 3 !important;
+    
     height: 58px;	
     width: 58px;
     border-radius: 5px;	
     background-color: #14CFBE;	
     box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
     border-style: none;
-
 }
 
 .modal-dialog,
 .modal.right .modal-dialog {
     position: fixed;
     margin: auto;
-    z-index: 1000;
-    width: 320px;
+    z-index: 10;
+    width: 360px;
     height: 100%;
     -webkit-transform: translate3d(0%, 0, 0);
     -ms-transform: translate3d(0%, 0, 0);
@@ -39,6 +31,7 @@
 .modal-body,
 .modal.right .modal-body {
     padding: 15px 15px 80px;
+    margin-left: 48px;
 }
 
 
@@ -65,9 +58,12 @@
 }
 
 .modal-header {
-    border-bottom-color: #EEEEEE;
-    background-color: #FAFAFA;
+    /* border-bottom-color: #EEEEEE; */
+    background-color: #ffffff;
+    border-style: none;
 }
+
+/* ----- CUSTOM STYLES ----- */
 
 ul {
     list-style-type: none;
@@ -76,10 +72,8 @@ ul {
 }
 
 li {
-    /* border-bottom: 1px solid #ccc; */
-    width: 100%;
-    /* font-size: 1.3em; */
-    /* height: 30px; */
+    margin:5px;
+    padding-left:15px;
 }
 
 a {
@@ -90,4 +84,20 @@ a {
 .uber {
     padding-bottom: 20px;
     font-weight: bold;
+}
+
+.modal-backdrop {
+    z-index:-1!important;
+}
+
+.sub-heading{
+    margin-top:30px;
+}
+
+.float-right{
+    float: right;
+}
+
+.right-26{
+    right: 26px !important;
 }
