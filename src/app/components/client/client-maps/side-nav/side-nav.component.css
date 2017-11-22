@@ -1,13 +1,13 @@
 .modal-btn {
     
     
-    position: fixed;
+    position: absolute;
     margin-top: 20px;
     margin-right: 30px;
     right: 30px;
     top: 107px;
     float: right;
-    z-index: 4 !important;
+    z-index: 5 !important;
     padding: auto;
 
     height: 58px;	

@@ -1,4 +1,5 @@
 .ahn-search-container {
+    position: fixed;
     height: 58px;
     border-radius: 5px;
     background-color: #FFFFFF;
