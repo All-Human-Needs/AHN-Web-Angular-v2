@@ -19,3 +19,7 @@ img {
     margin-bottom: 20px;
     cursor: pointer;
 }
+
+.fa-power-off:hover {
+    color: #27CEBE;
+}
