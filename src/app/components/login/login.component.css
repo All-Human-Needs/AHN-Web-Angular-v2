@@ -27,33 +27,6 @@
     margin-left: 120px;
 }
 
-
-/* .logo {
-	
-        box-sizing: border-box;	
-        height: 24px;	
-        width: 18.4px;	
-        border: 2px solid #FFFFFF;
-        margin-top: 3.22%;
-        margin-right: 88.82%;
-        margin-bottom: 92.22%;
-        margin-left: 8.19%;
-} */
-
-
-/* .ahn {
-    height: 37px;	
-    width: 51px;	
-    color: #FFFFFF;	
-    font-family: Jaapokki;	
-    font-size: 24px;	
-    line-height: 37px;
-    margin-top: 3.78%;
-    margin-right: 84.65%;
-    margin-bottom: 92.22%;
-    margin-left: 11.74%;
-} */
-
 .form-group {
     min-width: 150px;
     max-width: 500px;
@@ -70,12 +43,10 @@
 }
 
 .forgot {
-    height: 17px;
-    width: 122px;
     color: #28C6B0;
-    font-family: "Source Sans Pro";
+    font-family: Roboto;
     font-size: 13px;
-    font-weight: 600;
+    /* font-weight: 600; */
     line-height: 17px;
     /* text-align: right; */
     /* margin-right: 50px; */
@@ -104,26 +75,22 @@
     cursor: pointer;
     /* margin-top: 318px;  */
     margin-right: 10px;
+    font-family: Roboto;
     /* margin-bottom: 139px;  */
 }
 
-.login-button:enabled {
+.login-button {
+    font-family: Roboto;
     height: 52px;
     width: 195px;
     border-radius: 3px;
     background-color: #27CEBE;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
     color: #FFFFFF;
-    cursor: pointer;
 }
 
-.login-button:disabled {
-    height: 52px;
-    width: 195px;
-    border-radius: 3px;
-    background-color: #27CEBE;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-    color: #FFFFFF;
+.login-button:enabled {
+    cursor: pointer;
 }
 
 
