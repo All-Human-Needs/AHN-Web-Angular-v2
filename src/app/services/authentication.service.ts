@@ -86,9 +86,13 @@ export class AuthenticationService {
         if (isBusinesses) {
           business.id = success.uid;
           this._businessService.addBusiness(business);
-          this.router.navigateByUrl("/business-statistics");
+          // this.router.navigateByUrl("/business-statistics");
+          this.setIsBusiness();
+          this.router.navigate(["/main/dashboard"]);
         } else {
-          this.router.navigateByUrl("/client-home");
+          // this.router.navigateByUrl("/client-home");
+          this.setIsBusiness();
+          this.router.navigate(["/main/dashboard"]);
         }
       })
       .catch(err => {
@@ -108,8 +112,8 @@ export class AuthenticationService {
   getCurrentBusiness(){
     //console.log(this.ahnAuth.auth.currentUser.uid);
 
-    // return this.ahnAuth.auth.currentUser.uid;
-    return "vKMucvqM9NWyoQqhe3BQd1N29VG2"
+    return this.ahnAuth.auth.currentUser.uid;
+    // return "vKMucvqM9NWyoQqhe3BQd1N29VG2"
 
 
   }
