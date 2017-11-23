@@ -20,7 +20,7 @@ import {} from '@types/googlemaps';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  @ViewChild("searchControl") 
+  @ViewChild("searchControls") 
   public searchElementRef:ElementRef;
 
   // searchControl: any;
@@ -58,9 +58,8 @@ form:FormGroup
         name:['',[Validators.required,Validators.minLength(3)]],
         capacity:[],
         category:['',[Validators.required]],
-        searchControl:[]
-        // lat:['',[Validators.required,Validators.pattern("^[0-9]+$")]],
-        // lng:['',[Validators.required,Validators.pattern("^[0-9]+$")]],
+        searchControl:['',Validators.required]
+        
       })
     })
    }
@@ -85,6 +84,10 @@ form:FormGroup
 
   get name(){
     return this.form.get('businessForm.name');
+  }
+
+  get searchControl(){
+    return this.form.get('businessForm.searchControl')
   }
   
 
@@ -149,10 +152,6 @@ form:FormGroup
 
     
   }
-
-log(){
-  console.log("lat : "+this.lat+" lng : "+this.lng)
-}
 
 
   validForm(){

@@ -11,15 +11,15 @@
                         <div class="form-group paddingSide50" formGroupName="userForm">
 
 
-                <md-form-field class="mb-3">
-                    <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
-                    <md-error *ngIf="email.touched && email.invalid">
-                        <md-error *ngIf="email.errors.email">
-                            Please enter a valid email address
-                        </md-error>
+                            <md-form-field class="mb-3">
+                                <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
+                                <md-error *ngIf="email.touched && email.invalid">
+                                    <md-error *ngIf="email.errors.email">
+                                        Please enter a valid email address
+                                    </md-error>
 
-                    </md-error>
-                </md-form-field>
+                                </md-error>
+                            </md-form-field>
 
 
                             <div class="form-group" formGroupName="passwordForm">
@@ -58,10 +58,6 @@
                                     <p>Already have an account?</p>
                                     <button md-button routerLink="/login">LOGIN</button>
                                 </div>
-
-
-
-
 
                             </div>
 
@@ -171,8 +167,11 @@
 
                             <md-form-field>
                                 <!-- <input mdInput placeholder="Favorite food" value="Sushi"> -->
-                                <input mdInput id="address" placeholder="Business Address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #searchControl formControlName="searchControl" (keyup.enter)="log()">
+                                <input mdInput id="address" placeholder="Business Address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #searchControls formControlName="searchControl">
                                 <md-hint><strong>Your business physical address and city</strong></md-hint>
+                                <md-error *ngIf="searchControl.touched && searchControl.invalid">
+                                    <md-error *ngIf="searchControl.errors.required"> Business address is a required field.</md-error>
+                                </md-error>
                             </md-form-field>
 
                             <div class="form-group">
