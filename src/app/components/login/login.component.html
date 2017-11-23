@@ -1,48 +1,56 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
 <form [formGroup]="form" (ngSubmit)="login()">
 
-    <div class="login-form-background float-sm-none float-lg-right">
-        <h2 class="h1 title ta-center padding-top-25 ">All Human Needs</h2>
+    <div class="row">
+        <!-- <span class="col-md-3"></span> -->
+        <div class="login-form-background float-sm-none float-lg-center">
+            <h2 class="h1 title ta-center padding-top-25 "> Welcome back </h2>
 
-        <div class="form-group">
-            <input formControlName="email" type="text" class="form-control input-field" id="email" placeholder="Email Address" [(ngModel)]='this.username' />
-            <div *ngIf="email.touched && email.invalid" class="alert alert-danger error">
-                <div *ngIf="email.errors.email">
-                    Email address is invalid
-                </div>
+            <!-- <div class="email"> -->
+                <md-form-field class="emailAddress email mt-5">
+                    <input mdInput type="email" placeholder="Email address" value="">
+                </md-form-field>
+            <!-- </div> -->
+
+            <!-- <div class="password"> -->
+                <md-form-field class="password">
+                    <input mdInput type="password" placeholder="Password" value="">
+                </md-form-field>
+            <!-- </div> -->
+
+            <div *ngIf="password.errors.minlength">
+                Password should be minimum of {{password.errors.minlength.requiredLength}} characters
             </div>
-        </div>
 
-        <div class="form-group">
-            <input formControlName="password" type="Password" class="form-control input-field" id="password" placeholder="Password" [(ngModel)]='this.psw' />
-            <div *ngIf="password.touched && password.invalid" class="alert alert-danger error">
-                <div *ngIf="password.errors.required">
-                    Password is required
-                </div>
-                <div *ngIf="password.errors.minlength">
-                    Password should be minimum of {{password.errors.minlength.requiredLength}} characters
-                </div>
+            <div class="row text-right">
+                <a class="forgot" routerLink="forgot-password" routerLinkActive="active">Forgot password?</a>
             </div>
-        </div>
-        <div>
-            <input class="remember" name="rememberMe" type="checkbox" (click)="rememberMe()" />
-            <label for="rememberMe">Remember me?</label>
-            <a class="forgot" routerLink="/forgot-password" routerLinkActive="active">Forgot Password?</a>
-        </div>
+           
+            <!-- 
+            <div>
+            <input type="checkbox" (click)="rememberMe()" />
+            <input class="remember" name="rememberMe?" />
+            <label for="rememberMe"> Remember me? </label>
+           </div> 
+    -->
 
+            <div class="row pt-5">
+                <button type="button" class="btn btn-google" [disabled]="!form.valid" (click)="googleLogin()">GOOGLE SIGN IN </button>
+                <button type="button" class="btn login-button" (click)="login()"> LOGIN </button>
+            </div>
+<div class="text-center mt-4 mb-4">
+            <p> Don't have an account?</p> 
 
-        <div class="button">
-            <button type="button" class="btn login-button" [disabled]="!form.valid" (click)="login()"> Login </button>
-            <button type="button" class="btn google-button" (click)="googleLogin()"> Google Login </button>
-        </div>
-
-        <a class="create-account" routerLink="/registration" routerLinkActive="active">Don't have an existing account?</a>
+            
+                    <button md-button type="button" routerLink="registration"> REGISTER </button>
+                <!-- <a class="create-account"  routerLinkActive="active"> REGISTER </a> -->
+            </div>
+            <!-- <div class="row justify-content-center"> 
+          <a class="register" routerLink="sign-upCustomer" routerLinkActive="active"> REGISTER </a>
+      </div> -->
+        </div> 
+        <!-- <span class="col-md-3"></span> -->
     </div>
+
 </form>
-<!-- <div *ngIf="ahnAuth.authState | async; let user; else showLogin">
-    <h1>Hello {{ user.displayName }}!</h1>
-    <button (click)="logout()">Logout</button>
-</div>
-<ng-template #showLogin>
-    <p>Please login.</p>
-    <button (click)="googleLogin()">Login with Google</button>
-</ng-template> -->
