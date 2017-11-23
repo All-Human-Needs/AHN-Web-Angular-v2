@@ -22,6 +22,12 @@
                         <h5 class="sub-heading">Emergency Buildings</h5>
                         <ul>
                             <li>
+                                <label class="container">Hospitals
+                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
                                 <label class="container">Police Department
                                     <input type="checkbox" name="Buildings" (change)="search('bank')">
                                     <span class="checkmark"></span>
@@ -33,105 +39,64 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
-                            <li>
-                                <label class="container">Hospitals
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </li>
+
                         </ul>
-                        <h5 class="sub-heading">Government Buildings</h5>
+                        <h5 class="sub-heading">Places</h5>
                         <ul>
-                            <li>
-                                <label class="container">Parliament
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </li>
                             <li>
                                 <label class="container">Home Affairs
                                     <input type="checkbox" name="Buildings" (change)="search('bank')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
-                        </ul>
-                        <h5 class="sub-heading">Health and Nutrition</h5>
-                        <ul>
                             <li>
-                                <label class="container">Supplement Stores
+                                <label class="container">Nutrition and Fitness
                                     <input type="checkbox" name="Buildings" (change)="search('bank')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label class="container">Gyms
+                                <label class="container">Insurance
                                     <input type="checkbox" name="Buildings" (change)="search('bank')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label class="container">Fitness Centres
+                                <label class="container">City to City Transport
                                     <input type="checkbox" name="Buildings" (change)="search('bank')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label class="container">Martial Arts Dojo
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </li>
-                        </ul>
-                        <h5 class="sub-heading">Motor Vehicle Service</h5>
-                        <ul>
-                            <li>
-                                <label class="container">Car Dealerships
+                                <label class="container">Motor Vehicle Service
                                     <input type="checkbox" name="Buildings" (change)="search('bank')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label class="container">Garages
+                                <label class="container">Retail
                                     <input type="checkbox" name="Buildings" (change)="search('bank')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                         </ul>
-                        <h5 class="sub-heading">Retail Business</h5>
-                        <ul>
-                            <li>
-                                <label class="container">Super Markets
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="container">Clothing Stores
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </li>
-                        </ul>
-                        <h5 class="sub-heading">City to City Transport</h5>
-                        <h5 class="sub-heading">Restaurants</h5>
-                        <h5 class="sub-heading">Insurance</h5>
 
-
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <label class="container">Banks
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </li>
-                            <li class="list-group-item">
-                                <label class="container">Home Affairs
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </li>
-                        </ul>
                     </form>
+
+                    <div>
+                        <!-- KEY START-->
+
+                        <h5 class="sub-heading">Map Key</h5>
+
+                        <span class="red-demo">Busy</span>
+                        <span class="orange-demo">Medium</span>
+                        <span class="green-demo">Not Busy</span>
+
+                    </div>
+                    <!-- KEY END-->
+
+
+
                 </div>
             </div>
 
