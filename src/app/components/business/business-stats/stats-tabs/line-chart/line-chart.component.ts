@@ -12,7 +12,7 @@ import { AuthenticationService } from '../../../../../services/authentication.se
 export class LineChartComponent implements OnInit {
 
   constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent,private _authService : AuthenticationService) { 
-    this.chartType="hourly";
+    this.chartType=statTabs.timePeriod;
     this.selectedDate=new Date(statTabs.datepicker.get('selectedDate').value);
    }
 
