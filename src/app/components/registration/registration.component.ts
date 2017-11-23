@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
   capacity:number =10;
 
 
-  catOptions=['home affairs','bank','hospital','nutrition and fitness','insurance','city to city transport','motor vehicle service','retail']
+  catOptions=['home affairs','bank','hospital','police','fire station','nutrition and fitness','insurance','city to city transport','motor vehicle service','retail']
 
 form:FormGroup
 
