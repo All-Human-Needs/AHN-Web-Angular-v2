@@ -28,9 +28,11 @@ body {
     background-image: url("./assets/img/capetown.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-
     /* background-image: url("./assets/img/Cape-Town.png"); */
     /* width: 100vw;
     height: 100vh; */
+}
 
+.modal-backdrop {
+    z-index: -1!important;
 }

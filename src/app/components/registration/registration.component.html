@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    <div class="logo-padding"><img src="./assets/img/media.png" alt="logo" class="logo-img "><img src="./assets/img/AHN.png" alt="logo" class="ahn-img"></div>
     <div class="row">
         <div class="base">
             <form [formGroup]="form" class="background mx-auto mt-5 mb-5">
@@ -11,15 +12,15 @@
                         <div class="form-group paddingSide50" formGroupName="userForm">
 
 
-                <md-form-field class="mb-3">
-                    <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
-                    <md-error *ngIf="email.touched && email.invalid">
-                        <md-error *ngIf="email.errors.email">
-                            Please enter a valid email address
-                        </md-error>
+                            <md-form-field class="mb-3">
+                                <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
+                                <md-error *ngIf="email.touched && email.invalid">
+                                    <md-error *ngIf="email.errors.email">
+                                        Please enter a valid email address
+                                    </md-error>
 
-                    </md-error>
-                </md-form-field>
+                                </md-error>
+                            </md-form-field>
 
 
                             <div class="form-group" formGroupName="passwordForm">
@@ -50,7 +51,7 @@
                                 </md-form-field>
 
                                 <div class="text-center">
-                                    <button class="btn googleBtn mt-4" (click)="googleLogin()"> <img src="http://pngimg.com/uploads/google/google_PNG19630.png" alt="Google Logo" > Google Sign Up</button>
+                                    <button class="btn googleBtn mt-4" (click)="googleLogin()"> <img src="http://pngimg.com/uploads/google/google_PNG19630.png" alt="Google Logo"  class="google-img"> Google Sign Up</button>
                                     <button class="btn registerBtn mt-4" type="button" (click)="register(false)" [disabled]=" validForm()">Register</button>
                                 </div>
                                 <!-- [disabled]=" validForm()" -->

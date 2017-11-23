@@ -73,11 +73,25 @@ p {
     line-height: 18px;
 }
 
-img {
+.google-img {
     width: 35px;
     height: 35px;
 }
 
+.logo-img {
+    width: 42px;
+    height: 42px;
+}
+
+.ahn-img {
+    width: 53px;
+    height: 21px;
+}
+
 widthFull {
     width: 100%
+}
+
+.logo-padding {
+    padding: 30px 120px
 }

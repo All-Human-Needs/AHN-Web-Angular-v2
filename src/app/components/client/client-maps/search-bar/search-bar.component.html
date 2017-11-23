@@ -1,8 +1,8 @@
 <div class="ahn-search-container">
     <input #searchBox type="text" placeholder="search" (keyup)="search(searchBox.value)" [(ngModel)]="query" class="ahn-search-bar ">
-    <span class="fa fa-search search-icon "></span>
+    <span class="fa fa-search search-icon" (click)="select(firstResult)"></span>
     <ul class="list-group">
-        <li (click)="select(business)" *ngFor="let business of businesses | async" class="list-group-item text-center"> 
+        <li (click)="select(business)" *ngFor="let business of businesses | async" class="list-group-item text-center">
             {{business.name}}
         </li>
     </ul>

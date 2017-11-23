@@ -13,35 +13,41 @@ import { Subject } from 'rxjs/Subject';
 })
 
 export class SearchBarComponent implements OnInit {
-  // @Output() clicked = new EventEmitter;
+  firstResult: Business;
+
+  // altBusiness;
+
+  public hidden:boolean=false;
 
   private searchTerms = new Subject<string>();
+
   businesses: Observable<Business[]>;
 
   query = ''
 
-   ////////////////
-   //////////////// as well as here
-   ////////////////
+bestAltSelected(){
+  this.SearchService.getBusiness().subscribe((business=>
+ this.query=business.name)
+  .bind(this));
 
+}
   // Method for selecting item in search bar -- START
   select(item: Business) {
     this.query = item.name;
+  
     // console.log(this.query)
     this.initSuggestions();
+ 
+this.SearchService.hidden=true;
 
     this.SearchService.destinationBusiness.next(item);
+    
     // this.clicked.emit(item);
   }
   // Method for selecting item in search bar -- END
 
   constructor(private businessService: BusinessService, private SearchService: SearchService) {
-    // .businesses.forEach(element=> {
-    // for(var i = 0; i<element.length;i++){
-    //  this.businesses=element; 
-
-    //   }
-    //  });
+    
   }
 
   // initializes search list -- START
@@ -55,14 +61,19 @@ export class SearchBarComponent implements OnInit {
         console.log(error);
         return Observable.of<Business[]>([]);
       });
+
+      this.businesses.subscribe( (list=> this.firstResult = list[0]).bind(this));
   }
   // initializes search list -- END
 
   ngOnInit(): void {
     this.initSuggestions();
+    // this.bestAltSelected();
   }
 
   search(term: string): void {
     this.searchTerms.next(term);
+
+  
   }
 }
