@@ -1,32 +1,48 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet"> -->
+<div class="logo">
+    <img src="./assets/img/media.png" style="height:42px;width:42px;" alt=""><img src="./assets/img/AHN.png" style="height:24px;width:51px;" alt="">
+
+</div>
 <form [formGroup]="form" (ngSubmit)="login()">
 
     <div class="row">
+
         <!-- <span class="col-md-3"></span> -->
         <div class="login-form-background float-sm-none float-lg-center">
-            <h2 class="h1 title ta-center padding-top-25 "> Welcome back </h2>
+            <h2 class="mt-5"> Welcome back </h2>
 
             <!-- <div class="email"> -->
-                <md-form-field class="emailAddress email mt-5">
-                    <input mdInput type="email" placeholder="Email address" value="">
-                </md-form-field>
+            <md-form-field class="emailAddress email mt-5">
+                <input mdInput type="email" formControlName="email" placeholder="Email address">
+                <md-error *ngIf="email.touched && email.invalid">
+                    <md-error *ngIf="email.errors.email">
+                        Please enter a valid email address
+                    </md-error>
+
+                </md-error>
+            </md-form-field>
             <!-- </div> -->
 
             <!-- <div class="password"> -->
-                <md-form-field class="password">
-                    <input mdInput type="password" placeholder="Password" value="">
-                </md-form-field>
+            <md-form-field class="password">
+                <input mdInput type="password" placeholder="Password" formControlName="password">
+                <md-error *ngIf="password.touched && password.invalid">
+                    <md-error *ngIf="password.errors.minlength">
+                        Please enter a password that is more than {{password.errors.minlength.requiredLength}} characters
+                    </md-error>
+                    <md-error *ngIf="password.errors.required">
+                        Password is <strong>required</strong>
+                    </md-error>
+                </md-error>
+            </md-form-field>
             <!-- </div> -->
 
-            <div *ngIf="password.errors.minlength">
-                Password should be minimum of {{password.errors.minlength.requiredLength}} characters
-            </div>
 
             <div class="row text-right">
                 <a class="forgot" routerLink="forgot-password" routerLinkActive="active">Forgot password?</a>
             </div>
-           
+
             <!-- 
             <div>
             <input type="checkbox" (click)="rememberMe()" />
@@ -36,20 +52,20 @@
     -->
 
             <div class="row pt-5">
-                <button type="button" class="btn btn-google" [disabled]="!form.valid" (click)="googleLogin()">GOOGLE SIGN IN </button>
-                <button type="button" class="btn login-button" (click)="login()"> LOGIN </button>
+                <button type="button" class="btn btn-google" (click)="googleLogin()"><img src="http://pngimg.com/uploads/google/google_PNG19630.png" class="mr-1" style="height:35px;width:35px;" alt="Google Logo" >GOOGLE SIGN IN </button>
+                <button type="button" class="btn login-button" [disabled]="!form.valid" (click)="login()"> LOGIN </button>
             </div>
-<div class="text-center mt-4 mb-4">
-            <p> Don't have an account?</p> 
+            <div class="text-center mt-4 mb-4">
+                <p> Don't have an account?</p>
 
-            
-                    <button md-button type="button" routerLink="registration"> REGISTER </button>
+
+                <button md-button type="button" routerLink="registration"> REGISTER </button>
                 <!-- <a class="create-account"  routerLinkActive="active"> REGISTER </a> -->
             </div>
             <!-- <div class="row justify-content-center"> 
           <a class="register" routerLink="sign-upCustomer" routerLinkActive="active"> REGISTER </a>
       </div> -->
-        </div> 
+        </div>
         <!-- <span class="col-md-3"></span> -->
     </div>
 

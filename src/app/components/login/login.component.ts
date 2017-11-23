@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { AngularFireAuth } from "angularfire2/auth";
 import * as firebase from "firebase/app";
-import { FormControl, FormGroup, Validator, Validators } from "@angular/forms";
+import { FormControl, FormGroup, Validator, Validators, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: "ahn-login",
@@ -16,19 +16,24 @@ import { FormControl, FormGroup, Validator, Validators } from "@angular/forms";
 export class LoginComponent implements OnInit {
   username: string;
   psw: string;
-
-  form = new FormGroup({
-    email: new FormControl("", [Validators.required, Validators.email]),
-    password: new FormControl("", [
-      Validators.required,
-      Validators.minLength(8)
-    ])
-  });
+  form;
+  // form = new FormGroup({
+  //   email: new FormControl("",  Validators.email),
+  //   password: new FormControl("", [
+  //     Validators.required,
+  //     Validators.minLength(8)
+  //   ])
+  // });
   constructor(
     private businessService: BusinessService,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private fb:FormBuilder
   ) {
+    this.form = fb.group({
+      email:['',Validators.email],
+      password:['',[Validators.required,Validators.minLength(8)]]
+    })
     businessService.getBusinesses();
   }
 
