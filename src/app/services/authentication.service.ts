@@ -11,6 +11,7 @@ import * as firebase from "firebase/app";
 @Injectable()
 export class AuthenticationService {
   authState: any = null;
+  AmIBusiness: boolean;
 
   constructor(
     private ahnAuth: AngularFireAuth,
@@ -18,6 +19,7 @@ export class AuthenticationService {
     private _businessService: BusinessService,
     private _userService: UserService
   ) {
+    this.setIsBusiness();
     this.ahnAuth.authState.subscribe(auth => {
       this.authState = auth;
     });
@@ -45,7 +47,9 @@ export class AuthenticationService {
     return this.ahnAuth.auth
       .signInWithEmailAndPassword(email, password)
       .then(user => {
-       this.isBusiness(user);
+      //  this.isBusiness(user);
+        this.setIsBusiness();
+        this.router.navigate(["/main/dashboard"]);
       });
   }
 
@@ -54,14 +58,14 @@ export class AuthenticationService {
     this.ahnAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(user => {
-        this.router.navigateByUrl("/client-home");
+        this.router.navigate(["/main/dashboard"]);
       });
     //go to next page
   }
 
   logout() {
     this.ahnAuth.auth.signOut();
-    this.router.navigate(["/"]);
+    this.router.navigate(["/login"]);
   }
 
   createUser(
@@ -82,7 +86,7 @@ export class AuthenticationService {
         if (isBusinesses) {
           business.id = success.uid;
           this._businessService.addBusiness(business);
-          this.router.navigateByUrl("/business-home");
+          this.router.navigateByUrl("/business-statistics");
         } else {
           this.router.navigateByUrl("/client-home");
         }
@@ -104,8 +108,8 @@ export class AuthenticationService {
   getCurrentBusiness(){
     //console.log(this.ahnAuth.auth.currentUser.uid);
 
-    return this.ahnAuth.auth.currentUser.uid;
-    //return "vKMucvqM9NWyoQqhe3BQd1N29VG2"
+    // return this.ahnAuth.auth.currentUser.uid;
+    return "vKMucvqM9NWyoQqhe3BQd1N29VG2"
 
 
   }
@@ -133,9 +137,11 @@ export class AuthenticationService {
         for (var i = 0; i < response.length; i++) {
           if (response[i].id === currentUser.uid) {
             if (response[i].isBusiness) {
-              this.router.navigateByUrl("/business-home");
+
+              this.router.navigate(["/main/business-statistics"]);
+
             } else {
-              this.router.navigateByUrl("/client-home");
+              this.router.navigate(["/main/client-home"]);
             }
           }
         }
@@ -145,5 +151,16 @@ export class AuthenticationService {
 
       // })
     );
+  }
+  
+  setIsBusiness() {
+    this._userService.users.subscribe(
+      (response:User[]) => {
+        for (var i = 0; i < response.length; i++) {
+          if (response[i].id === this.ahnAuth.auth.currentUser.uid) {
+            this.AmIBusiness = response[i].isBusiness;
+          }
+        }
+      });
   }
 }

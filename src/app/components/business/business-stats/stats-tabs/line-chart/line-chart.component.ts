@@ -12,7 +12,8 @@ import { AuthenticationService } from '../../../../../services/authentication.se
 export class LineChartComponent implements OnInit {
 
   constructor(private _businessService: BusinessService,private statTabs:StatsTabsComponent,private _authService : AuthenticationService) { 
-    this.chartType=_businessService.getChartType();
+    this.chartType="hourly";
+    this.selectedDate=new Date(statTabs.datepicker.get('selectedDate').value);
    }
 
    //initializing linechart
@@ -22,14 +23,14 @@ export class LineChartComponent implements OnInit {
   public lineChartLabels:Array<any> = [];
   public lineChartOptions:any = {responsive: true,};
   public lineChartColors:Array<any> = [{ 
-      backgroundColor: 'rgba(98, 160, 252,0.5)',
-      borderColor: 'rgb(168, 179, 196)',
-      pointBackgroundColor: 'rgb(155, 177, 198)',
+      backgroundColor: 'rgba(80,227,194,0.48)',
+      borderColor: 'rgba(80,227,194,0.9)',
+      pointBackgroundColor: 'rgba(80,227,194,0.48)',
       pointBorderColor: '#fff',
-      pointHoverBackgroundColor: 'rgb(79, 169, 255)',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: '#fff',
     }];
-  public lineChartLegend:boolean = true;
+  public lineChartLegend:boolean = false;
   public lineChartType:string = 'line';
 
   pax:number[] = [];
@@ -270,7 +271,7 @@ return dayStr;
 }
 ngOnInit() {
   let valueChanged:boolean=false;
-  let business = this.statTabs.currentBusiness;
+ // let business = this.statTabs.currentBusiness;
   let uid = this._authService.getCurrentBusiness();
   let currentBusiness;
   this._businessService.getBusinesses().subscribe(response=>{
@@ -284,7 +285,7 @@ ngOnInit() {
       
     };
 
-    this.statTabs.form.valueChanges.subscribe(data=>{
+    this.statTabs.datepicker.valueChanges.subscribe(data=>{
       this.selectedDate =new Date(data.selectedDate);
       
       valueChanged=true;
@@ -318,6 +319,22 @@ ngOnInit() {
           break;
       }
     }
+    this.statTabs.chartType.subscribe(timePeriod=>{
+      this.chartType=timePeriod;
+      switch (this.chartType) {
+        case "hourly":this.getHourlyStats(currentBusiness,this.selectedDate);
+          break;
+          case "daily":this.getDailyStats(currentBusiness,this.selectedDate);
+          break;
+          // case "weekly":this.getWeeklyStats(0);
+          // break;
+          case "monthly":this.getMonthlyStats(currentBusiness,this.selectedDate);
+          break;
+      
+        default:
+          break;
+      }
+    })
   })
  if(this.chartType!=null||this.chartType!=undefined){
   this.lineChartLabels =this.dates;
