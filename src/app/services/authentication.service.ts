@@ -128,10 +128,16 @@ export class AuthenticationService {
   }
 
   resetPassword(email: string) {
-   // this.ahnAuth.auth
-   //   .sendPasswordResetEmail(email)
-   console.log(email);
-     alert("Password Successfully Reset");
+   this.ahnAuth.auth
+     .sendPasswordResetEmail(email)
+      .then(()=>{
+        alert("Email to reset password was sent");
+        this.router.navigate(["/login"]);
+      }).catch(
+        err=>alert(err)
+      )
+  //  console.log(email);
+     
      
       // .then(msg => alert("Password Successfully Reset"))
       // .catch(msg => alert("Password Successfully Reset"));
