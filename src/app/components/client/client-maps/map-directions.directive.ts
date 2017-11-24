@@ -10,7 +10,7 @@ export class MapDirectionsDirective implements OnInit,OnChanges {
  
   @Input() origin;
   @Input() destination;
-  @Input() directionsDisplay:any=new google.maps.DirectionsRenderer;
+  @Input() directionsDisplay:any;
   constructor(private gmapsApi: GoogleMapsAPIWrapper) {}
 
   ngOnInit() {
@@ -44,9 +44,21 @@ export class MapDirectionsDirective implements OnInit,OnChanges {
                     suppressMarkers : true
             });
           }else{
+            this.directionsDisplay.setMap(null);
+            this.directionsDisplay = new google.maps.DirectionsRenderer;
+            this.directionsDisplay.setMap(map);
             this.directionsDisplay.setDirections(response);
+            this.directionsDisplay.setOptions({
+              polylineOptions: {
+                          strokeWeight: 8,
+                          strokeOpacity: 0.7,
+                          strokeColor:  '#14CFBE' 
+                      },
+                      suppressMarkers : true
+              });
+            console.log('directions should display')
           }
-          console.log('directions should display')
+         
         } else {
           window.alert('Directions request failed due to ' + status);
         }

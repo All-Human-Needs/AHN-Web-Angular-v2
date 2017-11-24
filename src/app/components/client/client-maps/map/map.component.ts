@@ -71,12 +71,12 @@ export class MapComponent implements OnInit {
       response => {
         this.destination = new Destination(response.lat,response.lng)
        
-        if(this.directionsDisplay === undefined){ this.mapsAPILoader.load().then((map) => { 
+        this.mapsAPILoader.load().then((map) => { 
          
           this.directionsDisplay = new google.maps.DirectionsRenderer;
          
         }
-      ); }
+      ); 
       
        
       }
