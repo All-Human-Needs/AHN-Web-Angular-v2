@@ -1,58 +1,60 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet"> -->
+<!-- <div class="back-ground-img"> -->
 <div class="logo">
-    <img src="./assets/img/media.png" style="height:42px;width:42px;" alt=""><img src="./assets/img/AHN.png" style="height:24px;width:51px;" alt="">
+    <img src="./assets/img/media.png" style="height:42px;width:42px;" alt=""><img src="./assets/img/AHN.png" style="height:20px;width:51px;" alt="">
 
 </div>
 <form [formGroup]="form">
 
-    <div class="row">
+    <!-- <div class="row"> -->
 
-        <div class="login-form-background float-sm-none float-lg-center">
-            <h2 class="mt-5"> Welcome back </h2>
+    <div class="login-form-background float-sm-none float-lg-center">
+        <h2 class="pt-5"> Welcome back </h2>
 
-            <md-form-field class="emailAddress email mt-5">
-                <input mdInput type="email" formControlName="email" [(ngModel)]="username" placeholder="Email address">
-                <md-error *ngIf="email.touched && email.invalid">
-                    <md-error *ngIf="email.errors.email">
-                        Please enter a valid email address
-                    </md-error>
-
+        <md-form-field class="emailAddress email mt-5">
+            <input mdInput type="email" formControlName="email" [(ngModel)]="username" placeholder="Email address">
+            <md-error *ngIf="email.touched && email.invalid">
+                <md-error *ngIf="email.errors.email">
+                    Please enter a valid email address
                 </md-error>
-            </md-form-field>
 
-            <md-form-field class="password">
-                <input mdInput type="password" placeholder="Password" [(ngModel)]="psw" formControlName="password">
-                <md-error *ngIf="password.touched && password.invalid">
-                    <md-error *ngIf="password.errors.minlength">
-                        Please enter a password that is more than {{password.errors.minlength.requiredLength}} characters
-                    </md-error>
-                    <md-error *ngIf="password.errors.required">
-                        Password is <strong>required</strong>
-                    </md-error>
+            </md-error>
+        </md-form-field>
+
+        <md-form-field class="password">
+            <input mdInput type="password" placeholder="Password" [(ngModel)]="psw" formControlName="password">
+            <md-error *ngIf="password.touched && password.invalid">
+                <md-error *ngIf="password.errors.minlength">
+                    Please enter a password that is more than {{password.errors.minlength.requiredLength}} characters
                 </md-error>
-            </md-form-field>
+                <md-error *ngIf="password.errors.required">
+                    Password is <strong>required</strong>
+                </md-error>
+            </md-error>
+        </md-form-field>
 
 
 
-            <div class="row text-right">
-                <a class="forgot" routerLink="/main/forgot-password" routerLinkActive="active">Forgot password?</a>
-            </div>
+        <div class="row text-right">
+            <a class="forgot" routerLink="/main/forgot-password" routerLinkActive="active">Forgot password?</a>
+        </div>
 
-            <div class="row pt-5">
-                <button type="button" class="btn btn-google" (click)="googleLogin()"><img src="http://pngimg.com/uploads/google/google_PNG19630.png" class="mr-1" style="height:35px;width:35px;" alt="Google Logo" >Google Sign In</button>
-                <button type="button" class="btn login-button" [disabled]="!form.valid" (click)="login()"> Login </button>
-            </div>
-            <div class="text-center mt-4 mb-4">
-                <p> Don't have an account?</p>
+        <div class="row pt-5">
+            <button type="button" class="btn btn-google" (click)="googleLogin()"><img src="http://pngimg.com/uploads/google/google_PNG19630.png" class="mr-1" style="height:35px;width:35px;" alt="Google Logo" >Google Sign In</button>
+            <button type="button" class="btn login-button" [disabled]="!form.valid" (click)="login()"> Login </button>
+        </div>
+        <div class="text-center mt-4 mb-4">
+            <p> Don't have an account?</p>
 
 
-                <button md-button type="button" routerLink="/main/registration"> REGISTER </button>
-
-            </div>
+            <button md-button type="button" routerLink="/main/registration" class="mb-4"> REGISTER </button>
 
         </div>
 
     </div>
 
+    <!-- </div> -->
+
 </form>
+<!-- </div> -->

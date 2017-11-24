@@ -1,165 +1,160 @@
 <div class="container-fluid">
+    <div class="logo-padding"><img src="./assets/img/media.png" alt="logo" class="logo-img "><img src="./assets/img/AHN.png" alt="logo" class="ahn-img"></div>
     <div class="row">
-        <div class="base">
-            <form [formGroup]="form" class="background mx-auto mt-5 mb-5">
+        <!-- <div class="back-ground-img"> -->
+        <form [formGroup]="form" class="background mx-auto mt-5">
 
-                <md-tab-group class="">
+            <md-tab-group>
 
-                    <md-tab label="Individual">
+                <md-tab label="Individual">
 
-                        <h2 class="text-center mt-5">Sign Up</h2>
-                        <div class="form-group paddingSide50" formGroupName="userForm">
-
-
-                <md-form-field class="mb-3">
-                    <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
-                    <md-error *ngIf="email.touched && email.invalid">
-                        <md-error *ngIf="email.errors.email">
-                            Please enter a valid email address
-                        </md-error>
-
-                    </md-error>
-                </md-form-field>
+                    <h2 class="text-center mt-5">Sign Up</h2>
+                    <div class="form-group paddingSide50" formGroupName="userForm">
 
 
-                            <div class="form-group" formGroupName="passwordForm">
+                        <md-form-field class="mb-3">
+                            <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
+                            <md-error *ngIf="email.touched && email.invalid">
+                                <md-error *ngIf="email.errors.email">
+                                    Please enter a valid email address
+                                </md-error>
 
-                                <md-form-field class="mb-3">
-                                    <input type="password" mdInput placeholder="Password" formControlName="password" [(ngModel)]="pwd" id="psw">
-                                    <md-error *ngIf="password.touched && password.invalid">
-                                        <md-error *ngIf="password.errors.minlength">
-                                            Please enter a password
-                                        </md-error>
-                                        <md-error *ngIf="password.errors.required">
-                                            Password is <strong>required</strong>
-                                        </md-error>
+                            </md-error>
+                        </md-form-field>
+
+
+                        <div class="form-group" formGroupName="passwordForm">
+
+                            <md-form-field class="mb-3">
+                                <input type="password" mdInput placeholder="Password" formControlName="password" [(ngModel)]="pwd" id="psw">
+                                <md-error *ngIf="password.touched && password.invalid">
+                                    <md-error *ngIf="password.errors.minlength">
+                                        Please enter a password
                                     </md-error>
-                                </md-form-field>
-
-                                <md-form-field class="mb-3">
-                                    <input type="password" mdInput placeholder="Confirm Password" formControlName="confirmPwrd" [(ngModel)]="confirmPsw" id="confirmPassword">
-                                    <md-error *ngIf="confirmPwrd.touched && confirmPwrd.invalid">
-
-                                        <md-error *ngIf="confirmPwrd.errors.required">
-                                            Password is <strong>required</strong>
-                                        </md-error>
+                                    <md-error *ngIf="password.errors.required">
+                                        Password is <strong>required</strong>
                                     </md-error>
                                     <md-hint style="color:red;" *ngIf="confirmPwrd.valid && passwordForm.invalid && passwordForm.errors.passwordMatches">
                                         Passwords do not match
                                     </md-hint>
-                                </md-form-field>
-
-                                <div class="text-center">
-                                    <button class="btn googleBtn mt-4" (click)="googleLogin()"> <img src="http://pngimg.com/uploads/google/google_PNG19630.png" alt="Google Logo" > Google Sign Up</button>
-                                    <button class="btn registerBtn mt-4" type="button" (click)="register(false)" [disabled]=" validForm()">Register</button>
-                                </div>
-                                <!-- [disabled]=" validForm()" -->
-                                <div class="text-center mt-5">
-                                    <p>Already have an account?</p>
-                                    <button md-button routerLink="/login">LOGIN</button>
-                                </div>
+                                </md-error>
+                            </md-form-field>
 
 
+                            <md-form-field class="mb-3">
+                                <input type="password" mdInput placeholder="Confirm Password" formControlName="confirmPwrd" [(ngModel)]="confirmPsw" id="confirmPassword">
+                                <md-error *ngIf="confirmPwrd.touched && confirmPwrd.invalid">
+
+                                    <md-error *ngIf="confirmPwrd.errors.required">
+                                        Password is <strong>required</strong>
+                                    </md-error>
+                                </md-error>
+                                <md-hint style="color:red;" *ngIf="confirmPwrd.valid && passwordForm.invalid && passwordForm.errors.passwordMatches">
+                                    Passwords do not match
+                                </md-hint>
+                            </md-form-field>
 
 
-
+                            <div class="text-center">
+                                <button class="btn googleBtn mt-4" (click)="googleLogin()"> <img src="http://pngimg.com/uploads/google/google_PNG19630.png" alt="Google Logo"  class="google-img"> Google Sign Up</button>
+                                <button class="btn registerBtn mt-4" type="button" (click)="register(false)" [disabled]=" validForm()">Register</button>
+                            </div>
+                            <!-- [disabled]=" validForm()" -->
+                            <div class="text-center mt-5">
+                                <p>Already have an account?</p>
+                                <button md-button routerLink="/login">LOGIN</button>
                             </div>
 
+
+
+
+
+
                         </div>
-                    </md-tab>
+
+                    </div>
+                </md-tab>
 
 
 
-                    <md-tab label="Business">
-                        <h2 class="text-center mt-5">Sign Up</h2>
+                <md-tab label="Business">
+                    <h2 class="text-center mt-5">Sign Up</h2>
 
 
 
-                        <!-- <div class="form-group">
+                    <!-- <div class="form-group">
                 <label for="isBusiness"><input type="checkbox" id="isBusiness" [(ngModel)]="isBusiness" [ngModelOptions]="{standalone: true}" (click)="toggleUser()"/> Are you registering as a Business?</label>
             </div> -->
 
-                        <div class="form-group paddingSide50" formGroupName="userForm">
+                    <div class="form-group paddingSide50" formGroupName="userForm">
+
+                        <md-form-field class="mb-3">
+                            <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
+                            <md-error *ngIf="email.touched && email.invalid">
+                                <md-error *ngIf="email.errors.email">
+                                    Please enter a valid email address
+                                </md-error>
+                            </md-error>
+                        </md-form-field>
+
+                        <div class="form-group" formGroupName="passwordForm">
 
                             <md-form-field class="mb-3">
-                                <input type="email" mdInput placeholder="Email" formControlName="email" [(ngModel)]="emailAddress" id="email">
-                                <md-error *ngIf="email.touched && email.invalid">
-                                    <md-error *ngIf="email.errors.email">
-                                        Please enter a valid email address
+                                <input type="password" mdInput placeholder="Password" formControlName="password" [(ngModel)]="pwd" id="psw">
+                                <md-error *ngIf="password.touched && password.invalid">
+                                    <md-error *ngIf="password.errors.minlength">
+                                        Please enter a password
                                     </md-error>
-
-
-                                    <!-- <md-error *ngIf="email.errors.required">
-                                                Email is <strong>required</strong>
-                                            </md-error> -->
+                                    <md-error *ngIf="password.errors.required">
+                                        Password is <strong>required</strong>
+                                    </md-error>
                                 </md-error>
                             </md-form-field>
 
-                            <div class="form-group" formGroupName="passwordForm">
+                            <md-form-field class="mb-3">
+                                <input type="password" mdInput placeholder="Confirm Password" formControlName="confirmPwrd" [(ngModel)]="confirmPsw" id="confirmPassword">
+                                <md-error *ngIf="confirmPwrd.touched && confirmPwrd.invalid">
 
-                                <md-form-field class="mb-3">
-                                    <input type="password" mdInput placeholder="Password" formControlName="password" [(ngModel)]="pwd" id="psw">
-                                    <md-error *ngIf="password.touched && password.invalid">
-                                        <md-error *ngIf="password.errors.minlength">
-                                            Please enter a password
-                                        </md-error>
-                                        <md-error *ngIf="password.errors.required">
-                                            Password is <strong>required</strong>
-                                        </md-error>
+                                    <md-error *ngIf="confirmPwrd.errors.required">
+                                        Password is <strong>required</strong>
                                     </md-error>
-                                </md-form-field>
 
-                                <md-form-field class="mb-3">
-                                    <input type="password" mdInput placeholder="Confirm Password" formControlName="confirmPwrd" [(ngModel)]="confirmPsw" id="confirmPassword">
-                                    <md-error *ngIf="confirmPwrd.touched && confirmPwrd.invalid">
-
-                                        <md-error *ngIf="confirmPwrd.errors.required">
-                                            Password is <strong>required</strong>
-                                        </md-error>
-
-                                    </md-error>
-                                    <md-hint style="color:red;" *ngIf="confirmPwrd.valid && passwordForm.invalid && passwordForm.errors.passwordMatches">
-                                        Passwords do not match
-                                    </md-hint>
-                                </md-form-field>
-                            </div>
+                                </md-error>
+                                <md-hint style="color:red;" *ngIf="confirmPwrd.valid && passwordForm.invalid && passwordForm.errors.passwordMatches">
+                                    Passwords do not match
+                                </md-hint>
+                            </md-form-field>
                         </div>
+                    </div>
 
 
-                        <div class="form-group paddingSide50" formGroupName="businessForm">
+                    <div class="form-group paddingSide50" formGroupName="businessForm">
 
-                            <md-form-field class="mb-3">
-                                <!-- <input mdInput placeholder="Favorite food" value="Sushi"> -->
+                        <md-form-field class="mb-3">
+                            <!-- <input mdInput placeholder="Favorite food" value="Sushi"> -->
 
-                                <input mdInput type="text" formControlName="name" [(ngModel)]="businessName" placeholder="Business Name" id="name" class="form-control">
-                                <md-error *ngIf="name.touched && name.invalid">
-                                    <md-error *ngIf="name.errors.required"> Business name is a required field.</md-error>
-                                    <md-error *ngIf="name.errors.minlength">Business name should be a minimum of {{name.errors.minlength.requiredLength}} characters.</md-error>
-                                </md-error>
-                            </md-form-field>
-                            <!-- <label for="name">Business name:</label>
-              
-                <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
-                    <div *ngIf="name.errors.required">Business name is a required field.</div>
-                    <div *ngIf="name.errors.minlength">Business name should be a minimum of {{name.errors.minlength.requiredLength}} characters.</div>
-                </div> -->
+                            <input mdInput type="text" formControlName="name" [(ngModel)]="businessName" placeholder="Business Name" id="name" class="form-control">
+                            <md-error *ngIf="name.touched && name.invalid">
+                                <md-error *ngIf="name.errors.required"> Business name is a required field.</md-error>
+                                <md-error *ngIf="name.errors.minlength">Business name should be a minimum of {{name.errors.minlength.requiredLength}} characters.</md-error>
+                            </md-error>
+                        </md-form-field>
 
 
 
 
+                        <div class="mb-3" style="float:left;padding-top:4.54px;">
+                            <md-select style="float:left" placeholder="Category" name="category" id="category" formControlName="category" [(ngModel)]="category">
+                                <md-option *ngFor="let cat of catOptions" value="{{cat}}">{{cat | titlecase}}</md-option>
 
-                            <div class="mb-3" style="float:left;padding-top:4.54px;">
-                                <md-select style="float:left" placeholder="Category" name="category" id="category" formControlName="category" [(ngModel)]="category">
-                                    <md-option *ngFor="let cat of catOptions" value="{{cat}}">{{cat | titlecase}}</md-option>
+                            </md-select>
+                        </div>
+                        <md-form-field class="mb-3" style="float:right;width:70%">
+                            <input type="number" mdInput id="capacity" value="10" formControlName="capacity" [(ngModel)]="capacity" min=0>
 
-                                </md-select>
-                            </div>
-                            <md-form-field class="mb-3" style="float:right;width:70%">
-                                <input type="number" mdInput id="capacity" value="10" formControlName="capacity" [(ngModel)]="capacity" min=0>
+                        </md-form-field>
 
-                            </md-form-field>
-
-                            <!-- <label for="category">Category:</label>
+                        <!-- <label for="category">Category:</label>
                 <select name="category" id="category" formControlName="category" [(ngModel)]="category" class="form-control">
                           <option value="bank">Bank</option>
                           <option value="hospital">Hospital</option>
@@ -167,36 +162,38 @@
                         </select> -->
 
 
-                            <!-- <label for="capacity">Capacity:</label> -->
+                        <!-- <label for="capacity">Capacity:</label> -->
 
-                            <md-form-field>
-                                <!-- <input mdInput placeholder="Favorite food" value="Sushi"> -->
-                                <input mdInput id="address" placeholder="Business Address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #searchControl formControlName="searchControl" (keyup.enter)="log()">
-                                <md-hint><strong>Your business physical address and city</strong></md-hint>
-                            </md-form-field>
+                        <md-form-field>
+                            <!-- <input mdInput placeholder="Favorite food" value="Sushi"> -->
+                            <input mdInput id="address" placeholder="Business Address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #searchControls formControlName="searchControl">
+                            <md-hint><strong>Your business physical address and city</strong></md-hint>
+                            <md-error *ngIf="searchControl.touched && searchControl.invalid">
+                                <md-error *ngIf="searchControl.errors.required"> Business address is a required field.</md-error>
+                            </md-error>
+                        </md-form-field>
 
-                            <div class="form-group">
-                                <!-- <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl"> -->
-                            </div>
-
+                        <div class="form-group">
+                            <!-- <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl"> -->
                         </div>
 
-
-                        <div class="text-center paddingSide50">
-                            <button class="btn registerBtn mt-3 " style="width:100%;" type="button" (click)="register(true)" [disabled]=" validBusiness()">Register</button>
-                        </div>
-
-                        <div class="text-center mt-5 mb-4">
-                            <p>Already have an account?</p>
-                            <button md-button routerLink="/login">LOGIN</button>
-                        </div>
+                    </div>
 
 
+                    <div class="text-center paddingSide50">
+                        <button class="btn registerBtn mt-3 " style="width:100%;" type="button" (click)="register(true)" [disabled]=" validBusiness()">Register</button>
+                    </div>
+
+                    <div class="text-center mt-5 mb-4">
+                        <p>Already have an account?</p>
+                        <button md-button routerLink="/login">LOGIN</button>
+                    </div>
 
 
-                    </md-tab>
-                </md-tab-group>
-            </form>
-        </div>
+
+
+                </md-tab>
+            </md-tab-group>
+        </form>
     </div>
 </div>

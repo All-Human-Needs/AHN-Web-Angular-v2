@@ -6,7 +6,7 @@ import { NgModule } from "@angular/core";
 
 
 @NgModule({
-  imports: [AppRoutingModule, SideNavModule],
+  imports: [AppRoutingModule],
   exports: [BannerComponent],
   declarations: [BannerComponent]
 })

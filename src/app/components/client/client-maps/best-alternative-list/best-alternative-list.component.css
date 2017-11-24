@@ -9,3 +9,8 @@
 .bottom {
     margin-top: 90%;
 }
+
+.list-group-item:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}

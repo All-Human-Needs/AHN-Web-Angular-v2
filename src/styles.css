@@ -3,7 +3,10 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* @import "./app/materials/material-theme.scss"; */
+
+@import "./app/materials/ahn-theme.css";
 .no-padding {
     padding: 0px !important;
 }
@@ -24,13 +27,14 @@
     padding-top: 25px;
 }
 
-body {
+.back-ground-img {
     background-image: url("./assets/img/capetown.png");
-    background-repeat: no-repeat;
     background-size: 100% 100%;
-
     /* background-image: url("./assets/img/Cape-Town.png"); */
     /* width: 100vw;
     height: 100vh; */
+}
 
+.modal-backdrop {
+    z-index: -1!important;
 }

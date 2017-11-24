@@ -1,11 +1,10 @@
 .modal-btn {
     z-index: 3 !important;
-    
-    height: 58px;	
+    height: 58px;
     width: 58px;
-    border-radius: 5px;	
-    background-color: #14CFBE;	
-    box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
+    border-radius: 5px;
+    background-color: #14CFBE;
+    box-shadow: 0 2px 4px 0 rgba(7, 61, 125, 0.1);
     border-style: none;
 }
 
@@ -63,50 +62,41 @@
     border-style: none;
 }
 
+
 /* ----- CUSTOM STYLES ----- */
 
-.green-demo{
+.green-demo {
     border-radius: 100px;
     background-color: #00B669;
-    
     font-size: 12px;
     color: #FFFFFF;
-
     padding: 9px;
     padding-left: 15px;
     padding-right: 15px;
     margin-top: 30px;
 }
 
-.orange-demo{
+.orange-demo {
     border-radius: 100px;
     background-color: #F9A800;
-    
     font-size: 12px;
     color: #FFFFFF;
-
     padding: 9px;
     padding-left: 15px;
     padding-right: 15px;
     margin-top: 30px;
 }
 
-.red-demo{
+.red-demo {
     border-radius: 100px;
     background-color: #FF0064;
-    
     font-size: 12px;
     color: #FFFFFF;
-
     padding: 9px;
     padding-left: 15px;
     padding-right: 15px;
     margin-top: 30px;
 }
-
-
-
-
 
 ul {
     list-style-type: none;
@@ -115,14 +105,13 @@ ul {
 }
 
 li {
-    margin:5px;
-    padding-left:15px;
+    margin: 5px;
+    padding-left: 15px;
 }
 
 a {
     color: inherit;
     cursor: pointer;
-    
 }
 
 .uber {
@@ -131,28 +120,33 @@ a {
 }
 
 .modal-backdrop {
-    z-index:-1!important;
+    z-index: -1!important;
 }
 
-.sub-heading{
-    margin-top:30px;
+.sub-heading {
+    margin-top: 30px;
 }
 
-.float-right{
+.float-right {
     float: right;
 }
 
-.right-26{
+.right-26 {
     right: 26px !important;
 }
 
+<<<<<<< HEAD
 .margin-top-20{
     margin-top: 20px;
 }
+=======
+>>>>>>> master
 
 /* CUSTOM CHECKBOXES */
 
+
 /* Customize the label (the container) */
+
 .container {
     display: block;
     position: relative;
@@ -164,16 +158,20 @@ a {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-  
-  /* Hide the browser's default checkbox */
-  .container input {
+}
+
+
+/* Hide the browser's default checkbox */
+
+.container input {
     position: absolute;
     opacity: 0;
-  }
-  
-  /* Create a custom checkbox */
-  .checkmark {
+}
+
+
+/* Create a custom checkbox */
+
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -184,33 +182,43 @@ a {
     border-color: grey;
     border-width: 2px;
     border-style: solid;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .container:hover input ~ .checkmark {
+}
+
+
+/* On mouse-over, add a grey background color */
+
+.container:hover input~.checkmark {
     background-color: #ccc;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .container input:checked ~ .checkmark {
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.container input:checked~.checkmark {
     background-color: #14CFBE;
     border-style: hidden;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .container input:checked ~ .checkmark:after {
+}
+
+
+/* Show the checkmark when checked */
+
+.container input:checked~.checkmark:after {
     display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .container .checkmark:after {
+}
+
+
+/* Style the checkmark/indicator */
+
+.container .checkmark:after {
     left: 8px;
     top: 5px;
     width: 7px;
@@ -220,4 +228,4 @@ a {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-  }
+}
