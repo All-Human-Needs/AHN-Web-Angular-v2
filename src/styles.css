@@ -2,10 +2,8 @@
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
 .no-padding {
     padding: 0px !important;
 }
@@ -28,11 +26,11 @@
 
 body {
     background-image: url("./assets/img/capetown.png");
-    /* background-image: url("./assets/img/Cape-Town.png"); */
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    /* width: 100%;
-    height: 100%; */
-    /* As the content increases, the background picture stretches. */
-    
+
+    /* background-image: url("./assets/img/Cape-Town.png"); */
+    /* width: 100vw;
+    height: 100vh; */
+
 }

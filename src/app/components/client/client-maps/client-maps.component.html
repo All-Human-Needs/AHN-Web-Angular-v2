@@ -1,14 +1,23 @@
-<div class="ahn-map-overlay">
+<div class="container-fluid position-fixed z-index-1">
+    <div class="row">
+        <div class="col-10"> 
+            <div class="row">
+                    <button class="ahn-back-button" [routerLink]="['/main/dashboard']">
+                            <i class="fa fa-arrow-left"></i>
+                        </button>
+                        <ahn-search-bar></ahn-search-bar></div>
+            </div>
+           
+        <div class="col-2 mt-4"> 
+            <div class="col-12"><filter class="float-right mt-2 mr-4 ml-4"></filter></div>
+            <div class="col-12"><side-nav class="float-right mt-2 mr-4 ml-4"></side-nav></div></div>
+    </div>
+   
 
-    <button class="ahn-back-button">
-        <i class="fa fa-arrow-left"></i>
-    </button>
 
-    <ahn-search-bar></ahn-search-bar>
-    <best-alternative-list></best-alternative-list>
+    <best-alternative-list class="z-index-3 position-fixed"></best-alternative-list>
 
-    <filter></filter>
-    <side-nav></side-nav>
+
+   
 </div>
-
-<ahn-map></ahn-map>
+<ahn-map class="z-index-2 top-0"></ahn-map>

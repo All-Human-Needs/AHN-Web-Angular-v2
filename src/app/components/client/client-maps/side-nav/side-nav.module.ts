@@ -1,4 +1,4 @@
-import { AppRoutingModule } from './../../app-routing.module';
+import { AppRoutingModule } from './../../../../app-routing.module';
 import { SideNavComponent } from './side-nav.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

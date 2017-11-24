@@ -1,3 +1,3 @@
 <md-progress-spinner *ngIf='auth.AmIBusiness === undefined' mode="indeterminate" class='loader'></md-progress-spinner>
 <app-client-home *ngIf='auth.AmIBusiness === false'></app-client-home>
-<app-business-home *ngIf='auth.AmIBusiness === true'></app-business-home>
+<app-business-stats *ngIf='auth.AmIBusiness === true'></app-business-stats>
