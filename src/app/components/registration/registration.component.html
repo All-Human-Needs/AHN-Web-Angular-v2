@@ -4,7 +4,7 @@
         <!-- <div class="back-ground-img"> -->
         <form [formGroup]="form" class="background mx-auto mt-5">
 
-            <md-tab-group class="">
+            <md-tab-group>
 
                 <md-tab label="Individual">
 
@@ -37,6 +37,7 @@
                                     <md-hint style="color:red;" *ngIf="confirmPwrd.valid && passwordForm.invalid && passwordForm.errors.passwordMatches">
                                         Passwords do not match
                                     </md-hint>
+                                </md-error>
                             </md-form-field>
 
                             <div class="text-center">
@@ -98,11 +99,6 @@
                                 <md-error *ngIf="email.errors.email">
                                     Please enter a valid email address
                                 </md-error>
-
-
-                                <!-- <md-error *ngIf="email.errors.required">
-                                                Email is <strong>required</strong>
-                                            </md-error> -->
                             </md-error>
                         </md-form-field>
 
@@ -148,13 +144,6 @@
                                 <md-error *ngIf="name.errors.minlength">Business name should be a minimum of {{name.errors.minlength.requiredLength}} characters.</md-error>
                             </md-error>
                         </md-form-field>
-                        <!-- <label for="name">Business name:</label>
-              
-                <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
-                    <div *ngIf="name.errors.required">Business name is a required field.</div>
-                    <div *ngIf="name.errors.minlength">Business name should be a minimum of {{name.errors.minlength.requiredLength}} characters.</div>
-                </div> -->
-
 
 
 
@@ -213,4 +202,3 @@
         </form>
     </div>
 </div>
-<!-- </div> -->
