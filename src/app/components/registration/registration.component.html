@@ -1,9 +1,10 @@
 <div class="container-fluid">
+    <div class="logo-padding"><img src="./assets/img/media.png" alt="logo" class="logo-img "><img src="./assets/img/AHN.png" alt="logo" class="ahn-img"></div>
     <div class="row">
         <!-- <div class="back-ground-img"> -->
         <form [formGroup]="form" class="background mx-auto mt-5">
 
-            <md-tab-group class="">
+            <md-tab-group>
 
                 <md-tab label="Individual">
 
@@ -33,8 +34,12 @@
                                     <md-error *ngIf="password.errors.required">
                                         Password is <strong>required</strong>
                                     </md-error>
+                                    <md-hint style="color:red;" *ngIf="confirmPwrd.valid && passwordForm.invalid && passwordForm.errors.passwordMatches">
+                                        Passwords do not match
+                                    </md-hint>
                                 </md-error>
                             </md-form-field>
+
 
                             <md-form-field class="mb-3">
                                 <input type="password" mdInput placeholder="Confirm Password" formControlName="confirmPwrd" [(ngModel)]="confirmPsw" id="confirmPassword">
@@ -49,8 +54,9 @@
                                 </md-hint>
                             </md-form-field>
 
+
                             <div class="text-center">
-                                <button class="btn googleBtn mt-4" (click)="googleLogin()"> <img src="http://pngimg.com/uploads/google/google_PNG19630.png" alt="Google Logo" > Google Sign Up</button>
+                                <button class="btn googleBtn mt-4" (click)="googleLogin()"> <img src="http://pngimg.com/uploads/google/google_PNG19630.png" alt="Google Logo"  class="google-img"> Google Sign Up</button>
                                 <button class="btn registerBtn mt-4" type="button" (click)="register(false)" [disabled]=" validForm()">Register</button>
                             </div>
                             <!-- [disabled]=" validForm()" -->
@@ -58,6 +64,11 @@
                                 <p>Already have an account?</p>
                                 <button md-button routerLink="/login">LOGIN</button>
                             </div>
+
+
+
+
+
 
                         </div>
 
@@ -83,11 +94,6 @@
                                 <md-error *ngIf="email.errors.email">
                                     Please enter a valid email address
                                 </md-error>
-
-
-                                <!-- <md-error *ngIf="email.errors.required">
-                                                Email is <strong>required</strong>
-                                            </md-error> -->
                             </md-error>
                         </md-form-field>
 
@@ -133,13 +139,6 @@
                                 <md-error *ngIf="name.errors.minlength">Business name should be a minimum of {{name.errors.minlength.requiredLength}} characters.</md-error>
                             </md-error>
                         </md-form-field>
-                        <!-- <label for="name">Business name:</label>
-              
-                <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
-                    <div *ngIf="name.errors.required">Business name is a required field.</div>
-                    <div *ngIf="name.errors.minlength">Business name should be a minimum of {{name.errors.minlength.requiredLength}} characters.</div>
-                </div> -->
-
 
 
 
@@ -198,4 +197,3 @@
         </form>
     </div>
 </div>
-<!-- </div> -->
