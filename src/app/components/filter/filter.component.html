@@ -23,19 +23,20 @@
                         <ul>
                             <li>
                                 <label class="container">Hospitals
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <input type="radio" name="Buildings" (click)="search('hospital')">
                                     <span class="checkmark"></span>
                                 </label>
+                                <!-- <input type="radio" name="" id="" (click)="search('hospital')">Hospital -->
                             </li>
                             <li>
                                 <label class="container">Police Department
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <input type="radio" name="Buildings" (click)="search('police department')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="container">Fire Department
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <input type="radio" name="Buildings" (click)="search('fire department')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
@@ -44,38 +45,44 @@
                         <h5 class="sub-heading">Places</h5>
                         <ul>
                             <li>
+                                <label class="container">Bank
+                                            <input type="radio" name="Buildings" (click)="search('bank')">
+                                            <span class="checkmark"></span>
+                                        </label>
+                            </li>
+                            <li>
                                 <label class="container">Home Affairs
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <input type="radio" name="Buildings" (click)="search('home affairs')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="container">Nutrition and Fitness
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <input type="radio" name="Buildings" (click)="search('nutrition and fitness')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="container">Insurance
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <input type="radio" name="Buildings" (click)="search('insurance')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="container">City to City Transport
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <input type="radio" name="Buildings" (click)="search('city to city transport')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="container">Motor Vehicle Service
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <input type="radio" name="Buildings" (click)="search('motor vehicle service')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="container">Retail
-                                    <input type="checkbox" name="Buildings" (change)="search('bank')">
+                                    <input type="radio" name="Buildings" (click)="search('retail')">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
@@ -95,7 +102,11 @@
                     </div>
                     <!-- KEY END-->
 
-
+                    <div>
+                        <ul>
+                            <li *ngFor="let business of businesses|async">{{business.name}}</li>
+                        </ul>
+                    </div>
 
                 </div>
             </div>

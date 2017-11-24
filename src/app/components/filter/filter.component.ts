@@ -13,6 +13,8 @@ import { Component, OnInit } from '@angular/core';
 export class FilterComponent implements OnInit {
   filterargs = new Subject<string>();
   businesses : Observable<Business[]>;
+
+  filteredBusinesses;
   // = {displayFiltered: 'location'};
   // emergencyBuildings = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
   // restaurants = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
