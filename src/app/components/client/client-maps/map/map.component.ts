@@ -18,30 +18,27 @@ import { GoogleMapsAPIWrapper } from '@agm/core';
 export class MapComponent implements OnInit {
   // @Input('userLocation') origin: Location;
   // @Input('destination') destination: number[] = [2];
-  origin= {
-    latitude:0,
-    longitude:0
+  origin = {
+    latitude: 0,
+    longitude: 0
   };
-  destination= {
-    latitude:0,
-    longitude:0
+  destination = {
+    latitude: 0,
+    longitude: 0
   };
-  // origin = { longitude: 18.46171849, latitude: -33.9217137 };  // its a example aleatory position
-  // destination = { longitude: 18.4632473, latitude: -33.9423756 };  // its a example aleatory position
+
   locations: Business[] = []; //= this.businessService.getBusinesses();
   userLocation: location = this.setCurrentPosition();
   userLat: number;
   userLng: number;
   userName: String = "You are here";
   zoom: number;
-  // dest: Business;
   directionsDisplay;
-  // constructor(private BusinessService: BusinessService, private SearchService: SearchService,private gmapsApi: GoogleMapsAPIWrapper) {
+  
 
-  // }
-  constructor(private BusinessService: BusinessService, private SearchService: SearchService,) {
-    
-      }
+  constructor(private BusinessService: BusinessService, private SearchService: SearchService, ) {
+
+  }
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
@@ -63,6 +60,8 @@ export class MapComponent implements OnInit {
       }
     )
     // Populate array of bussinesses to work with -- END
+
+
     // if(this.directionsDisplay === undefined){
     //   this.gmapsApi.getNativeMap().then(map => {               
     //       this.directionsDisplay = new google.maps.DirectionsRenderer({
@@ -73,24 +72,19 @@ export class MapComponent implements OnInit {
     // }
     this.setDestination();
 
-  
+
   }
 
-
-
-  /////////
-  ///////// Look here
-  /////////
-  setDestination(){
+  setDestination() {
     // var dest: number[] = [];
     this.SearchService.destinationBusiness.subscribe(
       response => {
         // dest[0] = response.lat;
         // dest[1] = response.lng;
-        this.destination = new Destination(response.lat,response.lng)
+        this.destination = new Destination(response.lat, response.lng)
         // this.destination.latitude = response.lat;
         // this.destination.longitude = response.lng;
-        console.log("Destination: "+this.destination.latitude+","+this.destination.longitude);
+        console.log("Destination: " + this.destination.latitude + "," + this.destination.longitude);
         // console.log(this.dest);
       }
 
@@ -98,18 +92,7 @@ export class MapComponent implements OnInit {
     // console.log(this.destination);
   }
 
-  // Method for calculating distance -- START
-  // private calculateDistance(origin: location, destination: Business) {
-  //   const start = new google.maps.LatLng(origin.lat, origin.lng);
-  //   const end = new google.maps.LatLng(destination.lat, destination.lng);
 
-  //   const distance = new google.maps.geometry.spherical.compeuteDistanceBetween(start, end);
-
-  //   console.log(distance);
-  // }
-  // Method for calculating distance -- END
-
- 
 
   // Method for setting CURRENT POSITION -- START
   private setCurrentPosition() {
@@ -125,7 +108,7 @@ export class MapComponent implements OnInit {
         this.userLng = newMarker.lng;
         this.origin.latitude = newMarker.lat;
         this.origin.longitude = newMarker.lng;
-        console.log("Origin: "+this.origin.latitude+","+this.origin.longitude)
+        console.log("Origin: " + this.origin.latitude + "," + this.origin.longitude)
       });
     }
     return this.userLocation;
@@ -171,14 +154,41 @@ interface location {
   name: string;
 }
 
-class Destination{
-  latitude:number;
-  longitude:number;
+class Destination {
+  latitude: number;
+  longitude: number;
 
-  constructor( latitude:number,
-    longitude:number){
-      this.latitude = latitude;
-      this.longitude = longitude;
-    }
-  
+  constructor(latitude: number,
+    longitude: number) {
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Method for calculating distance -- START
+  // private calculateDistance(origin: location, destination: Business) {
+  //   const start = new google.maps.LatLng(origin.lat, origin.lng);
+  //   const end = new google.maps.LatLng(destination.lat, destination.lng);
+
+  //   const distance = new google.maps.geometry.spherical.compeuteDistanceBetween(start, end);
+
+  //   console.log(distance);
+  // }
+  // Method for calculating distance -- END

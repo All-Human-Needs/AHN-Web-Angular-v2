@@ -146,6 +146,10 @@ a {
     right: 26px !important;
 }
 
+.margin-top-20{
+    margin-top: 20px;
+}
+
 /* CUSTOM CHECKBOXES */
 
 /* Customize the label (the container) */
