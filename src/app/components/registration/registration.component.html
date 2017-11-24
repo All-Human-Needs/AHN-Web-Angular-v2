@@ -40,17 +40,6 @@
                                 </md-error>
                             </md-form-field>
 
-                            <div class="text-center">
-                                <button class="btn googleBtn mt-4" (click)="googleLogin()"> <img src="http://pngimg.com/uploads/google/google_PNG19630.png" alt="Google Logo"  class="google-img"> Google Sign Up</button>
-                                <button class="btn registerBtn mt-4" type="button" (click)="register(false)" [disabled]=" validForm()">Register</button>
-                            </div>
-                            <!-- [disabled]=" validForm()" -->
-                            <div class="text-center mt-5">
-                                <p>Already have an account?</p>
-                                <button md-button routerLink="/login">LOGIN</button>
-                            </div>
-
-
 
                             <md-form-field class="mb-3">
                                 <input type="password" mdInput placeholder="Confirm Password" formControlName="confirmPwrd" [(ngModel)]="confirmPsw" id="confirmPassword">
@@ -65,8 +54,9 @@
                                 </md-hint>
                             </md-form-field>
 
+
                             <div class="text-center">
-                                <button class="btn googleBtn mt-4" (click)="googleLogin()"> <img src="http://pngimg.com/uploads/google/google_PNG19630.png" alt="Google Logo" > Google Sign Up</button>
+                                <button class="btn googleBtn mt-4" (click)="googleLogin()"> <img src="http://pngimg.com/uploads/google/google_PNG19630.png" alt="Google Logo"  class="google-img"> Google Sign Up</button>
                                 <button class="btn registerBtn mt-4" type="button" (click)="register(false)" [disabled]=" validForm()">Register</button>
                             </div>
                             <!-- [disabled]=" validForm()" -->
@@ -74,6 +64,11 @@
                                 <p>Already have an account?</p>
                                 <button md-button routerLink="/login">LOGIN</button>
                             </div>
+
+
+
+
+
 
                         </div>
 
