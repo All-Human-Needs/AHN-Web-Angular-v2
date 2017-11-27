@@ -19,7 +19,7 @@
         "prefix": "app",
         "styles": [
             "styles.css",
-            "materials/ahn-them.css"
+            "app/materials/ahn-theme.css"
 
         ],
         "scripts": [

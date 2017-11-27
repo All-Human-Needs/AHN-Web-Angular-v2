@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs/Rx';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -11,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  filterargs = new Subject<string>();
+  filterargs = new BehaviorSubject<string>('bank');
   businesses : Observable<Business[]>;
 
   filteredBusinesses;
@@ -22,20 +23,27 @@ export class FilterComponent implements OnInit {
   // shops = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
   // library = [{ title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
 
-  constructor(private businessService: BusinessService ) { }
+  constructor(private businessService: BusinessService ) { 
+
+
+  }
 
   ngOnInit() {
-    
+console.log(this.filterargs)
     this.businesses= this.filterargs
     .delay(300)
-    .distinctUntilChanged()
+    // .distinctUntilChanged()
     .switchMap(term=>term
+      
        ? this.businessService.filterByCategory(term):Observable.of<Business[]>([]))
+       // console.log(term);
    .catch(error=>{
       console.log(error);
       return Observable.of<Business[]>([]);
     });
 
+this.businessService.filteredBusiness=this.businesses;
+    // this.businessService.filteredBusiness=this.businesses;s
 
   }
 

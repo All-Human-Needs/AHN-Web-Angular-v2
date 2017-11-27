@@ -15,6 +15,10 @@ export class BusinessService {
   chartType: string;
   alt: Business[] = [];
 
+  filterKeyword:string="hospital";
+  
+  filteredBusiness:Observable<Business[]>;
+
 
   constructor(private db: AngularFireDatabase) {
 
@@ -65,6 +69,7 @@ export class BusinessService {
   filterByCategory(term: string): Observable<Business[]> {
     const list = this.alt.filter((b: Business) => {
       return b.category.search(RegExp(term, 'i')) > -1;
+      
     });
 
     return Observable.create((observer: Observer<Business[]>) => {

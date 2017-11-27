@@ -30,15 +30,15 @@ export class SearchBarComponent implements OnInit {
     isExpanded: boolean;
     stats;
     num: number[];
-    alternativesList: Alternatives[]=[];
+    alternativesList: Business[]=[];
   
 
-bestAltSelected(){
-  this.SearchService.getBusiness().subscribe((business=>
- this.query=business.name)
-  .bind(this));
+// bestAltSelected(){
+//   this.SearchService.getBusiness().subscribe((business=>
+//  this.query=business.name)
+//   .bind(this));
 
-}
+// }
   // Method for selecting item in search bar -- START
   select(item: Business) {
     this.query = item.name;
@@ -78,6 +78,14 @@ this.hidden=true;
     this.initSuggestions();
 
     this.bestAlternative();
+
+    // console.log(this.businessService.filterKeyword)
+    
+// this.businessService.filteredBusiness.subscribe(b=>
+
+// console.log(b)
+
+// )
     // this.bestAltSelected();
   }
 
@@ -91,13 +99,14 @@ this.hidden=true;
 
     this.businessService.getBusinesses().subscribe(
       (changes => {
+
         this.alternativesList = changes.map((c, i) => {
-          return { id: i, name: c.name,lat:c.lat,lng:c.lng, pax: c.stats[c.stats.length - 1].pax };
+          return c as Business;
         });
 
         this.alternativesList.sort((left, right) => {
-          if (left.pax < right.pax) return -1;
-          if (left.pax > right.pax) return 1;
+          if (left.stats[left.stats.length-1].pax < right.stats[right.stats.length-1].pax) return -1;
+          if (left.stats[left.stats.length-1].pax > right.stats[right.stats.length-1].pax) return 1;
           return 0;
         });
         this.alternativesList.splice(3, this.alternativesList.length);
@@ -112,8 +121,8 @@ this.hidden=true;
   }
 }
 
-interface Alternatives {
-  id: string;
-  name: string;
-  pax: number;
-}
+// interface Alternatives {
+//   id: string;
+//   name: string;
+//   pax: number;
+// }
