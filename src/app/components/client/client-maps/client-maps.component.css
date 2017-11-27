@@ -5,69 +5,72 @@
     width: 100%;
 }
 
-.ahn-back-button{
+.p-background {
+    height: 100.11%;
+    width: 99.93%;
+    opacity: 0.2;
+    background-color: #ECF0F3;
+}
+
+.ahn-back-button {
     background-color: #14CFBE;
-
-    height: 58px;	
-    width: 58px;	
-    border-radius: 5px;	
+    height: 58px;
+    width: 58px;
+    border-radius: 5px;
+    background-color: #14CFBE;
     color: #ffffff;
-    box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
+    box-shadow: 0 2px 4px 0 rgba(7, 61, 125, 0.1);
     border-style: none;
-
-    z-index: 3;
-
+    margin-top: 29px;
+    margin-left: 30px;
+    float: left;
     padding: auto;
-
     margin-left: 30px;
     margin-top: 29px;
 }
 
-.ahn-menu-button{
-    height: 58px;	
+.ahn-menu-button {
+    height: 58px;
     width: 58px;
-    border-radius: 5px;	
-    background-color: #14CFBE;	
-    box-shadow: 0 2px 4px 0 rgba(7,61,125,0.1);
+    border-radius: 5px;
+    background-color: #10CFBD;
+    box-shadow: 0 2px 4px 0 rgba(7, 61, 125, 0.1);
     border-style: none;
     margin-top: 29px;
-
     padding: auto;
-
     z-index: 3;
 }
 
-.z-index-2{
+.z-index-2 {
     z-index: -2;
 }
 
-.z-index-1{
+.z-index-1 {
     z-index: 1;
 }
 
-.position-fixed{
+.position-fixed {
     position: fixed;
 }
 
-.position-absolute{
+.position-absolute {
     position: absolute;
 }
 
-.position-relative{
+.position-relative {
     position: relative;
 }
 
-.top-0{
+.top-0 {
     top: 0;
 }
 
-.base{
+.base {
     height: 901px;
     width: auto;
     background-color: #ffffff
 }
 
-.right-20{
+.right-20 {
     right: 20px;
 }
-

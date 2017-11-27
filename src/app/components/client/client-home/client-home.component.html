@@ -1,7 +1,118 @@
-<ahn-banner></ahn-banner>
-<div class="box">
-    <h4 class="padding-top-25">Where Do You Want To Go Today?</h4>
-    <button class="ahn-btn" [routerLink]="['/main/client-maps']">Emergency Buildings</button>
-    <button class="ahn-btn" [routerLink]="['/main/client-maps']">Restaurants</button>
-    <button class="ahn-btn" [routerLink]="['/main/client-maps']">Government Buildings</button>
+<div class="container-fluid">
+    <div class="row">
+        <ahn-banner></ahn-banner>
+        <div class="base">
+            <div class="heading">Where do you want to go today?</div>
+            <div class="sub-heading">Please select one of the below to get started.</div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 text-center">
+                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img src="" alt="Emergency Buildings"></button>
+                    <div class="category">Emergency Buildings</div>
+                    <div class="places"> e.g Police station, Fire station etc</div>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img src="" alt="Restaurants"></button>
+                    <div class="category">Restaurants</div>
+                    <div class="places">e.g Restaurants near you.</div>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img src="" alt="Government Buildings"></button>
+                    <div class="category">Government Buildings</div>
+                    <div class="places">e.g Parliament, Home Affairs etc.</div>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img src="" alt="Motor Vihicle Service"></button>
+                    <div class="category">Motor Vihicle Service</div>
+                    <div class="places">e.g Places to service your car.</div>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img src="" alt="Nutrition and fitness ceters"></button>
+                    <div class="category">Nutrition and fitness ceters</div>
+                    <div class="places">e.g Gym's, Nutritionists etc.</div>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img src="" alt="Insurance"></button>
+                    <div class="category">Insurance</div>
+                    <div class="places">e.g Insurance Businesses.</div>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img src="" alt="City to City transport"></button>
+                    <div class="category">City to City Transport</div>
+                    <div class="places">e.g Buses, Trains etc</div>
+                </div>
+                <div class="col-md-3 col-sm-6 text-center">
+                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img src="" alt="Retail Businesses"></button>
+                    <div class="category">Retail Businesses</div>
+                    <div class="places">e.g Shops, Malls etc</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+<!-- <div class="box">
+    <h4 class="padding-top-25">Where do you want to go today?</h4><br>
+    <h2 class="start"> Please select one of the below to get started</h2>
+    <div class="">
+        <button class="btn" [routerLink]="['/client-maps']">Emergency Buildings</button>
+        e.g Police station, Fire station etc
+    </div> -->
+
+<!-- 
+    <script data-reactid=".a.3.$263541545.3"></script>
+    <img alt="Client Dashboard" src="https://s3.invisionapp-cdn.com/storage.invisionapp.com/screens/files/263541545.png?x-amz-meta-iv=6&amp;response-cache-control=max-age%3D2419200&amp;x-amz-meta-ck=cad72f792c232c248bc921b7ad7ee496&amp;AWSAccessKeyId=AKIAJFUMDU3L6GTLUDYA&amp;Expires=1514764800&amp;Signature=Psy56pqlFijgupBXrdPoi8NV7dE%3D"
+        height="900" width="1440" data-reactid=".a.3.$263541545.4">
+</div> 
+    <div class="my-buttons">
+       
+        <button class="ahn-btn" [routerLink]="['/client-maps']">Restaurants<br>e.g Restuarants near you.</button>
+        <button class="ahn-btn" [routerLink]="['/client-maps']"><Government Buildings<br>e.g Parliament, Home affairs etc</button>
+        <button class="ahn-btn" [routerLink]="['/client-maps']"><Motor Vihicle Service<br>e.g Places to service your car etc</button>
+    </div>
+    <div class="ahn-buttons">
+        <button class="ahn-btn" [routerLink]="['/client-maps']"><Nutrition & Fitness Ceters<br>e.g Gym's, nutritionists etc</button>
+        <button class="ahn-btn" [routerLink]="['/client-maps']"><Insurance<br>e.g Insurance businesses.</button>
+        <button class="ahn-btn" [routerLink]="['/client-maps']"><City to City Transport<br>e.g Buses, Trains etc</button>
+        <button class="ahn-btn" [routerLink]="['/client-maps']"><Retail Businesses<br>Shops, malls etc</button>
+    </div>-->
+
+<!-- <md-button class="md-fab" aria-label="indicators">
+        <md-icon md-svg-src="documents/img/icons/medical.svg"></md-icon>
+        <md-icon md-svg-src="documents/img/icons/grapgh.svg"></md-icon>
+        <md-icon md-svg-src="documents/img/icons/bank.svg"></md-icon>
+        <md-icon md-svg-src="documents/img/icons/notepad.svg"></md-icon>
+        <br>
+        <md-icon md-svg-src="documents/img/icons/people.svg"></md-icon>
+        <md-icon md-svg-src="documents/img/icons/umbrella.svg"></md-icon>
+        <md-icon md-svg-src="documents/img/icons/transpotation.svg"></md-icon>
+        <md-icon md-svg-src="documents/img/icons/commerce.svg"></md-icon>
+    </md-button>
+
+    <div class="icon-labels">
+        <md-form-field>
+            <mdInput-type="text">Emergency Buildings<br>e.g Police station, Fire station etc</mdInput-type>
+                <mdInput-type="text">Restaurants<br>e.g Restuarants near you.</mdInput-type>
+                    <mdInput-type="text">Government Buildings<br>e.g Parliament, Home affairs etc</mdInput-type>
+                        <mdInput-type="text">Motor Vihicle Service<br>e.g Places to service your car etc</md-Input-type>
+                            <mdInput-type="text">Nutrition & Fitness Ceters<br>e.g Gym's, nutritionists etc</mdInput-type>
+                                <mdInput-type="text">Insurance<br>e.g Insurance businesses.</mdInput-type>
+                                    <mdInput-type="text">City to City Transport<br>e.g Buses, Trains etc</mdInput-type>
+                                        <mdInput-type="text">Retail Businesses<br>Shops, malls etc</mdInput-type>
+        </md-form-field>
+    </div>
+
+    <div class="icon-examples">
+        <md-form-field>
+            <mdInput-type="text">e.g Police station, Fire station etc</mdInput-type>
+                <mdInput-type="text">e.g Restuarants near you.</mdInput-type>
+                    <mdInput-type="text">e.g Parliament, Home affairs etc</mdInput-type>
+                        <mdInput-type="text">e.g Places to service your car etc</mdInput-type>
+                            <mdInput-type="text">e.g Gym's, nutritionists etc</mdInput-type>
+                                <mdInput-type="text">e.g Insurance businesses.</mdInput-type>
+                                    <mdInput-type="text">e.g Buses, Trains etc</mdInput-type>
+                                        <mdInput-type="text">Shops, malls etc</mdInput-type>
+        </md-form-field>
+    </div> -->
+<!-- </div> -->
