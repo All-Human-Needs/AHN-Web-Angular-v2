@@ -18,7 +18,9 @@
         "testTsconfig": "tsconfig.spec.json",
         "prefix": "app",
         "styles": [
-            "styles.css"
+            "styles.css",
+            "app/materials/ahn-theme.css"
+
         ],
         "scripts": [
 

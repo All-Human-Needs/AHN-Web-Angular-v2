@@ -1,23 +1,24 @@
+import { MapDirectionsDirective } from '../map-directions.directive';
 import { SearchService } from './../../../../services/search.service';
 import { Location } from 'tslint/lib/rules/strictBooleanExpressionsRule';
-import { google } from '@agm/core/services/google-maps-types';
 import { Business } from './../../../../models/business/business.class';
 import { BusinessService } from './../../../../services/business.service';
 
-import { Component, OnInit, Input } from '@angular/core';
-import { GoogleMapsAPIWrapper } from '@agm/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
 
+declare var google: any;
 
 @Component({
   selector: 'ahn-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  // providers:[GoogleMapsAPIWrapper]
+  providers:[GoogleMapsAPIWrapper]
 })
 
 export class MapComponent implements OnInit {
-  // @Input('userLocation') origin: Location;
-  // @Input('destination') destination: number[] = [2];
+  @ViewChild(MapDirectionsDirective)vc:MapDirectionsDirective;
+ 
   origin= {
     latitude:0,
     longitude:0
@@ -26,22 +27,16 @@ export class MapComponent implements OnInit {
     latitude:0,
     longitude:0
   };
-  // origin = { longitude: 18.46171849, latitude: -33.9217137 };  // its a example aleatory position
-  // destination = { longitude: 18.4632473, latitude: -33.9423756 };  // its a example aleatory position
   locations: Business[] = []; //= this.businessService.getBusinesses();
   userLocation: location = this.setCurrentPosition();
   userLat: number;
   userLng: number;
   userName: String = "You are here";
   zoom: number;
-  // dest: Business;
   directionsDisplay;
-  // constructor(private BusinessService: BusinessService, private SearchService: SearchService,private gmapsApi: GoogleMapsAPIWrapper) {
+  constructor(private BusinessService: BusinessService, private SearchService: SearchService,private gmapsApi: GoogleMapsAPIWrapper,private mapsAPILoader:MapsAPILoader) {
 
-  // }
-  constructor(private BusinessService: BusinessService, private SearchService: SearchService,) {
-    
-      }
+  }
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
@@ -63,39 +58,31 @@ export class MapComponent implements OnInit {
       }
     )
     // Populate array of bussinesses to work with -- END
-    // if(this.directionsDisplay === undefined){
-    //   this.gmapsApi.getNativeMap().then(map => {               
-    //       this.directionsDisplay = new google.maps.DirectionsRenderer({
-    //           draggable: false,
-    //           map: map,
-    //       });
-    //   });
-    // }
+  
+    
     this.setDestination();
-
+   
   
   }
 
-
-
-  /////////
-  ///////// Look here
-  /////////
   setDestination(){
-    // var dest: number[] = [];
+   
     this.SearchService.destinationBusiness.subscribe(
       response => {
-        // dest[0] = response.lat;
-        // dest[1] = response.lng;
         this.destination = new Destination(response.lat,response.lng)
-        // this.destination.latitude = response.lat;
-        // this.destination.longitude = response.lng;
-        console.log("Destination: "+this.destination.latitude+","+this.destination.longitude);
-        // console.log(this.dest);
+       
+        this.mapsAPILoader.load().then((map) => { 
+         
+          this.directionsDisplay = new google.maps.DirectionsRenderer;
+         
+        }
+      ); 
+      
+       
       }
 
     )
-    // console.log(this.destination);
+   
   }
 
   // Method for calculating distance -- START
@@ -152,13 +139,13 @@ export class MapComponent implements OnInit {
     let imageLocation: String = "";
 
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.8) {
-      imageLocation = "assets/img/red.jpg";
+      imageLocation = "assets/img/colour-markers/red.jpg";
     }
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.5 && ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.8)) {
-      imageLocation = "assets/img/orange.jpg";
+      imageLocation = "assets/img/colour-markers/orange.jpg";
     }
     if ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.5) {
-      imageLocation = "assets/img/green.jpg";
+      imageLocation = "assets/img/colour-markers/green.jpg";
     }
     return imageLocation;
   }

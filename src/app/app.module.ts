@@ -16,7 +16,7 @@ import { BusinessService } from './services/business.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { MaterialsModule } from './materials/materials.module';
 // custom modules
 
 import { AngularFireModule } from 'angularfire2';
@@ -26,7 +26,6 @@ import { BannerModule } from './components/banner/banner.module';
 import { BusinessModule } from './components/business/business.module';
 import { ClientModule } from './components/client/client.module';
 
-import { MaterialsModule } from './materials/materials.module';
 // components
 import { AppComponent } from './app.component';
 import { InputSystemComponent } from './components/input-system/input-system.component';
@@ -35,7 +34,6 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { SearchService } from './services/search.service';
 import { MainComponent } from './components/main/main.component';
-
 
 
 export const firebaseConfig = {
@@ -83,7 +81,7 @@ export const firebaseConfig = {
   ],
   exports: [],
 
-  providers: [BusinessService,AuthenticationService,UserService,SearchService, AuthGuard],
+  providers: [BusinessService,AuthenticationService,UserService,SearchService, AuthGuard,],
 
   bootstrap: [AppComponent]
 

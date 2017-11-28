@@ -42,6 +42,6 @@ import { MapDirectionsDirective } from './client-maps/map-directions.directive';
     ClientHomeComponent,
     ClientMapsComponent,
 
-  ]
+  ],
 })
 export class ClientModule { }

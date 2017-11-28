@@ -13,35 +13,49 @@ import { Subject } from 'rxjs/Subject';
 })
 
 export class SearchBarComponent implements OnInit {
-  // @Output() clicked = new EventEmitter;
+  firstResult: Business;
+
+  // altBusiness;
+
+  public hidden:boolean=false;
 
   private searchTerms = new Subject<string>();
+
   businesses: Observable<Business[]>;
 
   query = ''
 
-   ////////////////
-   //////////////// as well as here
-   ////////////////
 
+  
+    isExpanded: boolean;
+    stats;
+    num: number[];
+    alternativesList: Alternatives[]=[];
+  
+
+bestAltSelected(){
+  this.SearchService.getBusiness().subscribe((business=>
+ this.query=business.name)
+  .bind(this));
+
+}
   // Method for selecting item in search bar -- START
   select(item: Business) {
     this.query = item.name;
+  
     // console.log(this.query)
     this.initSuggestions();
+ 
+this.hidden=true;
 
     this.SearchService.destinationBusiness.next(item);
+    
     // this.clicked.emit(item);
   }
   // Method for selecting item in search bar -- END
 
   constructor(private businessService: BusinessService, private SearchService: SearchService) {
-    // .businesses.forEach(element=> {
-    // for(var i = 0; i<element.length;i++){
-    //  this.businesses=element; 
-
-    //   }
-    //  });
+    
   }
 
   // initializes search list -- START
@@ -55,14 +69,51 @@ export class SearchBarComponent implements OnInit {
         console.log(error);
         return Observable.of<Business[]>([]);
       });
+
+      this.businesses.subscribe( (list=> this.firstResult = list[0]).bind(this));
   }
   // initializes search list -- END
 
   ngOnInit(): void {
     this.initSuggestions();
+
+    this.bestAlternative();
+    // this.bestAltSelected();
   }
 
   search(term: string): void {
     this.searchTerms.next(term);
+
   }
+
+  bestAlternative() {
+    this.alternativesList = [];
+
+    this.businessService.getBusinesses().subscribe(
+      (changes => {
+        this.alternativesList = changes.map((c, i) => {
+          return { id: i, name: c.name,lat:c.lat,lng:c.lng, pax: c.stats[c.stats.length - 1].pax };
+        });
+
+        this.alternativesList.sort((left, right) => {
+          if (left.pax < right.pax) return -1;
+          if (left.pax > right.pax) return 1;
+          return 0;
+        });
+        this.alternativesList.splice(3, this.alternativesList.length);
+        // console.log(this.alternativesList);
+      }).bind(this)
+    );
+  }
+
+
+  toggle() {
+    this.isExpanded = !this.isExpanded;
+  }
+}
+
+interface Alternatives {
+  id: string;
+  name: string;
+  pax: number;
 }
