@@ -28,13 +28,15 @@ export class MapComponent implements OnInit {
   };
 
   locations: Business[] = []; //= this.businessService.getBusinesses();
+  filteredLocations: Business[] = [];
+
   userLocation: location = this.setCurrentPosition();
   userLat: number;
   userLng: number;
   userName: String = "You are here";
   zoom: number;
   directionsDisplay;
-  
+
 
   constructor(private BusinessService: BusinessService, private SearchService: SearchService, ) {
 
@@ -42,6 +44,24 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
+    this.initMarkers();
+    // Populate array of bussinesses to work with -- END
+
+
+    // if(this.directionsDisplay === undefined){
+    //   this.gmapsApi.getNativeMap().then(map => {               
+    //       this.directionsDisplay = new google.maps.DirectionsRenderer({
+    //           draggable: false,
+    //           map: map,
+    //       });
+    //   });
+    // }
+    this.setDestination();
+
+
+  }
+
+  initMarkers(){
     this.BusinessService.getBusinesses().subscribe(
       response => {
         for (var i = 0; i < response.length; i++) {
@@ -59,40 +79,33 @@ export class MapComponent implements OnInit {
         }
       }
     )
-    // Populate array of bussinesses to work with -- END
-
-
-    // if(this.directionsDisplay === undefined){
-    //   this.gmapsApi.getNativeMap().then(map => {               
-    //       this.directionsDisplay = new google.maps.DirectionsRenderer({
-    //           draggable: false,
-    //           map: map,
-    //       });
-    //   });
-    // }
-    this.setDestination();
-
-
   }
+
+  // Update locations list according to filters -- START
+  updateLocationsForFilters(input: String) {
+    // I'm just gonna do this code here (just the logic basically so i can fill in the correct variable names and everything in later when malcolm is done working on the filter component)
+    
+  //   for(var i = 0;i<this.locations.length;i++){
+  //     if(this.locations[i].category === input){
+  //       this.filteredLocations.push(this.locations[i]);
+  //     }
+  //   }
+
+  //   this.locations = this.filteredLocations;
+   }
+  // Update locations list according to filters -- END
+
+
+
 
   setDestination() {
-    // var dest: number[] = [];
     this.SearchService.destinationBusiness.subscribe(
       response => {
-        // dest[0] = response.lat;
-        // dest[1] = response.lng;
         this.destination = new Destination(response.lat, response.lng)
-        // this.destination.latitude = response.lat;
-        // this.destination.longitude = response.lng;
         console.log("Destination: " + this.destination.latitude + "," + this.destination.longitude);
-        // console.log(this.dest);
       }
-
     )
-    // console.log(this.destination);
   }
-
-
 
   // Method for setting CURRENT POSITION -- START
   private setCurrentPosition() {
@@ -135,13 +148,13 @@ export class MapComponent implements OnInit {
     let imageLocation: String = "";
 
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.8) {
-      imageLocation = "assets/img/red.jpg";
+      imageLocation = "assets/img/red.png";
     }
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.5 && ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.8)) {
-      imageLocation = "assets/img/orange.jpg";
+      imageLocation = "assets/img/yellow.png";
     }
     if ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.5) {
-      imageLocation = "assets/img/green.jpg";
+      imageLocation = "assets/img/green.png";
     }
     return imageLocation;
   }
