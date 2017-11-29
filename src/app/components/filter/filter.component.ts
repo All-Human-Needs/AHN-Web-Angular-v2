@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Business } from './../../models/business/business.class';
 import { BusinessService } from './../../services/business.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'filter',
@@ -12,8 +12,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  filterargs = new BehaviorSubject<string>('bank');
+  filterargs = new Subject<string>();
   businesses : Observable<Business[]>;
+
+  @Input()
+  stuff: Business[];
+
+  @Output()
+  stuffChange: EventEmitter<Business[]> = new  EventEmitter<Business[]>();
 
   filteredBusinesses;
   // = {displayFiltered: 'location'};
@@ -29,20 +35,24 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-console.log(this.filterargs)
     this.businesses= this.filterargs
     .delay(300)
     // .distinctUntilChanged()
     .switchMap(term=>term
       
        ? this.businessService.filterByCategory(term):Observable.of<Business[]>([]))
-       // console.log(term);
+      //  console.log(term);
    .catch(error=>{
       console.log(error);
       return Observable.of<Business[]>([]);
     });
 
 this.businessService.filteredBusiness=this.businesses;
+this.businesses.subscribe(x => {
+  this.stuff = x;
+  this.stuffChange.emit(x);
+  console.log("happens");
+});
     // this.businessService.filteredBusiness=this.businesses;s
 
   }

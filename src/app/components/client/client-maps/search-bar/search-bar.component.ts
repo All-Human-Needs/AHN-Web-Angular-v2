@@ -31,7 +31,8 @@ export class SearchBarComponent implements OnInit {
     stats;
     num: number[];
     alternativesList: Business[]=[];
-  
+  @Input()
+  stuff:Business[];
 
 // bestAltSelected(){
 //   this.SearchService.getBusiness().subscribe((business=>
@@ -76,7 +77,6 @@ this.hidden=true;
 
   ngOnInit(): void {
     this.initSuggestions();
-
     this.bestAlternative();
 
     // console.log(this.businessService.filterKeyword)
