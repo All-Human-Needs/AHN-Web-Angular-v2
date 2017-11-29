@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectModule, MdProgressSpinnerModule} from '@angular/material';
+import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectModule, MdProgressSpinnerModule,MdIconModule} from '@angular/material';
 
 
 @NgModule({
@@ -9,7 +9,7 @@ import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectMod
     MdInputModule,
     MdButtonModule,
     MdTabsModule,
-
+    MdIconModule,
     MdSelectModule,
     MdProgressSpinnerModule
 
@@ -20,8 +20,8 @@ import {MdFormFieldModule, MdInputModule,MdButtonModule,MdTabsModule,MdSelectMod
     MdButtonModule,
     MdTabsModule ,
     MdSelectModule,
-    MdProgressSpinnerModule
-
+    MdProgressSpinnerModule,
+    MdIconModule
   ],
   declarations: []
 })
