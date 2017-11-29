@@ -140,12 +140,15 @@ export class MapComponent implements OnInit {
 
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.8) {
       imageLocation = "assets/img/colour-markers/red.jpg";
-    }
+      // console.log('red')
+    }else
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.5 && ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.8)) {
       imageLocation = "assets/img/colour-markers/orange.jpg";
-    }
+      // console.log('orange')
+    }else
     if ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.5) {
       imageLocation = "assets/img/colour-markers/green.jpg";
+      // console.log('green')
     }
     return imageLocation;
   }
