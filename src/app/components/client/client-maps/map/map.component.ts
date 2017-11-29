@@ -13,16 +13,16 @@ declare var google: any;
   selector: 'ahn-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  providers:[GoogleMapsAPIWrapper]
+  providers: [GoogleMapsAPIWrapper]
 })
 
 export class MapComponent implements OnInit {
 
-  @ViewChild(MapDirectionsDirective)vc:MapDirectionsDirective;
- 
-  origin= {
-    latitude:0,
-    longitude:0
+  @ViewChild(MapDirectionsDirective) vc: MapDirectionsDirective;
+
+  origin = {
+    latitude: 0,
+    longitude: 0
 
   };
   destination = {
@@ -39,7 +39,7 @@ export class MapComponent implements OnInit {
   zoom: number;
   directionsDisplay;
 
-  constructor(private BusinessService: BusinessService, private SearchService: SearchService,private gmapsApi: GoogleMapsAPIWrapper,private mapsAPILoader:MapsAPILoader) {
+  constructor(private BusinessService: BusinessService, private SearchService: SearchService, private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader: MapsAPILoader) {
 
 
   }
@@ -63,7 +63,7 @@ export class MapComponent implements OnInit {
 
   }
 
-  initMarkers(){
+  initMarkers() {
     this.BusinessService.getBusinesses().subscribe(
       response => {
         for (var i = 0; i < response.length; i++) {
@@ -81,12 +81,19 @@ export class MapComponent implements OnInit {
         }
       }
     )
+    this.setDestination();
+
+
+  }
+
+
+  // Populate array of bussinesses to work with -- END
 
 
   // Update locations list according to filters -- START
- // updateLocationsForFilters(input: String) {
-    // I'm just gonna do this code here (just the logic basically so i can fill in the correct variable names and everything in later when malcolm is done working on the filter component)
-    
+  // updateLocationsForFilters(input: String) {
+  // I'm just gonna do this code here (just the logic basically so i can fill in the correct variable names and everything in later when malcolm is done working on the filter component)
+
   //   for(var i = 0;i<this.locations.length;i++){
   //     if(this.locations[i].category === input){
   //       this.filteredLocations.push(this.locations[i]);
@@ -97,30 +104,16 @@ export class MapComponent implements OnInit {
   // }
   // Update locations list according to filters -- END
 
+  setDestination() {
 
-    // Populate array of bussinesses to work with -- END
-  
-    
-    this.setDestination();
-   
-  
-  }
-
-  setDestination(){
-   
     this.SearchService.destinationBusiness.subscribe(
       response => {
-        this.destination = new Destination(response.lat,response.lng)
-       
-        this.mapsAPILoader.load().then((map) => { 
-         
-          this.directionsDisplay = new google.maps.DirectionsRenderer;
-         
-        }
-      ); 
-      
-       
+        this.destination = new Destination(response.lat, response.lng)
 
+        this.mapsAPILoader.load().then((map) => {
+          this.directionsDisplay = new google.maps.DirectionsRenderer;
+        }
+        );
       }
     )
   }
@@ -167,13 +160,13 @@ export class MapComponent implements OnInit {
 
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.8) {
 
-      imageLocation = "assets/img/red.png";
+      imageLocation = "assets/img/colour-markers/red.png";
     }
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.5 && ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.8)) {
-      imageLocation = "assets/img/yellow.png";
+      imageLocation = "assets/img/colour-markers/yellow.png";
     }
     if ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.5) {
-      imageLocation = "assets/img/green.png";
+      imageLocation = "assets/img/colour-markers/green.png";
     }
     return imageLocation;
   }
@@ -197,21 +190,6 @@ class Destination {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   // Method for calculating distance -- START
