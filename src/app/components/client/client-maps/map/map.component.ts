@@ -17,29 +17,53 @@ declare var google: any;
 })
 
 export class MapComponent implements OnInit {
+
   @ViewChild(MapDirectionsDirective)vc:MapDirectionsDirective;
  
   origin= {
     latitude:0,
     longitude:0
+
   };
-  destination= {
-    latitude:0,
-    longitude:0
+  destination = {
+    latitude: 0,
+    longitude: 0
   };
   locations: Business[] = []; //= this.businessService.getBusinesses();
+  filteredLocations: Business[] = [];
+
   userLocation: location = this.setCurrentPosition();
   userLat: number;
   userLng: number;
   userName: String = "You are here";
   zoom: number;
   directionsDisplay;
+
   constructor(private BusinessService: BusinessService, private SearchService: SearchService,private gmapsApi: GoogleMapsAPIWrapper,private mapsAPILoader:MapsAPILoader) {
+
 
   }
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
+    this.initMarkers();
+    // Populate array of bussinesses to work with -- END
+
+
+    // if(this.directionsDisplay === undefined){
+    //   this.gmapsApi.getNativeMap().then(map => {               
+    //       this.directionsDisplay = new google.maps.DirectionsRenderer({
+    //           draggable: false,
+    //           map: map,
+    //       });
+    //   });
+    // }
+    this.setDestination();
+
+
+  }
+
+  initMarkers(){
     this.BusinessService.getBusinesses().subscribe(
       response => {
         for (var i = 0; i < response.length; i++) {
@@ -57,6 +81,23 @@ export class MapComponent implements OnInit {
         }
       }
     )
+
+
+  // Update locations list according to filters -- START
+ // updateLocationsForFilters(input: String) {
+    // I'm just gonna do this code here (just the logic basically so i can fill in the correct variable names and everything in later when malcolm is done working on the filter component)
+    
+  //   for(var i = 0;i<this.locations.length;i++){
+  //     if(this.locations[i].category === input){
+  //       this.filteredLocations.push(this.locations[i]);
+  //     }
+  //   }
+
+  //   this.locations = this.filteredLocations;
+  // }
+  // Update locations list according to filters -- END
+
+
     // Populate array of bussinesses to work with -- END
   
     
@@ -79,24 +120,10 @@ export class MapComponent implements OnInit {
       ); 
       
        
+
       }
-
     )
-   
   }
-
-  // Method for calculating distance -- START
-  // private calculateDistance(origin: location, destination: Business) {
-  //   const start = new google.maps.LatLng(origin.lat, origin.lng);
-  //   const end = new google.maps.LatLng(destination.lat, destination.lng);
-
-  //   const distance = new google.maps.geometry.spherical.compeuteDistanceBetween(start, end);
-
-  //   console.log(distance);
-  // }
-  // Method for calculating distance -- END
-
- 
 
   // Method for setting CURRENT POSITION -- START
   private setCurrentPosition() {
@@ -112,7 +139,7 @@ export class MapComponent implements OnInit {
         this.userLng = newMarker.lng;
         this.origin.latitude = newMarker.lat;
         this.origin.longitude = newMarker.lng;
-        console.log("Origin: "+this.origin.latitude+","+this.origin.longitude)
+        console.log("Origin: " + this.origin.latitude + "," + this.origin.longitude)
       });
     }
     return this.userLocation;
@@ -139,13 +166,14 @@ export class MapComponent implements OnInit {
     let imageLocation: String = "";
 
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.8) {
-      imageLocation = "assets/img/colour-markers/red.jpg";
+
+      imageLocation = "assets/img/red.png";
     }
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.5 && ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.8)) {
-      imageLocation = "assets/img/colour-markers/orange.jpg";
+      imageLocation = "assets/img/yellow.png";
     }
     if ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.5) {
-      imageLocation = "assets/img/colour-markers/green.jpg";
+      imageLocation = "assets/img/green.png";
     }
     return imageLocation;
   }
@@ -158,14 +186,41 @@ interface location {
   name: string;
 }
 
-class Destination{
-  latitude:number;
-  longitude:number;
+class Destination {
+  latitude: number;
+  longitude: number;
 
-  constructor( latitude:number,
-    longitude:number){
-      this.latitude = latitude;
-      this.longitude = longitude;
-    }
-  
+  constructor(latitude: number,
+    longitude: number) {
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Method for calculating distance -- START
+  // private calculateDistance(origin: location, destination: Business) {
+  //   const start = new google.maps.LatLng(origin.lat, origin.lng);
+  //   const end = new google.maps.LatLng(destination.lat, destination.lng);
+
+  //   const distance = new google.maps.geometry.spherical.compeuteDistanceBetween(start, end);
+
+  //   console.log(distance);
+  // }
+  // Method for calculating distance -- END
