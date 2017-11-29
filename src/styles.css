@@ -29,7 +29,8 @@
 
 .back-ground-img {
     background-image: url("./assets/img/capetown.png");
-    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-size: cover;
     /* background-image: url("./assets/img/Cape-Town.png"); */
     /* width: 100vw;
     height: 100vh; */
