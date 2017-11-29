@@ -94,7 +94,6 @@ export class BusinessService {
     });
   }
 
-
   setChartType(type: string) {
     this.chartType = type;
   }
@@ -102,5 +101,4 @@ export class BusinessService {
   getChartType() {
     return this.chartType;
   }
-
 }

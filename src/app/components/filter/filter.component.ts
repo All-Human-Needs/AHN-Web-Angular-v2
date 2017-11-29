@@ -35,8 +35,6 @@ export class FilterComponent implements OnInit {
       console.log(error);
       return Observable.of<Business[]>([]);
     });
-
-
   }
 
   search(filter:string): void {
