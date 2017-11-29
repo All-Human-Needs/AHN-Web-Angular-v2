@@ -13,7 +13,6 @@ import { SearchBarComponent } from './client-maps/search-bar/search-bar.componen
 import { MapComponent } from './client-maps/map/map.component';
 import { ClientMapsComponent } from './client-maps/client-maps.component';
 import { ClientHomeComponent } from './client-home/client-home.component';
-
 import { BestAlternativeListComponent } from './client-maps/best-alternative-list/best-alternative-list.component';
 import { MapDirectionsDirective } from './client-maps/map-directions.directive';
 

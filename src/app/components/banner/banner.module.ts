@@ -1,4 +1,3 @@
-
 import { SideNavModule } from "./../client/client-maps/side-nav/side-nav.module";
 import { AppRoutingModule } from "../../app-routing.module";
 import { BannerComponent } from "./banner.component";

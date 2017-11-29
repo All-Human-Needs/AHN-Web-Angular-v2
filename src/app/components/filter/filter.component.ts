@@ -30,8 +30,8 @@ export class FilterComponent implements OnInit {
     .delay(300)
     .distinctUntilChanged()
     .switchMap(term=>term
-       ? this.businessService.filterByCategory(term):Observable.of<Business[]>([]))
-   .catch(error=>{
+    ? this.businessService.filterByCategory(term):Observable.of<Business[]>([]))
+    .catch(error=>{
       console.log(error);
       return Observable.of<Business[]>([]);
     });

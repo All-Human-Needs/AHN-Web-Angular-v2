@@ -1,32 +1,34 @@
+import { MapDirectionsDirective } from '../map-directions.directive';
 import { SearchService } from './../../../../services/search.service';
 import { Location } from 'tslint/lib/rules/strictBooleanExpressionsRule';
-import { google } from '@agm/core/services/google-maps-types';
 import { Business } from './../../../../models/business/business.class';
 import { BusinessService } from './../../../../services/business.service';
 
-import { Component, OnInit, Input } from '@angular/core';
-import { GoogleMapsAPIWrapper } from '@agm/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
 
+declare var google: any;
 
 @Component({
   selector: 'ahn-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  // providers:[GoogleMapsAPIWrapper]
+  providers:[GoogleMapsAPIWrapper]
 })
 
 export class MapComponent implements OnInit {
-  // @Input('userLocation') origin: Location;
-  // @Input('destination') destination: number[] = [2];
-  origin = {
-    latitude: 0,
-    longitude: 0
+
+  @ViewChild(MapDirectionsDirective)vc:MapDirectionsDirective;
+ 
+  origin= {
+    latitude:0,
+    longitude:0
+
   };
   destination = {
     latitude: 0,
     longitude: 0
   };
-
   locations: Business[] = []; //= this.businessService.getBusinesses();
   filteredLocations: Business[] = [];
 
@@ -37,8 +39,8 @@ export class MapComponent implements OnInit {
   zoom: number;
   directionsDisplay;
 
+  constructor(private BusinessService: BusinessService, private SearchService: SearchService,private gmapsApi: GoogleMapsAPIWrapper,private mapsAPILoader:MapsAPILoader) {
 
-  constructor(private BusinessService: BusinessService, private SearchService: SearchService, ) {
 
   }
 
@@ -79,10 +81,10 @@ export class MapComponent implements OnInit {
         }
       }
     )
-  }
+
 
   // Update locations list according to filters -- START
-  updateLocationsForFilters(input: String) {
+ // updateLocationsForFilters(input: String) {
     // I'm just gonna do this code here (just the logic basically so i can fill in the correct variable names and everything in later when malcolm is done working on the filter component)
     
   //   for(var i = 0;i<this.locations.length;i++){
@@ -92,17 +94,33 @@ export class MapComponent implements OnInit {
   //   }
 
   //   this.locations = this.filteredLocations;
-   }
+  // }
   // Update locations list according to filters -- END
 
 
+    // Populate array of bussinesses to work with -- END
+  
+    
+    this.setDestination();
+   
+  
+  }
 
-
-  setDestination() {
+  setDestination(){
+   
     this.SearchService.destinationBusiness.subscribe(
       response => {
-        this.destination = new Destination(response.lat, response.lng)
-        console.log("Destination: " + this.destination.latitude + "," + this.destination.longitude);
+        this.destination = new Destination(response.lat,response.lng)
+       
+        this.mapsAPILoader.load().then((map) => { 
+         
+          this.directionsDisplay = new google.maps.DirectionsRenderer;
+         
+        }
+      ); 
+      
+       
+
       }
     )
   }
@@ -148,6 +166,7 @@ export class MapComponent implements OnInit {
     let imageLocation: String = "";
 
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.8) {
+
       imageLocation = "assets/img/red.png";
     }
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.5 && ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.8)) {
