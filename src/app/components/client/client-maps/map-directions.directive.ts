@@ -13,10 +13,7 @@ export class MapDirectionsDirective implements OnInit,OnChanges {
   @Input() directionsDisplay:any;
   constructor(private gmapsApi: GoogleMapsAPIWrapper) {}
 
-  ngOnInit() {
-    // this.gmapsApi.getNativeMap().
-        
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.gmapsApi.getNativeMap().then(map => {
@@ -56,7 +53,6 @@ export class MapDirectionsDirective implements OnInit,OnChanges {
                       },
                       suppressMarkers : true
               });
-            console.log('directions should display')
           }
          
         } else {

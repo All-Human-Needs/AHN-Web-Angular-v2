@@ -39,7 +39,7 @@ export class FilterComponent implements OnInit {
     .delay(300)
     // .distinctUntilChanged()
     .switchMap(term=>term
-      
+
        ? this.businessService.filterByCategory(term):Observable.of<Business[]>([]))
       //  console.log(term);
    .catch(error=>{
@@ -54,6 +54,7 @@ this.businesses.subscribe(x => {
   console.log("happens");
 });
     // this.businessService.filteredBusiness=this.businesses;s
+
 
   }
 
