@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Business } from '../../../models/business/business.class';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { BusinessService } from '../../../services/business.service';
 
 @Component({
@@ -7,10 +8,12 @@ import { BusinessService } from '../../../services/business.service';
   styleUrls: ['./client-maps.component.css']
 })
 export class ClientMapsComponent implements OnInit {
-
+stuff:Business[];
   constructor(private businessService:BusinessService) { }
 
   ngOnInit() {
   }
+
+  
 
 }
