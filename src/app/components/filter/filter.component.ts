@@ -1,27 +1,28 @@
-import { BehaviorSubject } from 'rxjs/Rx';
+import { BehaviorSubject } from "rxjs/Rx";
 
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { Business } from './../../models/business/business.class';
-import { BusinessService } from './../../services/business.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
+import { Business } from "./../../models/business/business.class";
+import { BusinessService } from "./../../services/business.service";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { ActivatedRoute, ParamMap, Params, Router } from "@angular/router";
 
 @Component({
-  selector: 'filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css']
+  selector: "filter",
+  templateUrl: "./filter.component.html",
+  styleUrls: ["./filter.component.css"]
 })
 export class FilterComponent implements OnInit {
-  filterargs = new Subject<string>();
-  businesses : Observable<Business[]>;
+  // filterargs:BehaviorSubject<string>;
+  businesses: Observable<Business[]>;
 
-  @Input()
-  stuff: Business[];
+  @Input() filteredBusiness: Business[];
 
   @Output()
-  stuffChange: EventEmitter<Business[]> = new  EventEmitter<Business[]>();
+  filteredBusinessChange: EventEmitter<Business[]> = new EventEmitter<
+    Business[]
+  >();
 
-  filteredBusinesses;
   // = {displayFiltered: 'location'};
   // emergencyBuildings = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
   // restaurants = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
@@ -29,38 +30,63 @@ export class FilterComponent implements OnInit {
   // shops = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
   // library = [{ title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
 
-  constructor(private businessService: BusinessService ) { 
-
-
-  }
+  constructor(
+    private businessService: BusinessService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.businesses= this.filterargs
-    .delay(300)
-    // .distinctUntilChanged()
-    .switchMap(term=>term
+    
+    this.route.params.subscribe((param:Params)=>{
+      console.log({"1":param['filter']})
 
-       ? this.businessService.filterByCategory(term):Observable.of<Business[]>([]))
-      //  console.log(term);
-   .catch(error=>{
-      console.log(error);
-      return Observable.of<Business[]>([]);
-    });
+    //  this.filterargs=new BehaviorSubject<string>(param['filter'])
 
-this.businessService.filteredBusiness=this.businesses;
-this.businesses.subscribe(x => {
-  this.stuff = x;
-  this.stuffChange.emit(x);
-  console.log("happens");
-});
+      this.businessService.filterByCategory(param['filter'])
+      .subscribe(business => {
+        this.filteredBusiness = business;
+        this.filteredBusinessChange.emit(business);
+        console.log({"2":business});
+      });
+    })
+
+    // this.businesses = this.filterargs
+    //   // .delay(300)
+    //   // .distinctUntilChanged()
+    //   .switchMap(
+    //     term =>
+    //       term
+    //         ? this.businessService.filterByCategory(term)
+    //         : Observable.of<Business[]>([])
+    //   )
+    //   //  console.log(term);
+    //   .catch(error => {
+    //     console.log(error);
+    //     return Observable.of<Business[]>([]);
+    //   });
+
+    // this.businesses.subscribe(business => {
+    //   this.filteredBusiness = business;
+    //   this.filteredBusinessChange.emit(business);
+    //   // console.log("happens");
+    // });
+
+    // this.route.paramMap
+    // .switchMap((params: ParamMap) => this.businessService.filterByCategory(params.get('filter')))
+    // .subscribe(business => {
+    //   this.filteredBusiness = business;
+    //   this.filteredBusinessChange.emit(business);
+    //   // console.log("happens");
+    // });
+
     // this.businessService.filteredBusiness=this.businesses;s
-
-
   }
 
-  search(filter:string): void {
-    this.filterargs.next(filter);
-
+  search(filter: string): void {
+    // this.filterargs.next(filter);
+    let link = ["/main/client-maps", filter];
+    this.router.navigate(link);
   }
 }
 // displayFiltered ( userpref: String) {

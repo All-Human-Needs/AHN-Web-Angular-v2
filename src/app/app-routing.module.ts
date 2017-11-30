@@ -1,3 +1,4 @@
+import { ClientMapsResolver } from './services/client-maps-resolver.service';
 import { MainComponent } from './components/main/main.component';
 import { AuthGuard } from "./guards/auth.guard";
 import { ForgotPasswordComponent } from "./components/login/forgot-password/forgot-password.component";
@@ -45,7 +46,7 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: "client-maps",
+        path: "client-maps/:filter",
         component: ClientMapsComponent,
         canActivate: [AuthGuard]
       },
@@ -80,6 +81,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  declarations: []
+  declarations: [],
+  providers:[ClientMapsResolver]
 })
 export class AppRoutingModule {}

@@ -6,42 +6,44 @@
             <div class="sub-heading">Please select one of the below to get started.</div>
             <div class="row">
                 <div class="col-md-3 col-sm-6 text-center">
-                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img class="btn-img" src="assets\img\client-dashboard\medical.svg" alt="Emergency Buildings"></button>
+                    <button class=" btn btn-places" (click)="gotoMap('emergency')"><img class="btn-img" src="assets\img\client-dashboard\medical.svg" alt="Emergency Buildings"></button>
                     <div class="category">Emergency Buildings</div>
                     <div class="places"> e.g Police station, Fire station etc</div>
                 </div>
                 <div class="col-md-3 col-sm-6 text-center">
-                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img class="btn-img" src="assets\img\client-dashboard\food.svg" alt="Restaurants"></button>
+                    <button class=" btn btn-places" (click)="gotoMap('restaurant')"><img class="btn-img" src="assets\img\client-dashboard\food.svg" alt="Restaurants"></button>
                     <div class="category">Restaurants</div>
                     <div class="places">e.g Restaurants near you.</div>
                 </div>
                 <div class="col-md-3 col-sm-6 text-center">
-                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img class="btn-img" src="assets\img\client-dashboard\bank.svg" alt="Government Buildings"></button>
+                    <button class=" btn btn-places" (click)="gotoMap('government')"><img class="btn-img" src="assets\img\client-dashboard\bank.svg" alt="Government Buildings"></button>
                     <div class="category">Government Buildings</div>
                     <div class="places">e.g Parliament, Home Affairs etc.</div>
                 </div>
                 <div class="col-md-3 col-sm-6 text-center">
-                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img class="btn-img" src="assets\img\client-dashboard\notepad.svg" alt="Motor Vihicle Service"></button>
+
+                    <button class=" btn btn-places" (click)="gotoMap('motor veheicle services')"><img class="btn-img" src="assets\img\client-dashboard\notepad.svg" alt="Motor Vehicle Service"></button>
+
                     <div class="category">Motor Vehicle Service</div>
                     <div class="places">e.g Places to service your car.</div>
                 </div>
                 <div class="col-md-3 col-sm-6 text-center">
-                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img class="btn-img" src="assets\img\client-dashboard\people.svg" alt="Nutrition and fitness ceters"></button>
-                    <div class="category">Nutrition and fitness ceters</div>
+                    <button class=" btn btn-places" (click)="gotoMap('nutrition and fitness')"><img class="btn-img" src="assets\img\client-dashboard\people.svg" alt="Nutrition and fitness ceters"></button>
+                    <div class="category">Nutrition and fitness centers</div>
                     <div class="places">e.g Gym's, Nutritionists etc.</div>
                 </div>
                 <div class="col-md-3 col-sm-6 text-center">
-                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img class="btn-img" src="assets\img\client-dashboard\umbrella.svg" alt="Insurance"></button>
+                    <button class=" btn btn-places" (click)="gotoMap('insurance')"><img class="btn-img" src="assets\img\client-dashboard\umbrella.svg" alt="Insurance"></button>
                     <div class="category">Insurance</div>
                     <div class="places">e.g Insurance Businesses.</div>
                 </div>
                 <div class="col-md-3 col-sm-6 text-center">
-                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img class="btn-img" src="assets\img\client-dashboard\transportation.svg" alt="City to City transport"></button>
+                    <button class=" btn btn-places" (click)="gotoMap('city to cit transport')"><img class="btn-img" src="assets\img\client-dashboard\transportation.svg" alt="City to City transport"></button>
                     <div class="category">City to City Transport</div>
                     <div class="places">e.g Buses, Trains etc</div>
                 </div>
                 <div class="col-md-3 col-sm-6 text-center">
-                    <button class=" btn btn-places" [routerLink]="['/main/client-maps']"><img class="btn-img" src="assets\img\client-dashboard\commerce.svg" alt="Retail Businesses"></button>
+                    <button class=" btn btn-places" (click)="gotoMap('retail')"><img class="btn-img" src="assets\img\client-dashboard\commerce.svg" alt="Retail Businesses"></button>
                     <div class="category">Retail Businesses</div>
                     <div class="places">e.g Shops, Malls etc</div>
                 </div>

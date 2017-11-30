@@ -32,7 +32,7 @@ export class SearchBarComponent implements OnInit {
     num: number[];
     alternativesList: Business[]=[];
   @Input()
-  stuff:Business[];
+  filteredBusiness:Business[];
 
 // bestAltSelected(){
 //   this.SearchService.getBusiness().subscribe((business=>
