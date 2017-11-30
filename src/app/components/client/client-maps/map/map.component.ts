@@ -1,3 +1,4 @@
+import { ActivatedRoute, Params } from '@angular/router';
 import { MapDirectionsDirective } from '../map-directions.directive';
 import { SearchService } from './../../../../services/search.service';
 import { Location } from 'tslint/lib/rules/strictBooleanExpressionsRule';
@@ -6,6 +7,7 @@ import { BusinessService } from './../../../../services/business.service';
 
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
+
 
 declare var google: any;
 
@@ -29,9 +31,9 @@ export class MapComponent implements OnInit {
     latitude: 0,
     longitude: 0
   };
-  
+
   locations: Business[] = []; //= this.businessService.getBusinesses();
-  filteredLocations: Business[] = [];
+  // filteredLocations: Business[] = [];
 
   userLocation: location = this.setCurrentPosition();
   userLat: number;
@@ -40,14 +42,15 @@ export class MapComponent implements OnInit {
   zoom: number;
   directionsDisplay;
 
-  constructor(private BusinessService: BusinessService, private SearchService: SearchService, private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader: MapsAPILoader) {
+  constructor(private BusinessService: BusinessService, private SearchService: SearchService, private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader: MapsAPILoader, private route: ActivatedRoute) {
 
 
   }
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
-    this.initMarkers();
+    // this.initMarkers();
+    this.updateMarkers();
     // Populate array of bussinesses to work with -- END
 
 
@@ -84,24 +87,42 @@ export class MapComponent implements OnInit {
     )
     // this.setDestination();
   }
-  // Populate array of bussinesses to work with -- END
 
 
-  // Update locations list according to filters -- START
-  updateLocationsForFilters(input: String[]) {
-    // I'm just gonna do this code here (just the logic basically so i can fill in the correct variable names and everything in later when malcolm is done working on the filter component)
+  updateMarkers() {
+    this.route.params.subscribe((param: Params) => {
+      let category = param['filter'];
 
-    for (var i = 0; i < this.locations.length; i++) {
-      for (var j = 0; i < input.length;j++) {
-        if (this.locations[i].category === input[j]) {
-          this.filteredLocations.push(this.locations[i]);
-        }
+      if (category === "All") {
+        
+        this.initMarkers();
+        
+      } else {
+
+        this.locations.splice(0, this.locations.length)
+        this.BusinessService.getBusinesses().subscribe(
+          response => {
+            for (var i = 0; i < response.length; i++) {
+              if (response[i].category === category) {
+                var marker: Business = {
+                  id: response[i].id,
+                  name: response[i].name,
+                  lat: response[i].lat,
+                  lng: response[i].lng,
+                  category: response[i].category,
+                  capacity: response[i].capacity,
+                  isActive: response[i].isActive,
+                  stats: response[i].stats,
+                }
+                this.locations.push(marker);
+              }
+            }
+          }
+        )
+
       }
-    }
-
-    this.locations = this.filteredLocations;
+    })
   }
-  // Update locations list according to filters -- END
 
   setDestination() {
 
@@ -200,3 +221,23 @@ class Destination {
   //   console.log(distance);
   // }
   // Method for calculating distance -- END
+
+
+    // Populate array of bussinesses to work with -- END
+
+
+  // // Update locations list according to filters -- START
+  // updateLocationsForFilters(input: String[]) {
+  //   // I'm just gonna do this code here (just the logic basically so i can fill in the correct variable names and everything in later when malcolm is done working on the filter component)
+
+  //   for (var i = 0; i < this.locations.length; i++) {
+  //     for (var j = 0; i < input.length;j++) {
+  //       if (this.locations[i].category === input[j]) {
+  //         this.filteredLocations.push(this.locations[i]);
+  //       }
+  //     }
+  //   }
+
+  //   this.locations = this.filteredLocations;
+  // }
+  // // Update locations list according to filters -- END
