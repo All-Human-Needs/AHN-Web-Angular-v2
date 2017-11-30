@@ -14,7 +14,13 @@
                     </button>
                 </div>
 
-                <h4 class="modal-title" id="myModalLabel2">Filters</h4>
+                <div class="row width-100">
+
+                    <h4 class="modal-title" id="myModalLabel2">Filters</h4>
+
+                    <h4 class="clear-button right-36" (click)="search('All')">Clear</h4>
+                
+                </div>
 
                 <div class="Filter">
                     <form action="Buildings" method="get">
@@ -46,9 +52,9 @@
                         <ul>
                             <li>
                                 <label class="container">Bank
-                                            <input type="radio" name="Buildings" (click)="search('bank')">
-                                            <span class="checkmark"></span>
-                                        </label>
+                                    <input type="radio" name="Buildings" (click)="search('bank')">
+                                    <span class="checkmark"></span>
+                                </label>
                             </li>
                             <li>
                                 <label class="container">Home Affairs
