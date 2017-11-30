@@ -11,11 +11,15 @@ import { User } from '../../../models/user';
 })
 export class ClientHomeComponent implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
     
   }
 
   ngOnInit() {
+  }
+  gotoMap(filter:string): void {
+    let link = ['/main/client-maps', filter];
+    this.router.navigate(link);
   }
 
 }
