@@ -23,12 +23,13 @@ export class MapComponent implements OnInit {
   origin = {
     latitude: 0,
     longitude: 0
-
   };
+
   destination = {
     latitude: 0,
     longitude: 0
   };
+  
   locations: Business[] = []; //= this.businessService.getBusinesses();
   filteredLocations: Business[] = [];
 
@@ -81,27 +82,25 @@ export class MapComponent implements OnInit {
         }
       }
     )
-    this.setDestination();
-
-
+    // this.setDestination();
   }
-
-
   // Populate array of bussinesses to work with -- END
 
 
   // Update locations list according to filters -- START
-  // updateLocationsForFilters(input: String) {
-  // I'm just gonna do this code here (just the logic basically so i can fill in the correct variable names and everything in later when malcolm is done working on the filter component)
+  updateLocationsForFilters(input: String[]) {
+    // I'm just gonna do this code here (just the logic basically so i can fill in the correct variable names and everything in later when malcolm is done working on the filter component)
 
-  //   for(var i = 0;i<this.locations.length;i++){
-  //     if(this.locations[i].category === input){
-  //       this.filteredLocations.push(this.locations[i]);
-  //     }
-  //   }
+    for (var i = 0; i < this.locations.length; i++) {
+      for (var j = 0; i < input.length;j++) {
+        if (this.locations[i].category === input[j]) {
+          this.filteredLocations.push(this.locations[i]);
+        }
+      }
+    }
 
-  //   this.locations = this.filteredLocations;
-  // }
+    this.locations = this.filteredLocations;
+  }
   // Update locations list according to filters -- END
 
   setDestination() {
@@ -159,7 +158,6 @@ export class MapComponent implements OnInit {
     let imageLocation: String = "";
 
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.8) {
-
       imageLocation = "assets/img/colour-markers/red.png";
     }
     if ((business.stats[business.stats.length - 1].pax / business.capacity) > 0.5 && ((business.stats[business.stats.length - 1].pax / business.capacity) <= 0.8)) {
