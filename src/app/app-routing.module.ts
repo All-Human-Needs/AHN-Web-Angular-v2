@@ -44,6 +44,10 @@ const routes: Routes = [
         path: "business-statistics",
         component: BusinessStatsComponent,
         canActivate: [AuthGuard]
+      }, {
+        path: "client-maps",
+        component: ClientMapsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: "client-maps/:filter",

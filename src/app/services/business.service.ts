@@ -1,4 +1,4 @@
-import { Observer } from "rxjs/Rx";
+import { Observer, ReplaySubject } from 'rxjs/Rx';
 
 import { Observable } from "rxjs/Observable";
 import { Injectable } from "@angular/core";
@@ -12,8 +12,10 @@ export class BusinessService {
   businesses: Observable<Business[]>;
   key;
 
+  replay = new ReplaySubject();
+
   chartType: string;
-  alt: Business[] = [];
+  alt: Business[]=[];
 
   filterKeyword:string="hospital";
   
@@ -21,11 +23,13 @@ export class BusinessService {
 
 
   constructor(private db: AngularFireDatabase) {
-
+    console.log("service constructor");
     this.businessRef = db.list("businesses");
-
+    console.log(this.businessRef);
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
+      console.log({"changes":changes});
+      this.replay.next(this.alt);
     });
 
   }
@@ -65,8 +69,10 @@ export class BusinessService {
     });
 
   }
-
   filterByCategory(term: string): Observable<Business[]> {
+
+    console.log({"term":term});
+    console.log({"alt":this.alt});
     const list = this.alt.filter((b: Business) => {
       return b.category.search(RegExp(term, 'i')) > -1;
       

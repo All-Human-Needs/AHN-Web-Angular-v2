@@ -16,6 +16,8 @@ export class FilterComponent implements OnInit {
   // filterargs:BehaviorSubject<string>;
   businesses: Observable<Business[]>;
 
+  params: string;
+
   @Input() filteredBusiness: Business[];
 
   @Output()
@@ -34,23 +36,61 @@ export class FilterComponent implements OnInit {
     private businessService: BusinessService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    // console.log(0);
+
+    // this.params = this.route.snapshot.params['filter'];
+    // console.log(this.params)
+    // console.log(1);
+    // this.businessService.filterByCategory(this.params)
+    // .subscribe(business => {
+
+    // console.log(2);
+    //   this.filteredBusiness = business;
+    //   this.filteredBusinessChange.emit(business);
+    //   console.log({"2":business});
+    //   console.log({"3":this.params});
+
+    // });
+
+    this.route.paramMap
+      .switchMap((params: ParamMap) => {
+        return this.businessService.filterByCategory(params.get("filter"));
+      })
+      .subscribe(business => {
+     
+          this.filteredBusiness = business;
+          this.filteredBusinessChange.emit(business);
+          console.log({ "2": business });
+      
+          
+        // console.log("happens");
+      });
+
+if(this.filteredBusiness.length <1){ 
+  let link = ["/main/client-maps"]; 
+                 router.navigate(link);}
+    // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
+
+    
+    // await this.businessService.replay.first().toPromise().then();
+  }
 
   ngOnInit() {
-    
-    this.route.params.subscribe((param:Params)=>{
-      console.log({"1":param['filter']})
-
+      
+    // console.log(0);
+    // this.params = this.route.snapshot.params['filter'];
+    // console.log(this.params)
+    // console.log(1);
+    // this.businessService.filterByCategory(this.params)
+    // .subscribe(business => {
+    // console.log(2);
+    //   this.filteredBusiness = business;
+    //   this.filteredBusinessChange.emit(business);
+    //   console.log({"2":business});
+    //   console.log({"3":this.params});
+    // });
     //  this.filterargs=new BehaviorSubject<string>(param['filter'])
-
-      this.businessService.filterByCategory(param['filter'])
-      .subscribe(business => {
-        this.filteredBusiness = business;
-        this.filteredBusinessChange.emit(business);
-        console.log({"2":business});
-      });
-    })
-
     // this.businesses = this.filterargs
     //   // .delay(300)
     //   // .distinctUntilChanged()
@@ -65,13 +105,11 @@ export class FilterComponent implements OnInit {
     //     console.log(error);
     //     return Observable.of<Business[]>([]);
     //   });
-
     // this.businesses.subscribe(business => {
     //   this.filteredBusiness = business;
     //   this.filteredBusinessChange.emit(business);
     //   // console.log("happens");
     // });
-
     // this.route.paramMap
     // .switchMap((params: ParamMap) => this.businessService.filterByCategory(params.get('filter')))
     // .subscribe(business => {
@@ -79,7 +117,6 @@ export class FilterComponent implements OnInit {
     //   this.filteredBusinessChange.emit(business);
     //   // console.log("happens");
     // });
-
     // this.businessService.filteredBusiness=this.businesses;s
   }
 
