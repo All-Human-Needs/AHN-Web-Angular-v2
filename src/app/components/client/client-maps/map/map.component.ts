@@ -1,4 +1,4 @@
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { MapDirectionsDirective } from '../map-directions.directive';
 import { SearchService } from './../../../../services/search.service';
 import { Location } from 'tslint/lib/rules/strictBooleanExpressionsRule';
@@ -42,15 +42,23 @@ export class MapComponent implements OnInit {
   zoom: number;
   directionsDisplay;
 
-  constructor(private BusinessService: BusinessService, private SearchService: SearchService, private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader: MapsAPILoader, private route: ActivatedRoute) {
+  constructor(private BusinessService: BusinessService, private SearchService: SearchService, private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader: MapsAPILoader, private route: ActivatedRoute, private router: Router) {
 
 
   }
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
-    // this.initMarkers();
-    this.updateMarkers();
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url === "/main/client-maps") {
+          this.initMarkers();
+        } else {
+          this.updateMarkers();
+        }
+      }
+    })
+
     // Populate array of bussinesses to work with -- END
 
 
@@ -94,9 +102,9 @@ export class MapComponent implements OnInit {
       let category = param['filter'];
 
       if (category === "All") {
-        
+
         this.initMarkers();
-        
+
       } else {
 
         this.locations.splice(0, this.locations.length)
