@@ -58,25 +58,26 @@ export class FilterComponent implements OnInit {
         return this.businessService.filterByCategory(params.get("filter"));
       })
       .subscribe(business => {
-        if (business !== []) {
+     
           this.filteredBusiness = business;
           this.filteredBusinessChange.emit(business);
           console.log({ "2": business });
-        } else {
-          let link = ["/main/client-maps"];
-          this.router.navigate(link);
-        }
-
+      
+          
         // console.log("happens");
       });
 
-    this.businessService.replay.subscribe(lol => console.log({ here: lol }));
+if(this.filteredBusiness.length <1){ 
+  let link = ["/main/client-maps"]; 
+                 router.navigate(link);}
+    // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
 
+    
     // await this.businessService.replay.first().toPromise().then();
   }
 
   ngOnInit() {
-    
+      
     // console.log(0);
     // this.params = this.route.snapshot.params['filter'];
     // console.log(this.params)
