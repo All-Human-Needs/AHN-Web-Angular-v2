@@ -65,6 +65,19 @@
 
 /* ----- CUSTOM STYLES ----- */
 
+.clear-button{
+    color: #1FC7B0;
+    font-size: 18px;
+
+    margin-top: .5rem;
+    float: right;
+    position: absolute;
+}
+
+.clear-button:hover{
+    cursor: pointer;
+}
+
 .green-demo {
     border-radius: 100px;
     background-color: #00B669;
@@ -139,6 +152,14 @@ a {
     margin-top: 20px;
 }
 
+.width-100{
+    width: 100%;
+}
+
+.right-36{
+    right: 36px !important;
+}
+
 /* CUSTOM CHECKBOXES */
 
 
@@ -175,7 +196,7 @@ a {
     height: 23px;
     width: 23px;
     background-color: #fff;
-    border-radius: 2px;
+    border-radius: 50%;
     border-color: grey;
     border-width: 2px;
     border-style: solid;
