@@ -9,6 +9,7 @@ import { BusinessService } from '../../../services/business.service';
 })
 export class ClientMapsComponent implements OnInit {
   filteredBusiness:Business[];
+  
   constructor(private businessService:BusinessService) { }
 
   ngOnInit() {
