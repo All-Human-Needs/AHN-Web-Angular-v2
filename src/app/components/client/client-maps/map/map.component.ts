@@ -190,6 +190,9 @@ export class MapComponent implements OnInit {
     return imageLocation;
   }
   // Method for displaying the correct colour for the markers END
+  getUserIcon(): String{
+    return "assets/img/colour-markers/userLocation.png";
+  }
 }
 
 interface location {

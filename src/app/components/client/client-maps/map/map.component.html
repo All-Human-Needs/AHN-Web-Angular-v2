@@ -2,7 +2,7 @@
 <div class="map">
     <agm-map [latitude]="userLat" [longitude]="userLng" [zoom]="15" [styles]="customStyle" class="map" [streetViewControl]="false">
 
-        <agm-marker [latitude]="userLat" [longitude]="userLng" [draggable]="true">
+        <agm-marker [iconUrl]="getUserIcon()" [latitude]="userLat" [longitude]="userLng" [draggable]="true">
             <agm-info-window>
                 {{userName}}
             </agm-info-window>
