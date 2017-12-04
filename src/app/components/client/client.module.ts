@@ -1,4 +1,5 @@
 
+
 import { SideNavModule } from './client-maps/side-nav/side-nav.module';
 import { FilterModule } from './../filter/filter.module';
 
@@ -42,6 +43,6 @@ import { MapDirectionsDirective } from './client-maps/map-directions.directive';
     ClientHomeComponent,
     ClientMapsComponent,
 
-  ],
+  ],providers:[]
 })
 export class ClientModule { }

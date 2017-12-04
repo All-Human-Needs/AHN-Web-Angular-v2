@@ -152,9 +152,10 @@ export class MapComponent implements OnInit {
         this.userLng = newMarker.lng;
         this.origin.latitude = newMarker.lat;
         this.origin.longitude = newMarker.lng;
-        console.log("Origin: " + this.origin.latitude + "," + this.origin.longitude)
+        // console.log("Origin: " + this.origin.latitude + "," + this.origin.longitude)
       });
     }
+    console.log(this.userLocation)
     return this.userLocation;
   }
   // Method for setting CURRENT POSITION -- END

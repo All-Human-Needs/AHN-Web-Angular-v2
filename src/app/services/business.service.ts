@@ -1,4 +1,8 @@
-import { Observer, ReplaySubject } from 'rxjs/Rx';
+import { MapsService } from "./maps.service";
+import { start } from "repl";
+import { LatLng, LatLngLiteral } from "@agm/core";
+import { MapComponent } from "../components/client/client-maps/map/map.component";
+import { Observer, ReplaySubject } from "rxjs/Rx";
 
 import { Observable } from "rxjs/Observable";
 import { Injectable } from "@angular/core";
@@ -12,40 +16,37 @@ export class BusinessService {
   businesses: Observable<Business[]>;
   key;
 
-  replay = new ReplaySubject();
-
   chartType: string;
-  alt: Business[]=[];
+  alt: Business[] = [];
 
-  filterKeyword:string="hospital";
-  
-  filteredBusiness:Observable<Business[]>;
+  filterKeyword: string = "hospital";
 
+  filteredBusiness: Observable<Business[]>;
 
-  constructor(private db: AngularFireDatabase) {
-    console.log("service constructor");
+  constructor(
+    private db: AngularFireDatabase,
+    private mapService: MapsService
+  ) {
+    // console.log("service constructor");
     this.businessRef = db.list("businesses");
-    console.log(this.businessRef);
+    // console.log(this.businessRef);
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
-      console.log({"changes":changes});
-      this.replay.next(this.alt);
+      // console.log({"changes":changes});
     });
-
   }
 
   getBusinesses(): Observable<Business[]> {
+    return (this.businesses = this.businessRef
+      .snapshotChanges()
+      .map(changes => {
+        // console.table(changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
 
-    return this.businesses = this.businessRef.snapshotChanges().map(changes => {
-      // console.table(changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
-
-      // console.log(this.key[0]);
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    });
-
+        // console.log(this.key[0]);
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      }));
   }
 
- 
   deleteBusiness(key?: string) {
     this.businessRef.remove(key);
   }
@@ -59,35 +60,59 @@ export class BusinessService {
   }
 
   search(term: string): Observable<Business[]> {
-
     const list = this.alt.filter((b: Business) => {
-      return b.name.search(RegExp(term, 'i')) > -1;
+      return b.name.search(RegExp(term, "i")) > -1;
     });
 
     return Observable.create((observer: Observer<Business[]>) => {
       observer.next(list);
     });
-
   }
   filterByCategory(term: string): Observable<Business[]> {
-
-    console.log({"term":term});
-    console.log({"alt":this.alt});
+    // console.log({"term":term});
+    // console.log({"alt":this.alt});
     const list = this.alt.filter((b: Business) => {
-      return b.category.search(RegExp(term, 'i')) > -1;
-      
+      return b.category.search(RegExp(term, "i")) > -1;
     });
+    list
+      .sort((a: Business, b: Business) => {
+        var lastPaxA = a.stats[a.stats.length - 1].pax;
+        var lastPaxB = b.stats[b.stats.length - 1].pax;
+        if (lastPaxA < lastPaxB) {
+          return -1;
+        } else if (lastPaxA > lastPaxB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+      .splice(3, list.length);
+    // console.log(this.mapService.setCurrentPosition());
+    // this.mapService.setCurrentPosition();
+   
 
+    // list.sort((a: any, b:any ) => {
+    //    if (a < b) {
+    //   return -1;
+    // } else if (a > b) {
+    //   return 1;
+    // } else {
+    //   return 0;
+    // }})
+
+    // console.log(list);
     return Observable.create((observer: Observer<Business[]>) => {
       observer.next(list);
     });
   }
 
   postStatisics(business: Business) {
-    const businesses: Observable<any> = this.db.list('/businesses')
-      .snapshotChanges().map(changes => {
-        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      })
+    const businesses: Observable<any> = this.db
+      .list("/businesses")
+      .snapshotChanges()
+      .map(changes => {
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      });
 
     let flag = true;
     businesses.forEach(element => {
@@ -99,7 +124,6 @@ export class BusinessService {
             flag = false;
             break;
           }
-
         }
       }
     });
@@ -111,5 +135,12 @@ export class BusinessService {
 
   getChartType() {
     return this.chartType;
+  }
+
+  private getcomputeDistance(latLngA: any, latLngB: any) {
+    return (
+      google.maps.geometry.spherical.computeDistanceBetween(latLngA, latLngB) /
+      1000
+    ).toFixed(2);
   }
 }

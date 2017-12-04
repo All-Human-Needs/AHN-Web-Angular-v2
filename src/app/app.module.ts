@@ -34,6 +34,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { SearchService } from './services/search.service';
 import { MainComponent } from './components/main/main.component';
+import { MapsService } from './services/maps.service';
 
 
 export const firebaseConfig = {
@@ -81,7 +82,7 @@ export const firebaseConfig = {
   ],
   exports: [],
 
-  providers: [BusinessService,AuthenticationService,UserService,SearchService, AuthGuard,],
+  providers: [BusinessService,AuthenticationService,UserService,SearchService, AuthGuard,MapsService],
 
   bootstrap: [AppComponent]
 

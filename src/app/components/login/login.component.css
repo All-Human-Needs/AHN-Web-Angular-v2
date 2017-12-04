@@ -1,10 +1,12 @@
 .login-form-background {
-    width: 500px;
+    width: 35%;
     /* height: 509px; */
     background: #FFFFFF;
     border-radius: 8px;
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
     margin: 70px auto;
+    min-width: 320px;
+    max-width: 500px;
     padding-left: 50px;
     padding-right: 50px;
     margin-bottom: 10rem
@@ -47,12 +49,7 @@
     color: #28C6B0;
     font-family: Roboto;
     font-size: 13px;
-    /* font-weight: 600; */
     line-height: 17px;
-    /* text-align: right; */
-    /* margin-right: 50px; */
-    margin-left: 289px;
-    padding-left: 20px;
 }
 
 .check-box {
@@ -75,7 +72,6 @@
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
     cursor: pointer;
     /* margin-top: 318px;  */
-    margin-right: 10px;
     font-family: Roboto;
     /* margin-bottom: 139px;  */
 }

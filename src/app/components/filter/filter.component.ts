@@ -1,3 +1,5 @@
+import { LatLngLiteral, LatLng } from '@agm/core';
+import { MapsService } from "../../services/maps.service";
 import { BehaviorSubject } from "rxjs/Rx";
 
 import { Observable } from "rxjs/Observable";
@@ -18,13 +20,16 @@ export class FilterComponent implements OnInit {
 
   params: string;
 
-  @Input() filteredBusiness: Business[];
+  @Input() filteredBusiness: Business[]=[];
 
   @Output()
   filteredBusinessChange: EventEmitter<Business[]> = new EventEmitter<
     Business[]
   >();
 
+  locationDistance;
+  distanceArray:any[];
+  userLocation;
   // = {displayFiltered: 'location'};
   // emergencyBuildings = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
   // restaurants = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
@@ -35,7 +40,8 @@ export class FilterComponent implements OnInit {
   constructor(
     private businessService: BusinessService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private mapService: MapsService
   ) {
     // console.log(0);
 
@@ -58,66 +64,45 @@ export class FilterComponent implements OnInit {
         return this.businessService.filterByCategory(params.get("filter"));
       })
       .subscribe(business => {
-     
-          this.filteredBusiness = business;
-          this.filteredBusinessChange.emit(business);
-          console.log({ "2": business });
-      
-          
+        this.filteredBusiness = business;
+        this.filteredBusinessChange.emit(business);
+
+// var list:any[];
+//         if("geolocation" in navigator){
+//           navigator.geolocation.getCurrentPosition(position=>{
+//             for (var i = 0; i < business.length; i++) {
+//           console.log(business)
+//               list.push({business:business[i],distance:0})
+              
+//             }
+           
+//           }
+//           )
+//         }
+
+        // console.log({ "2": business });
+    //     this.filteredBusiness.sort((a: any, b:any ) => {
+    //    if (a < b) {
+    //   return -1;
+    // } else if (a > b) {
+    //   return 1;
+    // } else {
+    //   return 0;
+    // }})
         // console.log("happens");
       });
 
-if(this.filteredBusiness.length <1){ 
-  let link = ["/main/client-maps"]; 
-                 router.navigate(link);}
+    if (this.filteredBusiness.length < 1) {
+      let link = ["/main/client-maps"];
+      router.navigate(link);
+    }
     // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
 
-    
     // await this.businessService.replay.first().toPromise().then();
   }
 
   ngOnInit() {
-      
-    // console.log(0);
-    // this.params = this.route.snapshot.params['filter'];
-    // console.log(this.params)
-    // console.log(1);
-    // this.businessService.filterByCategory(this.params)
-    // .subscribe(business => {
-    // console.log(2);
-    //   this.filteredBusiness = business;
-    //   this.filteredBusinessChange.emit(business);
-    //   console.log({"2":business});
-    //   console.log({"3":this.params});
-    // });
-    //  this.filterargs=new BehaviorSubject<string>(param['filter'])
-    // this.businesses = this.filterargs
-    //   // .delay(300)
-    //   // .distinctUntilChanged()
-    //   .switchMap(
-    //     term =>
-    //       term
-    //         ? this.businessService.filterByCategory(term)
-    //         : Observable.of<Business[]>([])
-    //   )
-    //   //  console.log(term);
-    //   .catch(error => {
-    //     console.log(error);
-    //     return Observable.of<Business[]>([]);
-    //   });
-    // this.businesses.subscribe(business => {
-    //   this.filteredBusiness = business;
-    //   this.filteredBusinessChange.emit(business);
-    //   // console.log("happens");
-    // });
-    // this.route.paramMap
-    // .switchMap((params: ParamMap) => this.businessService.filterByCategory(params.get('filter')))
-    // .subscribe(business => {
-    //   this.filteredBusiness = business;
-    //   this.filteredBusinessChange.emit(business);
-    //   // console.log("happens");
-    // });
-    // this.businessService.filteredBusiness=this.businesses;s
+
   }
 
   search(filter: string): void {
@@ -126,43 +111,3 @@ if(this.filteredBusiness.length <1){
     this.router.navigate(link);
   }
 }
-// displayFiltered ( userpref: String) {
-//    if (userpref === 'Emergency Buildings') {
-//   console.log(this.emergencyBuildings);
-//  } else {if (userpref === 'Restaurants') {
-//    console.log(this.restaurants);
-//  } else {if (userpref === 'Government Buildings') {
-//    console.log(this.governmentBuildings);
-//  } else {if (userpref === 'Shops') {
-//   console.log(this.shops);
-//  } else {if (userpref === 'Library') {
-//   console.log(this.library);
-//  }}
-
-// import { PipeTransform } from "@angular/core/core";
-
-// @Pipe({
-//   name: 'filter'
-// })
-// export class FilterPipe implements PipeTransform {
-// transform(results: any, filter: any, isAnd: boolean): any {
-//   if (filter && Array.isArray(results)) {
-//     const filterKeys = Object.keys(filter);
-//     if (isAnd) {
-//       return results.filter(building =>
-//           filterKeys.reduce((memo, buildingName) =>
-//               (memo && new RegExp(filter[buildingName], 'gi').test(results[buildingName])) || filter[buildingName] === "", true));
-//     } else {
-//       return results.filter(item => {
-//         return filterKeys.some((buildingName) => {
-//           console.log(buildingName);
-//           return new RegExp(filter[buildingName], 'gi').test(results[buildingName]) || filter[buildingName] === "";
-//         });
-//       });
-//     }
-//   } else {
-//     return results;
-//   }
-// }
-// }
-// } } } }}
