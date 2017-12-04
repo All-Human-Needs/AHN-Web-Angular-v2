@@ -125,6 +125,10 @@ if(this.filteredBusiness.length <1){
     let link = ["/main/client-maps", filter];
     this.router.navigate(link);
   }
+
+  uncheckBoxes(){
+    // WORK NEEDED
+  }
 }
 // displayFiltered ( userpref: String) {
 //    if (userpref === 'Emergency Buildings') {
