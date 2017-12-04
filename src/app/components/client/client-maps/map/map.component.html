@@ -10,7 +10,7 @@
 
         <agm-marker *ngFor="let l of locations" [iconUrl]="getColorIcon(l)" [latitude]="l.lat" [longitude]="l.lng">
             <agm-info-window>
-                {{l.name}} {{l.capacity}}
+                {{l.name}}
             </agm-info-window>
         </agm-marker>
         <!-- <appMapDirections [origin]="origin" [destination]="destination" (clicked)="setDestination($event)"></appMapDirections> -->
