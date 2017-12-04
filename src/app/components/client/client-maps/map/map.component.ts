@@ -1,4 +1,4 @@
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { MapDirectionsDirective } from '../map-directions.directive';
 import { SearchService } from './../../../../services/search.service';
 import { Location } from 'tslint/lib/rules/strictBooleanExpressionsRule';
@@ -42,26 +42,22 @@ export class MapComponent implements OnInit {
   zoom: number;
   directionsDisplay;
 
-  constructor(private BusinessService: BusinessService, private SearchService: SearchService, private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader: MapsAPILoader, private route: ActivatedRoute) {
+  constructor(private BusinessService: BusinessService, private SearchService: SearchService, private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader: MapsAPILoader, private route: ActivatedRoute, private router: Router) {
 
 
   }
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
-    // this.initMarkers();
-    this.updateMarkers();
+    if (this.router.url === "/main/client-maps") {
+            this.initMarkers();
+            console.log("heloo")
+          } else {
+            this.updateMarkers();
+          }
+
+    console.log(this.router.url)
     // Populate array of bussinesses to work with -- END
-
-
-    // if(this.directionsDisplay === undefined){
-    //   this.gmapsApi.getNativeMap().then(map => {               
-    //       this.directionsDisplay = new google.maps.DirectionsRenderer({
-    //           draggable: false,
-    //           map: map,
-    //       });
-    //   });
-    // }
     this.setDestination();
 
 
@@ -93,34 +89,32 @@ export class MapComponent implements OnInit {
     this.route.params.subscribe((param: Params) => {
       let category = param['filter'];
 
-      if (category === "All") {
-        
-        this.initMarkers();
-        
-      } else {
-
         this.locations.splice(0, this.locations.length)
-        this.BusinessService.getBusinesses().subscribe(
-          response => {
-            for (var i = 0; i < response.length; i++) {
-              if (response[i].category === category) {
-                var marker: Business = {
-                  id: response[i].id,
-                  name: response[i].name,
-                  lat: response[i].lat,
-                  lng: response[i].lng,
-                  category: response[i].category,
-                  capacity: response[i].capacity,
-                  isActive: response[i].isActive,
-                  stats: response[i].stats,
+        if(category === 'All'){
+          this.initMarkers();
+        }
+        else{
+          this.BusinessService.getBusinesses().subscribe(
+            response => {
+              for (var i = 0; i < response.length; i++) {
+                if (response[i].category === category) {
+                  var marker: Business = {
+                    id: response[i].id,
+                    name: response[i].name,
+                    lat: response[i].lat,
+                    lng: response[i].lng,
+                    category: response[i].category,
+                    capacity: response[i].capacity,
+                    isActive: response[i].isActive,
+                    stats: response[i].stats,
+                  }
+                  this.locations.push(marker);
                 }
-                this.locations.push(marker);
               }
             }
-          }
-        )
-
-      }
+          )
+        }
+      
     })
   }
 
