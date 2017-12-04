@@ -1,5 +1,5 @@
 .modal-btn {
-    z-index: 3 !important;
+    /* z-index: 3 !important; */
     height: 58px;
     width: 58px;
     border-radius: 5px;
@@ -65,16 +65,15 @@
 
 /* ----- CUSTOM STYLES ----- */
 
-.clear-button{
+.clear-button {
     color: #1FC7B0;
     font-size: 18px;
-
     margin-top: .5rem;
     float: right;
     position: absolute;
 }
 
-.clear-button:hover{
+.clear-button:hover {
     cursor: pointer;
 }
 
@@ -148,17 +147,18 @@ a {
     right: 26px !important;
 }
 
-.margin-top-20{
+.margin-top-20 {
     margin-top: 20px;
 }
 
-.width-100{
+.width-100 {
     width: 100%;
 }
 
-.right-36{
+.right-36 {
     right: 36px !important;
 }
+
 
 /* CUSTOM CHECKBOXES */
 

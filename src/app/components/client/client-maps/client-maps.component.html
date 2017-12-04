@@ -1,29 +1,15 @@
-<div class="container-fluid position-fixed z-index-1">
-    <div class="row">
-        <div class="col-11">
-            <div class="row">
-                <button class="ahn-back-button" [routerLink]="['/main/dashboard']">
-                            <i class="fa fa-arrow-left"></i>
-                        </button>
-                <ahn-search-bar [(filteredBusiness)]="filteredBusiness"></ahn-search-bar>
-            </div>
-        </div>
-
-        <div class="col-1 mt-4">
-            <div class="col-12">
-                <filter [(filteredBusiness)]="filteredBusiness" class="float-right mt-2 mr-4 ml-4"></filter>
-            </div>
-            <div class="col-12">
-                <side-nav class="float-right mt-2 mr-4 ml-4"></side-nav>
-            </div>
-        </div>
-    </div>
+<button class="ahn-back-button position-fixed z-index-1" [routerLink]="['/main/dashboard']">
+        <i class="fa fa-arrow-left"></i>
+    </button>
+<ahn-search-bar class="searchbar position-fixed z-index-1" [(filteredBusiness)]="filteredBusiness"></ahn-search-bar>
 
 
-
-    <!-- <best-alternative-list class="z-index-3 position-fixed"></best-alternative-list> -->
-
-
-
-</div>
-<ahn-map class="z-index-2 top-0"></ahn-map>
+<ul class="nav-btns position-fixed z-index-1">
+    <li>
+        <filter [(filteredBusiness)]="filteredBusiness"></filter>
+    </li>
+    <li>
+        <side-nav></side-nav>
+    </li>
+</ul>
+<ahn-map class=" top-0"></ahn-map>
