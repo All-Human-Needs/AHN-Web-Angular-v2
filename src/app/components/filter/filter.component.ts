@@ -23,7 +23,7 @@ export class FilterComponent implements OnInit {
   @Output()
   filteredBusinessChange: EventEmitter<Business[]> = new EventEmitter<
     Business[]
-  >();
+    >();
 
   // = {displayFiltered: 'location'};
   // emergencyBuildings = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
@@ -58,26 +58,27 @@ export class FilterComponent implements OnInit {
         return this.businessService.filterByCategory(params.get("filter"));
       })
       .subscribe(business => {
-     
-          this.filteredBusiness = business;
-          this.filteredBusinessChange.emit(business);
-          console.log({ "2": business });
-      
-          
+
+        this.filteredBusiness = business;
+        this.filteredBusinessChange.emit(business);
+        console.log({ "2": business });
+
+
         // console.log("happens");
       });
 
-if(this.filteredBusiness.length <1){ 
-  let link = ["/main/client-maps"]; 
-                 router.navigate(link);}
+    if (this.filteredBusiness.length < 1) {
+      let link = ["/main/client-maps"];
+      router.navigate(link);
+    }
     // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
 
-    
+
     // await this.businessService.replay.first().toPromise().then();
   }
 
   ngOnInit() {
-      
+
     // console.log(0);
     // this.params = this.route.snapshot.params['filter'];
     // console.log(this.params)
@@ -126,7 +127,7 @@ if(this.filteredBusiness.length <1){
     this.router.navigate(link);
   }
 
-  uncheckBoxes(){
+  uncheckBoxes() {
     // WORK NEEDED
   }
 }

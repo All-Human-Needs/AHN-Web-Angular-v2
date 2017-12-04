@@ -1,7 +1,6 @@
 <!-- actual map start -->
 <div class="map">
-    <agm-map [latitude]="userLat" [longitude]="userLng" [zoom]="15" [styles]="customStyle" [streetViewControl]="false" 
-        class="map">
+    <agm-map [latitude]="userLat" [longitude]="userLng" [zoom]="15" [styles]="customStyle" [streetViewControl]="false" class="map">
 
         <agm-marker [iconUrl]="getUserIcon()" [latitude]="userLat" [longitude]="userLng" [draggable]="true">
             <agm-info-window>
@@ -11,7 +10,7 @@
 
         <agm-marker *ngFor="let l of locations" [iconUrl]="getColorIcon(l)" [latitude]="l.lat" [longitude]="l.lng">
             <agm-info-window>
-                {{l.name}}
+                {{l.name}} {{l.capacity}}
             </agm-info-window>
         </agm-marker>
         <!-- <appMapDirections [origin]="origin" [destination]="destination" (clicked)="setDestination($event)"></appMapDirections> -->
