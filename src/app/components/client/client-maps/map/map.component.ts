@@ -51,7 +51,7 @@ export class MapComponent implements OnInit {
     // Populate array of bussinesses to work with -- START
     if (this.router.url === "/main/client-maps") {
       this.initMarkers();
-      console.log("heloo")
+      console.log("heloo");
     } else {
       this.updateMarkers();
     }
@@ -83,7 +83,6 @@ export class MapComponent implements OnInit {
     )
     // this.setDestination();
   }
-
 
   updateMarkers() {
     this.route.params.subscribe((param: Params) => {
@@ -126,8 +125,7 @@ export class MapComponent implements OnInit {
 
         this.mapsAPILoader.load().then((map) => {
           this.directionsDisplay = new google.maps.DirectionsRenderer;
-        }
-        );
+        });
       }
     )
   }
