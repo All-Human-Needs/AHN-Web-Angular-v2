@@ -43,9 +43,10 @@ export class FilterComponent implements OnInit {
       });
 
 
-if(this.filteredBusiness.length <1){ 
-  let link = ["/main/client-maps/All"]; 
-                 router.navigate(link);}
+    if (this.filteredBusiness.length < 1) {
+      let link = ["/main/client-maps/All"];
+      router.navigate(link);
+    }
 
     // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
     // await this.businessService.replay.first().toPromise().then();
@@ -61,7 +62,9 @@ if(this.filteredBusiness.length <1){
     );
     // calls check specific box function so the filter you choose in the dashboard is reflected in the filters list -- END
 
+
   }
+
 
   search(filter: string): void {
     // this.filterargs.next(filter);
@@ -69,11 +72,20 @@ if(this.filteredBusiness.length <1){
     this.router.navigate(link);
   }
 
+
+
+  hospitalChecked: boolean = false;
+  policeChecked: boolean = false;
+  fireDepartmentChecked: boolean = false;
+  bankChecked: boolean = false;
+  homeAffairsChecked: boolean = false;
   nutritionAndFitnessChecked: boolean = false;
   insuranceChecked: boolean = false;
   cityToCityChecked: boolean = false;
   MotorVehicleServiceChecked: boolean = false;
   retailChecked: boolean = false;
+
+
 
   checkSpecificBox(input: String) {
     switch (input) {
@@ -92,6 +104,17 @@ if(this.filteredBusiness.length <1){
       case 'retail':
         this.retailChecked = true;
         break;
+      case 'All':
+        this.hospitalChecked = false;
+        this.policeChecked = false;
+        this.fireDepartmentChecked = false;
+        this.bankChecked = false;
+        this.homeAffairsChecked = false;
+        this.nutritionAndFitnessChecked = false;
+        this.insuranceChecked = false;
+        this.cityToCityChecked = false;
+        this.MotorVehicleServiceChecked = false;
+        this.retailChecked = false;
       default:
     }
 
@@ -101,4 +124,5 @@ if(this.filteredBusiness.length <1){
     // WORK NEEDED
   }
 }
+
 

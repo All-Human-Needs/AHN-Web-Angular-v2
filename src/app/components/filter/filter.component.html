@@ -29,20 +29,20 @@
                         <ul>
                             <li>
                                 <label class="container">Hospitals
-                                    <input type="radio" name="Buildings" (click)="search('hospital')" id="hospitalRadio">
+                                    <input type="radio" name="Buildings" (click)="search('hospital')" id="hospitalRadio" [checked]="hospitalChecked">
                                     <span class="checkmark"></span>
                                 </label>
                                 <!-- <input type="radio" name="" id="" (click)="search('hospital')">Hospital -->
                             </li>
                             <li>
                                 <label class="container">Police Department
-                                    <input type="radio" name="Buildings" (click)="search('police-department')" id="policeRadio">
+                                    <input type="radio" name="Buildings" (click)="search('police-department')" id="policeRadio" [checked]="policeChecked">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="container">Fire Department
-                                    <input type="radio" name="Buildings" (click)="search('fire-department')" id="fireRadio">
+                                    <input type="radio" name="Buildings" (click)="search('fire-department')" id="fireRadio" [checked]="fireDepartmentChecked">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
@@ -51,13 +51,13 @@
                         <ul>
                             <li>
                                 <label class="container">Bank
-                                    <input type="radio" name="Buildings" (click)="search('bank')" id="bankRadio">
+                                    <input type="radio" name="Buildings" (click)="search('bank')" id="bankRadio" [checked]="bankChecked">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="container">Home Affairs
-                                    <input type="radio" name="Buildings" (click)="search('home affairs')" id="homeAffairsRadio">
+                                    <input type="radio" name="Buildings" (click)="search('home affairs')" id="homeAffairsRadio" [checked]="homeAffairsChecked">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
