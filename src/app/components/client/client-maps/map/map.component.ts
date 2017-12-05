@@ -49,12 +49,15 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
-    if (this.router.url === "/main/client-maps") {
-      this.initMarkers();
-      console.log("heloo");
-    } else {
-      this.updateMarkers();
-    }
+
+    // if (this.router.url === "/main/client-maps") {
+    //         this.initMarkers();
+    //         console.log("heloo")
+    //       } else {
+    //         this.updateMarkers();
+    //       }
+    this.updateMarkers();
+
 
     console.log(this.router.url)
     // Populate array of bussinesses to work with -- END
@@ -122,6 +125,17 @@ export class MapComponent implements OnInit {
     this.SearchService.destinationBusiness.subscribe(
       response => {
         this.destination = new Destination(response.lat, response.lng)
+        var marker: Business = {
+          id: response.id,
+          name: response.name,
+          lat: response.lat,
+          lng: response.lng,
+          category: response.category,
+          capacity: response.capacity,
+          isActive: response.isActive,
+          stats: response.stats,
+        }
+        this.locations.push(marker);
 
         this.mapsAPILoader.load().then((map) => {
           this.directionsDisplay = new google.maps.DirectionsRenderer;

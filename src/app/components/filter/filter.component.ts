@@ -42,10 +42,11 @@ export class FilterComponent implements OnInit {
         console.log({ "2": business });
       });
 
-    if (this.filteredBusiness.length < 1) {
-      let link = ["/main/client-maps"];
-      router.navigate(link);
-    }
+
+if(this.filteredBusiness.length <1){ 
+  let link = ["/main/client-maps/All"]; 
+                 router.navigate(link);}
+
     // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
     // await this.businessService.replay.first().toPromise().then();
   }
