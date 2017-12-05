@@ -49,6 +49,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
+
     // if (this.router.url === "/main/client-maps") {
     //         this.initMarkers();
     //         console.log("heloo")
@@ -56,6 +57,7 @@ export class MapComponent implements OnInit {
     //         this.updateMarkers();
     //       }
     this.updateMarkers();
+
 
     console.log(this.router.url)
     // Populate array of bussinesses to work with -- END
@@ -85,37 +87,36 @@ export class MapComponent implements OnInit {
     // this.setDestination();
   }
 
-
   updateMarkers() {
     this.route.params.subscribe((param: Params) => {
       let category = param['filter'];
 
-        this.locations.splice(0, this.locations.length)
-        if(category === 'All'){
-          this.initMarkers();
-        }
-        else{
-          this.BusinessService.getBusinesses().subscribe(
-            response => {
-              for (var i = 0; i < response.length; i++) {
-                if (response[i].category === category) {
-                  var marker: Business = {
-                    id: response[i].id,
-                    name: response[i].name,
-                    lat: response[i].lat,
-                    lng: response[i].lng,
-                    category: response[i].category,
-                    capacity: response[i].capacity,
-                    isActive: response[i].isActive,
-                    stats: response[i].stats,
-                  }
-                  this.locations.push(marker);
+      this.locations.splice(0, this.locations.length)
+      if (category === 'All') {
+        this.initMarkers();
+      }
+      else {
+        this.BusinessService.getBusinesses().subscribe(
+          response => {
+            for (var i = 0; i < response.length; i++) {
+              if (response[i].category === category) {
+                var marker: Business = {
+                  id: response[i].id,
+                  name: response[i].name,
+                  lat: response[i].lat,
+                  lng: response[i].lng,
+                  category: response[i].category,
+                  capacity: response[i].capacity,
+                  isActive: response[i].isActive,
+                  stats: response[i].stats,
                 }
+                this.locations.push(marker);
               }
             }
-          )
-        }
-      
+          }
+        )
+      }
+
     })
   }
 
@@ -138,8 +139,7 @@ export class MapComponent implements OnInit {
 
         this.mapsAPILoader.load().then((map) => {
           this.directionsDisplay = new google.maps.DirectionsRenderer;
-        }
-        );
+        });
       }
     )
   }
@@ -196,7 +196,7 @@ export class MapComponent implements OnInit {
     return imageLocation;
   }
   // Method for displaying the correct colour for the markers END
-  getUserIcon(): String{
+  getUserIcon(): String {
     return "assets/img/colour-markers/userLocation.png";
   }
 }
