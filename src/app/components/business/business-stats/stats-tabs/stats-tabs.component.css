@@ -67,8 +67,14 @@
 
 .box-header {
     border-bottom: 1px solid #97979725;
+    padding-left: 55px;
 }
 
 .datepicker:focus {
     border: 1px solid #27CEBE;
+}
+
+.tabpane {
+    margin-top: 38px;
+    margin-right: 10px;
 }
