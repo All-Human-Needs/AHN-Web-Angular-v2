@@ -1,7 +1,7 @@
 import { Business } from '../../../models/business/business.class';
 import { BusinessService } from '../../../services/business.service';
 import { AuthenticationService } from '../../../services/authentication.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-business-stats',
@@ -12,12 +12,24 @@ export class BusinessStatsComponent implements OnInit {
   currentBusiness: Business;
   footTraffic:number = 0;
   peakTime:Date;
-  constructor(private _authService: AuthenticationService, private _businessService: BusinessService) {
+  mobWidth: any;
 
+
+  constructor(private _authService: AuthenticationService, private _businessService: BusinessService) {
+    this.mobWidth = window.screen.width;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.mobWidth = window.screen.width;
   }
 
   ngOnInit() {
    this.getcurrentBusiness();
+  //  this.mobHeight = (window.screen.height) + "px";
+  //  this.mobWidth = (window.screen.width) + "px";
+  //    console.log(this.mobHeight);
+  //    console.log(this.mobWidth)
   }
 
   getcurrentBusiness() {

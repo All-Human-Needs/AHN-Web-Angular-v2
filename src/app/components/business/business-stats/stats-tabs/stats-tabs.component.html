@@ -1,17 +1,17 @@
 <div class="container-fluid">
     <div class="row pb-4 box-header">
-        <ul class="nav mt-5 ml-5 nav-pills">
-            <li class="nav-item " (click)="selectPane('bargraph')">
+        <ul class="nav nav-pills">
+            <li class="nav-item tabpane" (click)="selectPane('bargraph')">
                 <a class="nav-link active" id="bargraph-tab" data-toggle="tab" href="#bargraph" role="tab" aria-controls="bargraph" aria-expanded="true">
                     <i class="fa fa-bar-chart" aria-hidden="true"></i> Bargraph
                 </a>
             </li>
-            <li class="nav-item ml-3" (click)="selectPane('linechart')">
+            <li class="nav-item tabpane" (click)="selectPane('linechart')">
                 <a class="nav-link" id="line-chart-tab" data-toggle="tab" href="#line-chart" role="tab" aria-controls="line-chart">
                     <i class="fa fa-line-chart" aria-hidden="true"></i> Line Chart
                 </a>
             </li>
-            <li class="nav-item ml-3" (click)="selectPane('spreadsheet')">
+            <li class="nav-item tabpane" (click)="selectPane('spreadsheet')">
                 <a class="nav-link" id="spreadsheet-tab" data-toggle="tab" href="#spreadsheet" role="tab" aria-controls="spreadsheet">
                     <i class="fa fa-list" aria-hidden="true"></i> Spreadsheet
                 </a>

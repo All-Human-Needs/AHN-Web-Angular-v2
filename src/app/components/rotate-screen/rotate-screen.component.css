@@ -1,0 +1,15 @@
+.base {
+    height: 100vh;
+    width: 100vw;
+    background-color: #27CEBE;
+}
+
+.rotate {
+    padding-top: 75%;
+    font-size: 2rem;
+    color: #fff
+}
+
+.fa-refresh {
+    font-size: 3rem
+}

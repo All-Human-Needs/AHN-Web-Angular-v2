@@ -68,7 +68,7 @@ export class FilterComponent implements OnInit {
       });
 
 if(this.filteredBusiness.length <1){ 
-  let link = ["/main/client-maps"]; 
+  let link = ["/main/client-maps/All"]; 
                  router.navigate(link);}
     // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
 

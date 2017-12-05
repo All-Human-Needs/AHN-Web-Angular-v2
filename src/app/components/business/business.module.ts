@@ -13,6 +13,7 @@ import { BusinessStatsComponent } from './business-stats/business-stats.componen
 import { BusinessHomeComponent } from './business-home/business-home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RotateScreenComponent } from '../rotate-screen/rotate-screen.component';
 
 
 
@@ -33,7 +34,8 @@ import { CommonModule } from '@angular/common';
     LineChartComponent,
     BarChartComponent,
     SpreadsheetComponent,
-    PaginationDirective
+    PaginationDirective,
+    RotateScreenComponent,
   ]
   ,exports:[
     BusinessHomeComponent,
