@@ -1,20 +1,26 @@
 .base {
-    height: 901px;
+    height: 100%;
     /* width: 1439px; */
     /* height: 100%;*/
     width: auto;
+    /* min-width: 500px; */
     background-color: #F7F8FA;
     /* position: relative; */
     margin-left: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .heading {
+    padding-top: 51px;
     color: #1A1A1A;
     font-family: Roboto;
     font-size: 38px;
 }
 
 .sub-heading {
+    margin-top: 12px;
+    margin-bottom: 30px;
     color: #1A1A1A;
     font-family: Roboto;
 }
@@ -28,6 +34,8 @@
 }
 
 .box-small-content {
+    padding-top: 27px;
+    padding-left: 60px;
     height: 92px;
     width: 260px;
     color: #39393A;
@@ -36,6 +44,8 @@
 }
 
 .box-small-footer {
+    text-align: center;
+    padding-top: 18px;
     height: 56px;
     width: 260px;
     color: #1A1A1A;
@@ -51,9 +61,12 @@
 }
 
 .box-large {
+    margin-top: 40px;
+    margin-bottom: 50px;
     min-height: 510px;
     height: auto;
     width: 100%;
+    /* min-width: 400px; */
     border-radius: 5px;
     background-color: #FFFFFF;
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
@@ -74,4 +87,49 @@
     text-align: center;
     padding-top: 250px !important;
     font-size: 3em;
+}
+
+@media screen and (max-width: 722px) {
+    .box-small {
+        height: 150px;
+        width: 170px;
+        text-align: center;
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    }
+    .box-small-content {
+        padding-top: 27px;
+        padding-left: 0;
+        text-align: center;
+        height: 92px;
+        width: 170px;
+        color: #39393A;
+        font-family: Roboto;
+        font-size: 38px;
+    }
+    .box-small-footer {
+        height: 56px;
+        width: 170px;
+        color: #1A1A1A;
+        font-family: Roboto;
+        font-size: 12px;
+        font-weight: bold;
+        border-top: 1px solid #979797a9;
+    }
+}
+
+@media screen and (max-width: 575.5px) {
+    .box-small {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .box-small {
+        margin-bottom: 40px;
+    }
+    .box-large {
+        margin-top: 0;
+    }
 }

@@ -1,4 +1,4 @@
-import { LatLngLiteral, LatLng } from '@agm/core';
+import { LatLngLiteral, LatLng } from "@agm/core";
 import { MapsService } from "../../services/maps.service";
 import { BehaviorSubject } from "rxjs/Rx";
 
@@ -20,22 +20,10 @@ export class FilterComponent implements OnInit {
 
   params: string;
 
-  @Input() filteredBusiness: Business[]=[];
+  @Input() filteredBusiness: Business[] = [];
 
   @Output()
-  filteredBusinessChange: EventEmitter<Business[]> = new EventEmitter<
-    Business[]
-  >();
-
-  locationDistance;
-  distanceArray:any[];
-  userLocation;
-  // = {displayFiltered: 'location'};
-  // emergencyBuildings = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
-  // restaurants = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
-  // governmentBuildings = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
-  // shops = [{title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
-  // library = [{ title: '/'}, {title: '/'}, {title: '/'}, {title: '/'}];
+  filteredBusinessChange: EventEmitter<Business[]> = new EventEmitter<Business[]>();
 
   constructor(
     private businessService: BusinessService,
@@ -43,22 +31,6 @@ export class FilterComponent implements OnInit {
     private route: ActivatedRoute,
     private mapService: MapsService
   ) {
-    // console.log(0);
-
-    // this.params = this.route.snapshot.params['filter'];
-    // console.log(this.params)
-    // console.log(1);
-    // this.businessService.filterByCategory(this.params)
-    // .subscribe(business => {
-
-    // console.log(2);
-    //   this.filteredBusiness = business;
-    //   this.filteredBusinessChange.emit(business);
-    //   console.log({"2":business});
-    //   console.log({"3":this.params});
-
-    // });
-
     this.route.paramMap
       .switchMap((params: ParamMap) => {
         return this.businessService.filterByCategory(params.get("filter"));
@@ -66,48 +38,78 @@ export class FilterComponent implements OnInit {
       .subscribe(business => {
         this.filteredBusiness = business;
         this.filteredBusinessChange.emit(business);
-
-// var list:any[];
-//         if("geolocation" in navigator){
-//           navigator.geolocation.getCurrentPosition(position=>{
-//             for (var i = 0; i < business.length; i++) {
-//           console.log(business)
-//               list.push({business:business[i],distance:0})
-              
-//             }
-           
-//           }
-//           )
-//         }
-
-        // console.log({ "2": business });
-    //     this.filteredBusiness.sort((a: any, b:any ) => {
-    //    if (a < b) {
-    //   return -1;
-    // } else if (a > b) {
-    //   return 1;
-    // } else {
-    //   return 0;
-    // }})
-        // console.log("happens");
+        console.log({ "2": business });
       });
 
     if (this.filteredBusiness.length < 1) {
-      let link = ["/main/client-maps"];
+      let link = ["/main/client-maps/All"];
       router.navigate(link);
     }
-    // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
 
+    // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
     // await this.businessService.replay.first().toPromise().then();
   }
 
   ngOnInit() {
+    // calls check specific box function so the filter you choose in the dashboard is reflected in the filters list -- START
+    this.route.params.subscribe((param: Params) => {
+      let category = param["filter"];
 
+      this.checkSpecificBox(category);
+    });
+    // calls check specific box function so the filter you choose in the dashboard is reflected in the filters list -- END
   }
 
   search(filter: string): void {
     // this.filterargs.next(filter);
     let link = ["/main/client-maps", filter];
     this.router.navigate(link);
+  }
+
+  hospitalChecked: boolean = false;
+  policeChecked: boolean = false;
+  fireDepartmentChecked: boolean = false;
+  bankChecked: boolean = false;
+  homeAffairsChecked: boolean = false;
+  nutritionAndFitnessChecked: boolean = false;
+  insuranceChecked: boolean = false;
+  cityToCityChecked: boolean = false;
+  MotorVehicleServiceChecked: boolean = false;
+  retailChecked: boolean = false;
+
+  checkSpecificBox(input: String) {
+    switch (input) {
+      case "nutrition and fitness":
+        this.nutritionAndFitnessChecked = true;
+        break;
+      case "insurance":
+        this.insuranceChecked = true;
+        break;
+      case "city to city":
+        this.cityToCityChecked = true;
+        break;
+      case "motor vehicle service":
+        this.MotorVehicleServiceChecked = true;
+        break;
+      case "retail":
+        this.retailChecked = true;
+        break;
+      case "All":
+        this.hospitalChecked = false;
+        this.policeChecked = false;
+        this.fireDepartmentChecked = false;
+        this.bankChecked = false;
+        this.homeAffairsChecked = false;
+        this.nutritionAndFitnessChecked = false;
+        this.insuranceChecked = false;
+        this.cityToCityChecked = false;
+        this.MotorVehicleServiceChecked = false;
+        this.retailChecked = false;
+      default:
+    }
+  }
+
+  uncheckBoxes() {
+    // WORK NEEDED
   }
 }

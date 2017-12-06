@@ -1,9 +1,9 @@
-import { ActivatedRoute, Params } from "@angular/router";
-import { MapDirectionsDirective } from "../map-directions.directive";
-import { SearchService } from "./../../../../services/search.service";
-import { Location } from "tslint/lib/rules/strictBooleanExpressionsRule";
-import { Business } from "./../../../../models/business/business.class";
-import { BusinessService } from "./../../../../services/business.service";
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { MapDirectionsDirective } from '../map-directions.directive';
+import { SearchService } from './../../../../services/search.service';
+import { Location } from 'tslint/lib/rules/strictBooleanExpressionsRule';
+import { Business } from './../../../../models/business/business.class';
+import { BusinessService } from './../../../../services/business.service';
 
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { GoogleMapsAPIWrapper, MapsAPILoader } from "@agm/core";
@@ -39,19 +39,21 @@ export class MapComponent implements OnInit {
   zoom: number;
   directionsDisplay;
 
-  constructor(
-    private BusinessService: BusinessService,
-    private SearchService: SearchService,
-    private gmapsApi: GoogleMapsAPIWrapper,
-    private mapsAPILoader: MapsAPILoader,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private BusinessService: BusinessService, private SearchService: SearchService, private gmapsApi: GoogleMapsAPIWrapper, private mapsAPILoader: MapsAPILoader, private route: ActivatedRoute, private router: Router) {
+
+
+  }
 
   ngOnInit() {
     // Populate array of bussinesses to work with -- START
-    // this.initMarkers();
+
+    // if (this.router.url === "/main/client-maps") {
+    //         this.initMarkers();
+    //         console.log("heloo")
+    //       } else {
+    //         this.updateMarkers();
+    //       }
     this.updateMarkers();
-    // Populate array of bussinesses to work with -- END
 
     // if(this.directionsDisplay === undefined){
     //   this.gmapsApi.getNativeMap().then(map => {
@@ -61,6 +63,9 @@ export class MapComponent implements OnInit {
     //       });
     //   });
     // }
+
+    console.log(this.router.url)
+    // Populate array of bussinesses to work with -- END
     this.setDestination();
   }
 
@@ -186,6 +191,9 @@ export class MapComponent implements OnInit {
     return imageLocation;
   }
   // Method for displaying the correct colour for the markers END
+  getUserIcon(): String {
+    return "assets/img/colour-markers/userLocation.png";
+  }
 }
 
 interface location {

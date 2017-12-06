@@ -40,6 +40,7 @@ export class MapDirectionsDirective implements OnInit,OnChanges {
                     },
                     suppressMarkers : true
             });
+            // this.showSteps(response);
           }else{
             this.directionsDisplay.setMap(null);
             this.directionsDisplay = new google.maps.DirectionsRenderer;
@@ -53,6 +54,7 @@ export class MapDirectionsDirective implements OnInit,OnChanges {
                       },
                       suppressMarkers : true
               });
+              // this.showSteps(response);
           }
          
         } else {
@@ -62,4 +64,34 @@ export class MapDirectionsDirective implements OnInit,OnChanges {
 
     });
   }
+
+  // showSteps(directionResult) {
+  //   // For each step, place a marker, and add the text to the marker's
+  //   // info window. Also attach the marker to an array so we
+  //   // can keep track of it and remove it when calculating new
+  //   // routes.
+  //   var myRoute = directionResult.routes[0].legs[0];
+    
+  //   for (var i = 0; i < myRoute.steps.length; i++) {
+  //     var icon = "https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=" + i + "|FF0000|000000";
+  //     if (i == 0) {
+  //       icon = "https://chart.googleapis.com/chart?chst=d_map_xpin_icon&chld=pin_star|car-dealer|00FFFF|FF0000";
+  //     }
+  //     var marker = new google.maps.Marker({
+  //       position: myRoute.steps[i].start_point, 
+  //       // map: mapCanvas,
+  //       icon: icon
+  //     });
+  //     // attachInstructionText(marker, myRoute.steps[i].instructions);
+  //     // markerArray.push(marker);
+  //   }
+  //   var marker = new google.maps.Marker({
+  //     position: myRoute.steps[i - 1].end_point, 
+  //     // map: mapCanvas,
+  //     icon: "https://chart.googleapis.com/chart?chst=d_map_pin_icon&chld=flag|ADDE63"
+  //   });
+  //   // markerArray.push(marker);
+    
+  //   // google.maps.event.trigger(markerArray[0], "click");
+  // }
 }

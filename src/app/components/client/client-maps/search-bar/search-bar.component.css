@@ -11,7 +11,8 @@
 
 .ahn-search-bar {
     height: 58px;
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
     border-radius: 5px;
     background-color: #FFFFFF;
     border-style: none;
@@ -22,14 +23,31 @@
 
 .search-icon {
     font-size: 16px;
-    ;
-    width: 40px;
+    /* width: 40px; */
     margin-top: 10px;
+}
+
+.search-btn {
+    font-size: 16px;
+    padding-top: 20px;
+    height: 58px;
+    width: 58px;
+    background-color: #14CFBE;
+    color: #ffffff
+}
+
+.search-btn:hover {
+    cursor: pointer;
+    background-color: rgba(20, 207, 188, 0.712);
 }
 
 li,
 ul {
     width: 100%;
+}
+
+.search-list>ul>li {
+    width: 223px!important;
 }
 
 .list-group-item:hover {
@@ -43,4 +61,13 @@ ul {
     background-color: #27CEBE;
     border-radius: 0px;
     border-style: none;
+}
+
+@media screen and (max-width: 570px) {
+    .ahn-search-container {
+        width: 218px;
+    }
+    .search-list>ul>li {
+        width: 170px!important;
+    }
 }
