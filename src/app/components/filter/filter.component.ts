@@ -47,9 +47,6 @@ export class FilterComponent implements OnInit {
       let link = ["/main/client-maps/All"];
       router.navigate(link);
     }
-
-    // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
-    // await this.businessService.replay.first().toPromise().then();
   }
 
   ngOnInit() {
@@ -85,17 +82,30 @@ export class FilterComponent implements OnInit {
   MotorVehicleServiceChecked: boolean = false;
   retailChecked: boolean = false;
 
-
-
   checkSpecificBox(input: String) {
     switch (input) {
+      case 'hospital':
+        this.hospitalChecked = true;
+        break;
+      case 'police department':
+        this.policeChecked = true;
+        break;
+      case 'fire department':
+        this.fireDepartmentChecked = true;
+        break;
+      case 'bank':
+        this.fireDepartmentChecked = true;
+        break;
+      case 'home affairs':
+        this.homeAffairsChecked = true;
+        break;
       case 'nutrition and fitness':
         this.nutritionAndFitnessChecked = true;
         break;
       case 'insurance':
         this.insuranceChecked = true;
         break;
-      case 'city to city':
+      case 'city to city transport':
         this.cityToCityChecked = true;
         break;
       case 'motor vehicle service':
@@ -115,6 +125,7 @@ export class FilterComponent implements OnInit {
         this.cityToCityChecked = false;
         this.MotorVehicleServiceChecked = false;
         this.retailChecked = false;
+        break;
       default:
     }
 
