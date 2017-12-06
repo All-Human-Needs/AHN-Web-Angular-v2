@@ -1,6 +1,9 @@
-import { Response } from '_debugger';
-
-import { LatLngLiteral, LatLng } from "@agm/core";
+import {
+  LatLngLiteral,
+  LatLng,
+  GoogleMapsAPIWrapper,
+  MapsAPILoader
+} from "@agm/core";
 import { MapsService } from "../../services/maps.service";
 import { BehaviorSubject } from "rxjs/Rx";
 
@@ -10,7 +13,10 @@ import { Business } from "./../../models/business/business.class";
 import { BusinessService } from "./../../services/business.service";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ActivatedRoute, ParamMap, Params, Router } from "@angular/router";
-import{} from "@types/googlemaps"
+
+import {} from "@types/googlemaps";
+// declare var google:any;
+
 @Component({
   selector: "filter",
   templateUrl: "./filter.component.html",
@@ -25,13 +31,17 @@ export class FilterComponent implements OnInit {
   @Input() filteredBusiness: Business[] = [];
 
   @Output()
-  filteredBusinessChange: EventEmitter<Business[]> = new EventEmitter<Business[]>();
+  filteredBusinessChange: EventEmitter<Business[]> = new EventEmitter<
+    Business[]
+  >();
 
   constructor(
     private businessService: BusinessService,
     private router: Router,
     private route: ActivatedRoute,
-    private mapService: MapsService
+    private mapService: MapsService,
+    private gmapsApi: GoogleMapsAPIWrapper,
+    private mapsAPILoader: MapsAPILoader
   ) {
     this.route.paramMap
       .switchMap((params: ParamMap) => {
@@ -40,23 +50,48 @@ export class FilterComponent implements OnInit {
       .subscribe(business => {
         this.filteredBusiness = business;
         this.filteredBusinessChange.emit(business);
+
         console.log({ "2": business });
+        mapsAPILoader.load().then(() => {
+          var distanceService = new google.maps.DistanceMatrixService();
+          var origin = new google.maps.LatLng(-33.927082399999996, 18.445757);
+          var destination = [];
+          console.log(destination);
+          for (var i = 0; i < business.length; i++) {
+            destination.push(
+              new google.maps.LatLng(business[i].lat, business[i].lng)
+            );
+            console.log(destination);
+          }
 
-        var distanceService= new google.maps.DistanceMatrixService
-var origin = new google.maps.LatLng(-33.927082399999996,18.445757);
-var destination=[];
-for (var i = 0; i < business.length; i++) {
+          distanceService.getDistanceMatrix(
+            {
+              origins: [origin],
+              destinations: destination,
+              travelMode: google.maps.TravelMode.DRIVING
+            },
+            function(response, status) {
+              var distanceArr = []
 
-destination.push(new google.maps.LatLng(business[i].lat,business[i].lng));
-  
-}
-        distanceService.getDistanceMatrix({
-          origins:[origin],
-destinations:destination
-        },function (response,status){
+              for (var i = 0; i < response.rows[0].elements.length; i++) {
+                distanceArr.push(response.rows[0].elements[i].distance.value/1000);
+              }
+              distanceArr.sort((a: any, b: any) => {
+                if (a < b) {
+                  return -1;
+                } else if (a > b) {
+                  return 1;
+                } else {
+                  return 0;
+                }
+              });
+              console.log(distanceArr);
+              console.log(response.rows[0].elements[0].distance.value);
+            }
+          );
 
-        })
-        
+          // console.log('foo')
+        });
       });
 
     if (this.filteredBusiness.length < 1) {

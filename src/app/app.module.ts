@@ -35,6 +35,7 @@ import { ForgotPasswordComponent } from './components/login/forgot-password/forg
 import { SearchService } from './services/search.service';
 import { MainComponent } from './components/main/main.component';
 import { MapsService } from './services/maps.service';
+import { GoogleMapsAPIWrapper } from '@agm/core';
 
 
 export const firebaseConfig = {
@@ -82,7 +83,7 @@ export const firebaseConfig = {
   ],
   exports: [],
 
-  providers: [BusinessService,AuthenticationService,UserService,SearchService, AuthGuard,MapsService],
+  providers: [BusinessService,AuthenticationService,UserService,SearchService, AuthGuard,MapsService,GoogleMapsAPIWrapper],
 
   bootstrap: [AppComponent]
 

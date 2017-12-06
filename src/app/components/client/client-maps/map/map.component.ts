@@ -64,7 +64,7 @@ export class MapComponent implements OnInit {
     //   });
     // }
 
-    console.log(this.router.url)
+    // console.log(this.router.url)
     // Populate array of bussinesses to work with -- END
     this.setDestination();
   }
@@ -144,7 +144,7 @@ export class MapComponent implements OnInit {
         // console.log("Origin: " + this.origin.latitude + "," + this.origin.longitude)
       });
     }
-    console.log(this.userLocation);
+    // console.log(this.userLocation);
     return this.userLocation;
   }
   // Method for setting CURRENT POSITION -- END
