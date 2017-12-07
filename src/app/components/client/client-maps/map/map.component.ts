@@ -45,27 +45,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Populate array of bussinesses to work with -- START
-
-    // if (this.router.url === "/main/client-maps") {
-    //         this.initMarkers();
-    //         console.log("heloo")
-    //       } else {
-    //         this.updateMarkers();
-    //       }
     this.updateMarkers();
-
-    // if(this.directionsDisplay === undefined){
-    //   this.gmapsApi.getNativeMap().then(map => {
-    //       this.directionsDisplay = new google.maps.DirectionsRenderer({
-    //           draggable: false,
-    //           map: map,
-    //       });
-    //   });
-    // }
-
-    // console.log(this.router.url)
-    // Populate array of bussinesses to work with -- END
     this.setDestination();
   }
 
@@ -120,7 +100,17 @@ export class MapComponent implements OnInit {
   setDestination() {
     this.SearchService.destinationBusiness.subscribe(response => {
       this.destination = new Destination(response.lat, response.lng);
-
+      var marker: Business = {
+        id: response.id,
+        name: response.name,
+        lat: response.lat,
+        lng: response.lng,
+        category: response.category,
+        capacity: response.capacity,
+        isActive: response.isActive,
+        stats: response.stats
+      };
+      this.locations.push(marker);
       this.mapsAPILoader.load().then(map => {
         this.directionsDisplay = new google.maps.DirectionsRenderer();
       });
@@ -141,10 +131,10 @@ export class MapComponent implements OnInit {
         this.userLng = newMarker.lng;
         this.origin.latitude = newMarker.lat;
         this.origin.longitude = newMarker.lng;
-        // console.log("Origin: " + this.origin.latitude + "," + this.origin.longitude)
+
       });
     }
-    // console.log(this.userLocation);
+
     return this.userLocation;
   }
   // Method for setting CURRENT POSITION -- END
@@ -212,31 +202,3 @@ class Destination {
   }
 }
 
-// Method for calculating distance -- START
-// private calculateDistance(origin: location, destination: Business) {
-//   const start = new google.maps.LatLng(origin.lat, origin.lng);
-//   const end = new google.maps.LatLng(destination.lat, destination.lng);
-
-//   const distance = new google.maps.geometry.spherical.compeuteDistanceBetween(start, end);
-
-//   console.log(distance);
-// }
-// Method for calculating distance -- END
-
-// Populate array of bussinesses to work with -- END
-
-// // Update locations list according to filters -- START
-// updateLocationsForFilters(input: String[]) {
-//   // I'm just gonna do this code here (just the logic basically so i can fill in the correct variable names and everything in later when malcolm is done working on the filter component)
-
-//   for (var i = 0; i < this.locations.length; i++) {
-//     for (var j = 0; i < input.length;j++) {
-//       if (this.locations[i].category === input[j]) {
-//         this.filteredLocations.push(this.locations[i]);
-//       }
-//     }
-//   }
-
-//   this.locations = this.filteredLocations;
-// }
-// // Update locations list according to filters -- END

@@ -1,3 +1,4 @@
+import { setTimeout } from 'timers';
 import {
   LatLngLiteral,
   LatLng,
@@ -14,8 +15,7 @@ import { BusinessService } from "./../../services/business.service";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ActivatedRoute, ParamMap, Params, Router } from "@angular/router";
 
-import {} from "@types/googlemaps";
-// declare var google:any;
+import { } from "@types/googlemaps";
 
 @Component({
   selector: "filter",
@@ -23,7 +23,6 @@ import {} from "@types/googlemaps";
   styleUrls: ["./filter.component.css"]
 })
 export class FilterComponent implements OnInit {
-  // filterargs:BehaviorSubject<string>;
   businesses: Observable<Business[]>;
 
   params: string;
@@ -46,13 +45,9 @@ export class FilterComponent implements OnInit {
         return this.businessService.filterByCategory(params.get("filter"));
       })
       .subscribe(business => {
-        // this.filteredBusiness = business;
-        // this.filteredBusinessChange.emit(business);
 
-        console.log({ "2": business });
         mapsAPILoader.load().then(() => {
 
-          // this.filteredBusinessChange = new EventEmitter<any[]>();
           var distanceService = new google.maps.DistanceMatrixService();
           if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(position => {
@@ -61,15 +56,11 @@ export class FilterComponent implements OnInit {
                 position.coords.longitude
               );
               var destination = [];
-              // console.log(destination);
               for (var i = 0; i < business.length; i++) {
                 destination.push(
                   new google.maps.LatLng(business[i].lat, business[i].lng)
                 );
-                // console.log(destination);
               }
-
-              // var x = { business: business[0], distance: 0 };
 
               distanceService.getDistanceMatrix(
                 {
@@ -77,11 +68,10 @@ export class FilterComponent implements OnInit {
                   destinations: destination,
                   travelMode: google.maps.TravelMode.DRIVING
                 },
-                (response, status)=> {
-                  // this.filteredBusinessChange = new EventEmitter<any[]>();
+                (response, status) => {
                   var distanceArr = [];
                   if (response.rows[0] !== undefined) {
-                  
+
                     for (var i = 0; i < response.rows[0].elements.length; i++) {
                       distanceArr.push({
                         business: business[i],
@@ -99,29 +89,26 @@ export class FilterComponent implements OnInit {
                       }
                     });
                     this.filteredBusiness = distanceArr;
-                    
                     this.filteredBusinessChange.emit(this.filteredBusiness);
-                      console.log(this.filteredBusiness);
-                      // this.filteredBusinessChange = new EventEmitter<any[]>();
-                      
-                      
-                    
-                  }else{this.filteredBusinessChange.emit([]);}
+                  } else { this.filteredBusinessChange.emit([]); }
 
                 }
-                
+
               );
             });
           }
 
         });
-        
+
       });
 
-    if (this.filteredBusiness.length < 1) {
-      let link = ["/main/client-maps/All"];
-      router.navigate(link);
-    }
+    setTimeout(() => {
+      if (this.filteredBusiness.length < 1) {
+        let link = ["/main/client-maps/All"];
+        router.navigate(link);
+      }
+    }, 2000);
+
 
     // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
     // await this.businessService.replay.first().toPromise().then();
