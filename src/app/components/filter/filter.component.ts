@@ -90,6 +90,7 @@ export class FilterComponent implements OnInit {
                     });
                     this.filteredBusiness = distanceArr;
                     this.filteredBusinessChange.emit(this.filteredBusiness);
+
                   } else { this.filteredBusinessChange.emit([]); }
 
                 }
@@ -110,8 +111,6 @@ export class FilterComponent implements OnInit {
     }, 2000);
 
 
-    // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
-    // await this.businessService.replay.first().toPromise().then();
   }
 
   ngOnInit() {

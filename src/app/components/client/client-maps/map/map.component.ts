@@ -65,7 +65,6 @@ export class MapComponent implements OnInit {
         this.locations.push(marker);
       }
     });
-    // this.setDestination();
   }
 
   updateMarkers() {

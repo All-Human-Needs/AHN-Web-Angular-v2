@@ -48,15 +48,12 @@ hidden:boolean;
           return 0;
         });
         this.alternativesList.splice(3, this.alternativesList.length);
-        // console.log(this.alternativesList);
       }).bind(this)
     );
   }
 
   select(item: Business) {
-    // console.log(this.query)
     this.bestAlternative();
-// console.log(item);
 
 this.searchService.setBusiness(item);
 

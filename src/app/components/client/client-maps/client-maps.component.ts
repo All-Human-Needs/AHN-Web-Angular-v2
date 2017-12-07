@@ -13,7 +13,6 @@ export class ClientMapsComponent implements OnInit {
   constructor(private businessService:BusinessService) { }
 
   ngOnInit() {
-    console.log(this.filteredBusiness)
   }
 
   

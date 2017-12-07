@@ -31,20 +31,15 @@ export class InputSystemComponent implements OnInit {
         this.currentNumPeople = this.selectedBusiness.stats[this.selectedBusiness.stats.length-1].pax;
 
         this.maxCapacity = this.selectedBusiness.capacity;
-        // console.log(this.currentNumPeople, this.maxCapacity);
       }else{
         this.currentNumPeople = 0;
 
         this.maxCapacity = this.selectedBusiness.capacity;
-        // console.log(this.currentNumPeople, this.maxCapacity);
        }
        
     }
    )
-  //  setInterval(()=>{
-  //    this.send()
-  //  },30000)
-  //  setInterval(()=>{console.log("hello")},1800000);
+  
   }
 
   setSelectedBusiness(selected){
@@ -55,12 +50,10 @@ export class InputSystemComponent implements OnInit {
       this.currentNumPeople = selected.stats[temp].pax;
 
       this.maxCapacity = this.selectedBusiness.capacity;
-      // console.log(this.currentNumPeople, this.maxCapacity);
     }else{
      this.currentNumPeople = 0;
 
      this.maxCapacity = this.selectedBusiness.capacity;
-    //  console.log(this.currentNumPeople, this.maxCapacity);
     }
    
   }

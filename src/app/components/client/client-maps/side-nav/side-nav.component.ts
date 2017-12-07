@@ -14,7 +14,6 @@ currRoute;
      
       this.currRoute=this.route.url; 
   }).bind(this))
-  // console.log(this.currRoute);
    }
 
   ngOnInit() {  
