@@ -12,7 +12,7 @@ import { User } from '../../models/user';
 })
 export class MainComponent implements OnInit {
 
-  constructor(protected auth: AuthenticationService) {
+  constructor(public auth: AuthenticationService) {
   }
   
   ngOnInit() { }

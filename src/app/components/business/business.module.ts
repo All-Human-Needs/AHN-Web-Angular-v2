@@ -10,7 +10,6 @@ import { BarChartComponent } from './business-stats/stats-tabs/bar-chart/bar-cha
 import { LineChartComponent } from './business-stats/stats-tabs/line-chart/line-chart.component';
 import { StatsTabsComponent } from './business-stats/stats-tabs/stats-tabs.component';
 import { BusinessStatsComponent } from './business-stats/business-stats.component';
-import { BusinessHomeComponent } from './business-home/business-home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RotateScreenComponent } from '../rotate-screen/rotate-screen.component';
@@ -28,7 +27,6 @@ import { RotateScreenComponent } from '../rotate-screen/rotate-screen.component'
     MaterialsModule
   ], 
   declarations: [
-    BusinessHomeComponent,
     BusinessStatsComponent,
     StatsTabsComponent,
     LineChartComponent,
@@ -38,7 +36,6 @@ import { RotateScreenComponent } from '../rotate-screen/rotate-screen.component'
     RotateScreenComponent,
   ]
   ,exports:[
-    BusinessHomeComponent,
     BusinessStatsComponent,
   ],providers:[]
  

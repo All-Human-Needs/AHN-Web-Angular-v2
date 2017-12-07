@@ -1,8 +1,0 @@
-<div [hidden]="!searchService.getHidden()">
-    <div class="fixed-bottom">
-        <ul *ngIf="isExpanded" class="list-group">
-            <li (click)="select(alt)" *ngFor="let alt of alternativesList" class="list-group-item text-center"> {{alt.name}} {{alt.pax}}</li>
-        </ul>
-        <button class="btn btn-primary" (click)="toggle()">Alternative options</button>
-    </div>
-</div>

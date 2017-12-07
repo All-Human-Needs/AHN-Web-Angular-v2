@@ -6,7 +6,7 @@ import { RegistrationComponent } from "./components/registration/registration.co
 import { InputSystemComponent } from "./components/input-system/input-system.component";
 import { ClientMapsComponent } from "./components/client/client-maps/client-maps.component";
 import { BusinessStatsComponent } from "./components/business/business-stats/business-stats.component";
-import { BusinessHomeComponent } from "./components/business/business-home/business-home.component";
+
 import { ClientHomeComponent } from "./components/client/client-home/client-home.component";
 import { LoginComponent } from "./components/login/login.component";
 import { RouterModule, Routes } from "@angular/router";
