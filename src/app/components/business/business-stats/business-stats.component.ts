@@ -26,10 +26,6 @@ export class BusinessStatsComponent implements OnInit {
 
   ngOnInit() {
    this.getcurrentBusiness();
-  //  this.mobHeight = (window.screen.height) + "px";
-  //  this.mobWidth = (window.screen.width) + "px";
-  //    console.log(this.mobHeight);
-  //    console.log(this.mobWidth)
   }
 
   getcurrentBusiness() {
