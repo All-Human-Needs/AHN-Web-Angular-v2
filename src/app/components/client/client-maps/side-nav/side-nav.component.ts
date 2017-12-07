@@ -9,14 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
 currRoute;
-  constructor(private route:Router) {
-    this.route.events.subscribe((res => { 
-     
-      this.currRoute=this.route.url; 
-  }).bind(this))
+  constructor(private route: Router) {
+    this.route.events.subscribe((res => {
+
+      this.currRoute = this.route.url;
+  }).bind(this));
    }
 
-  ngOnInit() {  
+  ngOnInit() {
   }
 
 }

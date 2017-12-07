@@ -8,13 +8,13 @@ import { BusinessService } from '../../../services/business.service';
   styleUrls: ['./client-maps.component.css']
 })
 export class ClientMapsComponent implements OnInit {
-  filteredBusiness:any[];
-  
-  constructor(private businessService:BusinessService) { }
+  filteredBusiness: any[];
+
+  constructor(private businessService: BusinessService) { }
 
   ngOnInit() {
   }
 
-  
+
 
 }

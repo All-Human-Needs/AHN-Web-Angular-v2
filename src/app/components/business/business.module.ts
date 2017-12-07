@@ -26,7 +26,7 @@ import { RotateScreenComponent } from '../rotate-screen/rotate-screen.component'
     FormsModule,
     ReactiveFormsModule,
     MaterialsModule
-  ], 
+  ],
   declarations: [
     BusinessHomeComponent,
     BusinessStatsComponent,
@@ -37,10 +37,10 @@ import { RotateScreenComponent } from '../rotate-screen/rotate-screen.component'
     PaginationDirective,
     RotateScreenComponent,
   ]
-  ,exports:[
+  , exports: [
     BusinessHomeComponent,
     BusinessStatsComponent,
-  ],providers:[]
- 
+  ], providers: []
+
 })
 export class BusinessModule { }

@@ -1,59 +1,59 @@
-import { MapsAPILoader } from "@agm/core";
-import { PasswordValidators } from "../../models/password.validators";
-import { UserService } from "../../services/user.service";
-import { preparseElement } from "@angular/compiler/src/template_parser/template_preparser";
-import { Stats } from "../../models/business/stats.class";
-import { AuthenticationService } from "../../services/authentication.service";
-import { Business } from "../../models/business/business.class";
-import { BusinessService } from "../../services/business.service";
+import { MapsAPILoader } from '@agm/core';
+import { PasswordValidators } from '../../models/password.validators';
+import { UserService } from '../../services/user.service';
+import { preparseElement } from '@angular/compiler/src/template_parser/template_preparser';
+import { Stats } from '../../models/business/stats.class';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Business } from '../../models/business/business.class';
+import { BusinessService } from '../../services/business.service';
 import {
   Component,
   ElementRef,
   NgZone,
   OnInit,
   ViewChild
-} from "@angular/core";
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators
-} from "@angular/forms";
-import { User } from "../../models/user";
-import {} from "@types/googlemaps";
+} from '@angular/forms';
+import { User } from '../../models/user';
+import {} from '@types/googlemaps';
 
 @Component({
-  selector: "app-registration",
-  templateUrl: "./registration.component.html",
-  styleUrls: ["./registration.component.css"]
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  @ViewChild("searchControls") public searchElementRef: ElementRef;
+  @ViewChild('searchControls') public searchElementRef: ElementRef;
 
   // searchControl: any;
 
   emailAddress: string;
   pwd: string;
 
-  isBusiness: boolean = true;
+  isBusiness = true;
 
   businessName: string;
   lat: number;
   lng: number;
-  category: string = "bank";
-  capacity: number = 10;
+  category = 'bank';
+  capacity = 10;
 
   catOptions = [
-    "home affairs",
-    "bank",
-    "hospital",
-    "police department",
-    "fire department",
-    "nutrition and fitness",
-    "insurance",
-    "city to city transport",
-    "motor vehicle service",
-    "retail"
+    'home affairs',
+    'bank',
+    'hospital',
+    'police department',
+    'fire department',
+    'nutrition and fitness',
+    'insurance',
+    'city to city transport',
+    'motor vehicle service',
+    'retail'
   ];
 
   form: FormGroup;
@@ -68,11 +68,11 @@ export class RegistrationComponent implements OnInit {
   ) {
     this.form = fb.group({
       userForm: fb.group({
-        email: ["", [Validators.required, Validators.email]],
+        email: ['', [Validators.required, Validators.email]],
         passwordForm: fb.group(
           {
-            password: ["", [Validators.required, Validators.minLength(8)]],
-            confirmPwrd: ["", Validators.required]
+            password: ['', [Validators.required, Validators.minLength(8)]],
+            confirmPwrd: ['', Validators.required]
           },
           {
             validator: PasswordValidators.passwordMatches
@@ -80,51 +80,51 @@ export class RegistrationComponent implements OnInit {
         )
       }),
       businessForm: fb.group({
-        name: ["", [Validators.required, Validators.minLength(3)]],
+        name: ['', [Validators.required, Validators.minLength(3)]],
         capacity: [],
-        category: ["", [Validators.required]],
-        searchControl: ["", Validators.required]
+        category: ['', [Validators.required]],
+        searchControl: ['', Validators.required]
       })
     });
   }
 
   get email() {
-    return this.form.get("userForm.email");
+    return this.form.get('userForm.email');
   }
 
   get password() {
-    return this.form.get("userForm.passwordForm.password");
+    return this.form.get('userForm.passwordForm.password');
   }
 
   get passwordForm() {
-    return this.form.get("userForm.passwordForm");
+    return this.form.get('userForm.passwordForm');
   }
 
   get confirmPwrd() {
-    return this.form.get("userForm.passwordForm.confirmPwrd");
+    return this.form.get('userForm.passwordForm.confirmPwrd');
   }
 
   get name() {
-    return this.form.get("businessForm.name");
+    return this.form.get('businessForm.name');
   }
 
   get searchControl() {
-    return this.form.get("businessForm.searchControl");
+    return this.form.get('businessForm.searchControl');
   }
 
   ngOnInit() {
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(
+      const autocomplete = new google.maps.places.Autocomplete(
         this.searchElementRef.nativeElement,
         {
-          types: ["address"]
+          types: ['address']
         }
       );
-      autocomplete.addListener("place_changed", () => {
+      autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           // get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
@@ -147,9 +147,9 @@ export class RegistrationComponent implements OnInit {
     // let isBusiness;
     if (this.isBusiness) {
       //  isBusiness=true;
-      let newDate = new Date().toString();
-      let business: Business = {
-        id: "",
+      const newDate = new Date().toString();
+      const business: Business = {
+        id: '',
         name: this.businessName,
         lat: this.lat,
         lng: this.lng,
@@ -178,7 +178,7 @@ export class RegistrationComponent implements OnInit {
     // if(this.isBusiness){
     //   return !this.form.valid;
     // }else{
-    return !this.form.get("userForm").valid;
+    return !this.form.get('userForm').valid;
     // }
   }
 
@@ -189,7 +189,7 @@ export class RegistrationComponent implements OnInit {
   googleLogin(): void {
     //validate login
     alert(
-      "Please Note That If You Are Signing In As A Business You Should Instead Create An Account Using The Register Page "
+      'Please Note That If You Are Signing In As A Business You Should Instead Create An Account Using The Register Page '
     );
     this._authenticationService.googleLogin();
   }

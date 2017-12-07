@@ -24,8 +24,8 @@ import { MapDirectionsDirective } from './client-maps/map-directions.directive';
     FilterModule,
     SideNavModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',  
-      libraries:["places"]
+      apiKey: 'AIzaSyCP2Hh22RK96_fPIFSgIcBZ-_E48-yY4P0',
+      libraries: ['places']
     }),
     AppRoutingModule,
     BannerModule
@@ -43,6 +43,6 @@ import { MapDirectionsDirective } from './client-maps/map-directions.directive';
     ClientHomeComponent,
     ClientMapsComponent,
 
-  ],providers:[]
+  ], providers: []
 })
 export class ClientModule { }

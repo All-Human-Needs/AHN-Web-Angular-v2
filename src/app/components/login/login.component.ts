@@ -1,17 +1,17 @@
-import { ifError } from "assert";
-import { Error } from "tslint/lib/error";
-import { AuthenticationService } from "../../services/authentication.service";
-import { BusinessService } from "../../services/business.service";
-import { Router } from "@angular/router";
-import { Component, OnInit } from "@angular/core";
-import { AngularFireAuth } from "angularfire2/auth";
-import * as firebase from "firebase/app";
-import { FormControl, FormGroup, Validator, Validators, FormBuilder } from "@angular/forms";
+import { ifError } from 'assert';
+import { Error } from 'tslint/lib/error';
+import { AuthenticationService } from '../../services/authentication.service';
+import { BusinessService } from '../../services/business.service';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { FormControl, FormGroup, Validator, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: "ahn-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'ahn-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   username: string;
@@ -28,12 +28,12 @@ export class LoginComponent implements OnInit {
     private businessService: BusinessService,
     private router: Router,
     private authService: AuthenticationService,
-    private fb:FormBuilder
+    private fb: FormBuilder
   ) {
     this.form = fb.group({
-      email:['',Validators.email],
-      password:['',[Validators.required,Validators.minLength(8)]]
-    })
+      email: ['', Validators.email],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+    });
     businessService.getBusinesses();
   }
 
@@ -42,10 +42,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.username, this.psw).catch((error: Error) => {
-      var errorCode = error.name;
-      var errorMessage = error.message;
-      if (errorCode === "auth/wrong-password") {
-        alert("Wrong password.");
+      const errorCode = error.name;
+      const errorMessage = error.message;
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
       } else {
         alert(errorMessage);
       }
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
   googleLogin(): void {
     //validate login
     alert(
-      "Please Note That If You Are Signing In As A Business You Should Instead Create An Account Using The Register Page "
+      'Please Note That If You Are Signing In As A Business You Should Instead Create An Account Using The Register Page '
     );
     this.authService.googleLogin();
   }
@@ -67,9 +67,9 @@ export class LoginComponent implements OnInit {
   rememberMe(): void {}
 
   get email() {
-    return this.form.get("email");
+    return this.form.get('email');
   }
   get password() {
-    return this.form.get("password");
+    return this.form.get('password');
   }
 }

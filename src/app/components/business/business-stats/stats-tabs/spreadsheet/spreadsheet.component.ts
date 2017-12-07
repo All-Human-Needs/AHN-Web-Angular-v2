@@ -26,7 +26,7 @@ export class SpreadsheetComponent implements OnInit {
   selectedPage = 1;
 
   get items(): statisics[] {
-    let pageIndex = (this.selectedPage - 1) * this.itemsPerpage;
+    const pageIndex = (this.selectedPage - 1) * this.itemsPerpage;
     return this.statistics.slice(pageIndex, pageIndex + this.itemsPerpage);
   }
   changePage(newPage: number) {
@@ -37,7 +37,7 @@ export class SpreadsheetComponent implements OnInit {
     this.changePage(1);
   }
   get pageCount(): number {
-    return Math.ceil(this.statistics.length / this.itemsPerpage)
+    return Math.ceil(this.statistics.length / this.itemsPerpage);
   }
   //pagination end
 
@@ -45,28 +45,28 @@ export class SpreadsheetComponent implements OnInit {
 
     this.statistics.splice(0);
     //get stats of selected business
-    let allStats = response.stats;
+    const allStats = response.stats;
     //get selected date or get current date if there is no selected date
     if (this.selectedDate === null || this.selectedDate === undefined) {
       this.selectedDate = new Date();
     }
-    let selectedDay = this.selectedDate.getDate();
-    let selectedMonth = this.selectedDate.getMonth();
-    let selectedYear = this.selectedDate.getFullYear();
+    const selectedDay = this.selectedDate.getDate();
+    const selectedMonth = this.selectedDate.getMonth();
+    const selectedYear = this.selectedDate.getFullYear();
     //filter to receive stats for the selected day only
-    for (var x = 0; x < allStats.length; x++) {
+    for (let x = 0; x < allStats.length; x++) {
       //get current date in array
-      let currentDate: Date = new Date(allStats[x].date);
-      let currentDay = currentDate.getDate();
-      let currentMonth = currentDate.getMonth();
-      let currentYear = currentDate.getFullYear();
+      const currentDate: Date = new Date(allStats[x].date);
+      const currentDay = currentDate.getDate();
+      const currentMonth = currentDate.getMonth();
+      const currentYear = currentDate.getFullYear();
       //check if current day is equal to selected day
       if (selectedDay === currentDay && selectedMonth === currentMonth && selectedYear === currentYear) {
         //create a new stats object
-        let newStat: statisics = {
+        const newStat: statisics = {
           date: currentDate,
           pax: allStats[x].pax,
-        }
+        };
         //push the new stat to the stats array
         this.statistics.push(newStat);
       }
@@ -78,29 +78,29 @@ export class SpreadsheetComponent implements OnInit {
 
     this.statistics.splice(0);
 
-    let allStats = response.stats;
+    const allStats = response.stats;
     if (this.selectedDate === null || this.selectedDate === undefined) {
       this.selectedDate = new Date();
     }
     //get next 7 days starting at selected day
-    let days: Date[] = this.getNextDays(this.selectedDate, 6);
+    const days: Date[] = this.getNextDays(this.selectedDate, 6);
 
     //sets next 7 days to global statistic
-    for (var x = 0; x < days.length; x++) {
-      this.statistics.push({ date: days[x], pax: 0 })
+    for (let x = 0; x < days.length; x++) {
+      this.statistics.push({ date: days[x], pax: 0 });
     }
 
-    for (var x = 0; x < allStats.length; x++) {
-      let currentDate: Date = new Date(allStats[x].date);
-      let currentDay = currentDate.getDate();
-      let currentMonth = currentDate.getMonth();
-      let currentYear = currentDate.getFullYear();
+    for (let x = 0; x < allStats.length; x++) {
+      const currentDate: Date = new Date(allStats[x].date);
+      const currentDay = currentDate.getDate();
+      const currentMonth = currentDate.getMonth();
+      const currentYear = currentDate.getFullYear();
 
-      for (var j = 0; j < this.statistics.length; j++) {
-        let selDate = this.statistics[j].date;
-        let selectedDay = selDate.getDate();
-        let selectedMonth = selDate.getMonth();
-        let selectedYear = selDate.getFullYear();
+      for (let j = 0; j < this.statistics.length; j++) {
+        const selDate = this.statistics[j].date;
+        const selectedDay = selDate.getDate();
+        const selectedMonth = selDate.getMonth();
+        const selectedYear = selDate.getFullYear();
 
         if (selectedDay === currentDay && selectedMonth === currentMonth && selectedYear === currentYear) {
           this.statistics[j].pax += allStats[x].pax;
@@ -112,9 +112,9 @@ export class SpreadsheetComponent implements OnInit {
 
 
   getNextDays(startDate, daysToAdd) {
-    var aryDates = [];
-    for (var i = 0; i <= daysToAdd; i++) {
-      var currentDate = new Date(startDate);
+    const aryDates = [];
+    for (let i = 0; i <= daysToAdd; i++) {
+      const currentDate = new Date(startDate);
       currentDate.setDate(startDate.getDate() + i);
       aryDates.push(currentDate);
     }
@@ -140,17 +140,17 @@ export class SpreadsheetComponent implements OnInit {
       this.selectedDate = new Date();
     }
     //get stats of selected business
-    let allStats = response.stats;
-    let selectedYear = this.selectedDate.getFullYear();
+    const allStats = response.stats;
+    const selectedYear = this.selectedDate.getFullYear();
 
-    for (var j = 0; j < 12; j++) {
+    for (let j = 0; j < 12; j++) {
       this.statistics.push({ date: new Date(selectedYear, j), pax: 0 });
     }
-    for (var x = 0; x < allStats.length; x++) {
-      let currentDate: Date = new Date(allStats[x].date);
-      let currentYear = currentDate.getFullYear();
-      let currentMonth = currentDate.getMonth();
-      for (var j = 0; j < 12; j++) {
+    for (let x = 0; x < allStats.length; x++) {
+      const currentDate: Date = new Date(allStats[x].date);
+      const currentYear = currentDate.getFullYear();
+      const currentMonth = currentDate.getMonth();
+      for (let j = 0; j < 12; j++) {
         if (currentYear === selectedYear && currentMonth === j) {
           this.statistics[j].pax += allStats[x].pax;
         }
@@ -161,19 +161,19 @@ export class SpreadsheetComponent implements OnInit {
 
 
   ngOnInit() {
-    let valueChanged: boolean = false;
-    let uid = this._authService.getCurrentBusiness();
+    let valueChanged = false;
+    const uid = this._authService.getCurrentBusiness();
     let currentBusiness;
 
     this._businessService.getBusinesses().subscribe(response => {
-      for (var i = 0; i < response.length; i++) {
+      for (let i = 0; i < response.length; i++) {
         if (response[i].id === uid) {
 
           currentBusiness = response[i];
 
         }
 
-      };
+      }
 
       this.statTabs.datepicker.valueChanges.subscribe(data => {
         this.selectedDate = new Date(data.selectedDate);
@@ -181,13 +181,13 @@ export class SpreadsheetComponent implements OnInit {
         valueChanged = true;
 
         switch (this.chartType) {
-          case "hourly": this.getHourlyStats(currentBusiness, this.selectedDate);
+          case 'hourly': this.getHourlyStats(currentBusiness, this.selectedDate);
             break;
-          case "daily": this.getDailyStats(currentBusiness, this.selectedDate);
+          case 'daily': this.getDailyStats(currentBusiness, this.selectedDate);
             break;
           // case "weekly":this.getWeeklyStats(0);
           // break;
-          case "monthly": this.getMonthlyStats(currentBusiness, this.selectedDate);
+          case 'monthly': this.getMonthlyStats(currentBusiness, this.selectedDate);
             break;
 
           default:
@@ -195,16 +195,16 @@ export class SpreadsheetComponent implements OnInit {
         }
 
 
-      })
+      });
       if (!valueChanged) {
         switch (this.chartType) {
-          case "hourly": this.getHourlyStats(currentBusiness, this.selectedDate);
+          case 'hourly': this.getHourlyStats(currentBusiness, this.selectedDate);
             break;
-          case "daily": this.getDailyStats(currentBusiness, this.selectedDate);
+          case 'daily': this.getDailyStats(currentBusiness, this.selectedDate);
             break;
           // case "weekly":this.getWeeklyStats(0);
           // break;
-          case "monthly": this.getMonthlyStats(currentBusiness, this.selectedDate);
+          case 'monthly': this.getMonthlyStats(currentBusiness, this.selectedDate);
             break;
 
           default:
@@ -215,22 +215,22 @@ export class SpreadsheetComponent implements OnInit {
       this.statTabs.chartType.subscribe(timePeriod => {
         this.chartType = timePeriod;
         switch (this.chartType) {
-          case "hourly": this.getHourlyStats(currentBusiness, this.selectedDate);
+          case 'hourly': this.getHourlyStats(currentBusiness, this.selectedDate);
             break;
-          case "daily": this.getDailyStats(currentBusiness, this.selectedDate);
+          case 'daily': this.getDailyStats(currentBusiness, this.selectedDate);
             break;
           // case "weekly":this.getWeeklyStats(0);
           // break;
-          case "monthly": this.getMonthlyStats(currentBusiness, this.selectedDate);
+          case 'monthly': this.getMonthlyStats(currentBusiness, this.selectedDate);
             break;
 
           default:
             break;
         }
-      })
+      });
 
 
-    })
+    });
 
 
   }

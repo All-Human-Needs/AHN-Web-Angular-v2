@@ -5,16 +5,16 @@ import { Directive, Input, ViewContainerRef, TemplateRef, SimpleChanges } from '
 })
 export class PaginationDirective {
 
-  constructor(private container:ViewContainerRef,private template:TemplateRef<Object>) { }
-  @Input("paginateOf")  paginate:number;
+  constructor(private container: ViewContainerRef, private template: TemplateRef<Object>) { }
+  @Input('paginateOf')  paginate: number;
 
-  ngOnChanges(changes:SimpleChanges){
+  ngOnChanges(changes: SimpleChanges){
     this.container.clear();
-    for(let i = 0; i < this.paginate;i++){
-        this.container.createEmbeddedView(this.template,new PaginateDirectiveContext(i+1));
+    for (let i = 0; i < this.paginate; i++){
+        this.container.createEmbeddedView(this.template, new PaginateDirectiveContext(i + 1));
     }
 }
 }
 class PaginateDirectiveContext{
-  constructor(public $implicit:any){}
+  constructor(public $implicit: any){}
 }

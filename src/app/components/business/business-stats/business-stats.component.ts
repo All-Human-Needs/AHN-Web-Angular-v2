@@ -10,8 +10,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 })
 export class BusinessStatsComponent implements OnInit {
   currentBusiness: Business;
-  footTraffic:number = 0;
-  peakTime:Date;
+  footTraffic = 0;
+  peakTime: Date;
   mobWidth: any;
 
 
@@ -30,53 +30,53 @@ export class BusinessStatsComponent implements OnInit {
   }
 
   getcurrentBusiness() {
-    let uid = this._authService.getCurrentBusiness();
+    const uid = this._authService.getCurrentBusiness();
     this.currentBusiness;
     this._businessService.getBusinesses().subscribe(response => {
 
-      for (var i = 0; i < response.length; i++) {
+      for (let i = 0; i < response.length; i++) {
         if (response[i].id === uid) {
           this.currentBusiness = response[i];
           this.getDisplay();
           break;
         }
 
-      };
+      }
     });
 
   }
 
 
   getDisplay(){
-    let currDate = new Date()
-    let stats =this.currentBusiness.stats
-    let currStats:any[] =[];
+    const currDate = new Date();
+    const stats = this.currentBusiness.stats;
+    const currStats: any[] = [];
     this.footTraffic = 0;
-    for (var i = 0; i < stats.length; i++) {
-      let date = new Date(stats[i].date);
-      let flag:boolean = currDate.getFullYear() == date.getFullYear() && currDate.getDate()== date.getDate() && currDate.getMonth()==date.getMonth();
-      if(flag){
+    for (let i = 0; i < stats.length; i++) {
+      const date = new Date(stats[i].date);
+      const flag: boolean = currDate.getFullYear() == date.getFullYear() && currDate.getDate() == date.getDate() && currDate.getMonth() == date.getMonth();
+      if (flag){
         currStats.push(stats[i]);
-        this.footTraffic+=stats[i].pax;
-      
+        this.footTraffic += stats[i].pax;
+
       }
     }
-   
-    if(currStats.length>1){
-let peakPax:number = currStats[0].pax;
-    for (var i = 0; i < currStats.length-1; i++) {
-      if(peakPax<currStats[i+1].pax){
-        peakPax = currStats[i+1].pax;
-        this.peakTime = new Date(currStats[i+1].date);
+
+    if (currStats.length > 1){
+let peakPax: number = currStats[0].pax;
+    for (let i = 0; i < currStats.length - 1; i++) {
+      if (peakPax < currStats[i + 1].pax){
+        peakPax = currStats[i + 1].pax;
+        this.peakTime = new Date(currStats[i + 1].date);
       }
     }
 
     }else{
       this.peakTime = new Date(currStats[0].date);
     }
-    
-    
-   
+
+
+
   }
 
 }

@@ -1,4 +1,4 @@
-import { FormGroup,FormControl,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,18 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
-form:any;
-  constructor(private auth:AuthenticationService,fb:FormBuilder) { 
+form: any;
+  constructor(private auth: AuthenticationService, fb: FormBuilder) {
     this.form = fb.group({
-      email: ['',[Validators.required,Validators.email]]
+      email: ['', [Validators.required, Validators.email]]
     });
   }
-  
+
   get email(){
     return this.form.get('email');
   }
 ngOnInit() {
   }
 
-  changePassword(email){this.auth.resetPassword(email);}
+  changePassword(email){this.auth.resetPassword(email); }
 }

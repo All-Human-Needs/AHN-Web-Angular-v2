@@ -5,15 +5,15 @@ import { Location } from 'tslint/lib/rules/strictBooleanExpressionsRule';
 import { Business } from './../../../../models/business/business.class';
 import { BusinessService } from './../../../../services/business.service';
 
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
-import { GoogleMapsAPIWrapper, MapsAPILoader } from "@agm/core";
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
 
 declare var google: any;
 
 @Component({
-  selector: "ahn-map",
-  templateUrl: "./map.component.html",
-  styleUrls: ["./map.component.css"],
+  selector: 'ahn-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css'],
   providers: [GoogleMapsAPIWrapper]
 })
 export class MapComponent implements OnInit {
@@ -35,7 +35,7 @@ export class MapComponent implements OnInit {
   userLocation: location = this.setCurrentPosition();
   userLat: number;
   userLng: number;
-  userName: String = "You are here";
+  userName: String = 'You are here';
   zoom: number;
   directionsDisplay;
 
@@ -51,8 +51,8 @@ export class MapComponent implements OnInit {
 
   initMarkers() {
     this.BusinessService.getBusinesses().subscribe(response => {
-      for (var i = 0; i < response.length; i++) {
-        var marker: Business = {
+      for (let i = 0; i < response.length; i++) {
+        const marker: Business = {
           id: response[i].id,
           name: response[i].name,
           lat: response[i].lat,
@@ -69,16 +69,16 @@ export class MapComponent implements OnInit {
 
   updateMarkers() {
     this.route.params.subscribe((param: Params) => {
-      let category = param["filter"];
+      const category = param['filter'];
 
-      if (category === "All") {
+      if (category === 'All') {
         this.initMarkers();
       } else {
         this.locations.splice(0, this.locations.length);
         this.BusinessService.getBusinesses().subscribe(response => {
-          for (var i = 0; i < response.length; i++) {
+          for (let i = 0; i < response.length; i++) {
             if (response[i].category === category) {
-              var marker: Business = {
+              const marker: Business = {
                 id: response[i].id,
                 name: response[i].name,
                 lat: response[i].lat,
@@ -99,7 +99,7 @@ export class MapComponent implements OnInit {
   setDestination() {
     this.SearchService.destinationBusiness.subscribe(response => {
       this.destination = new Destination(response.lat, response.lng);
-      var marker: Business = {
+      const marker: Business = {
         id: response.id,
         name: response.name,
         lat: response.lat,
@@ -118,13 +118,13 @@ export class MapComponent implements OnInit {
 
   // Method for setting CURRENT POSITION -- START
   private setCurrentPosition() {
-    var newMarker: location;
-    if ("geolocation" in navigator) {
+    let newMarker: location;
+    if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
         newMarker = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
-          name: "You Are Here"
+          name: 'You Are Here'
         };
         this.userLat = newMarker.lat;
         this.userLng = newMarker.lng;
@@ -141,47 +141,47 @@ export class MapComponent implements OnInit {
   // custom styles for removing all the markers that aren't ours -- START
   customStyle = [
     {
-      featureType: "poi",
-      elementType: "labels",
+      featureType: 'poi',
+      elementType: 'labels',
 
-      stylers: [{ visibility: "off" }]
+      stylers: [{ visibility: 'off' }]
     },
     {
-      featureType: "transit",
-      elementType: "labels",
+      featureType: 'transit',
+      elementType: 'labels',
 
-      stylers: [{ visibility: "off" }]
+      stylers: [{ visibility: 'off' }]
     }
   ];
   // custom styles for removing all the markers that aren't ours -- END
 
   // Method for displaying the correct colour for the markers START
   private getColorIcon(business: Business): String {
-    let imageLocation: String = "";
+    let imageLocation: String = '';
 
     if (
       business.stats[business.stats.length - 1].pax / business.capacity >
       0.8
     ) {
-      imageLocation = "assets/img/colour-markers/red.png";
+      imageLocation = 'assets/img/colour-markers/red.png';
     }
     if (
       business.stats[business.stats.length - 1].pax / business.capacity > 0.5 &&
       business.stats[business.stats.length - 1].pax / business.capacity <= 0.8
     ) {
-      imageLocation = "assets/img/colour-markers/yellow.png";
+      imageLocation = 'assets/img/colour-markers/yellow.png';
     }
     if (
       business.stats[business.stats.length - 1].pax / business.capacity <=
       0.5
     ) {
-      imageLocation = "assets/img/colour-markers/green.png";
+      imageLocation = 'assets/img/colour-markers/green.png';
     }
     return imageLocation;
   }
   // Method for displaying the correct colour for the markers END
   getUserIcon(): String {
-    return "assets/img/colour-markers/userLocation.png";
+    return 'assets/img/colour-markers/userLocation.png';
   }
 }
 

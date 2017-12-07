@@ -8,9 +8,9 @@ import { ZippyComponent } from './zippy/zippy.component';
   imports: [
     CommonModule,
     AppRoutingModule,
-  
+
   ],
-  declarations: [  SideNavComponent,ZippyComponent],
-  exports:[SideNavComponent]
+  declarations: [  SideNavComponent, ZippyComponent],
+  exports: [SideNavComponent]
 })
 export class SideNavModule { }

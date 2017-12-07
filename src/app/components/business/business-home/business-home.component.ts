@@ -9,14 +9,14 @@ import { Component,  OnInit } from '@angular/core';
 })
 export class BusinessHomeComponent implements OnInit {
 //  @Output() clicked = new EventEmitter;
- 
 
-  constructor( private router:Router,private _businessService:BusinessService) { }
+
+  constructor( private router: Router, private _businessService: BusinessService) { }
 
   ngOnInit() {
   }
 
-  next(chartType:string){
+  next(chartType: string){
     this._businessService.setChartType(chartType);
     this.router.navigateByUrl('/business-statistics');
   }

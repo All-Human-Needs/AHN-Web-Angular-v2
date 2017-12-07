@@ -1,19 +1,19 @@
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 
-import { SearchService } from "../../../../services/search.service";
+import { SearchService } from '../../../../services/search.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { BusinessService } from "../../../../services/business.service";
-import { Observable } from "rxjs";
-import { Business } from "../../../../models/business/business.class";
+import { BusinessService } from '../../../../services/business.service';
+import { Observable } from 'rxjs';
+import { Business } from '../../../../models/business/business.class';
 
 @Component({
-  selector: "best-alternative-list",
-  templateUrl: "./best-alternative-list.component.html",
-  styleUrls: ["./best-alternative-list.component.css"],
-  providers:[SearchBarComponent]
+  selector: 'best-alternative-list',
+  templateUrl: './best-alternative-list.component.html',
+  styleUrls: ['./best-alternative-list.component.css'],
+  providers: [SearchBarComponent]
 })
 export class BestAlternativeListComponent implements OnInit {
-hidden:boolean;
+hidden: boolean;
 
   isExpanded: boolean;
   stats;
@@ -30,7 +30,7 @@ hidden:boolean;
 
 
 
-  
+
   }
 
   bestAlternative() {
@@ -39,7 +39,7 @@ hidden:boolean;
     this.businessService.getBusinesses().subscribe(
       (changes => {
         this.alternativesList = changes.map((c, i) => {
-          return { id: i, name: c.name,lat:c.lat,lng:c.lng, pax: c.stats[c.stats.length - 1].pax };
+          return { id: i, name: c.name, lat: c.lat, lng: c.lng, pax: c.stats[c.stats.length - 1].pax };
         });
 
         this.alternativesList.sort((left, right) => {
@@ -65,7 +65,7 @@ this.searchService.setBusiness(item);
     this.isExpanded = !this.isExpanded;
   }
 
-  
+
 }
 
 interface Alternatives {

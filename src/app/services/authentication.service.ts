@@ -1,12 +1,12 @@
-import { UserService } from "./user.service";
-import { BusinessService } from "./business.service";
-import { Business } from "./../models/business/business.class";
-import { User } from "./../models/user";
-import { AngularFireDatabase } from "angularfire2/database-deprecated";
-import { Injectable } from "@angular/core";
-import { AngularFireAuth } from "angularfire2/auth";
-import { Router } from "@angular/router";
-import * as firebase from "firebase/app";
+import { UserService } from './user.service';
+import { BusinessService } from './business.service';
+import { Business } from './../models/business/business.class';
+import { User } from './../models/user';
+import { AngularFireDatabase } from 'angularfire2/database-deprecated';
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthenticationService {
@@ -40,7 +40,7 @@ export class AuthenticationService {
   }
 
   get currentUserId(): string {
-    return this.authenticated ? this.authState.uid : "";
+    return this.authenticated ? this.authState.uid : '';
   }
 
   login(email: string, password: string) {
@@ -49,7 +49,7 @@ export class AuthenticationService {
       .then(user => {
       //  this.isBusiness(user);
         this.setIsBusiness();
-        this.router.navigate(["/main/dashboard"]);
+        this.router.navigate(['/main/dashboard']);
       });
   }
 
@@ -60,14 +60,14 @@ export class AuthenticationService {
       .then(user => {
         this.isClient();
         this.setIsBusiness();
-        this.router.navigate(["/main/dashboard"]);
+        this.router.navigate(['/main/dashboard']);
       });
     //go to next page
   }
 
   logout() {
     this.ahnAuth.auth.signOut();
-    this.router.navigate(["/login"]);
+    this.router.navigate(['/login']);
   }
 
   createUser(
@@ -76,11 +76,11 @@ export class AuthenticationService {
     isBusinesses: boolean,
     business?: Business
   ) {
-    let isError: boolean = false;
+    let isError = false;
     this.ahnAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(success => {
-        let user: User = {
+        const user: User = {
           id: success.uid,
           isBusiness: isBusinesses
         };
@@ -90,18 +90,18 @@ export class AuthenticationService {
           this._businessService.addBusiness(business);
           // this.router.navigateByUrl("/business-statistics");
           this.setIsBusiness();
-          this.router.navigate(["/main/dashboard"]);
+          this.router.navigate(['/main/dashboard']);
         } else {
           // this.router.navigateByUrl("/client-home");
           this.setIsBusiness();
-          this.router.navigate(["/main/dashboard"]);
+          this.router.navigate(['/main/dashboard']);
         }
       })
       .catch(err => {
         isError = true;
         if (
           err.message ===
-          "The email address is already in use by another account."
+          'The email address is already in use by another account.'
         ) {
           alert(err.message);
         } else {
@@ -121,65 +121,65 @@ export class AuthenticationService {
   verifyEmail() {
     this.ahnAuth.auth.currentUser
       .sendEmailVerification()
-      .then(msg => alert("Password Successfully Reset"))
-      .catch(msg => alert("Password Successfully Reset"));
+      .then(msg => alert('Password Successfully Reset'))
+      .catch(msg => alert('Password Successfully Reset'));
   }
 
   resetPassword(email: string) {
    this.ahnAuth.auth
      .sendPasswordResetEmail(email)
-      .then(()=>{
-        alert("Email to reset password was sent");
-        this.router.navigate(["/login"]);
+      .then(() => {
+        alert('Email to reset password was sent');
+        this.router.navigate(['/login']);
       }).catch(
-        err=>alert(err)
-      )
+        err => alert(err)
+      );
 
   }
 
   isBusiness(currentUser) {
     this._userService.users.subscribe(
-      (response:User[]) => {
-        for (var i = 0; i < response.length; i++) {
+      (response: User[]) => {
+        for (let i = 0; i < response.length; i++) {
           if (response[i].id === currentUser.uid) {
             if (response[i].isBusiness) {
 
-              this.router.navigate(["/main/business-statistics"]);
+              this.router.navigate(['/main/business-statistics']);
 
             } else {
-              this.router.navigate(["/main/client-home"]);
+              this.router.navigate(['/main/client-home']);
             }
           }
         }
       }
-    
+
     );
   }
 
   isClient(){
-    this._userService.users.subscribe((response:User[])=>{
+    this._userService.users.subscribe((response: User[]) => {
       let found = false;
-      for (var i = 0; i < response.length; i++) {
+      for (let i = 0; i < response.length; i++) {
         if (response[i].id === this.ahnAuth.auth.currentUser.uid) {
-         found=true;
+         found = true;
          break;
         }
       }
-      if(!found){
-        let user: User = {
+      if (!found){
+        const user: User = {
           id: this.ahnAuth.auth.currentUser.uid,
           isBusiness: false
         };
         this._userService.addItem(user);
       }
       }
-    )
+    );
   }
-  
+
   setIsBusiness() {
     this._userService.users.subscribe(
-      (response:User[]) => {
-        for (var i = 0; i < response.length; i++) {
+      (response: User[]) => {
+        for (let i = 0; i < response.length; i++) {
           if (response[i].id === this.ahnAuth.auth.currentUser.uid) {
             this.AmIBusiness = response[i].isBusiness;
           }

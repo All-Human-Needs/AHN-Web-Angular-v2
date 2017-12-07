@@ -12,13 +12,13 @@ import { User } from '../../../models/user';
 export class ClientHomeComponent implements OnInit {
 
   constructor(private router: Router) {
-    
+
   }
 
   ngOnInit() {
   }
-  gotoMap(filter:string): void {
-    let link = ['/main/client-maps', filter];
+  gotoMap(filter: string): void {
+    const link = ['/main/client-maps', filter];
     this.router.navigate(link);
   }
 
