@@ -16,7 +16,6 @@ export class MapsService {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-console.log(userLatLng);
 this.currentLocation={lat:userLatLng.lat,lng:userLatLng.lng};
 
 return userLatLng;

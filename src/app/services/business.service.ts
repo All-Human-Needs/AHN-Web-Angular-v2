@@ -27,12 +27,9 @@ export class BusinessService {
     private db: AngularFireDatabase,
     private mapService: MapsService
   ) {
-    // console.log("service constructor");
     this.businessRef = db.list("businesses");
-    // console.log(this.businessRef);
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
-      // console.log({"changes":changes});
     });
   }
 
@@ -40,9 +37,7 @@ export class BusinessService {
     return (this.businesses = this.businessRef
       .snapshotChanges()
       .map(changes => {
-        // console.table(changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))
-
-        // console.log(this.key[0]);
+      
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
       }));
   }
@@ -69,8 +64,7 @@ export class BusinessService {
     });
   }
   filterByCategory(term: string): Observable<Business[]> {
-    // console.log({"term":term});
-    // console.log({"alt":this.alt});
+    
     const list = this.alt.filter((b: Business) => {
       return b.category.search(RegExp(term, "i")) > -1;
     });
@@ -87,20 +81,7 @@ export class BusinessService {
         }
       })
       .splice(3, list.length);
-    // console.log(this.mapService.setCurrentPosition());
-    // this.mapService.setCurrentPosition();
-   
-
-    // list.sort((a: any, b:any ) => {
-    //    if (a < b) {
-    //   return -1;
-    // } else if (a > b) {
-    //   return 1;
-    // } else {
-    //   return 0;
-    // }})
-
-    // console.log(list);
+  
     return Observable.create((observer: Observer<Business[]>) => {
       observer.next(list);
     });
@@ -119,7 +100,6 @@ export class BusinessService {
       if (flag) {
         for (var i = 0; i < element.length; i++) {
           if (element[i].id === business.id) {
-            // console.log("Key:" + element[i].key + "\nID: " + business.id + "\n Name: " + business.name);
             this.updateBusiness(element[i].key, business);
             flag = false;
             break;

@@ -112,10 +112,8 @@ export class AuthenticationService {
     }
 
   getCurrentBusiness(){
-    //console.log(this.ahnAuth.auth.currentUser.uid);
 
     return this.ahnAuth.auth.currentUser.uid;
-    // return "vKMucvqM9NWyoQqhe3BQd1N29VG2"
 
 
   }
@@ -136,11 +134,7 @@ export class AuthenticationService {
       }).catch(
         err=>alert(err)
       )
-  //  console.log(email);
-     
-     
-      // .then(msg => alert("Password Successfully Reset"))
-      // .catch(msg => alert("Password Successfully Reset"));
+
   }
 
   isBusiness(currentUser) {
@@ -158,10 +152,7 @@ export class AuthenticationService {
           }
         }
       }
-      //   .map(u => {
-      //   console.log(u);return this.checkUsers=u;
-
-      // })
+    
     );
   }
 

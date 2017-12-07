@@ -49,7 +49,6 @@ export class FilterComponent implements OnInit {
         // this.filteredBusiness = business;
         // this.filteredBusinessChange.emit(business);
 
-        console.log({ "2": business });
         mapsAPILoader.load().then(() => {
 
           // this.filteredBusinessChange = new EventEmitter<any[]>();
@@ -61,15 +60,12 @@ export class FilterComponent implements OnInit {
                 position.coords.longitude
               );
               var destination = [];
-              // console.log(destination);
               for (var i = 0; i < business.length; i++) {
                 destination.push(
                   new google.maps.LatLng(business[i].lat, business[i].lng)
                 );
-                // console.log(destination);
               }
 
-              // var x = { business: business[0], distance: 0 };
 
               distanceService.getDistanceMatrix(
                 {
@@ -101,8 +97,6 @@ export class FilterComponent implements OnInit {
                     this.filteredBusiness = distanceArr;
                     
                     this.filteredBusinessChange.emit(this.filteredBusiness);
-                      console.log(this.filteredBusiness);
-                      // this.filteredBusinessChange = new EventEmitter<any[]>();
                       
                       
                     
@@ -123,8 +117,6 @@ export class FilterComponent implements OnInit {
       router.navigate(link);
     }
 
-    // this.businessService.replay.subscribe(lol => console.log({ here: lol }));
-    // await this.businessService.replay.first().toPromise().then();
   }
 
   ngOnInit() {

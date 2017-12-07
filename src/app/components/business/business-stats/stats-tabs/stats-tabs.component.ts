@@ -50,7 +50,7 @@ export class StatsTabsComponent implements OnInit {
 
   selectPane(pane:string){
     this.selectedPane = pane;
-    console.log(this.selectedPane)
+
   }
   
 
