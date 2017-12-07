@@ -45,10 +45,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-  
     this.updateMarkers();
-
- 
     this.setDestination();
   }
 
@@ -102,7 +99,17 @@ export class MapComponent implements OnInit {
   setDestination() {
     this.SearchService.destinationBusiness.subscribe(response => {
       this.destination = new Destination(response.lat, response.lng);
-
+      var marker: Business = {
+        id: response.id,
+        name: response.name,
+        lat: response.lat,
+        lng: response.lng,
+        category: response.category,
+        capacity: response.capacity,
+        isActive: response.isActive,
+        stats: response.stats
+      };
+      this.locations.push(marker);
       this.mapsAPILoader.load().then(map => {
         this.directionsDisplay = new google.maps.DirectionsRenderer();
       });
@@ -123,8 +130,10 @@ export class MapComponent implements OnInit {
         this.userLng = newMarker.lng;
         this.origin.latitude = newMarker.lat;
         this.origin.longitude = newMarker.lng;
+
       });
     }
+
     return this.userLocation;
   }
   // Method for setting CURRENT POSITION -- END

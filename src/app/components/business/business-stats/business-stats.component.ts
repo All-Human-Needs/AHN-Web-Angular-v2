@@ -26,7 +26,7 @@ export class BusinessStatsComponent implements OnInit {
 
   ngOnInit() {
    this.getcurrentBusiness();
-  
+
   }
 
   getcurrentBusiness() {
