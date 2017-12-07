@@ -34,15 +34,16 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { SearchService } from './services/search.service';
 import { MainComponent } from './components/main/main.component';
+// import { RotateScreenComponent } from './components/rotate-screen/rotate-screen.component';
 
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyCmLj-8NEWba6GUprGUkaM4e40hfLymQK4',
-  authDomain: 'all-human-needs.firebaseapp.com',
-  databaseURL: 'https://all-human-needs.firebaseio.com',
-  projectId: 'all-human-needs',
-  storageBucket: 'all-human-needs.appspot.com',
-  messagingSenderId: '376651603679'
+  apiKey: "AIzaSyCmLj-8NEWba6GUprGUkaM4e40hfLymQK4",
+  authDomain: "all-human-needs.firebaseapp.com",
+  databaseURL: "https://all-human-needs.firebaseio.com",
+  projectId: "all-human-needs",
+  storageBucket: "all-human-needs.appspot.com",
+  messagingSenderId: "376651603679"
 };
 
 @NgModule({
@@ -54,6 +55,7 @@ export const firebaseConfig = {
     RegistrationComponent,
     ForgotPasswordComponent,
     MainComponent,
+    // RotateScreenComponent,
 
   ],
 
