@@ -28,12 +28,10 @@ export class FilterComponent implements OnInit {
 
   params: string;
 
-  @Input() filteredBusiness: Business[] = [];
+  @Input() filteredBusiness = [];
 
   @Output()
-  filteredBusinessChange: EventEmitter<Business[]> = new EventEmitter<
-    Business[]
-  >();
+  filteredBusinessChange: EventEmitter<Business[]> = new EventEmitter<any[]>();
 
   constructor(
     private businessService: BusinessService,
@@ -48,54 +46,80 @@ export class FilterComponent implements OnInit {
         return this.businessService.filterByCategory(params.get("filter"));
       })
       .subscribe(business => {
-        this.filteredBusiness = business;
-        this.filteredBusinessChange.emit(business);
+        // this.filteredBusiness = business;
+        // this.filteredBusinessChange.emit(business);
 
         console.log({ "2": business });
         mapsAPILoader.load().then(() => {
+
+          // this.filteredBusinessChange = new EventEmitter<any[]>();
           var distanceService = new google.maps.DistanceMatrixService();
-          var origin = new google.maps.LatLng(-33.927082399999996, 18.445757);
-          var destination = [];
-          console.log(destination);
-          for (var i = 0; i < business.length; i++) {
-            destination.push(
-              new google.maps.LatLng(business[i].lat, business[i].lng)
-            );
-            console.log(destination);
+          if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(position => {
+              var origin = new google.maps.LatLng(
+                position.coords.latitude,
+                position.coords.longitude
+              );
+              var destination = [];
+              // console.log(destination);
+              for (var i = 0; i < business.length; i++) {
+                destination.push(
+                  new google.maps.LatLng(business[i].lat, business[i].lng)
+                );
+                // console.log(destination);
+              }
+
+              // var x = { business: business[0], distance: 0 };
+
+              distanceService.getDistanceMatrix(
+                {
+                  origins: [origin],
+                  destinations: destination,
+                  travelMode: google.maps.TravelMode.DRIVING
+                },
+                (response, status)=> {
+                  // this.filteredBusinessChange = new EventEmitter<any[]>();
+                  var distanceArr = [];
+                  if (response.rows[0] !== undefined) {
+                  
+                    for (var i = 0; i < response.rows[0].elements.length; i++) {
+                      distanceArr.push({
+                        business: business[i],
+                        distance:
+                          response.rows[0].elements[i].distance.value / 1000
+                      });
+                    }
+                    distanceArr.sort((a: any, b: any) => {
+                      if (a.distance < b.distance) {
+                        return -1;
+                      } else if (a.distance > b.distance) {
+                        return 1;
+                      } else {
+                        return 0;
+                      }
+                    });
+                    this.filteredBusiness = distanceArr;
+                    
+                    this.filteredBusinessChange.emit(this.filteredBusiness);
+                      console.log(this.filteredBusiness);
+                      // this.filteredBusinessChange = new EventEmitter<any[]>();
+                      
+                      
+                    
+                  }else{this.filteredBusinessChange.emit([]);}
+
+                }
+                
+              );
+            });
           }
 
-          distanceService.getDistanceMatrix(
-            {
-              origins: [origin],
-              destinations: destination,
-              travelMode: google.maps.TravelMode.DRIVING
-            },
-            function(response, status) {
-              var distanceArr = []
-
-              for (var i = 0; i < response.rows[0].elements.length; i++) {
-                distanceArr.push(response.rows[0].elements[i].distance.value/1000);
-              }
-              distanceArr.sort((a: any, b: any) => {
-                if (a < b) {
-                  return -1;
-                } else if (a > b) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-              });
-              console.log(distanceArr);
-              console.log(response.rows[0].elements[0].distance.value);
-            }
-          );
-
-          // console.log('foo')
         });
+        
       });
 
     if (this.filteredBusiness.length < 1) {
-      let link = ["/main/client-maps/all"];
+      let link = ["/main/client-maps/All"];
       router.navigate(link);
     }
 
