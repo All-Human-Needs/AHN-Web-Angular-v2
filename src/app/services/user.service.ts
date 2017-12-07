@@ -15,7 +15,7 @@ export class UserService {
   }
 
   getUsers() {
-    this.usersRef = this.db.list("users");
+    this.usersRef = this.db.list("clients");
 
     this.users = this.usersRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
