@@ -22,18 +22,18 @@ export class StatsTabsComponent implements OnInit {
   selDate: Date = new Date();
   constructor(private _businessService: BusinessService, private formBuilder: FormBuilder, private _authService: AuthenticationService) {
 
-    this.selectedPane = "bargraph";
+    this.selectedPane = 'bargraph';
     this.datepicker = formBuilder.group({
       selectedDate: new Date()
     });
 
-    this.chartType.next("hourly");
-    this.timePeriod = "hourly"
+    this.chartType.next('hourly');
+    this.timePeriod = 'hourly';
 
   }
 
   ngOnInit() {
-    this.chartType.subscribe(timePeriod => this.timePeriod = timePeriod)
+    this.chartType.subscribe(timePeriod => this.timePeriod = timePeriod);
   }
 
   setTimePeriod(timePeriod: string) {
@@ -42,7 +42,7 @@ export class StatsTabsComponent implements OnInit {
   }
 
   getTimePeriod() {
-    return this.chartType
+    return this.chartType;
   }
 
 

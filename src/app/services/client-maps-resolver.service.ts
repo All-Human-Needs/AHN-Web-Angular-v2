@@ -1,13 +1,13 @@
-import { BusinessService } from "./business.service";
-import { Business } from "../models/business/business.class";
+import { BusinessService } from './business.service';
+import { Business } from '../models/business/business.class';
 import {
   Resolve,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Router
-} from "@angular/router";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
+} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ClientMapsResolver implements Resolve<Business[]> {
@@ -17,12 +17,12 @@ export class ClientMapsResolver implements Resolve<Business[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Business[] | Observable<Business[]> | Promise<Business[]> {
-    let filter = route.paramMap.get("filter");
+    const filter = route.paramMap.get('filter');
     return this.bs.filterByCategory(filter).map(business => {
       if (business) {
         return business;
       } else {
-        this.router.navigate(["/main/dashboard"]);
+        this.router.navigate(['/main/dashboard']);
         return null;
       }
     });

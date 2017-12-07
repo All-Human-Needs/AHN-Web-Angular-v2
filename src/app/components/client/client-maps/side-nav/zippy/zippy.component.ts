@@ -6,12 +6,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./zippy.component.css']
 })
 export class ZippyComponent  {
-  @Input('title') title:string;
-  
-  isExpanded:boolean;
-  
+  @Input('title') title: string;
+
+  isExpanded: boolean;
+
   toggle(){
-    this.isExpanded=!this.isExpanded;
+    this.isExpanded = !this.isExpanded;
   }
 
 }

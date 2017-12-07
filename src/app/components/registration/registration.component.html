@@ -29,14 +29,11 @@
                                 <input type="password" mdInput placeholder="Password" formControlName="password" [(ngModel)]="pwd" id="psw">
                                 <md-error *ngIf="password.touched && password.invalid">
                                     <md-error *ngIf="password.errors.minlength">
-                                        Please enter a password
+                                        Please enter a password that is more than {{password.errors.minlength.requiredLength}} characters
                                     </md-error>
                                     <md-error *ngIf="password.errors.required">
                                         Password is <strong>required</strong>
                                     </md-error>
-                                    <md-hint style="color:red;" *ngIf="confirmPwrd.valid && passwordForm.invalid && passwordForm.errors.passwordMatches">
-                                        Passwords do not match
-                                    </md-hint>
                                 </md-error>
                             </md-form-field>
 
@@ -103,7 +100,7 @@
                                 <input type="password" mdInput placeholder="Password" formControlName="password" [(ngModel)]="pwd" id="psw">
                                 <md-error *ngIf="password.touched && password.invalid">
                                     <md-error *ngIf="password.errors.minlength">
-                                        Please enter a password
+                                        Please enter a password that is more than {{password.errors.minlength.requiredLength}} characters
                                     </md-error>
                                     <md-error *ngIf="password.errors.required">
                                         Password is <strong>required</strong>

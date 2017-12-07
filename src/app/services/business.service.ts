@@ -1,14 +1,14 @@
-import { MapsService } from "./maps.service";
-import { start } from "repl";
-import { LatLng, LatLngLiteral } from "@agm/core";
-import { MapComponent } from "../components/client/client-maps/map/map.component";
-import { Observer, ReplaySubject } from "rxjs/Rx";
+import { MapsService } from './maps.service';
+import { start } from 'repl';
+import { LatLng, LatLngLiteral } from '@agm/core';
+import { MapComponent } from '../components/client/client-maps/map/map.component';
+import { Observer, ReplaySubject } from 'rxjs/Rx';
 
-import { Observable } from "rxjs/Observable";
-import { Injectable } from "@angular/core";
-import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
+import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
-import { Business } from "../models/business/business.class";
+import { Business } from '../models/business/business.class';
 
 @Injectable()
 export class BusinessService {
@@ -19,7 +19,7 @@ export class BusinessService {
   chartType: string;
   alt: Business[] = [];
 
-  filterKeyword: string = "hospital";
+  filterKeyword = 'hospital';
 
   filteredBusiness: Observable<Business[]>;
 
@@ -27,7 +27,7 @@ export class BusinessService {
     private db: AngularFireDatabase,
     private mapService: MapsService
   ) {
-    this.businessRef = db.list("businesses");
+    this.businessRef = db.list('businesses');
     this.businessRef.valueChanges().subscribe((changes: Business[]) => {
       this.alt = changes;
     });
@@ -37,7 +37,7 @@ export class BusinessService {
     return (this.businesses = this.businessRef
       .snapshotChanges()
       .map(changes => {
-      
+
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
       }));
   }
@@ -56,7 +56,7 @@ export class BusinessService {
 
   search(term: string): Observable<Business[]> {
     const list = this.alt.filter((b: Business) => {
-      return b.name.search(RegExp(term, "i")) > -1;
+      return b.name.search(RegExp(term, 'i')) > -1;
     });
 
     return Observable.create((observer: Observer<Business[]>) => {
@@ -64,14 +64,14 @@ export class BusinessService {
     });
   }
   filterByCategory(term: string): Observable<Business[]> {
-    
+
     const list = this.alt.filter((b: Business) => {
-      return b.category.search(RegExp(term, "i")) > -1;
+      return b.category.search(RegExp(term, 'i')) > -1;
     });
     list
       .sort((a: Business, b: Business) => {
-        var lastPaxA = a.stats[a.stats.length - 1].pax;
-        var lastPaxB = b.stats[b.stats.length - 1].pax;
+        const lastPaxA = a.stats[a.stats.length - 1].pax;
+        const lastPaxB = b.stats[b.stats.length - 1].pax;
         if (lastPaxA < lastPaxB) {
           return -1;
         } else if (lastPaxA > lastPaxB) {
@@ -81,7 +81,7 @@ export class BusinessService {
         }
       })
       .splice(3, list.length);
-  
+
     return Observable.create((observer: Observer<Business[]>) => {
       observer.next(list);
     });
@@ -89,7 +89,7 @@ export class BusinessService {
 
   postStatisics(business: Business) {
     const businesses: Observable<any> = this.db
-      .list("/businesses")
+      .list('/businesses')
       .snapshotChanges()
       .map(changes => {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -98,7 +98,7 @@ export class BusinessService {
     let flag = true;
     businesses.forEach(element => {
       if (flag) {
-        for (var i = 0; i < element.length; i++) {
+        for (let i = 0; i < element.length; i++) {
           if (element[i].id === business.id) {
             this.updateBusiness(element[i].key, business);
             flag = false;

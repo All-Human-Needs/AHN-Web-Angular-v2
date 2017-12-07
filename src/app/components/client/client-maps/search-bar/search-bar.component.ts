@@ -1,27 +1,27 @@
-import { SearchService } from "../../../../services/search.service";
-import { Business } from "./../../../../models/business/business.class";
-import { Observable } from "rxjs/Rx";
-import { BusinessService } from "../../../../services/business.service";
-import { Component, EventEmitter, OnInit, Output, Input } from "@angular/core";
-import { Subject } from "rxjs/Subject";
+import { SearchService } from '../../../../services/search.service';
+import { Business } from './../../../../models/business/business.class';
+import { Observable } from 'rxjs/Rx';
+import { BusinessService } from '../../../../services/business.service';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
-  selector: "ahn-search-bar",
-  templateUrl: "./search-bar.component.html",
-  styleUrls: ["./search-bar.component.css"]
+  selector: 'ahn-search-bar',
+  templateUrl: './search-bar.component.html',
+  styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
   firstResult: Business;
 
   // altBusiness;
 
-  public hidden: boolean = false;
+  public hidden = false;
 
   private searchTerms = new Subject<string>();
 
   businesses: Observable<Business[]>;
 
-  query = "";
+  query = '';
 
   isExpanded: boolean;
   stats;
@@ -46,7 +46,7 @@ export class SearchBarComponent implements OnInit {
 
   selectAlt(item){
     this.query = item.business.name;
-    
+
         this.initSuggestions();
         this.hidden = true;
         this.SearchService.destinationBusiness.next(item.business);

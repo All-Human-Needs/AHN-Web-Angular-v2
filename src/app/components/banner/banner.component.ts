@@ -7,7 +7,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
-  title:'All Human Needs'
+  title: 'All Human Needs';
   constructor(private authService: AuthenticationService) {}
   logout() {
   this.authService.logout();

@@ -4,23 +4,23 @@ import {
   LatLng,
   GoogleMapsAPIWrapper,
   MapsAPILoader
-} from "@agm/core";
-import { MapsService } from "../../services/maps.service";
-import { BehaviorSubject } from "rxjs/Rx";
+} from '@agm/core';
+import { MapsService } from '../../services/maps.service';
+import { BehaviorSubject } from 'rxjs/Rx';
 
-import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
-import { Business } from "./../../models/business/business.class";
-import { BusinessService } from "./../../services/business.service";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { ActivatedRoute, ParamMap, Params, Router } from "@angular/router";
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { Business } from './../../models/business/business.class';
+import { BusinessService } from './../../services/business.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
 
-import { } from "@types/googlemaps";
+import { } from '@types/googlemaps';
 
 @Component({
-  selector: "filter",
-  templateUrl: "./filter.component.html",
-  styleUrls: ["./filter.component.css"]
+  selector: 'filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
   businesses: Observable<Business[]>;
@@ -42,21 +42,21 @@ export class FilterComponent implements OnInit {
   ) {
     this.route.paramMap
       .switchMap((params: ParamMap) => {
-        return this.businessService.filterByCategory(params.get("filter"));
+        return this.businessService.filterByCategory(params.get('filter'));
       })
       .subscribe(business => {
 
         mapsAPILoader.load().then(() => {
 
-          var distanceService = new google.maps.DistanceMatrixService();
-          if ("geolocation" in navigator) {
+          const distanceService = new google.maps.DistanceMatrixService();
+          if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(position => {
-              var origin = new google.maps.LatLng(
+              const origin = new google.maps.LatLng(
                 position.coords.latitude,
                 position.coords.longitude
               );
-              var destination = [];
-              for (var i = 0; i < business.length; i++) {
+              const destination = [];
+              for (let i = 0; i < business.length; i++) {
                 destination.push(
                   new google.maps.LatLng(business[i].lat, business[i].lng)
                 );
@@ -69,10 +69,10 @@ export class FilterComponent implements OnInit {
                   travelMode: google.maps.TravelMode.DRIVING
                 },
                 (response, status) => {
-                  var distanceArr = [];
+                  const distanceArr = [];
                   if (response.rows[0] !== undefined) {
 
-                    for (var i = 0; i < response.rows[0].elements.length; i++) {
+                    for (let i = 0; i < response.rows[0].elements.length; i++) {
                       distanceArr.push({
                         business: business[i],
                         distance:
@@ -105,7 +105,7 @@ export class FilterComponent implements OnInit {
 
     setTimeout(() => {
       if (this.filteredBusiness.length < 1) {
-        let link = ["/main/client-maps/All"];
+        const link = ['/main/client-maps/All'];
         router.navigate(link);
       }
     }, 2000);
@@ -116,7 +116,7 @@ export class FilterComponent implements OnInit {
   ngOnInit() {
     // calls check specific box function so the filter you choose in the dashboard is reflected in the filters list -- START
     this.route.params.subscribe((param: Params) => {
-      let category = param["filter"];
+      const category = param['filter'];
 
       this.checkSpecificBox(category);
     });
@@ -125,39 +125,39 @@ export class FilterComponent implements OnInit {
 
   search(filter: string): void {
     // this.filterargs.next(filter);
-    let link = ["/main/client-maps", filter];
+    const link = ['/main/client-maps', filter];
     this.router.navigate(link);
   }
 
-  hospitalChecked: boolean = false;
-  policeChecked: boolean = false;
-  fireDepartmentChecked: boolean = false;
-  bankChecked: boolean = false;
-  homeAffairsChecked: boolean = false;
-  nutritionAndFitnessChecked: boolean = false;
-  insuranceChecked: boolean = false;
-  cityToCityChecked: boolean = false;
-  MotorVehicleServiceChecked: boolean = false;
-  retailChecked: boolean = false;
+  hospitalChecked = false;
+  policeChecked = false;
+  fireDepartmentChecked = false;
+  bankChecked = false;
+  homeAffairsChecked = false;
+  nutritionAndFitnessChecked = false;
+  insuranceChecked = false;
+  cityToCityChecked = false;
+  MotorVehicleServiceChecked = false;
+  retailChecked = false;
 
   checkSpecificBox(input: String) {
     switch (input) {
-      case "nutrition and fitness":
+      case 'nutrition and fitness':
         this.nutritionAndFitnessChecked = true;
         break;
-      case "insurance":
+      case 'insurance':
         this.insuranceChecked = true;
         break;
-      case "city to city":
+      case 'city to city':
         this.cityToCityChecked = true;
         break;
-      case "motor vehicle service":
+      case 'motor vehicle service':
         this.MotorVehicleServiceChecked = true;
         break;
-      case "retail":
+      case 'retail':
         this.retailChecked = true;
         break;
-      case "All":
+      case 'All':
         this.hospitalChecked = false;
         this.policeChecked = false;
         this.fireDepartmentChecked = false;

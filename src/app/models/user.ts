@@ -1,4 +1,4 @@
 export class User{
-    id:any;
-    isBusiness:boolean;
+    id: any;
+    isBusiness: boolean;
 }

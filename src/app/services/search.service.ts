@@ -11,20 +11,20 @@ export class SearchService {
 
   public business: Observable<Business>;
 
-  businessName:string;
+  businessName: string;
 
-hidden:boolean=false;
+hidden= false;
 
   constructor() { }
 
 
   setBusiness(item: Business) {
-    this.business=Observable.create((observer: Observer<Business>) => {
+    this.business = Observable.create((observer: Observer<Business>) => {
       observer.next(item);
     });
   }
 
-  getBusiness() :Observable<Business>{
+  getBusiness(): Observable<Business>{
     return this.business;
   }
 
