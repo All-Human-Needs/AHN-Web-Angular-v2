@@ -20,7 +20,10 @@
 <div [hidden]="!hidden">
     <div class="fixed-bottom">
         <ul *ngIf="isExpanded" class="list-group">
-            <li (click)="select(alt)" *ngFor="let alt of filteredBusiness" class="list-group-item text-center"> {{alt.name}} {{alt.stats[alt.stats.length-1].pax}}</li>
+            <li *ngIf="filteredBusiness===undefined || filteredBusiness.length==0 " class="list-group-item text-center" style="background-color: red">
+
+            </li>
+            <li (click)="select(alt)" *ngFor="let alt of filteredBusiness" class="list-group-item text-center">{{alt.business.name}}</li>
         </ul>
         <button class="btn btn-primary" (click)="toggle()">Alternative options</button>
     </div>
