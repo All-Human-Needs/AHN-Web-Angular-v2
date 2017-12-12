@@ -108,7 +108,7 @@ export class FilterComponent implements OnInit {
         let link = ["/main/client-maps/All"];
         router.navigate(link);
       }
-    }, 2000);
+    }, 3000);
 
 
   }
@@ -172,7 +172,4 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  uncheckBoxes() {
-    // WORK NEEDED
-  }
 }
