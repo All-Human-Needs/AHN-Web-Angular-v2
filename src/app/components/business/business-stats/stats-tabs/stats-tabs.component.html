@@ -42,7 +42,10 @@
 
     </div>
 
-    <div class="row mt-4 ml-4 date">{{selDate|date:"MMMM y"}}</div>
+    <!-- <div class="row mt-4 ml-4 date">{{selDate|date:"MMMM y"}}</div> -->
+    <div *ngIf="timePeriod ==='hourly'" class="row mt-4 ml-4 date">{{selDate|date:'EEEE, MMMM d, y'}}</div>
+    <div *ngIf="timePeriod ==='daily'" class="row mt-4 ml-4 date">{{selDate|date:'EEEE, MMMM d, y'}} - {{tempDate|date:'EEEE, MMMM d, y'}}</div>
+    <div *ngIf="timePeriod ==='monthly'" class="row mt-4 ml-4 date">Year of {{selDate|date:'y'}}</div>
 
     <div class="tab-content mt-5 pl-4 pr-4" id="statsTabContent">
         <div class="tab-pane fade show active" id="bargraph" role="tabpanel" aria-labelledby="bargraph-tab">
