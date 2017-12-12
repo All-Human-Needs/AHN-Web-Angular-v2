@@ -39,7 +39,10 @@ export class InputSystemComponent implements OnInit {
 
     }
    );
-
+   setInterval(()=>{
+     this.send()
+   },30000)
+   setInterval(()=>{console.log("hello")},1800000);
   }
 
   setSelectedBusiness(selected){
